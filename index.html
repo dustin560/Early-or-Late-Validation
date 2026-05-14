@@ -331,26 +331,27 @@ h1, h2, h3, h4 { font-weight: 500; letter-spacing: -0.025em; line-height: 1; }
 /* Hero eyebrow — kept for legacy */
 .hero-eyebrow { color: var(--clay); margin-bottom: 32px; }
 
-/* Architectural section divider — between sections */
+/* Architectural section divider — canonical question heading */
 .section-divider {
   border-top: 1px solid var(--black);
-  padding: 28px 0;
+  padding: 28px 0 40px;
   display: grid;
-  grid-template-columns: 200px 1fr 200px;
+  grid-template-columns: 200px 1fr auto;
   gap: 32px;
   align-items: center;
+  margin-bottom: 48px;
 }
 .section-divider-num {
   font-family: var(--serif);
   font-style: italic;
   font-weight: 400;
-  font-size: 48px;
+  font-size: 56px;
   color: var(--clay);
   line-height: 1;
 }
 .section-divider-label {
   font-family: var(--mono);
-  font-size: 11px;
+  font-size: 12px;
   letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--ink-soft);
@@ -358,13 +359,39 @@ h1, h2, h3, h4 { font-weight: 500; letter-spacing: -0.025em; line-height: 1; }
 .section-divider-right {
   text-align: right;
   font-family: var(--mono);
-  font-size: 11px;
+  font-size: 12px;
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--ink-soft);
 }
+/* Dark variant for sections with black background */
+.section-divider--dark {
+  border-top-color: rgba(245, 241, 235, 0.4);
+}
+.section-divider--dark .section-divider-num { color: var(--clay-warm); }
+.section-divider--dark .section-divider-label,
+.section-divider--dark .section-divider-right { color: rgba(245, 241, 235, 0.65); }
+
+/* Q-status integrated into section-divider-right — strip the pill styling */
+.section-divider .q-status {
+  background: transparent !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  font-family: var(--mono);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  border: none;
+}
+.section-divider .q-status::before { display: none; }
+.section-divider .q-status.answered { color: var(--clay); }
+.section-divider .q-status.skipped { color: var(--ink-soft); text-decoration: line-through; }
+.section-divider--dark .q-status { color: rgba(245, 241, 235, 0.65); }
+.section-divider--dark .q-status.answered { color: var(--clay-warm); }
+
 @media (max-width: 900px) {
-  .section-divider { grid-template-columns: 1fr; gap: 12px; text-align: left; }
+  .section-divider { grid-template-columns: 1fr; gap: 12px; text-align: left; padding-bottom: 32px; margin-bottom: 32px; }
   .section-divider-right { text-align: left; }
 }
 
@@ -1923,7 +1950,6 @@ h1, h2, h3, h4 { font-weight: 500; letter-spacing: -0.025em; line-height: 1; }
 <!-- Floating question-progress widget -->
 <div class="progress-widget" id="progressWidget" title="Survey progress">
   <div class="progress-dots">
-    <span class="progress-dot" data-q="drop_ranking" title="The drop ranking"></span>
     <span class="progress-dot" data-q="promise_ranking" title="The promise ranking"></span>
     <span class="progress-dot" data-q="retailers" title="Where you'd find it"></span>
     <span class="progress-dot" data-q="motivation" title="Why you'd wear it"></span>
@@ -1932,7 +1958,7 @@ h1, h2, h3, h4 { font-weight: 500; letter-spacing: -0.025em; line-height: 1; }
     <span class="progress-dot" data-q="price" title="Willingness to pay"></span>
     <span class="progress-dot" data-q="buy_intent" title="Buy intent"></span>
   </div>
-  <p class="progress-label"><span class="progress-num">0</span> of <span class="progress-total">8</span> answered</p>
+  <p class="progress-label"><span class="progress-num">0</span> of <span class="progress-total">7</span> answered</p>
 </div>
 
 <!-- ============================================================
@@ -1959,7 +1985,6 @@ h1, h2, h3, h4 { font-weight: 500; letter-spacing: -0.025em; line-height: 1; }
     </div>
     <div class="nav-links">
       <a href="#drop">The drop</a>
-      <a href="#artists">Artists</a>
       <a href="#signup" class="nav-cta">Early access</a>
     </div>
   </div>
@@ -2016,8 +2041,8 @@ h1, h2, h3, h4 { font-weight: 500; letter-spacing: -0.025em; line-height: 1; }
 <div class="container">
   <div class="section-divider">
     <span class="section-divider-num">II.</span>
-    <span class="section-divider-label">The first drop · 100 pieces · Two artworks</span>
-    <span class="section-divider-right">Q1 of 8 · Ranking</span>
+    <span class="section-divider-label">The first drop · 100 pieces · Two artists</span>
+    <span class="section-divider-right">Catalog · browse + select</span>
   </div>
 </div>
 
@@ -2038,7 +2063,7 @@ h1, h2, h3, h4 { font-weight: 500; letter-spacing: -0.025em; line-height: 1; }
 ============================================================ -->
 <section class="section" id="drop">
   <div class="container">
-    <p class="meta hero-eyebrow">II — The first drop <span class="q-status" data-q="drop_ranking">Question 1 of 8</span></p>
+    <p class="meta hero-eyebrow">II — The first drop · Catalog</p>
     <h2 class="h-1" style="max-width:18ch;">Two artists.<br><em>Fifty of each.</em><br>One hundred pieces.</h2>
     <p class="body mt-32">The first chapter of something new. Two artists to start — chosen, named, paid a fair share. Each will release a small body of work for N°001. Every garment is numbered, signed by the artist, and shipped in a hand-folded matte-black box.</p>
     <div class="action-prompt"><span class="action-prompt-arrow">↓</span><span><span class="action-prompt-prefix">Your turn</span>Tap any artworks that appeal to you — select as many as you like</span></div>
@@ -2218,11 +2243,6 @@ h1, h2, h3, h4 { font-weight: 500; letter-spacing: -0.025em; line-height: 1; }
         <div class="track-item"><span class="track-rank"><span id="dropSelectionCount">0</span></span><span class="track-name" id="dropSelectionList">Tap any artworks above to select</span></div>
       </div>
     </div>
-
-    <div class="q-skip-row">
-      <span class="q-skip-helper">Rather not rank?</span>
-      <button class="q-skip" onclick="skipQuestion('drop_ranking')">Skip this question →</button>
-    </div>
   </div>
 </section>
 
@@ -2266,7 +2286,11 @@ h1, h2, h3, h4 { font-weight: 500; letter-spacing: -0.025em; line-height: 1; }
 ============================================================ -->
 <section class="section section--black section--tight">
   <div class="container">
-    <p class="meta" style="color: var(--clay); margin-bottom: 32px;">III — The promise <span class="q-status q-status--dark" data-q="promise_ranking">Question 2 of 8</span></p>
+    <div class="section-divider section-divider--dark">
+      <span class="section-divider-num">III.</span>
+      <span class="section-divider-label">The promise · Top 3 ranking</span>
+      <span class="section-divider-right q-status" data-q="promise_ranking">Question 1 of 7</span>
+    </div>
     <h2 class="h-1" style="color: var(--bone); max-width: 18ch;">Eight things that hold for <em>every piece</em>.</h2>
     <div class="action-prompt action-prompt--dark"><span class="action-prompt-arrow">↓</span><span><span class="action-prompt-prefix">Your turn</span>Tap to rank your top three — what matters most to you?</span></div>
   </div>
@@ -2347,7 +2371,11 @@ h1, h2, h3, h4 { font-weight: 500; letter-spacing: -0.025em; line-height: 1; }
 ============================================================ -->
 <section class="section" id="retailers" style="background: var(--stone);">
   <div class="container">
-    <p class="meta hero-eyebrow">IV — Where you'd find us <span class="q-status" data-q="retailers">Question 3 of 8</span></p>
+    <div class="section-divider">
+      <span class="section-divider-num">IV.</span>
+      <span class="section-divider-label">Where you'd find us · Pick 2</span>
+      <span class="section-divider-right q-status" data-q="retailers">Question 2 of 7</span>
+    </div>
     <h2 class="h-1" style="max-width: 22ch;">If this brand existed,<br>where would feel like <em>home</em>?</h2>
     <p class="body mt-32">A handful of considered retailers. Pick the two you'd most likely buy from — in store or online.</p>
     <div class="action-prompt"><span class="action-prompt-arrow">↓</span><span><span class="action-prompt-prefix">Your turn</span>Tap up to TWO retailers below</span></div>
@@ -2448,7 +2476,11 @@ h1, h2, h3, h4 { font-weight: 500; letter-spacing: -0.025em; line-height: 1; }
 ============================================================ -->
 <section class="section" id="motivation" style="background: var(--bone);">
   <div class="container">
-    <p class="meta hero-eyebrow">V — Why wear it <span class="q-status" data-q="motivation">Question 4 of 8</span></p>
+    <div class="section-divider">
+      <span class="section-divider-num">V.</span>
+      <span class="section-divider-label">Why wear it · Pick up to 3</span>
+      <span class="section-divider-right q-status" data-q="motivation">Question 3 of 7</span>
+    </div>
     <h2 class="h-1" style="max-width: 22ch;">What would draw you to wear a piece <em>like this</em>?</h2>
     <p class="body mt-32" style="max-width:54ch;">Wearable art by independent artists isn't fast fashion. People who wear it tend to do so for reasons that aren't just "I needed a top." We want to understand yours.</p>
     <div class="action-prompt"><span class="action-prompt-arrow">↓</span><span><span class="action-prompt-prefix">Your turn</span>Tap up to THREE motivations that feel true for you</span></div>
@@ -2522,8 +2554,12 @@ h1, h2, h3, h4 { font-weight: 500; letter-spacing: -0.025em; line-height: 1; }
 ============================================================ -->
 <section class="survey-block survey-block--black" id="survey-1">
   <div class="container">
-    <p class="meta survey-eyebrow">A question, before you go <span class="q-status q-status--dark" data-q="proposition">Question 5 of 8</span></p>
-    <h2 class="h-1 survey-question">Which line speaks <em>loudest</em>?</h2>
+    <div class="section-divider section-divider--dark">
+      <span class="section-divider-num">VI.</span>
+      <span class="section-divider-label">The most compelling promise · Pick one</span>
+      <span class="section-divider-right q-status" data-q="proposition">Question 4 of 7</span>
+    </div>
+    <h2 class="h-1 survey-question">Which promise speaks <em>loudest</em>?</h2>
     <p class="survey-helper">
       We're shaping how this brand introduces itself. Five lines. Pick the one that feels most <em>true</em>. There's no wrong answer — we're listening.
     </p>
@@ -2760,7 +2796,11 @@ h1, h2, h3, h4 { font-weight: 500; letter-spacing: -0.025em; line-height: 1; }
 
 <section class="survey-block" id="survey-1b" style="background: var(--white);">
   <div class="container">
-    <p class="meta survey-eyebrow">VI — The ad test <span class="q-status" data-q="ad_reactions">Question 6 of 8</span></p>
+    <div class="section-divider">
+      <span class="section-divider-num">VII.</span>
+      <span class="section-divider-label">The ad test · React to 5 ads</span>
+      <span class="section-divider-right q-status" data-q="ad_reactions">Question 5 of 7</span>
+    </div>
     <h2 class="h-1 survey-question" style="max-width: 24ch;">Imagine you're <em>scrolling</em>.<br>How would you react?</h2>
     <p class="survey-helper">
       The same five lines from before — this time, dressed as actual ads. Tap once per ad. No need to think too hard — just go with your gut.
@@ -2910,7 +2950,7 @@ h1, h2, h3, h4 { font-weight: 500; letter-spacing: -0.025em; line-height: 1; }
 
     </div>
 
-    <div class="q-skip-row" style="max-width:540px;margin-left:auto;margin-right:auto;">
+    <div class="q-skip-row">
       <span class="q-skip-helper">Rather not react?</span>
       <button class="q-skip" onclick="skipQuestion('ad_reactions')">Skip this question →</button>
     </div>
@@ -2922,7 +2962,11 @@ h1, h2, h3, h4 { font-weight: 500; letter-spacing: -0.025em; line-height: 1; }
 ============================================================ -->
 <section class="section section--stone">
   <div class="container">
-    <p class="meta hero-eyebrow">VII — The price <span class="q-status" data-q="price">Question 7 of 8</span></p>
+    <div class="section-divider">
+      <span class="section-divider-num">VIII.</span>
+      <span class="section-divider-label">The price · Pick a band</span>
+      <span class="section-divider-right q-status" data-q="price">Question 6 of 7</span>
+    </div>
     <h2 class="h-1" style="max-width: 22ch;">What would you <em>expect</em> to pay?</h2>
     <p class="body mt-32">A numbered edition, signed by the artist, made in heavyweight UK cotton. Honest answers only — this shapes how we price the drop.</p>
     <div class="action-prompt"><span class="action-prompt-arrow">↓</span><span><span class="action-prompt-prefix">Your turn</span>Pick the price band that feels right to you</span></div>
@@ -2950,7 +2994,11 @@ h1, h2, h3, h4 { font-weight: 500; letter-spacing: -0.025em; line-height: 1; }
 ============================================================ -->
 <section class="section" id="buy-intent" style="background: var(--bone);">
   <div class="container">
-    <p class="meta hero-eyebrow">VIII — Buy intent <span class="q-status" data-q="buy_intent">Question 8 of 8</span></p>
+    <div class="section-divider">
+      <span class="section-divider-num">IX.</span>
+      <span class="section-divider-label">Buy intent · Rate &amp; add your thoughts</span>
+      <span class="section-divider-right q-status" data-q="buy_intent">Question 7 of 7</span>
+    </div>
     <h2 class="h-1" style="max-width: 20ch;">How likely are you to <em>actually</em> buy?</h2>
     <p class="body mt-32">A signed, numbered piece of wearable art. Made in London. £140–160. Drop launches Jul / Aug 2026. Be honest — there's no wrong answer.</p>
     <div class="action-prompt"><span class="action-prompt-arrow">↓</span><span><span class="action-prompt-prefix">Your turn</span>Tap the stars — one (very unlikely) to five (very likely)</span></div>
@@ -2976,36 +3024,6 @@ h1, h2, h3, h4 { font-weight: 500; letter-spacing: -0.025em; line-height: 1; }
     <div class="q-skip-row">
       <span class="q-skip-helper">Rather not say?</span>
       <button class="q-skip" onclick="skipQuestion('buy_intent')">Skip this question →</button>
-    </div>
-  </div>
-</section>
-
-<!-- ============================================================
-     ARTIST ROSTER
-============================================================ -->
-<section class="section section--bone" id="artists">
-  <div class="container">
-    <p class="meta hero-eyebrow">— The artists</p>
-    <h2 class="h-1" style="max-width: 16ch;">Two voices, <em>one drop</em>.</h2>
-    <p class="body mt-32">Every artist on the line is independent. Every artist is named, paid, and credited. The brand is the platform — the artists are the work. The first drop launches with two; more follow as the brand grows.</p>
-
-    <div class="artist-grid">
-      <div class="artist-tile">
-        <div class="artist-portrait">
-          <div class="artist-portrait-mark">(t)</div>
-          <div class="artist-portrait-label">Portrait placeholder</div>
-        </div>
-        <div class="artist-name">Conor Powell</div>
-        <div class="artist-detail">Illustrator · South London · Lead artist N°001</div>
-      </div>
-      <div class="artist-tile">
-        <div class="artist-portrait">
-          <div class="artist-portrait-mark">(t)</div>
-          <div class="artist-portrait-label">Portrait placeholder</div>
-        </div>
-        <div class="artist-name">Chris Sullivan</div>
-        <div class="artist-detail">Painter, DJ, author · London (Welsh-born) · Central Saint Martins · Founder of The Wag Club · Currently working on urban heads and London cityscapes. <a href="https://www.thesullivan.net" target="_blank" rel="noopener" style="color:var(--clay);text-decoration:underline;">thesullivan.net</a></div>
-      </div>
     </div>
   </div>
 </section>
@@ -3193,14 +3211,13 @@ window.surveyData = {
   manifesto_feeling: null, // one-word reaction (from chip)
   manifesto_feeling_other: null, // free-text override
   questions: {
-    drop_ranking:    { state: 'pending', num: 1 },
-    promise_ranking: { state: 'pending', num: 2 },
-    retailers:       { state: 'pending', num: 3 },
-    motivation:      { state: 'pending', num: 4 },
-    proposition:     { state: 'pending', num: 5 },
-    ad_reactions:    { state: 'pending', num: 6 },
-    price:           { state: 'pending', num: 7 },
-    buy_intent:      { state: 'pending', num: 8 }
+    promise_ranking: { state: 'pending', num: 1 },
+    retailers:       { state: 'pending', num: 2 },
+    motivation:      { state: 'pending', num: 3 },
+    proposition:     { state: 'pending', num: 4 },
+    ad_reactions:    { state: 'pending', num: 5 },
+    price:           { state: 'pending', num: 6 },
+    buy_intent:      { state: 'pending', num: 7 }
   },
   motivations_selected: [],
   motivation_other: null,
