@@ -10,20 +10,28 @@
      Swap in TT Hoves Pro for the live build. -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,700;1,800&display=swap" rel="stylesheet">
+<!-- Preload Fraunces italic so it's available before first paint -->
+<link rel="preload" as="font" type="font/woff2" crossorigin
+      href="https://fonts.gstatic.com/s/fraunces/v32/6NUh8FyLNQOQZAnv9bYEvDiIdE9Ea92uemAk_WBq8U_9v0c2zg.woff2">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 
 <style>
 /* ====== BRAND TOKENS (locked from client brand board, May 2026) ====== */
 :root {
   --black: #0A0A0A;
+  --ink:   #1A1814;
   --white: #F5F5F3;
   --stone: #D8D2C8;
   --ash:   #B9B9B6;
   --bone:  #EAE6DF;
   --clay:  #A2674C;
+  --clay-warm: #B07355;
   --ink-soft: #4A4742;
 
-  --type: 'Inter', -apple-system, 'TT Hoves Pro', sans-serif;
+  --type:  'Inter', -apple-system, 'TT Hoves Pro', sans-serif;
+  --sans:  'Inter', -apple-system, sans-serif;
+  --serif: 'Fraunces', 'Georgia', serif;
+  --mono:  'JetBrains Mono', 'SF Mono', Menlo, monospace;
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -40,16 +48,128 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* ====== TYPOGRAPHY SCALE ====== */
-h1, h2, h3, h4 { font-weight: 500; letter-spacing: -0.015em; line-height: 1.1; }
-.display       { font-size: clamp(48px, 7vw, 96px); font-weight: 500; line-height: 0.98; letter-spacing: -0.025em; }
-.h-1           { font-size: clamp(36px, 4.5vw, 64px); font-weight: 500; line-height: 1.05; letter-spacing: -0.02em; }
-.h-2           { font-size: clamp(24px, 3vw, 36px); font-weight: 500; line-height: 1.15; }
-.h-3           { font-size: 20px; font-weight: 500; }
-.body          { font-size: 17px; line-height: 1.55; color: var(--ink-soft); max-width: 60ch; }
-.body-l        { font-size: 19px; line-height: 1.5; color: var(--black); max-width: 56ch; }
-.meta          { font-size: 11px; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase; }
-.meta-l        { font-size: 13px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; }
+/* ====== TYPOGRAPHY — Bold Minimalism ======
+   Fixed pixel sizes at desktop, responsive via media queries.
+   Italic em accents in Fraunces serif for emotional emphasis. */
+h1, h2, h3, h4 { font-weight: 500; letter-spacing: -0.025em; line-height: 1; }
+
+/* Hero-scale display */
+.display {
+  font-family: var(--sans);
+  font-weight: 900;
+  font-size: 200px;
+  line-height: 0.88;
+  letter-spacing: -0.045em;
+  color: var(--black);
+}
+.display em {
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 400;
+  color: var(--clay);
+  letter-spacing: -0.02em;
+}
+@media (max-width: 1200px) { .display { font-size: 160px; } }
+@media (max-width: 900px)  { .display { font-size: 108px; } }
+@media (max-width: 600px)  { .display { font-size: 64px; line-height: 0.92; } }
+
+/* Section title — H1 */
+.h-1 {
+  font-family: var(--sans);
+  font-weight: 800;
+  font-size: 96px;
+  line-height: 0.95;
+  letter-spacing: -0.035em;
+  color: var(--black);
+}
+.h-1 em {
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 400;
+  color: var(--clay);
+}
+@media (max-width: 1200px) { .h-1 { font-size: 76px; } }
+@media (max-width: 900px)  { .h-1 { font-size: 56px; } }
+@media (max-width: 600px)  { .h-1 { font-size: 40px; } }
+
+/* Sub-section — H2 */
+.h-2 {
+  font-family: var(--sans);
+  font-weight: 700;
+  font-size: 44px;
+  line-height: 1.05;
+  letter-spacing: -0.025em;
+  color: var(--black);
+}
+.h-2 em {
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 400;
+  color: var(--clay);
+}
+@media (max-width: 900px) { .h-2 { font-size: 32px; } }
+
+.h-3 { font-family: var(--sans); font-size: 20px; font-weight: 600; letter-spacing: -0.005em; }
+
+/* Section numeral — Roman/decorative */
+.section-numeral {
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 140px;
+  line-height: 0.9;
+  letter-spacing: -0.04em;
+  color: var(--clay);
+  display: block;
+}
+@media (max-width: 1200px) { .section-numeral { font-size: 108px; } }
+@media (max-width: 900px)  { .section-numeral { font-size: 72px; } }
+
+/* Body */
+.body  { font-family: var(--sans); font-size: 17px; line-height: 1.55; color: var(--ink-soft); max-width: 60ch; }
+.body em { font-family: var(--serif); font-style: italic; color: var(--black); }
+.body-l {
+  font-family: var(--sans);
+  font-size: 22px;
+  line-height: 1.45;
+  letter-spacing: -0.01em;
+  color: var(--ink-soft);
+  max-width: 42ch;
+  font-weight: 400;
+}
+.body-l em {
+  font-family: var(--serif);
+  font-style: italic;
+  color: var(--black);
+}
+@media (max-width: 900px) { .body-l { font-size: 18px; } }
+
+/* Editorial labels — mono */
+.meta {
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--clay);
+}
+.meta-l {
+  font-family: var(--mono);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--clay);
+}
+.label-mono {
+  font-family: var(--mono);
+  font-weight: 500;
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--clay);
+}
+.label-mono--ink { color: var(--ink-soft); }
 
 /* ====== LAYOUT ====== */
 .container { max-width: 1240px; margin: 0 auto; padding: 0 32px; }
@@ -93,38 +213,159 @@ h1, h2, h3, h4 { font-weight: 500; letter-spacing: -0.015em; line-height: 1.1; }
 }
 .nav-cta:hover { background: var(--clay); color: var(--white) !important; }
 
-/* ====== HERO ====== */
+/* ====== HERO — Editorial, wordmark-led ====== */
 .hero {
-  padding: 140px 0 80px;
+  padding: 80px 0 140px;
+  background: var(--bone);
   position: relative;
   overflow: hidden;
-  background: var(--white);
 }
-.hero-supergraphic {
-  position: absolute;
-  top: 80px;
-  right: -120px;
-  font-family: var(--type);
-  font-weight: 500;
-  font-size: 720px;
-  line-height: 0.78;
-  color: transparent;
-  -webkit-text-stroke: 1px rgba(10,10,10,0.06);
-  pointer-events: none;
-  user-select: none;
-}
+.hero-supergraphic { display: none; }
 .hero-inner { position: relative; z-index: 1; }
-.hero-eyebrow { color: var(--clay); margin-bottom: 32px; }
-.hero h1 { max-width: 18ch; margin-bottom: 40px; }
-.hero h1 em { font-style: normal; color: var(--clay); }
-.hero-spec {
-  display: flex; gap: 48px; flex-wrap: wrap;
-  margin-top: 64px; padding-top: 32px;
-  border-top: 1px solid rgba(10,10,10,0.12);
+.hero-grid {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: 64px;
+  align-items: start;
 }
-.hero-spec-item { font-size: 13px; }
-.hero-spec-item strong { display: block; color: var(--black); font-weight: 500; margin-bottom: 4px; }
-.hero-spec-item span { color: var(--ink-soft); }
+@media (max-width: 900px) {
+  .hero-grid { grid-template-columns: 1fr; gap: 48px; }
+}
+.hero-section-mark {
+  position: relative;
+  padding-top: 80px;
+}
+.hero-section-mark .label-mono { margin-bottom: 18px; display: block; }
+.hero-main { display: flex; flex-direction: column; gap: 56px; }
+
+.wordmark-hero {
+  width: 100%;
+  max-width: 720px;
+  color: var(--black);
+  display: block;
+}
+
+/* CTA — architectural square */
+.cta-block {
+  display: flex;
+  gap: 32px;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-top: 8px;
+}
+.cta-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 16px;
+  background: var(--black);
+  color: var(--bone);
+  padding: 22px 32px;
+  font-family: var(--sans);
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border-radius: 0;
+  transition: all 0.2s ease;
+}
+.cta-primary:hover { background: var(--clay); }
+.cta-primary-arrow {
+  display: inline-block;
+  width: 24px; height: 1px;
+  background: var(--bone);
+  position: relative;
+}
+.cta-primary-arrow::after {
+  content: "";
+  position: absolute;
+  right: 0; top: -3px;
+  width: 7px; height: 7px;
+  border-top: 1px solid var(--bone);
+  border-right: 1px solid var(--bone);
+  transform: rotate(45deg);
+}
+.cta-supporting {
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 18px;
+  color: var(--clay);
+}
+
+/* Editorial spec strip — grid */
+.hero-spec {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 1px;
+  background: rgba(10, 10, 10, 0.1);
+  border-top: 1px solid rgba(10, 10, 10, 0.1);
+  border-bottom: 1px solid rgba(10, 10, 10, 0.1);
+  margin-top: 32px;
+}
+@media (max-width: 900px) { .hero-spec { grid-template-columns: repeat(2, 1fr); } }
+.hero-spec-item {
+  background: var(--bone);
+  padding: 18px 20px;
+  font-size: 13px;
+}
+.hero-spec-item strong {
+  display: block;
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--clay);
+  margin-bottom: 6px;
+}
+.hero-spec-item span {
+  font-family: var(--sans);
+  font-weight: 500;
+  font-size: 16px;
+  color: var(--black);
+  letter-spacing: -0.005em;
+}
+
+/* Hero eyebrow — kept for legacy */
+.hero-eyebrow { color: var(--clay); margin-bottom: 32px; }
+
+/* Architectural section divider — between sections */
+.section-divider {
+  border-top: 1px solid var(--black);
+  padding: 28px 0;
+  display: grid;
+  grid-template-columns: 200px 1fr 200px;
+  gap: 32px;
+  align-items: center;
+}
+.section-divider-num {
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 48px;
+  color: var(--clay);
+  line-height: 1;
+}
+.section-divider-label {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+.section-divider-right {
+  text-align: right;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+@media (max-width: 900px) {
+  .section-divider { grid-template-columns: 1fr; gap: 12px; text-align: left; }
+  .section-divider-right { text-align: left; }
+}
 
 /* ====== T-SHIRT PLACEHOLDER CARDS ====== */
 .drop-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 24px; margin-top: 64px; }
@@ -251,43 +492,94 @@ h1, h2, h3, h4 { font-weight: 500; letter-spacing: -0.015em; line-height: 1.1; }
 /* ====== SURVEY MOMENTS ====== */
 .survey-block {
   background: var(--bone);
-  padding: 80px 0;
+  padding: 120px 0;
 }
+.survey-block--black {
+  background: var(--black);
+  color: var(--bone);
+}
+.survey-block--black .h-1 { color: var(--bone); }
+.survey-block--black .h-1 em { color: var(--clay-warm); }
+.survey-block--black .survey-helper { color: rgba(245, 241, 235, 0.7); }
+.survey-block--black .survey-eyebrow { color: var(--clay-warm); }
+.survey-block--black .body { color: rgba(245, 241, 235, 0.7); }
+.survey-block--black .body-l { color: rgba(245, 241, 235, 0.75); }
 .survey-eyebrow { color: var(--clay); margin-bottom: 16px; }
-.survey-question { max-width: 22ch; margin-bottom: 48px; }
-.survey-helper { font-size: 14px; color: var(--ink-soft); margin-bottom: 40px; max-width: 50ch; }
+.survey-question { max-width: 22ch; margin-bottom: 32px; }
+.survey-helper { font-size: 16px; color: var(--ink-soft); margin-bottom: 32px; max-width: 56ch; line-height: 1.5; }
+.survey-helper em { font-family: var(--serif); font-style: italic; color: var(--black); }
+.survey-block--black .survey-helper em { color: var(--bone); }
 
-/* Proposition variant buttons */
+/* Proposition options — architectural layout on dark background */
 .props-grid {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 16px;
-  max-width: 760px;
+  gap: 14px;
+  max-width: 100%;
 }
 .prop-option {
-  background: var(--white);
-  padding: 28px 32px;
-  border: 1px solid rgba(10,10,10,0.08);
-  border-radius: 3px;
+  background: rgba(245, 241, 235, 0.04);
+  border: 1px solid rgba(245, 241, 235, 0.14);
+  padding: 36px 40px;
+  border-radius: 0;
   cursor: pointer;
   transition: all 0.25s ease;
   position: relative;
   text-align: left;
-  font-family: var(--type);
+  font-family: var(--sans);
   width: 100%;
+  display: grid;
+  grid-template-columns: 80px 1fr;
+  gap: 32px;
+  align-items: start;
 }
-.prop-option:hover { border-color: var(--clay); transform: translateX(4px); }
-.prop-option.selected { border-color: var(--clay); background: rgba(162, 103, 76, 0.04); }
-.prop-option.selected::before {
-  content: "";
-  position: absolute;
-  left: -1px; top: -1px; bottom: -1px;
-  width: 4px;
-  background: var(--clay);
-  border-radius: 3px 0 0 3px;
+.prop-option:hover {
+  background: rgba(245, 241, 235, 0.08);
+  border-color: var(--clay);
+  transform: translateX(8px);
 }
-.prop-label { font-size: 11px; color: var(--ink-soft); letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 10px; }
-.prop-text { font-size: 19px; line-height: 1.4; color: var(--black); font-weight: 400; }
+.prop-option.selected {
+  background: rgba(162, 103, 76, 0.18);
+  border-color: var(--clay);
+}
+.prop-option::before {
+  content: attr(data-variant) ".";
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 56px;
+  line-height: 0.9;
+  color: var(--clay-warm);
+}
+.prop-label {
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--clay-warm);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+  display: block;
+}
+.prop-text {
+  font-family: var(--sans);
+  font-size: 22px;
+  font-weight: 500;
+  line-height: 1.3;
+  letter-spacing: -0.015em;
+  color: var(--bone);
+}
+.prop-text em {
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 400;
+  color: var(--clay-warm);
+}
+@media (max-width: 700px) {
+  .prop-option { grid-template-columns: 1fr; padding: 24px 24px; gap: 12px; }
+  .prop-option::before { font-size: 40px; }
+  .prop-text { font-size: 18px; }
+}
 
 /* Shirt multi-select */
 .select-grid {
@@ -398,15 +690,18 @@ h1, h2, h3, h4 { font-weight: 500; letter-spacing: -0.015em; line-height: 1.1; }
 .artist-name { font-size: 16px; font-weight: 500; margin-bottom: 4px; }
 .artist-detail { font-size: 13px; color: var(--ink-soft); }
 
-/* ====== SIGN-UP ====== */
+/* ====== SIGN-UP / EXIT GATE ====== */
 .signup-block {
   background: var(--black);
-  color: var(--white);
-  padding: 120px 0;
-  text-align: center;
+  color: var(--bone);
+  padding: 140px 0;
+  text-align: left;
 }
-.signup-block h2 { color: var(--white); max-width: 22ch; margin: 0 auto 24px; }
-.signup-block .body { color: rgba(245, 245, 243, 0.72); margin: 0 auto 48px; }
+.signup-block h2 { color: var(--bone); max-width: 14ch; margin: 0 0 32px; }
+.signup-block .h-1 em { color: var(--clay-warm); }
+.signup-block .body { color: rgba(245, 245, 243, 0.7); max-width: 50ch; margin-bottom: 48px; }
+.signup-block .body em { color: var(--bone); }
+.signup-block .meta { color: var(--clay-warm); }
 .signup-form {
   max-width: 480px;
   margin: 0 auto;
@@ -561,22 +856,21 @@ h1, h2, h3, h4 { font-weight: 500; letter-spacing: -0.015em; line-height: 1.1; }
   max-width: 60ch;
 }
 
-/* ====== LOUD ACTION PROMPTS (full-width, can't miss) ====== */
+/* ====== LOUD ACTION PROMPTS (bold black with clay accent) ====== */
 .action-prompt {
   display: flex;
   align-items: center;
-  gap: 16px;
-  padding: 20px 26px;
-  background: var(--clay);
-  border-radius: 6px;
+  gap: 18px;
+  padding: 22px 28px;
+  background: var(--black);
+  border-radius: 0;
   margin-top: 32px;
-  font-family: var(--type);
+  font-family: var(--sans);
   font-size: 17px;
-  font-weight: 600;
-  color: var(--white);
+  font-weight: 500;
+  color: var(--bone);
   letter-spacing: -0.005em;
   max-width: 720px;
-  box-shadow: 0 6px 20px rgba(162, 103, 76, 0.18);
   position: relative;
   overflow: hidden;
 }
@@ -585,41 +879,45 @@ h1, h2, h3, h4 { font-weight: 500; letter-spacing: -0.015em; line-height: 1.1; }
   position: absolute;
   top: 0; left: 0; bottom: 0;
   width: 6px;
-  background: rgba(10, 10, 10, 0.18);
+  background: var(--clay);
 }
 .action-prompt-arrow {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 36px; height: 36px;
-  background: rgba(245, 245, 243, 0.18);
+  width: 38px; height: 38px;
+  background: var(--clay);
   border-radius: 50%;
   font-size: 18px;
   font-weight: 700;
   flex-shrink: 0;
+  color: var(--bone);
   animation: prompt-pulse 1.8s ease-in-out infinite;
 }
 .action-prompt-prefix {
   display: inline-block;
+  font-family: var(--mono);
   font-size: 10px;
   font-weight: 700;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  background: rgba(10, 10, 10, 0.18);
+  background: var(--clay);
+  color: var(--bone);
   padding: 4px 10px;
-  border-radius: 2px;
-  margin-right: 8px;
+  border-radius: 0;
+  margin-right: 10px;
   vertical-align: middle;
 }
 @keyframes prompt-pulse {
-  0%, 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(245, 245, 243, 0.4); }
-  50% { transform: scale(1.08); box-shadow: 0 0 0 8px rgba(245, 245, 243, 0); }
+  0%, 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(162, 103, 76, 0.4); }
+  50% { transform: scale(1.08); box-shadow: 0 0 0 8px rgba(162, 103, 76, 0); }
 }
 .action-prompt--dark {
-  background: var(--clay);
-  color: var(--white);
+  background: rgba(245, 241, 235, 0.05);
+  border: 1px solid rgba(245, 241, 235, 0.15);
+  color: var(--bone);
 }
-.action-prompt--dark::before { background: rgba(245, 245, 243, 0.2); }
+.action-prompt--dark::before { background: var(--clay); }
 
 /* ====== ENTRY GATE MODAL ====== */
 .entry-gate-overlay {
@@ -1577,61 +1875,69 @@ h1, h2, h3, h4 { font-weight: 500; letter-spacing: -0.015em; line-height: 1.1; }
      Sparse, confident, editorial. The wordmark IS the hero device.
      The proposition (Variant A) is the single statement that follows.
 ============================================================ -->
-<section class="hero" style="padding: 120px 0 80px; background: var(--bone);">
+<section class="hero">
   <div class="container hero-inner">
-    <p class="meta hero-eyebrow" style="color: var(--clay); margin-bottom: 56px;">N°001 — Made to be kept</p>
+    <div class="hero-grid">
 
-    <!-- The wordmark — large, hero-scale, Route 1 construction -->
-    <svg viewBox="0 0 720 130" width="100%" height="auto" style="max-width: 560px; display: block; color: var(--black); margin-bottom: 80px;" aria-label="early or LA(t)E">
-      <g font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-weight="800" font-size="92" font-style="italic">
-        <text x="0" y="100" fill="currentColor">early</text>
-      </g>
-      <g font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-weight="500" font-size="64">
-        <text x="240" y="100" fill="currentColor">or</text>
-      </g>
-      <g font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-weight="800" font-size="92" letter-spacing="-2">
-        <text x="338" y="100" fill="none" stroke="currentColor" stroke-width="3">LA</text>
-        <text x="465" y="100" fill="currentColor" font-style="italic" font-weight="700">(</text>
-        <text x="495" y="100" fill="currentColor" font-style="italic" font-weight="800" font-size="76">t</text>
-        <text x="525" y="100" fill="currentColor" font-style="italic" font-weight="700">)</text>
-        <text x="565" y="100" fill="none" stroke="currentColor" stroke-width="3">E</text>
-      </g>
-    </svg>
+      <div class="hero-section-mark">
+        <span class="label-mono">I — N°001</span>
+        <span class="section-numeral">I.</span>
+      </div>
 
-    <!-- The single editorial statement. Variant A proposition. -->
-    <h1 style="font-family: var(--type); font-weight: 700; font-size: clamp(48px, 7vw, 92px); line-height: 0.98; letter-spacing: -0.03em; color: var(--black); max-width: 16ch; margin: 0 0 32px;">
-      Limited edition wearable art, in collaboration with an <em style="font-family: 'Georgia','Times New Roman',serif; font-weight: 400; font-style: italic; color: var(--clay);">independent artist</em>.
-    </h1>
+      <div class="hero-main">
 
-    <p style="font-family: var(--type); font-size: 20px; line-height: 1.5; color: var(--ink-soft); max-width: 38ch; margin: 0 0 24px;">
-      Fifty pieces per artwork. Never made again. Signed by the artist who made it.
-    </p>
-    <p style="font-family: 'Georgia', serif; font-style: italic; font-size: 18px; color: var(--clay); max-width: 38ch; margin: 0 0 56px; line-height: 1.4;">
-      This isn't fast fashion. This is <strong style="font-style: normal; font-weight: 500;">forward fashion</strong> — independent, inclusive, made to last.
-    </p>
+        <!-- The wordmark — hero-scale, Route 1 construction -->
+        <svg class="wordmark-hero" viewBox="0 0 720 130" aria-label="early or LA(t)E">
+          <g font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-weight="800" font-size="92" font-style="italic"><text x="0" y="100" fill="currentColor">early</text></g>
+          <g font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-weight="500" font-size="64"><text x="240" y="100" fill="currentColor">or</text></g>
+          <g font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-weight="800" font-size="92" letter-spacing="-2">
+            <text x="338" y="100" fill="none" stroke="currentColor" stroke-width="3">LA</text>
+            <text x="465" y="100" fill="currentColor" font-style="italic" font-weight="700">(</text>
+            <text x="495" y="100" fill="currentColor" font-style="italic" font-weight="800" font-size="76">t</text>
+            <text x="525" y="100" fill="currentColor" font-style="italic" font-weight="700">)</text>
+            <text x="565" y="100" fill="none" stroke="currentColor" stroke-width="3">E</text>
+          </g>
+        </svg>
 
-    <!-- One CTA. Confident. -->
-    <a href="#drop" style="display: inline-block; background: var(--black); color: var(--white); padding: 18px 32px; text-decoration: none; font-family: var(--type); font-size: 14px; font-weight: 500; letter-spacing: 0.06em; border-radius: 2px;">See the drop →</a>
+        <!-- Bold editorial headline — Made to keep time. -->
+        <h1 class="display">
+          Made to <em>keep</em><br>time.
+        </h1>
 
-    <div class="hero-spec">
-      <div class="hero-spec-item"><strong>Drop</strong><span>5 artworks · 250 pieces</span></div>
-      <div class="hero-spec-item"><strong>Edition</strong><span>50 of each, numbered</span></div>
-      <div class="hero-spec-item"><strong>Price</strong><span>£140 — £160</span></div>
-      <div class="hero-spec-item"><strong>Made</strong><span>UK cotton, Leicester</span></div>
-      <div class="hero-spec-item"><strong>Launch</strong><span>Late June 2026</span></div>
-    </div>
-  </div>
+        <p class="body-l">
+          Wearable art by <em>independent artists</em>. Numbered, named, made in the UK. Not fast fashion. <em>Forward fashion</em>.
+        </p>
 
-  <!-- Route 1 scroll marker: muted clay sun on the horizon -->
-  <div style="max-width: 1240px; margin: 96px auto 0; padding: 0 32px;">
-    <div style="display: flex; justify-content: center; align-items: center; padding: 32px 0; border-top: 1px solid rgba(10, 10, 10, 0.12);">
-      <svg viewBox="0 0 80 40" width="64" height="32" aria-hidden="true">
-        <circle cx="40" cy="38" r="22" fill="var(--clay)"/>
-        <line x1="0" y1="38" x2="80" y2="38" stroke="var(--black)" stroke-width="0.5"/>
-      </svg>
+        <div class="cta-block">
+          <a href="#drop" class="cta-primary">
+            See N°001
+            <span class="cta-primary-arrow"></span>
+          </a>
+          <span class="cta-supporting">or scroll on</span>
+        </div>
+
+        <!-- Editorial spec strip -->
+        <div class="hero-spec">
+          <div class="hero-spec-item"><strong>Drop</strong><span>5 × 50</span></div>
+          <div class="hero-spec-item"><strong>Edition</strong><span>50 of each</span></div>
+          <div class="hero-spec-item"><strong>Price</strong><span>£140 — 160</span></div>
+          <div class="hero-spec-item"><strong>Made</strong><span>UK · Leicester</span></div>
+          <div class="hero-spec-item"><strong>Launch</strong><span>Late June '26</span></div>
+        </div>
+
+      </div>
     </div>
   </div>
 </section>
+
+<!-- Architectural divider -->
+<div class="container">
+  <div class="section-divider">
+    <span class="section-divider-num">II.</span>
+    <span class="section-divider-label">The first drop · 250 pieces · Five artworks</span>
+    <span class="section-divider-right">Q1 of 9 · Ranking</span>
+  </div>
+</div>
 
 <!-- ============================================================
      THE DROP — 5 t-shirts grid
@@ -1650,8 +1956,8 @@ h1, h2, h3, h4 { font-weight: 500; letter-spacing: -0.015em; line-height: 1.1; }
 ============================================================ -->
 <section class="section" id="drop">
   <div class="container">
-    <p class="meta hero-eyebrow">01 · The first drop <span class="q-status" data-q="drop_ranking">Question 1 of 8</span></p>
-    <h2 class="h-1" style="max-width:18ch;">Five artworks. Five artists.<br>Two-fifty pieces in total.</h2>
+    <p class="meta hero-eyebrow">II — The first drop <span class="q-status" data-q="drop_ranking">Question 1 of 9</span></p>
+    <h2 class="h-1" style="max-width:18ch;">Five artworks.<br><em>Fifty of each.</em><br>Never made again.</h2>
     <p class="body mt-32">A single drop, all live at once. When a piece is gone, it's gone. Every garment is numbered, signed, and shipped in a hand-folded matte-black box.</p>
     <div class="action-prompt"><span class="action-prompt-arrow">↓</span><span><span class="action-prompt-prefix">Your turn</span>Tap to rank your top three in order of preference</span></div>
 
@@ -1758,8 +2064,8 @@ h1, h2, h3, h4 { font-weight: 500; letter-spacing: -0.015em; line-height: 1.1; }
     <div class="featured">
 
       <div>
-        <p class="meta featured-meta">02 · Lead artist</p>
-        <h2 class="h-1">Conor Powell. The first signature on the line.</h2>
+        <p class="meta featured-meta">III — Lead artist</p>
+        <h2 class="h-1">Conor Powell.<br>The first <em>signature</em>.</h2>
         <p class="body-l mt-32">
           Conor is an illustrator working between London and Leicester. His artwork for N°001 is the first piece in the Early or Late catalogue — a study in pattern, rhythm, and the kind of detail you only see on the second look.
         </p>
@@ -1790,8 +2096,8 @@ h1, h2, h3, h4 { font-weight: 500; letter-spacing: -0.015em; line-height: 1.1; }
 ============================================================ -->
 <section class="section section--black section--tight">
   <div class="container">
-    <p class="meta" style="color: var(--clay); margin-bottom: 32px;">03 · The promise <span class="q-status q-status--dark" data-q="promise_ranking">Question 2 of 8</span></p>
-    <h2 class="h-1" style="color: var(--white); max-width: 18ch;">Eight things that hold for every piece we make.</h2>
+    <p class="meta" style="color: var(--clay); margin-bottom: 32px;">III — The promise <span class="q-status q-status--dark" data-q="promise_ranking">Question 2 of 9</span></p>
+    <h2 class="h-1" style="color: var(--bone); max-width: 18ch;">Eight things that hold for <em>every piece</em>.</h2>
     <div class="action-prompt action-prompt--dark"><span class="action-prompt-arrow">↓</span><span><span class="action-prompt-prefix">Your turn</span>Tap to rank your top three — what matters most to you?</span></div>
   </div>
   <div class="container" style="margin-top: 64px;">
@@ -1871,8 +2177,8 @@ h1, h2, h3, h4 { font-weight: 500; letter-spacing: -0.015em; line-height: 1.1; }
 ============================================================ -->
 <section class="section" id="retailers" style="background: var(--stone);">
   <div class="container">
-    <p class="meta hero-eyebrow">04 · Where you'd find us <span class="q-status" data-q="retailers">Question 3 of 9</span></p>
-    <h2 class="h-1" style="max-width: 22ch;">If this brand existed, where would feel like home?</h2>
+    <p class="meta hero-eyebrow">IV — Where you'd find us <span class="q-status" data-q="retailers">Question 3 of 9</span></p>
+    <h2 class="h-1" style="max-width: 22ch;">If this brand existed,<br>where would feel like <em>home</em>?</h2>
     <p class="body mt-32">A handful of considered retailers. Pick the two you'd most likely buy from — in store or online.</p>
     <div class="action-prompt"><span class="action-prompt-arrow">↓</span><span><span class="action-prompt-prefix">Your turn</span>Tap up to TWO retailers below</span></div>
 
@@ -1972,8 +2278,8 @@ h1, h2, h3, h4 { font-weight: 500; letter-spacing: -0.015em; line-height: 1.1; }
 ============================================================ -->
 <section class="section" id="motivation" style="background: var(--bone);">
   <div class="container">
-    <p class="meta hero-eyebrow">05 · Why wear it <span class="q-status" data-q="motivation">Question 4 of 9</span></p>
-    <h2 class="h-1" style="max-width: 22ch;">What would draw you to wear a piece like this?</h2>
+    <p class="meta hero-eyebrow">V — Why wear it <span class="q-status" data-q="motivation">Question 4 of 9</span></p>
+    <h2 class="h-1" style="max-width: 22ch;">What would draw you to wear a piece <em>like this</em>?</h2>
     <p class="body mt-32" style="max-width:54ch;">Wearable art by independent artists isn't fast fashion. People who wear it tend to do so for reasons that aren't just "I needed a top." We want to understand yours.</p>
     <div class="action-prompt"><span class="action-prompt-arrow">↓</span><span><span class="action-prompt-prefix">Your turn</span>Tap up to THREE motivations that feel true for you</span></div>
 
@@ -2044,35 +2350,45 @@ h1, h2, h3, h4 { font-weight: 500; letter-spacing: -0.015em; line-height: 1.1; }
      SURVEY MOMENT 01 — Proposition test (4-5 variants)
      The visitor reads this as "tell us what resonates" — not a survey.
 ============================================================ -->
-<section class="survey-block" id="survey-1">
+<section class="survey-block survey-block--black" id="survey-1">
   <div class="container">
-    <p class="meta survey-eyebrow">A question, before you go <span class="q-status" data-q="proposition">Question 5 of 8</span></p>
-    <h2 class="h-1 survey-question">Which line speaks loudest to you?</h2>
+    <p class="meta survey-eyebrow">A question, before you go <span class="q-status q-status--dark" data-q="proposition">Question 5 of 9</span></p>
+    <h2 class="h-1 survey-question">Which line speaks <em>loudest</em>?</h2>
     <p class="survey-helper">
-      We're shaping how this brand introduces itself. Five lines. Pick the one that feels most true. There's no wrong answer — we're listening.
+      We're shaping how this brand introduces itself. Five lines. Pick the one that feels most <em>true</em>. There's no wrong answer — we're listening.
     </p>
-    <div class="action-prompt"><span class="action-prompt-arrow">↓</span><span><span class="action-prompt-prefix">Your turn</span>Tap the one line that speaks loudest to you</span></div>
+    <div class="action-prompt action-prompt--dark"><span class="action-prompt-arrow">↓</span><span><span class="action-prompt-prefix">Your turn</span>Tap the one line that speaks loudest to you</span></div>
 
     <div class="props-grid">
       <button class="prop-option" data-variant="A" onclick="selectProp(this, 'A')">
-        <div class="prop-label">Promise A</div>
-        <div class="prop-text">Limited edition wearable art. Each piece is created in collaboration with an independent artist.</div>
+        <span>
+          <span class="prop-label">Promise A — Independent artist</span>
+          <span class="prop-text">Limited edition wearable art. Each piece is created in <em>collaboration</em> with an independent artist.</span>
+        </span>
       </button>
       <button class="prop-option" data-variant="B" onclick="selectProp(this, 'B')">
-        <div class="prop-label">Promise B</div>
-        <div class="prop-text">Wearable art made to be kept. Designed by neurodivergent artists. Numbered, named, shared.</div>
+        <span>
+          <span class="prop-label">Promise B — Made to be kept</span>
+          <span class="prop-text">Wearable art <em>made to be kept</em>. Designed by neurodivergent artists. Numbered, named, shared.</span>
+        </span>
       </button>
       <button class="prop-option" data-variant="C" onclick="selectProp(this, 'C')">
-        <div class="prop-label">Promise C</div>
-        <div class="prop-text">Fifty of each. Never made again. Signed by the artist who made it.</div>
+        <span>
+          <span class="prop-label">Promise C — Edition of fifty</span>
+          <span class="prop-text">Fifty of each. <em>Never made again.</em> Signed by the artist who made it.</span>
+        </span>
       </button>
       <button class="prop-option" data-variant="D" onclick="selectProp(this, 'D')">
-        <div class="prop-label">Promise D</div>
-        <div class="prop-text">Art you wear. Made in the UK, with the artist named on the label.</div>
+        <span>
+          <span class="prop-label">Promise D — Art you wear</span>
+          <span class="prop-text"><em>Art you wear.</em> Made in the UK, with the artist named on the label.</span>
+        </span>
       </button>
       <button class="prop-option" data-variant="E" onclick="selectProp(this, 'E')">
-        <div class="prop-label">Promise E</div>
-        <div class="prop-text">Five artists. Five artworks. Two-fifty pieces. One drop a year.</div>
+        <span>
+          <span class="prop-label">Promise E — One drop a year</span>
+          <span class="prop-text">Five artists. Five artworks. Two-fifty pieces. <em>One drop a year.</em></span>
+        </span>
       </button>
     </div>
 
@@ -2174,8 +2490,8 @@ h1, h2, h3, h4 { font-weight: 500; letter-spacing: -0.015em; line-height: 1.1; }
 
 <section class="survey-block" id="survey-1b" style="background: var(--white);">
   <div class="container">
-    <p class="meta survey-eyebrow">Another way of asking <span class="q-status" data-q="ad_reactions">Question 6 of 8</span></p>
-    <h2 class="h-1 survey-question" style="max-width: 24ch;">Now imagine you're scrolling Instagram. How would you react to each of these?</h2>
+    <p class="meta survey-eyebrow">VI — The ad test <span class="q-status" data-q="ad_reactions">Question 6 of 9</span></p>
+    <h2 class="h-1 survey-question" style="max-width: 24ch;">Imagine you're <em>scrolling</em>.<br>How would you react?</h2>
     <p class="survey-helper">
       The same five lines from before — this time, dressed as actual ads. Tap once per ad. No need to think too hard — just go with your gut.
     </p>
@@ -2341,8 +2657,8 @@ h1, h2, h3, h4 { font-weight: 500; letter-spacing: -0.015em; line-height: 1.1; }
 ============================================================ -->
 <section class="section">
   <div class="container">
-    <p class="meta hero-eyebrow">A second question <span class="q-status" data-q="shirts_selected">Question 7 of 8</span></p>
-    <h2 class="h-1" style="max-width: 18ch;">Which artworks would you actually wear?</h2>
+    <p class="meta hero-eyebrow">VII — Which artworks <span class="q-status" data-q="shirts_selected">Question 7 of 9</span></p>
+    <h2 class="h-1" style="max-width: 20ch;">Which artworks would you <em>actually</em> wear?</h2>
     <p class="body mt-32">Tap any that you'd consider. Pick none, pick all five.</p>
     <div class="action-prompt"><span class="action-prompt-arrow">↓</span><span><span class="action-prompt-prefix">Your turn</span>Tap any shirts you'd actually wear</span></div>
 
@@ -2381,8 +2697,8 @@ h1, h2, h3, h4 { font-weight: 500; letter-spacing: -0.015em; line-height: 1.1; }
 ============================================================ -->
 <section class="section section--stone">
   <div class="container">
-    <p class="meta hero-eyebrow">One last question <span class="q-status" data-q="price">Question 8 of 8</span></p>
-    <h2 class="h-1" style="max-width: 22ch;">What would you expect to pay for a piece like this?</h2>
+    <p class="meta hero-eyebrow">VIII — The price <span class="q-status" data-q="price">Question 8 of 9</span></p>
+    <h2 class="h-1" style="max-width: 22ch;">What would you <em>expect</em> to pay?</h2>
     <p class="body mt-32">A numbered edition, signed by the artist, made in heavyweight UK cotton. Honest answers only — this shapes how we price the drop.</p>
     <div class="action-prompt"><span class="action-prompt-arrow">↓</span><span><span class="action-prompt-prefix">Your turn</span>Pick the price band that feels right to you</span></div>
 
@@ -2409,8 +2725,8 @@ h1, h2, h3, h4 { font-weight: 500; letter-spacing: -0.015em; line-height: 1.1; }
 ============================================================ -->
 <section class="section" id="buy-intent" style="background: var(--bone);">
   <div class="container">
-    <p class="meta hero-eyebrow">10 · Final question <span class="q-status" data-q="buy_intent">Question 10 of 10</span></p>
-    <h2 class="h-1" style="max-width: 18ch;">How likely are you to actually buy a piece?</h2>
+    <p class="meta hero-eyebrow">IX — Buy intent <span class="q-status" data-q="buy_intent">Question 9 of 9</span></p>
+    <h2 class="h-1" style="max-width: 20ch;">How likely are you to <em>actually</em> buy?</h2>
     <p class="body mt-32">A signed, numbered piece of wearable art. Made in the UK. £140–160. Drop launches late June 2026. Be honest — there's no wrong answer.</p>
     <div class="action-prompt"><span class="action-prompt-arrow">↓</span><span><span class="action-prompt-prefix">Your turn</span>Tap the stars — one (very unlikely) to five (very likely)</span></div>
 
@@ -2444,8 +2760,8 @@ h1, h2, h3, h4 { font-weight: 500; letter-spacing: -0.015em; line-height: 1.1; }
 ============================================================ -->
 <section class="section section--bone" id="artists">
   <div class="container">
-    <p class="meta hero-eyebrow">04 · The artists</p>
-    <h2 class="h-1" style="max-width: 16ch;">Five voices, one drop.</h2>
+    <p class="meta hero-eyebrow">— The artists</p>
+    <h2 class="h-1" style="max-width: 16ch;">Five voices, <em>one drop</em>.</h2>
     <p class="body mt-32">Every artist on the line is independent. Every artist is named, paid, and credited. The brand is the platform — the artists are the work.</p>
 
     <div class="artist-grid">
@@ -2505,7 +2821,7 @@ h1, h2, h3, h4 { font-weight: 500; letter-spacing: -0.015em; line-height: 1.1; }
     <div class="completion-summary">
       <p class="completion-summary-eyebrow">You're almost done</p>
       <h2 class="completion-summary-title">You've answered <span class="summary-num" id="summaryAnswered">0</span> of <span id="summaryTotal">9</span> questions.</h2>
-      <p class="completion-summary-body">Thank you. The next step claims your spot on the drop and tells us a little more about who you are. Two minutes.</p>
+      <p class="completion-summary-body">Thank you. The next step <em style="font-family: 'Fraunces', serif; font-style: italic; color: var(--clay);">claims your spot</em> on the drop. Two minutes.</p>
     </div>
   </div>
 </section>
@@ -2517,10 +2833,10 @@ h1, h2, h3, h4 { font-weight: 500; letter-spacing: -0.015em; line-height: 1.1; }
 ============================================================ -->
 <section class="signup-block" id="signup">
   <div class="container">
-    <p class="meta" style="color: var(--clay); margin-bottom: 24px;">Final step</p>
-    <h2 class="h-1" style="max-width:18ch;">Send your answers. Claim your spot on the drop.</h2>
+    <p class="meta" style="margin-bottom: 24px;">V — Final step</p>
+    <h2 class="h-1" style="max-width:14ch;">Send your answers.<br><em>Claim your spot.</em></h2>
     <p class="body" style="max-width:50ch;">
-      Three quick fields, then your email. The first drop is fifty pieces of each artwork — two-fifty in total — and you'll see it forty-eight hours before public launch.
+      Three quick fields, then your email. The first drop is fifty pieces of each artwork — <em>two-fifty in total</em> — and you'll see it forty-eight hours before public launch.
     </p>
 
     <form id="finalSubmitForm" onsubmit="captureSignup(event)" style="max-width: 540px; margin: 56px auto 0;">
