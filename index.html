@@ -2350,18 +2350,53 @@ h1, h2, h3, h4 { font-weight: 500; letter-spacing: -0.025em; line-height: 1; }
      the stated-preference test in Survey Moment 1.
 ============================================================ -->
 <style>
-  .ad-feed { max-width: 620px; margin: 64px auto 0; }
+  .ad-feed { max-width: 900px; margin: 64px auto 0; }
   .ad-card { margin-bottom: 72px; }
   .ad-frame {
-    aspect-ratio: 1/1; position: relative; overflow: hidden; border-radius: 0;
+    aspect-ratio: 4/5;
+    position: relative;
+    overflow: hidden;
+    border-radius: 0;
     box-shadow: 0 8px 32px rgba(10, 10, 10, 0.1);
+    display: grid;
+    grid-template-rows: 1.4fr 1fr;
   }
-  .ad-inner {
-    position: absolute; inset: 0; padding: 48px;
-    display: flex; flex-direction: column; justify-content: space-between;
+  @media (min-width: 720px) {
+    .ad-frame {
+      aspect-ratio: 16/9;
+      grid-template-rows: 1fr;
+      grid-template-columns: 1.4fr 1fr;
+    }
+  }
+  .ad-inner, .ad-text {
+    padding: 48px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+  }
+  .ad-product {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--ink);
+    padding: 32px;
+  }
+  .ad-product-placeholder {
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(245, 241, 235, 0.5);
+    border: 1px dashed rgba(245, 241, 235, 0.25);
+    padding: 56px 64px;
+    text-align: center;
+    line-height: 1.8;
   }
   .ad-frame--bone { background: var(--bone); color: var(--black); }
   .ad-frame--black { background: var(--black); color: var(--bone); }
+  .ad-frame--black .ad-product { background: rgba(245, 241, 235, 0.04); }
   .ad-frame--clay { background: var(--clay); color: var(--bone); }
   .ad-frame--white { background: var(--white); color: var(--black); border: 1px solid rgba(10,10,10,0.08); }
   .ad-frame--stone { background: var(--stone); color: var(--black); }
@@ -2506,16 +2541,15 @@ h1, h2, h3, h4 { font-weight: 500; letter-spacing: -0.025em; line-height: 1; }
             <div>
               <h3 class="ad-headline ad-headline--display">Limited edition<br><em>wearable art</em>.</h3>
               <p class="ad-sub">Each piece in collaboration with an independent artist. Fifty pieces. <em>Never made again</em>.</p>
-            </div>
-            <div class="ad-shirt-inline" style="right:32px;bottom:140px;width:110px;height:140px;">
-              <svg viewBox="0 0 200 240" width="100%" height="100%" preserveAspectRatio="xMidYMid meet" style="opacity:0.85;"><path d="M75,30 L60,25 L35,30 L25,75 L55,75 L55,220 L145,220 L145,75 L175,75 L165,30 L140,25 L125,30 Q100,46 75,30 Z" fill="currentColor" fill-opacity="0.10" stroke="currentColor" stroke-width="1.6" stroke-opacity="0.55"/><path d="M75,30 Q100,46 125,30" fill="none" stroke="currentColor" stroke-width="1" stroke-opacity="0.45"/><rect x="65" y="100" width="70" height="70" fill="none" stroke="currentColor" stroke-width="0.8" stroke-dasharray="3,3" stroke-opacity="0.55"/><text x="100" y="140" text-anchor="middle" font-family="Inter, sans-serif" font-size="8" fill="currentColor" fill-opacity="0.6" letter-spacing="0.12em">ARTWORK</text></svg>
-            </div>
-            <div class="ad-row">
+            </div>            <div class="ad-row">
               <div class="ad-cta">See the drop</div>
-              <div class="ad-spec">Made UK</div>
+              <div class="ad-spec">Made London</div>
             </div>
           </div>
-        </div>
+          <div class="ad-product">
+            <div class="ad-product-placeholder">Product<br>imagery<br>placeholder</div>
+          </div>
+                </div>
         <div class="ad-label-row">Ad A · Promise A</div>
         <div class="ad-reactions">
           <button class="ad-reaction" onclick="reactToAd(this, 'A', 'scroll')"><span class="ad-reaction-icon">↓</span>Would scroll past</button>
@@ -2535,16 +2569,15 @@ h1, h2, h3, h4 { font-weight: 500; letter-spacing: -0.025em; line-height: 1; }
             <div>
               <h3 class="ad-headline ad-headline--italic" style="font-size:42px;">Wearable art made <em>to be kept</em>.</h3>
               <p class="ad-sub">Designed by neurodivergent artists. Numbered, named, shared.</p>
-            </div>
-            <div class="ad-shirt-inline" style="right:32px;bottom:140px;width:110px;height:140px;">
-              <svg viewBox="0 0 200 240" width="100%" height="100%" preserveAspectRatio="xMidYMid meet" style="color: var(--clay); opacity:0.95;"><path d="M75,30 L60,25 L35,30 L25,75 L55,75 L55,220 L145,220 L145,75 L175,75 L165,30 L140,25 L125,30 Q100,46 75,30 Z" fill="currentColor" fill-opacity="0.12" stroke="currentColor" stroke-width="1.6" stroke-opacity="0.7"/><path d="M75,30 Q100,46 125,30" fill="none" stroke="currentColor" stroke-width="1" stroke-opacity="0.5"/><rect x="65" y="100" width="70" height="70" fill="none" stroke="currentColor" stroke-width="0.8" stroke-dasharray="3,3" stroke-opacity="0.65"/><text x="100" y="140" text-anchor="middle" font-family="Inter, sans-serif" font-size="8" fill="currentColor" fill-opacity="0.75" letter-spacing="0.12em">ARTWORK</text></svg>
-            </div>
-            <div class="ad-row">
+            </div>            <div class="ad-row">
               <div class="ad-cta" style="color: var(--clay);">Read the story</div>
               <div class="ad-spec">N°001 · Jul–Aug 2026</div>
             </div>
           </div>
-        </div>
+          <div class="ad-product">
+            <div class="ad-product-placeholder">Product<br>imagery<br>placeholder</div>
+          </div>
+                </div>
         <div class="ad-label-row">Ad B · Promise B</div>
         <div class="ad-reactions">
           <button class="ad-reaction" onclick="reactToAd(this, 'B', 'scroll')"><span class="ad-reaction-icon">↓</span>Would scroll past</button>
@@ -2564,16 +2597,15 @@ h1, h2, h3, h4 { font-weight: 500; letter-spacing: -0.025em; line-height: 1; }
             <div>
               <h3 class="ad-headline ad-headline--display" style="color: var(--bone);">Fifty of each.<br><em style="color: var(--ink);">Never made again.</em></h3>
               <p class="ad-sub" style="color: rgba(245,245,243, 0.9);">Signed by the artist who made it.</p>
-            </div>
-            <div class="ad-shirt-inline" style="right:32px;bottom:140px;width:110px;height:140px;">
-              <svg viewBox="0 0 200 240" width="100%" height="100%" preserveAspectRatio="xMidYMid meet" style="color: var(--bone); opacity:0.95;"><path d="M75,30 L60,25 L35,30 L25,75 L55,75 L55,220 L145,220 L145,75 L175,75 L165,30 L140,25 L125,30 Q100,46 75,30 Z" fill="currentColor" fill-opacity="0.12" stroke="currentColor" stroke-width="1.6" stroke-opacity="0.7"/><path d="M75,30 Q100,46 125,30" fill="none" stroke="currentColor" stroke-width="1" stroke-opacity="0.5"/><rect x="65" y="100" width="70" height="70" fill="none" stroke="currentColor" stroke-width="0.8" stroke-dasharray="3,3" stroke-opacity="0.65"/><text x="100" y="140" text-anchor="middle" font-family="Inter, sans-serif" font-size="8" fill="currentColor" fill-opacity="0.75" letter-spacing="0.12em">ARTWORK</text></svg>
-            </div>
-            <div class="ad-row">
+            </div>            <div class="ad-row">
               <div class="ad-cta" style="color: var(--white);">Claim N°001</div>
               <div class="ad-spec" style="color: rgba(245,245,243, 0.6);">UK · Jul–Aug 2026</div>
             </div>
           </div>
-        </div>
+          <div class="ad-product">
+            <div class="ad-product-placeholder">Product<br>imagery<br>placeholder</div>
+          </div>
+                </div>
         <div class="ad-label-row">Ad C · Promise C</div>
         <div class="ad-reactions">
           <button class="ad-reaction" onclick="reactToAd(this, 'C', 'scroll')"><span class="ad-reaction-icon">↓</span>Would scroll past</button>
@@ -2593,16 +2625,15 @@ h1, h2, h3, h4 { font-weight: 500; letter-spacing: -0.025em; line-height: 1; }
             <div>
               <h3 class="ad-headline ad-headline--display" style="max-width: 9ch;"><em>Art</em> you wear.</h3>
               <p class="ad-sub">Made in London, with the artist named on the label.</p>
-            </div>
-            <div class="ad-shirt-inline" style="right:32px;bottom:140px;width:110px;height:140px;background:var(--bone);border-color:rgba(10,10,10,0.08);">
-              <svg viewBox="0 0 200 240" width="100%" height="100%" preserveAspectRatio="xMidYMid meet" style="color: var(--clay); opacity:0.95;"><path d="M75,30 L60,25 L35,30 L25,75 L55,75 L55,220 L145,220 L145,75 L175,75 L165,30 L140,25 L125,30 Q100,46 75,30 Z" fill="currentColor" fill-opacity="0.12" stroke="currentColor" stroke-width="1.6" stroke-opacity="0.7"/><path d="M75,30 Q100,46 125,30" fill="none" stroke="currentColor" stroke-width="1" stroke-opacity="0.5"/><rect x="65" y="100" width="70" height="70" fill="none" stroke="currentColor" stroke-width="0.8" stroke-dasharray="3,3" stroke-opacity="0.65"/><text x="100" y="140" text-anchor="middle" font-family="Inter, sans-serif" font-size="8" fill="currentColor" fill-opacity="0.75" letter-spacing="0.12em">ARTWORK</text></svg>
-            </div>
-            <div class="ad-row">
+            </div>            <div class="ad-row">
               <div class="ad-cta">Shop the drop</div>
               <div class="ad-spec">Conor Powell · N°001 / 50</div>
             </div>
           </div>
-        </div>
+          <div class="ad-product">
+            <div class="ad-product-placeholder">Product<br>imagery<br>placeholder</div>
+          </div>
+                </div>
         <div class="ad-label-row">Ad D · Promise D</div>
         <div class="ad-reactions">
           <button class="ad-reaction" onclick="reactToAd(this, 'D', 'scroll')"><span class="ad-reaction-icon">↓</span>Would scroll past</button>
@@ -2621,16 +2652,15 @@ h1, h2, h3, h4 { font-weight: 500; letter-spacing: -0.025em; line-height: 1; }
             </div>
             <div>
               <h3 class="ad-headline" style="font-size:38px;">Two artists.<br>Fifty of each.<br><em>One hundred pieces.</em><br>Made for keeping.</h3>
-            </div>
-            <div class="ad-shirt-inline" style="right:32px;bottom:130px;width:110px;height:140px;background:rgba(10,10,10,0.04);border-color:rgba(10,10,10,0.08);">
-              <svg viewBox="0 0 200 240" width="100%" height="100%" preserveAspectRatio="xMidYMid meet" style="opacity:0.85;"><path d="M75,30 L60,25 L35,30 L25,75 L55,75 L55,220 L145,220 L145,75 L175,75 L165,30 L140,25 L125,30 Q100,46 75,30 Z" fill="currentColor" fill-opacity="0.10" stroke="currentColor" stroke-width="1.6" stroke-opacity="0.55"/><path d="M75,30 Q100,46 125,30" fill="none" stroke="currentColor" stroke-width="1" stroke-opacity="0.45"/><rect x="65" y="100" width="70" height="70" fill="none" stroke="currentColor" stroke-width="0.8" stroke-dasharray="3,3" stroke-opacity="0.55"/><text x="100" y="140" text-anchor="middle" font-family="Inter, sans-serif" font-size="8" fill="currentColor" fill-opacity="0.6" letter-spacing="0.12em">ARTWORK</text></svg>
-            </div>
-            <div class="ad-row">
+            </div>            <div class="ad-row">
               <div class="ad-cta">Get early access</div>
               <div class="ad-spec">// 265gsm · Milled Leicester · Made London · Water-based ink</div>
             </div>
           </div>
-        </div>
+          <div class="ad-product">
+            <div class="ad-product-placeholder">Product<br>imagery<br>placeholder</div>
+          </div>
+                </div>
         <div class="ad-label-row">Ad E · Promise E</div>
         <div class="ad-reactions">
           <button class="ad-reaction" onclick="reactToAd(this, 'E', 'scroll')"><span class="ad-reaction-icon">↓</span>Would scroll past</button>
