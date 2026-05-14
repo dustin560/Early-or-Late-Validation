@@ -1950,6 +1950,7 @@ h1, h2, h3, h4 { font-weight: 500; letter-spacing: -0.025em; line-height: 1; }
 <!-- Floating question-progress widget -->
 <div class="progress-widget" id="progressWidget" title="Survey progress">
   <div class="progress-dots">
+    <span class="progress-dot" data-q="drop_ranking" title="The drop catalog"></span>
     <span class="progress-dot" data-q="promise_ranking" title="The promise ranking"></span>
     <span class="progress-dot" data-q="retailers" title="Where you'd find it"></span>
     <span class="progress-dot" data-q="motivation" title="Why you'd wear it"></span>
@@ -1958,7 +1959,7 @@ h1, h2, h3, h4 { font-weight: 500; letter-spacing: -0.025em; line-height: 1; }
     <span class="progress-dot" data-q="price" title="Willingness to pay"></span>
     <span class="progress-dot" data-q="buy_intent" title="Buy intent"></span>
   </div>
-  <p class="progress-label"><span class="progress-num">0</span> of <span class="progress-total">7</span> answered</p>
+  <p class="progress-label"><span class="progress-num">0</span> of <span class="progress-total">8</span> answered</p>
 </div>
 
 <!-- ============================================================
@@ -1984,7 +1985,6 @@ h1, h2, h3, h4 { font-weight: 500; letter-spacing: -0.025em; line-height: 1; }
       </svg>
     </div>
     <div class="nav-links">
-      <a href="#drop">The drop</a>
       <a href="#signup" class="nav-cta">Early access</a>
     </div>
   </div>
@@ -2037,14 +2037,6 @@ h1, h2, h3, h4 { font-weight: 500; letter-spacing: -0.025em; line-height: 1; }
   </div>
 </section>
 
-<!-- Architectural divider -->
-<div class="container">
-  <div class="section-divider">
-    <span class="section-divider-num">II.</span>
-    <span class="section-divider-label">The first drop · 100 pieces · Two artists</span>
-    <span class="section-divider-right">Catalog · browse + select</span>
-  </div>
-</div>
 
 <!-- ============================================================
      THE DROP — 5 t-shirts grid
@@ -2063,7 +2055,11 @@ h1, h2, h3, h4 { font-weight: 500; letter-spacing: -0.025em; line-height: 1; }
 ============================================================ -->
 <section class="section" id="drop">
   <div class="container">
-    <p class="meta hero-eyebrow">II — The first drop · Catalog</p>
+    <div class="section-divider">
+      <span class="section-divider-num">II.</span>
+      <span class="section-divider-label">The first drop · Pick any artworks</span>
+      <span class="section-divider-right q-status" data-q="drop_ranking">Question 1 of 8</span>
+    </div>
     <h2 class="h-1" style="max-width:18ch;">Two artists.<br><em>Fifty of each.</em><br>One hundred pieces.</h2>
     <p class="body mt-32">The first chapter of something new. Two artists to start — chosen, named, paid a fair share. Each will release a small body of work for N°001. Every garment is numbered, signed by the artist, and shipped in a hand-folded matte-black box.</p>
     <div class="action-prompt"><span class="action-prompt-arrow">↓</span><span><span class="action-prompt-prefix">Your turn</span>Tap any artworks that appeal to you — select as many as you like</span></div>
@@ -2243,43 +2239,14 @@ h1, h2, h3, h4 { font-weight: 500; letter-spacing: -0.025em; line-height: 1; }
         <div class="track-item"><span class="track-rank"><span id="dropSelectionCount">0</span></span><span class="track-name" id="dropSelectionList">Tap any artworks above to select</span></div>
       </div>
     </div>
-  </div>
-</section>
 
-<!-- ============================================================
-     FEATURED ARTWORK — Conor Powell (lead artist)
-============================================================ -->
-<section class="section section--bone">
-  <div class="container">
-    <div class="featured">
-
-      <div>
-        <p class="meta featured-meta">III — Lead artist</p>
-        <h2 class="h-1">Conor Powell.<br>The first <em>signature</em>.</h2>
-        <p class="body-l mt-32">
-          Conor is a south-London-based illustrator. His artwork for N°001 is the first piece in the Early or Late catalogue — a study in pattern, rhythm, and the kind of detail you only see on the second look.
-        </p>
-        <p class="body mt-32">
-          He sets the creative direction on the piece. He signs every one of the fifty. He receives a share of every sale.
-        </p>
-
-        <dl class="featured-spec">
-          <div><dt>Artist</dt><dd>Conor Powell</dd></div>
-          <div><dt>Based in</dt><dd>South London</dd></div>
-          <div><dt>Edition</dt><dd>50 pieces, numbered</dd></div>
-          <div><dt>Released</dt><dd>July / August 2026</dd></div>
-        </dl>
-      </div>
-
-      <div class="featured-visual">
-        <!-- ✱ PLACEHOLDER: Conor's hero artwork or studio portrait ✱ -->
-        <div class="featured-visual-mark">(t)</div>
-        <div class="featured-visual-label">Artwork placeholder · Conor Powell</div>
-      </div>
-
+    <div class="q-skip-row">
+      <span class="q-skip-helper">None of them appeal?</span>
+      <button class="q-skip" onclick="skipQuestion('drop_ranking')">Skip this question →</button>
     </div>
   </div>
 </section>
+
 
 <!-- ============================================================
      PROMISE STRIP — what makes this different
@@ -2289,7 +2256,7 @@ h1, h2, h3, h4 { font-weight: 500; letter-spacing: -0.025em; line-height: 1; }
     <div class="section-divider section-divider--dark">
       <span class="section-divider-num">III.</span>
       <span class="section-divider-label">The promise · Top 3 ranking</span>
-      <span class="section-divider-right q-status" data-q="promise_ranking">Question 1 of 7</span>
+      <span class="section-divider-right q-status" data-q="promise_ranking">Question 2 of 8</span>
     </div>
     <h2 class="h-1" style="color: var(--bone); max-width: 18ch;">Eight things that hold for <em>every piece</em>.</h2>
     <div class="action-prompt action-prompt--dark"><span class="action-prompt-arrow">↓</span><span><span class="action-prompt-prefix">Your turn</span>Tap to rank your top three — what matters most to you?</span></div>
@@ -2374,7 +2341,7 @@ h1, h2, h3, h4 { font-weight: 500; letter-spacing: -0.025em; line-height: 1; }
     <div class="section-divider">
       <span class="section-divider-num">IV.</span>
       <span class="section-divider-label">Where you'd find us · Pick 2</span>
-      <span class="section-divider-right q-status" data-q="retailers">Question 2 of 7</span>
+      <span class="section-divider-right q-status" data-q="retailers">Question 3 of 8</span>
     </div>
     <h2 class="h-1" style="max-width: 22ch;">If this brand existed,<br>where would feel like <em>home</em>?</h2>
     <p class="body mt-32">A handful of considered retailers. Pick the two you'd most likely buy from — in store or online.</p>
@@ -2479,7 +2446,7 @@ h1, h2, h3, h4 { font-weight: 500; letter-spacing: -0.025em; line-height: 1; }
     <div class="section-divider">
       <span class="section-divider-num">V.</span>
       <span class="section-divider-label">Why wear it · Pick up to 3</span>
-      <span class="section-divider-right q-status" data-q="motivation">Question 3 of 7</span>
+      <span class="section-divider-right q-status" data-q="motivation">Question 4 of 8</span>
     </div>
     <h2 class="h-1" style="max-width: 22ch;">What would draw you to wear a piece <em>like this</em>?</h2>
     <p class="body mt-32" style="max-width:54ch;">Wearable art by independent artists isn't fast fashion. People who wear it tend to do so for reasons that aren't just "I needed a top." We want to understand yours.</p>
@@ -2557,7 +2524,7 @@ h1, h2, h3, h4 { font-weight: 500; letter-spacing: -0.025em; line-height: 1; }
     <div class="section-divider section-divider--dark">
       <span class="section-divider-num">VI.</span>
       <span class="section-divider-label">The most compelling promise · Pick one</span>
-      <span class="section-divider-right q-status" data-q="proposition">Question 4 of 7</span>
+      <span class="section-divider-right q-status" data-q="proposition">Question 5 of 8</span>
     </div>
     <h2 class="h-1 survey-question">Which promise speaks <em>loudest</em>?</h2>
     <p class="survey-helper">
@@ -2799,7 +2766,7 @@ h1, h2, h3, h4 { font-weight: 500; letter-spacing: -0.025em; line-height: 1; }
     <div class="section-divider">
       <span class="section-divider-num">VII.</span>
       <span class="section-divider-label">The ad test · React to 5 ads</span>
-      <span class="section-divider-right q-status" data-q="ad_reactions">Question 5 of 7</span>
+      <span class="section-divider-right q-status" data-q="ad_reactions">Question 6 of 8</span>
     </div>
     <h2 class="h-1 survey-question" style="max-width: 24ch;">Imagine you're <em>scrolling</em>.<br>How would you react?</h2>
     <p class="survey-helper">
@@ -2965,7 +2932,7 @@ h1, h2, h3, h4 { font-weight: 500; letter-spacing: -0.025em; line-height: 1; }
     <div class="section-divider">
       <span class="section-divider-num">VIII.</span>
       <span class="section-divider-label">The price · Pick a band</span>
-      <span class="section-divider-right q-status" data-q="price">Question 6 of 7</span>
+      <span class="section-divider-right q-status" data-q="price">Question 7 of 8</span>
     </div>
     <h2 class="h-1" style="max-width: 22ch;">What would you <em>expect</em> to pay?</h2>
     <p class="body mt-32">A numbered edition, signed by the artist, made in heavyweight UK cotton. Honest answers only — this shapes how we price the drop.</p>
@@ -2992,12 +2959,12 @@ h1, h2, h3, h4 { font-weight: 500; letter-spacing: -0.025em; line-height: 1; }
      BUY INTENT — 5-star rating + open-text "anything to add"
      Q10 of 10. The headline purchase-intent signal for the scorecard.
 ============================================================ -->
-<section class="section" id="buy-intent" style="background: var(--bone);">
+<section class="section" id="buy-intent" style="background: var(--bone); padding-bottom: 32px;">
   <div class="container">
     <div class="section-divider">
       <span class="section-divider-num">IX.</span>
       <span class="section-divider-label">Buy intent · Rate &amp; add your thoughts</span>
-      <span class="section-divider-right q-status" data-q="buy_intent">Question 7 of 7</span>
+      <span class="section-divider-right q-status" data-q="buy_intent">Question 8 of 8</span>
     </div>
     <h2 class="h-1" style="max-width: 20ch;">How likely are you to <em>actually</em> buy?</h2>
     <p class="body mt-32">A signed, numbered piece of wearable art. Made in London. £140–160. Drop launches Jul / Aug 2026. Be honest — there's no wrong answer.</p>
@@ -3035,9 +3002,9 @@ h1, h2, h3, h4 { font-weight: 500; letter-spacing: -0.025em; line-height: 1; }
      COMPLETION SUMMARY — acknowledges the visitor's engagement
      before asking for the commitment. Lifts sign-up conversion.
 ============================================================ -->
-<section class="section section--bone" style="padding: 80px 0 40px;">
+<section class="section section--bone" style="padding: 0 0 24px;">
   <div class="container">
-    <div class="completion-summary">
+    <div class="completion-summary" style="margin-top: 24px;">
       <p class="completion-summary-eyebrow">You're almost done</p>
       <h2 class="completion-summary-title">You've answered <span class="summary-num" id="summaryAnswered">0</span> of <span id="summaryTotal">8</span> questions.</h2>
       <p class="completion-summary-body">Thank you. The next step <em style="font-family: 'Fraunces', serif; font-style: italic; color: var(--clay);">claims your spot</em> on the drop. Two minutes.</p>
@@ -3211,13 +3178,14 @@ window.surveyData = {
   manifesto_feeling: null, // one-word reaction (from chip)
   manifesto_feeling_other: null, // free-text override
   questions: {
-    promise_ranking: { state: 'pending', num: 1 },
-    retailers:       { state: 'pending', num: 2 },
-    motivation:      { state: 'pending', num: 3 },
-    proposition:     { state: 'pending', num: 4 },
-    ad_reactions:    { state: 'pending', num: 5 },
-    price:           { state: 'pending', num: 6 },
-    buy_intent:      { state: 'pending', num: 7 }
+    drop_ranking:    { state: 'pending', num: 1 },
+    promise_ranking: { state: 'pending', num: 2 },
+    retailers:       { state: 'pending', num: 3 },
+    motivation:      { state: 'pending', num: 4 },
+    proposition:     { state: 'pending', num: 5 },
+    ad_reactions:    { state: 'pending', num: 6 },
+    price:           { state: 'pending', num: 7 },
+    buy_intent:      { state: 'pending', num: 8 }
   },
   motivations_selected: [],
   motivation_other: null,
