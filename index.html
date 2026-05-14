@@ -368,55 +368,150 @@ h1, h2, h3, h4 { font-weight: 500; letter-spacing: -0.025em; line-height: 1; }
 }
 
 /* ====== T-SHIRT PLACEHOLDER CARDS ====== */
-.drop-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 24px; margin-top: 64px; }
+.drop-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 20px;
+  margin-top: 64px;
+}
 @media (max-width: 1100px) { .drop-grid { grid-template-columns: repeat(3, 1fr); } }
-@media (max-width: 700px) { .drop-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 700px)  { .drop-grid { grid-template-columns: repeat(2, 1fr); gap: 14px; } }
+
+.drop-artist-section {
+  margin-top: 72px;
+}
+.drop-artist-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding-bottom: 18px;
+  border-bottom: 1px solid rgba(10, 10, 10, 0.12);
+  margin-bottom: 32px;
+}
+.drop-artist-name {
+  font-family: var(--sans);
+  font-weight: 700;
+  font-size: 32px;
+  letter-spacing: -0.02em;
+  color: var(--black);
+}
+.drop-artist-name em {
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 400;
+  color: var(--clay);
+}
+.drop-artist-meta {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
 
 .shirt-card {
-  background: var(--bone);
-  aspect-ratio: 1/1.3;
+  background: var(--white);
   position: relative;
   cursor: pointer;
-  transition: transform 0.3s ease;
+  transition: all 0.25s ease;
   overflow: hidden;
-  border-radius: 2px;
+  border-radius: 0;
+  border: 1px solid rgba(10, 10, 10, 0.08);
+  display: flex;
+  flex-direction: column;
 }
-.shirt-card:hover { transform: translateY(-4px); }
+.shirt-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--clay);
+}
+.shirt-card.ranked {
+  outline: 2px solid var(--clay);
+  outline-offset: -2px;
+  background: rgba(162, 103, 76, 0.04);
+}
 
-/* PLACEHOLDER FOR T-SHIRT ARTWORK
-   Replace .shirt-placeholder with real shirt image once Conor + 4 other artists' work is selected.
-   Suggested treatment: front-facing t-shirt mockup, neutral background, artwork centred on chest. */
+/* Card artwork area — top portion */
 .shirt-placeholder {
-  position: absolute; inset: 0;
+  position: relative;
+  aspect-ratio: 1/1;
+  background: var(--bone);
   display: flex; align-items: center; justify-content: center;
   flex-direction: column;
   padding: 24px;
   text-align: center;
 }
 .shirt-placeholder-mark {
-  font-size: 64px;
+  font-size: 48px;
   font-weight: 500;
   color: var(--clay);
-  opacity: 0.4;
-  margin-bottom: 12px;
+  opacity: 0.35;
+  margin-bottom: 10px;
+  font-family: var(--sans);
 }
 .shirt-placeholder-label {
-  font-size: 10px;
-  letter-spacing: 0.16em;
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--ink-soft);
   opacity: 0.7;
 }
+/* Card body — title + description + meta */
 .shirt-meta {
-  position: absolute;
-  bottom: 0; left: 0; right: 0;
-  padding: 14px 16px;
-  background: rgba(245, 245, 243, 0.96);
-  border-top: 1px solid rgba(10,10,10,0.08);
+  padding: 18px 20px 20px;
+  border-top: 1px solid rgba(10, 10, 10, 0.08);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  flex: 1;
 }
-.shirt-artist { font-size: 13px; font-weight: 500; color: var(--black); margin-bottom: 2px; }
-.shirt-edition { font-size: 11px; color: var(--ink-soft); letter-spacing: 0.04em; }
-.shirt-price { position: absolute; top: 14px; right: 14px; font-size: 11px; font-weight: 500; color: var(--black); background: var(--white); padding: 4px 8px; border-radius: 2px; }
+.shirt-title {
+  font-family: var(--sans);
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--black);
+  line-height: 1.25;
+}
+.shirt-description {
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 1.4;
+  color: var(--ink-soft);
+  margin: 2px 0 8px;
+}
+.shirt-artist {
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--clay);
+  margin-top: auto;
+}
+.shirt-edition {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+.shirt-price {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--black);
+  background: var(--white);
+  padding: 6px 10px;
+  border-radius: 2px;
+  border: 1px solid rgba(10, 10, 10, 0.08);
+  z-index: 2;
+}
 
 /* ====== FEATURED ARTWORK BLOCK ====== */
 .featured {
@@ -1147,23 +1242,23 @@ h1, h2, h3, h4 { font-weight: 500; letter-spacing: -0.025em; line-height: 1; }
 }
 .retailer-other-wrap input::placeholder { color: rgba(10, 10, 10, 0.35); font-style: italic; }
 
-/* ====== 5-STAR RATING ====== */
+/* ====== 5-STAR RATING (SVG, no emoji) ====== */
 .star-rating {
   display: flex;
-  gap: 8px;
+  gap: 12px;
   margin-top: 16px;
 }
 .star-button {
   background: transparent;
   border: none;
-  font-size: 52px;
-  line-height: 1;
-  color: rgba(10, 10, 10, 0.16);
+  width: 56px;
+  height: 56px;
   cursor: pointer;
   transition: all 0.15s ease;
-  padding: 0 4px;
-  font-family: var(--type);
+  padding: 0;
+  color: rgba(10, 10, 10, 0.16);
 }
+.star-button svg { width: 100%; height: 100%; display: block; fill: currentColor; }
 .star-button:hover { transform: scale(1.1); }
 .star-button.active { color: var(--clay); }
 .star-scale {
@@ -1814,6 +1909,7 @@ h1, h2, h3, h4 { font-weight: 500; letter-spacing: -0.025em; line-height: 1; }
   <input type="text" name="exit_location" />
   <input type="text" name="exit_nd_framing" />
   <input type="text" name="exit_discovery" />
+  <input type="text" name="drop_selections" />
   <input type="text" name="motivations_selected" />
   <input type="text" name="motivation_other" />
   <input type="text" name="retailer_other" />
@@ -1885,9 +1981,9 @@ h1, h2, h3, h4 { font-weight: 500; letter-spacing: -0.025em; line-height: 1; }
 
       <div class="hero-main">
 
-        <!-- Bold editorial headline — Made to keep time. -->
+        <!-- Bold editorial headline — Variant A proposition -->
         <h1 class="display">
-          Made to <em>keep</em><br>time.
+          Limited edition wearable art, in collaboration with an <em>independent artist</em>.
         </h1>
 
         <p class="body-l">
@@ -1907,7 +2003,7 @@ h1, h2, h3, h4 { font-weight: 500; letter-spacing: -0.025em; line-height: 1; }
           <div class="hero-spec-item"><strong>Drop</strong><span>2 × 50</span></div>
           <div class="hero-spec-item"><strong>Edition</strong><span>50 of each</span></div>
           <div class="hero-spec-item"><strong>Price</strong><span>£140 — 160</span></div>
-          <div class="hero-spec-item"><strong>Made in</strong><span>London 🇬🇧</span></div>
+          <div class="hero-spec-item"><strong>Made in</strong><span>London</span></div>
           <div class="hero-spec-item"><strong>Launch</strong><span>Jul — Aug '26</span></div>
         </div>
 
@@ -1944,51 +2040,182 @@ h1, h2, h3, h4 { font-weight: 500; letter-spacing: -0.025em; line-height: 1; }
   <div class="container">
     <p class="meta hero-eyebrow">II — The first drop <span class="q-status" data-q="drop_ranking">Question 1 of 9</span></p>
     <h2 class="h-1" style="max-width:18ch;">Two artists.<br><em>Fifty of each.</em><br>One hundred pieces.</h2>
-    <p class="body mt-32">The first chapter of something new. Two artists to start — chosen, named, paid a fair share. When a piece is gone, it's gone. Every garment is numbered, signed by the artist, and shipped in a hand-folded matte-black box.</p>
-    <div class="action-prompt"><span class="action-prompt-arrow">↓</span><span><span class="action-prompt-prefix">Your turn</span>Tap the artwork that appeals to you most</span></div>
+    <p class="body mt-32">The first chapter of something new. Two artists to start — chosen, named, paid a fair share. Each will release a small body of work for N°001. Every garment is numbered, signed by the artist, and shipped in a hand-folded matte-black box.</p>
+    <div class="action-prompt"><span class="action-prompt-arrow">↓</span><span><span class="action-prompt-prefix">Your turn</span>Tap any artworks that appeal to you — select as many as you like</span></div>
 
     <div class="todo">
-      <strong>// PROTOTYPE NOTE:</strong> Replace .shirt-placeholder content with real t-shirt mockups once artists are confirmed and artwork is approved. Image spec: 1200×1560, front-facing, neutral background.
+      <strong>// PROTOTYPE NOTE:</strong> Artwork titles and descriptions are placeholder concepts. Replace with real titles and descriptions once Conor and Chris confirm their final pieces. Image spec: 1200×1560, front-facing, neutral background.
     </div>
 
-    <div class="drop-grid">
-
-      <!-- Shirt 01 -->
-      <div class="shirt-card" data-shirt="01" onclick="rankShirt('01')">
-        <div class="rank-badge"></div>
-        <div class="shirt-placeholder">
-          <div class="shirt-placeholder-mark">(t)</div>
-          <div class="shirt-placeholder-label">Artwork 01<br>Conor Powell</div>
-        </div>
-        <div class="shirt-price">£148</div>
-        <div class="shirt-meta">
-          <div class="shirt-artist">Conor Powell</div>
-          <div class="shirt-edition">Edition of 50 · N°001</div>
-        </div>
+    <!-- ===== CONOR POWELL — 5 artworks ===== -->
+    <div class="drop-artist-section">
+      <div class="drop-artist-header">
+        <div class="drop-artist-name">Conor Powell — <em>five works</em></div>
+        <div class="drop-artist-meta">Illustrator · South London</div>
       </div>
 
-      <!-- Shirt 02 -->
-      <div class="shirt-card" data-shirt="02" onclick="rankShirt('02')">
-        <div class="rank-badge"></div>
-        <div class="shirt-placeholder">
-          <div class="shirt-placeholder-mark">(t)</div>
-          <div class="shirt-placeholder-label">Artwork 02<br>Chris</div>
-        </div>
-        <div class="shirt-price">£148</div>
-        <div class="shirt-meta">
-          <div class="shirt-artist">Chris</div>
-          <div class="shirt-edition">Edition of 50 · N°002</div>
-        </div>
-      </div>
+      <div class="drop-grid">
 
+        <div class="shirt-card" data-shirt="C01" onclick="toggleSelection('C01')">
+          <div class="shirt-placeholder">
+            <div class="shirt-placeholder-mark">(t)</div>
+            <div class="shirt-placeholder-label">Artwork C·01</div>
+          </div>
+          <div class="shirt-price">£148</div>
+          <div class="shirt-meta">
+            <div class="shirt-title">Pattern Study 01</div>
+            <div class="shirt-description">"A rhythm you only see on the second look."</div>
+            <div class="shirt-artist">Conor Powell</div>
+            <div class="shirt-edition">Edition of 50 · N°001</div>
+          </div>
+        </div>
+
+        <div class="shirt-card" data-shirt="C02" onclick="toggleSelection('C02')">
+          <div class="shirt-placeholder">
+            <div class="shirt-placeholder-mark">(t)</div>
+            <div class="shirt-placeholder-label">Artwork C·02</div>
+          </div>
+          <div class="shirt-price">£148</div>
+          <div class="shirt-meta">
+            <div class="shirt-title">Static Bloom</div>
+            <div class="shirt-description">"Drawing as breath. Drawing as time."</div>
+            <div class="shirt-artist">Conor Powell</div>
+            <div class="shirt-edition">Edition of 50 · N°002</div>
+          </div>
+        </div>
+
+        <div class="shirt-card" data-shirt="C03" onclick="toggleSelection('C03')">
+          <div class="shirt-placeholder">
+            <div class="shirt-placeholder-mark">(t)</div>
+            <div class="shirt-placeholder-label">Artwork C·03</div>
+          </div>
+          <div class="shirt-price">£148</div>
+          <div class="shirt-meta">
+            <div class="shirt-title">Internal Weather</div>
+            <div class="shirt-description">"Marks made on a difficult morning."</div>
+            <div class="shirt-artist">Conor Powell</div>
+            <div class="shirt-edition">Edition of 50 · N°003</div>
+          </div>
+        </div>
+
+        <div class="shirt-card" data-shirt="C04" onclick="toggleSelection('C04')">
+          <div class="shirt-placeholder">
+            <div class="shirt-placeholder-mark">(t)</div>
+            <div class="shirt-placeholder-label">Artwork C·04</div>
+          </div>
+          <div class="shirt-price">£148</div>
+          <div class="shirt-meta">
+            <div class="shirt-title">Linework No. 4</div>
+            <div class="shirt-description">"The line knows where it's going. I just follow it."</div>
+            <div class="shirt-artist">Conor Powell</div>
+            <div class="shirt-edition">Edition of 50 · N°004</div>
+          </div>
+        </div>
+
+        <div class="shirt-card" data-shirt="C05" onclick="toggleSelection('C05')">
+          <div class="shirt-placeholder">
+            <div class="shirt-placeholder-mark">(t)</div>
+            <div class="shirt-placeholder-label">Artwork C·05</div>
+          </div>
+          <div class="shirt-price">£148</div>
+          <div class="shirt-meta">
+            <div class="shirt-title">Quiet Engine</div>
+            <div class="shirt-description">"Something that hums underneath the day."</div>
+            <div class="shirt-artist">Conor Powell</div>
+            <div class="shirt-edition">Edition of 50 · N°005</div>
+          </div>
+        </div>
+
+      </div>
     </div>
 
-    <!-- Top picks tracker -->
+    <!-- ===== CHRIS SULLIVAN — 5 artworks ===== -->
+    <div class="drop-artist-section">
+      <div class="drop-artist-header">
+        <div class="drop-artist-name">Chris Sullivan — <em>five works</em></div>
+        <div class="drop-artist-meta">Painter · London · Founder of The Wag Club</div>
+      </div>
+
+      <div class="drop-grid">
+
+        <div class="shirt-card" data-shirt="S01" onclick="toggleSelection('S01')">
+          <div class="shirt-placeholder">
+            <div class="shirt-placeholder-mark">(t)</div>
+            <div class="shirt-placeholder-label">Artwork S·01</div>
+          </div>
+          <div class="shirt-price">£148</div>
+          <div class="shirt-meta">
+            <div class="shirt-title">Urban Head 01</div>
+            <div class="shirt-description">"A Soho character study, painted from memory."</div>
+            <div class="shirt-artist">Chris Sullivan</div>
+            <div class="shirt-edition">Edition of 50 · N°006</div>
+          </div>
+        </div>
+
+        <div class="shirt-card" data-shirt="S02" onclick="toggleSelection('S02')">
+          <div class="shirt-placeholder">
+            <div class="shirt-placeholder-mark">(t)</div>
+            <div class="shirt-placeholder-label">Artwork S·02</div>
+          </div>
+          <div class="shirt-price">£148</div>
+          <div class="shirt-meta">
+            <div class="shirt-title">Wardour at Dusk</div>
+            <div class="shirt-description">"A London cityscape, sketched during lockdown."</div>
+            <div class="shirt-artist">Chris Sullivan</div>
+            <div class="shirt-edition">Edition of 50 · N°007</div>
+          </div>
+        </div>
+
+        <div class="shirt-card" data-shirt="S03" onclick="toggleSelection('S03')">
+          <div class="shirt-placeholder">
+            <div class="shirt-placeholder-mark">(t)</div>
+            <div class="shirt-placeholder-label">Artwork S·03</div>
+          </div>
+          <div class="shirt-price">£148</div>
+          <div class="shirt-meta">
+            <div class="shirt-title">Wag Crowd</div>
+            <div class="shirt-description">"The faces that built a city's nightlife."</div>
+            <div class="shirt-artist">Chris Sullivan</div>
+            <div class="shirt-edition">Edition of 50 · N°008</div>
+          </div>
+        </div>
+
+        <div class="shirt-card" data-shirt="S04" onclick="toggleSelection('S04')">
+          <div class="shirt-placeholder">
+            <div class="shirt-placeholder-mark">(t)</div>
+            <div class="shirt-placeholder-label">Artwork S·04</div>
+          </div>
+          <div class="shirt-price">£148</div>
+          <div class="shirt-meta">
+            <div class="shirt-title">Merthyr to Soho</div>
+            <div class="shirt-description">"Welsh-born, London-painted. Forty years of looking."</div>
+            <div class="shirt-artist">Chris Sullivan</div>
+            <div class="shirt-edition">Edition of 50 · N°009</div>
+          </div>
+        </div>
+
+        <div class="shirt-card" data-shirt="S05" onclick="toggleSelection('S05')">
+          <div class="shirt-placeholder">
+            <div class="shirt-placeholder-mark">(t)</div>
+            <div class="shirt-placeholder-label">Artwork S·05</div>
+          </div>
+          <div class="shirt-price">£148</div>
+          <div class="shirt-meta">
+            <div class="shirt-title">After Dark</div>
+            <div class="shirt-description">"A century of Soho nightclubs, in one face."</div>
+            <div class="shirt-artist">Chris Sullivan</div>
+            <div class="shirt-edition">Edition of 50 · N°010</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Selection tracker -->
     <div class="rank-tracker" id="drop-tracker">
-      <div class="tracker-label">Your picks<br>so far</div>
+      <div class="tracker-label">Your selections</div>
       <div class="tracker-items">
-        <div class="track-item"><span class="track-rank">1</span><span class="track-name">Tap an artwork above</span></div>
-        <div class="track-item"><span class="track-rank">2</span><span class="track-name">—</span></div>
+        <div class="track-item"><span class="track-rank"><span id="dropSelectionCount">0</span></span><span class="track-name" id="dropSelectionList">Tap any artworks above to select</span></div>
       </div>
     </div>
 
@@ -2413,9 +2640,9 @@ h1, h2, h3, h4 { font-weight: 500; letter-spacing: -0.025em; line-height: 1; }
   .ad-headline {
     font-family: var(--sans);
     font-weight: 800;
-    line-height: 0.94;
+    line-height: 0.92;
     letter-spacing: -0.035em;
-    font-size: 52px;
+    font-size: 56px;
   }
   .ad-headline em {
     font-family: var(--serif);
@@ -2429,14 +2656,26 @@ h1, h2, h3, h4 { font-weight: 500; letter-spacing: -0.025em; line-height: 1; }
   .ad-frame--white .ad-headline em { color: var(--clay); }
   .ad-frame--bone .ad-headline em,
   .ad-frame--stone .ad-headline em { color: var(--clay); }
-  .ad-headline--display { font-size: 72px; line-height: 0.92; letter-spacing: -0.04em; }
+  /* Display + italic are now visually equal — italic is only the EM accent, never the whole headline */
+  .ad-headline--display,
   .ad-headline--italic {
-    font-family: var(--serif);
-    font-style: italic;
-    font-weight: 400;
-    font-size: 64px;
-    letter-spacing: -0.025em;
+    font-size: 56px;
+    line-height: 0.92;
+    letter-spacing: -0.035em;
+    font-family: var(--sans);
+    font-weight: 800;
+    font-style: normal;
   }
+  /* Horizontal split inside ad-text — divides meta-top, headline, meta-bottom */
+  .ad-text > * + * { border-top: 1px solid currentColor; padding-top: 24px; }
+  .ad-text > * { padding-bottom: 24px; }
+  .ad-text > *:last-child { padding-bottom: 0; }
+  .ad-text > *:first-child { padding-top: 0; }
+  .ad-frame--bone .ad-text > * + *,
+  .ad-frame--white .ad-text > * + *,
+  .ad-frame--stone .ad-text > * + * { border-color: rgba(10, 10, 10, 0.12); }
+  .ad-frame--black .ad-text > * + *,
+  .ad-frame--clay .ad-text > * + * { border-color: rgba(245, 241, 235, 0.18); }
   .ad-sub {
     font-family: var(--sans);
     font-size: 16px;
@@ -2567,7 +2806,7 @@ h1, h2, h3, h4 { font-weight: 500; letter-spacing: -0.025em; line-height: 1; }
               <div class="ad-tag" style="color: var(--clay);">Drop 01</div>
             </div>
             <div>
-              <h3 class="ad-headline ad-headline--italic" style="font-size:42px;">Wearable art made <em>to be kept</em>.</h3>
+              <h3 class="ad-headline">Wearable art made <em>to be kept</em>.</h3>
               <p class="ad-sub">Designed by neurodivergent artists. Numbered, named, shared.</p>
             </div>            <div class="ad-row">
               <div class="ad-cta" style="color: var(--clay);">Read the story</div>
@@ -2651,7 +2890,7 @@ h1, h2, h3, h4 { font-weight: 500; letter-spacing: -0.025em; line-height: 1; }
               <div class="ad-tag">The first drop</div>
             </div>
             <div>
-              <h3 class="ad-headline" style="font-size:38px;">Two artists.<br>Fifty of each.<br><em>One hundred pieces.</em><br>Made for keeping.</h3>
+              <h3 class="ad-headline">Two artists. <em>One hundred pieces.</em> Made for keeping.</h3>
             </div>            <div class="ad-row">
               <div class="ad-cta">Get early access</div>
               <div class="ad-spec">// 265gsm · Milled Leicester · Made London · Water-based ink</div>
@@ -2745,11 +2984,11 @@ h1, h2, h3, h4 { font-weight: 500; letter-spacing: -0.025em; line-height: 1; }
     <div class="action-prompt"><span class="action-prompt-arrow">↓</span><span><span class="action-prompt-prefix">Your turn</span>Tap the stars — one (very unlikely) to five (very likely)</span></div>
 
     <div class="star-rating" id="starRating">
-      <button type="button" class="star-button" data-stars="1" onclick="rateStar(1)" aria-label="1 star">★</button>
-      <button type="button" class="star-button" data-stars="2" onclick="rateStar(2)" aria-label="2 stars">★</button>
-      <button type="button" class="star-button" data-stars="3" onclick="rateStar(3)" aria-label="3 stars">★</button>
-      <button type="button" class="star-button" data-stars="4" onclick="rateStar(4)" aria-label="4 stars">★</button>
-      <button type="button" class="star-button" data-stars="5" onclick="rateStar(5)" aria-label="5 stars">★</button>
+      <button type="button" class="star-button" data-stars="1" onclick="rateStar(1)" aria-label="1 star"><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></button>
+      <button type="button" class="star-button" data-stars="2" onclick="rateStar(2)" aria-label="2 stars"><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></button>
+      <button type="button" class="star-button" data-stars="3" onclick="rateStar(3)" aria-label="3 stars"><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></button>
+      <button type="button" class="star-button" data-stars="4" onclick="rateStar(4)" aria-label="4 stars"><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></button>
+      <button type="button" class="star-button" data-stars="5" onclick="rateStar(5)" aria-label="5 stars"><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></button>
     </div>
     <div class="star-scale">
       <span>Very unlikely</span>
@@ -2792,8 +3031,8 @@ h1, h2, h3, h4 { font-weight: 500; letter-spacing: -0.025em; line-height: 1; }
           <div class="artist-portrait-mark">(t)</div>
           <div class="artist-portrait-label">Portrait placeholder</div>
         </div>
-        <div class="artist-name">Chris</div>
-        <div class="artist-detail">Artist · N°002 · Confirmation pending</div>
+        <div class="artist-name">Chris Sullivan</div>
+        <div class="artist-detail">Painter, DJ, author · London (Welsh-born) · Central Saint Martins · Founder of The Wag Club · Currently working on urban heads and London cityscapes. <a href="https://www.thesullivan.net" target="_blank" rel="noopener" style="color:var(--clay);text-decoration:underline;">thesullivan.net</a></div>
       </div>
     </div>
   </div>
@@ -3259,6 +3498,7 @@ function rankItem(currentRanking, itemId) {
 }
 
 function rankShirt(shirtId) {
+  // Legacy ranking — kept for backwards compatibility
   rankItem(window.surveyData.drop_ranking, shirtId);
   updateRankUI('.shirt-card', 'shirt', window.surveyData.drop_ranking, '#drop-tracker', (id) => {
     const card = document.querySelector(`[data-shirt="${id}"]`);
@@ -3266,6 +3506,39 @@ function rankShirt(shirtId) {
   }, 'Tap a shirt above');
   logEvent('shirt_ranked', { ranking: { ...window.surveyData.drop_ranking } });
   if (Object.keys(window.surveyData.drop_ranking).length > 0) markAnswered('drop_ranking');
+}
+
+/* ===== Drop selection — multi-select across all artworks ===== */
+window.surveyData.drop_selections = [];
+function toggleSelection(shirtId) {
+  const card = document.querySelector(`.shirt-card[data-shirt="${shirtId}"]`);
+  if (!card) return;
+  const isRanked = card.classList.contains('ranked');
+  if (isRanked) {
+    card.classList.remove('ranked');
+    window.surveyData.drop_selections = window.surveyData.drop_selections.filter(id => id !== shirtId);
+  } else {
+    card.classList.add('ranked');
+    window.surveyData.drop_selections.push(shirtId);
+  }
+  // Update tracker
+  const count = window.surveyData.drop_selections.length;
+  const countEl = document.getElementById('dropSelectionCount');
+  if (countEl) countEl.textContent = count;
+  const listEl = document.getElementById('dropSelectionList');
+  if (listEl) {
+    if (count === 0) {
+      listEl.textContent = 'Tap any artworks above to select';
+    } else {
+      const names = window.surveyData.drop_selections.map(id => {
+        const c = document.querySelector(`[data-shirt="${id}"]`);
+        return c?.querySelector('.shirt-title')?.textContent || id;
+      });
+      listEl.textContent = names.join(' · ');
+    }
+  }
+  logEvent('artwork_toggled', { shirt: shirtId, now_selected: window.surveyData.drop_selections });
+  if (count > 0) markAnswered('drop_ranking');
 }
 
 function rankPromise(promiseId, promiseLabel) {
@@ -3383,6 +3656,7 @@ function captureSignup(e) {
   fd.append('exit_location', window.surveyData.exit_gate?.location || '');
   fd.append('exit_nd_framing', window.surveyData.exit_gate?.nd_framing || '');
   fd.append('exit_discovery', window.surveyData.exit_gate?.discovery || '');
+  fd.append('drop_selections', (window.surveyData.drop_selections || []).join(','));
   fd.append('motivations_selected', (window.surveyData.motivations_selected || []).join(','));
   fd.append('motivation_other', window.surveyData.motivation_other || '');
   fd.append('retailer_other', window.surveyData.retailer_other || '');
