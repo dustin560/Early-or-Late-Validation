@@ -520,7 +520,7 @@ h1, h2, h3, h4 { font-weight: 500; letter-spacing: -0.025em; line-height: 1; }
 .prop-option {
   background: rgba(245, 241, 235, 0.04);
   border: 1px solid rgba(245, 241, 235, 0.14);
-  padding: 36px 40px;
+  padding: 36px 40px 36px 32px;
   border-radius: 0;
   cursor: pointer;
   transition: all 0.25s ease;
@@ -529,8 +529,8 @@ h1, h2, h3, h4 { font-weight: 500; letter-spacing: -0.025em; line-height: 1; }
   font-family: var(--sans);
   width: 100%;
   display: grid;
-  grid-template-columns: 80px 1fr;
-  gap: 32px;
+  grid-template-columns: 100px 1fr;
+  gap: 56px;
   align-items: start;
 }
 .prop-option:hover {
@@ -1864,7 +1864,6 @@ h1, h2, h3, h4 { font-weight: 500; letter-spacing: -0.025em; line-height: 1; }
     <div class="nav-links">
       <a href="#drop">The drop</a>
       <a href="#artists">Artists</a>
-      <a href="#story">Story</a>
       <a href="#signup" class="nav-cta">Early access</a>
     </div>
   </div>
@@ -1886,26 +1885,13 @@ h1, h2, h3, h4 { font-weight: 500; letter-spacing: -0.025em; line-height: 1; }
 
       <div class="hero-main">
 
-        <!-- The wordmark — hero-scale, Route 1 construction -->
-        <svg class="wordmark-hero" viewBox="0 0 720 130" aria-label="early or LA(t)E">
-          <g font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-weight="800" font-size="92" font-style="italic"><text x="0" y="100" fill="currentColor">early</text></g>
-          <g font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-weight="500" font-size="64"><text x="240" y="100" fill="currentColor">or</text></g>
-          <g font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-weight="800" font-size="92" letter-spacing="-2">
-            <text x="338" y="100" fill="none" stroke="currentColor" stroke-width="3">LA</text>
-            <text x="465" y="100" fill="currentColor" font-style="italic" font-weight="700">(</text>
-            <text x="495" y="100" fill="currentColor" font-style="italic" font-weight="800" font-size="76">t</text>
-            <text x="525" y="100" fill="currentColor" font-style="italic" font-weight="700">)</text>
-            <text x="565" y="100" fill="none" stroke="currentColor" stroke-width="3">E</text>
-          </g>
-        </svg>
-
         <!-- Bold editorial headline — Made to keep time. -->
         <h1 class="display">
           Made to <em>keep</em><br>time.
         </h1>
 
         <p class="body-l">
-          Wearable art by <em>independent artists</em>. Numbered, named, made in the UK. Not fast fashion. <em>Forward fashion</em>.
+          Wearable art by <em>independent artists</em>. <em>Made in London</em>. Numbered, named, signed. Not fast fashion. <em>Forward fashion</em>.
         </p>
 
         <div class="cta-block">
@@ -1921,7 +1907,7 @@ h1, h2, h3, h4 { font-weight: 500; letter-spacing: -0.025em; line-height: 1; }
           <div class="hero-spec-item"><strong>Drop</strong><span>2 × 50</span></div>
           <div class="hero-spec-item"><strong>Edition</strong><span>50 of each</span></div>
           <div class="hero-spec-item"><strong>Price</strong><span>£140 — 160</span></div>
-          <div class="hero-spec-item"><strong>Made</strong><span>London · Leicester</span></div>
+          <div class="hero-spec-item"><strong>Made in</strong><span>London 🇬🇧</span></div>
           <div class="hero-spec-item"><strong>Launch</strong><span>Jul — Aug '26</span></div>
         </div>
 
@@ -2077,11 +2063,11 @@ h1, h2, h3, h4 { font-weight: 500; letter-spacing: -0.025em; line-height: 1; }
         <div class="promise-title">Shared</div>
         <div class="promise-body">Every artist receives a share of every sale. Buying is a direct transaction.</div>
       </div>
-      <div class="promise-item" data-promise="uk_made" onclick="rankPromise('uk_made', 'UK-made')" style="position:relative;">
+      <div class="promise-item" data-promise="uk_made" onclick="rankPromise('uk_made', 'Made in London')" style="position:relative;">
         <div class="rank-badge"></div>
         <div class="promise-num">04</div>
-        <div class="promise-title">UK-made</div>
-        <div class="promise-body">Cotton milled in Leicester. Designed and finished in London. Printed with water-based ink.</div>
+        <div class="promise-title">Made in London</div>
+        <div class="promise-body">Designed, cut and finished in London. Cotton milled in Leicester. Printed with water-based ink.</div>
       </div>
     </div>
     <div class="promise-strip" style="border-top: none;">
@@ -2338,7 +2324,7 @@ h1, h2, h3, h4 { font-weight: 500; letter-spacing: -0.025em; line-height: 1; }
       <button class="prop-option" data-variant="D" onclick="selectProp(this, 'D')">
         <span>
           <span class="prop-label">Promise D — Art you wear</span>
-          <span class="prop-text"><em>Art you wear.</em> Made in the UK, with the artist named on the label.</span>
+          <span class="prop-text"><em>Art you wear.</em> Made in London, with the artist named on the label.</span>
         </span>
       </button>
       <button class="prop-option" data-variant="E" onclick="selectProp(this, 'E')">
@@ -2364,36 +2350,78 @@ h1, h2, h3, h4 { font-weight: 500; letter-spacing: -0.025em; line-height: 1; }
      the stated-preference test in Survey Moment 1.
 ============================================================ -->
 <style>
-  .ad-feed { max-width: 540px; margin: 64px auto 0; }
-  .ad-card { margin-bottom: 56px; }
+  .ad-feed { max-width: 620px; margin: 64px auto 0; }
+  .ad-card { margin-bottom: 72px; }
   .ad-frame {
-    aspect-ratio: 1/1; position: relative; overflow: hidden; border-radius: 2px;
-    box-shadow: 0 2px 24px rgba(10, 10, 10, 0.08);
+    aspect-ratio: 1/1; position: relative; overflow: hidden; border-radius: 0;
+    box-shadow: 0 8px 32px rgba(10, 10, 10, 0.1);
   }
   .ad-inner {
-    position: absolute; inset: 0; padding: 40px;
+    position: absolute; inset: 0; padding: 48px;
     display: flex; flex-direction: column; justify-content: space-between;
   }
   .ad-frame--bone { background: var(--bone); color: var(--black); }
-  .ad-frame--black { background: var(--black); color: var(--white); }
-  .ad-frame--clay { background: var(--clay); color: var(--white); }
+  .ad-frame--black { background: var(--black); color: var(--bone); }
+  .ad-frame--clay { background: var(--clay); color: var(--bone); }
   .ad-frame--white { background: var(--white); color: var(--black); border: 1px solid rgba(10,10,10,0.08); }
   .ad-frame--stone { background: var(--stone); color: var(--black); }
   .ad-row { display: flex; justify-content: space-between; align-items: center; }
   .ad-brand { font-size: 13px; font-weight: 500; letter-spacing: -0.005em; }
-  .ad-tag { font-size: 10px; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase; opacity: 0.7; }
-  .ad-headline {
-    font-weight: 500; line-height: 1.0; letter-spacing: -0.025em;
-    font-size: 38px;
+  .ad-tag {
+    font-family: var(--mono);
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    opacity: 0.75;
   }
-  .ad-headline em { font-style: normal; color: var(--clay); }
-  .ad-frame--clay .ad-headline em,
-  .ad-frame--black .ad-headline em { color: var(--bone); }
-  .ad-headline--display { font-size: 56px; line-height: 0.95; letter-spacing: -0.03em; }
-  .ad-headline--italic { font-style: italic; font-weight: 400; }
-  .ad-sub { font-size: 15px; margin-top: 14px; max-width: 32ch; line-height: 1.4; opacity: 0.85; }
+  .ad-headline {
+    font-family: var(--sans);
+    font-weight: 800;
+    line-height: 0.94;
+    letter-spacing: -0.035em;
+    font-size: 52px;
+  }
+  .ad-headline em {
+    font-family: var(--serif);
+    font-style: italic;
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    color: var(--clay);
+  }
+  .ad-frame--clay .ad-headline em { color: var(--ink); }
+  .ad-frame--black .ad-headline em,
+  .ad-frame--white .ad-headline em { color: var(--clay); }
+  .ad-frame--bone .ad-headline em,
+  .ad-frame--stone .ad-headline em { color: var(--clay); }
+  .ad-headline--display { font-size: 72px; line-height: 0.92; letter-spacing: -0.04em; }
+  .ad-headline--italic {
+    font-family: var(--serif);
+    font-style: italic;
+    font-weight: 400;
+    font-size: 64px;
+    letter-spacing: -0.025em;
+  }
+  .ad-sub {
+    font-family: var(--sans);
+    font-size: 16px;
+    margin-top: 16px;
+    max-width: 34ch;
+    line-height: 1.4;
+    opacity: 0.85;
+    font-weight: 400;
+  }
+  .ad-sub em {
+    font-family: var(--serif);
+    font-style: italic;
+    color: var(--clay);
+  }
   .ad-cta {
-    font-size: 11px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase;
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
   }
   .ad-cta::after { content: " →"; }
   .ad-shirt-inline {
@@ -2417,31 +2445,42 @@ h1, h2, h3, h4 { font-weight: 500; letter-spacing: -0.025em; line-height: 1; }
   }
 
   /* Reactions */
-  .ad-reactions { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 16px; }
+  .ad-reactions { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 20px; }
   .ad-reaction {
     background: var(--white);
-    border: 1px solid rgba(10, 10, 10, 0.12);
-    padding: 16px 10px;
-    font-family: var(--type);
-    font-size: 12px;
+    border: 1px solid rgba(10, 10, 10, 0.14);
+    padding: 18px 12px;
+    font-family: var(--sans);
+    font-size: 13px;
     font-weight: 500;
     color: var(--black);
     cursor: pointer;
-    border-radius: 2px;
-    text-align: center;
+    border-radius: 0;
+    text-align: left;
     transition: all 0.2s ease;
     line-height: 1.3;
   }
   .ad-reaction:hover { border-color: var(--clay); }
-  .ad-reaction.selected { background: var(--clay); color: var(--white); border-color: var(--clay); }
-  .ad-reaction-icon { display: block; font-size: 16px; margin-bottom: 6px; opacity: 0.85; }
-  .ad-label-row {
-    font-size: 11px;
-    color: var(--ink-soft);
-    margin-bottom: 12px;
-    letter-spacing: 0.1em;
+  .ad-reaction.selected { background: var(--clay); color: var(--bone); border-color: var(--clay); }
+  .ad-reaction-icon {
+    display: block;
+    font-family: var(--mono);
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 0.18em;
     text-transform: uppercase;
-    font-weight: 500;
+    margin-bottom: 8px;
+    color: var(--clay);
+  }
+  .ad-reaction.selected .ad-reaction-icon { color: var(--bone); }
+  .ad-label-row {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--clay);
+    margin-bottom: 14px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    font-weight: 600;
   }
 </style>
 
@@ -2465,8 +2504,8 @@ h1, h2, h3, h4 { font-weight: 500; letter-spacing: -0.025em; line-height: 1; }
               <div class="ad-tag">N°001 · Jul / Aug</div>
             </div>
             <div>
-              <h3 class="ad-headline">Limited edition <em>wearable art</em>. In collaboration with an independent artist.</h3>
-              <p class="ad-sub">Fifty pieces. Never made again.</p>
+              <h3 class="ad-headline ad-headline--display">Limited edition<br><em>wearable art</em>.</h3>
+              <p class="ad-sub">Each piece in collaboration with an independent artist. Fifty pieces. <em>Never made again</em>.</p>
             </div>
             <div class="ad-shirt-inline" style="right:32px;bottom:140px;width:110px;height:140px;">
               <svg viewBox="0 0 200 240" width="100%" height="100%" preserveAspectRatio="xMidYMid meet" style="opacity:0.85;"><path d="M75,30 L60,25 L35,30 L25,75 L55,75 L55,220 L145,220 L145,75 L175,75 L165,30 L140,25 L125,30 Q100,46 75,30 Z" fill="currentColor" fill-opacity="0.10" stroke="currentColor" stroke-width="1.6" stroke-opacity="0.55"/><path d="M75,30 Q100,46 125,30" fill="none" stroke="currentColor" stroke-width="1" stroke-opacity="0.45"/><rect x="65" y="100" width="70" height="70" fill="none" stroke="currentColor" stroke-width="0.8" stroke-dasharray="3,3" stroke-opacity="0.55"/><text x="100" y="140" text-anchor="middle" font-family="Inter, sans-serif" font-size="8" fill="currentColor" fill-opacity="0.6" letter-spacing="0.12em">ARTWORK</text></svg>
@@ -2523,8 +2562,8 @@ h1, h2, h3, h4 { font-weight: 500; letter-spacing: -0.025em; line-height: 1; }
               <div class="ad-tag" style="color: var(--white);">Edition 50</div>
             </div>
             <div>
-              <h3 class="ad-headline ad-headline--display" style="color: var(--white);">Fifty of each. Never made again.</h3>
-              <p class="ad-sub" style="color: rgba(245,245,243, 0.85);">Signed by the artist who made it.</p>
+              <h3 class="ad-headline ad-headline--display" style="color: var(--bone);">Fifty of each.<br><em style="color: var(--ink);">Never made again.</em></h3>
+              <p class="ad-sub" style="color: rgba(245,245,243, 0.9);">Signed by the artist who made it.</p>
             </div>
             <div class="ad-shirt-inline" style="right:32px;bottom:140px;width:110px;height:140px;">
               <svg viewBox="0 0 200 240" width="100%" height="100%" preserveAspectRatio="xMidYMid meet" style="color: var(--bone); opacity:0.95;"><path d="M75,30 L60,25 L35,30 L25,75 L55,75 L55,220 L145,220 L145,75 L175,75 L165,30 L140,25 L125,30 Q100,46 75,30 Z" fill="currentColor" fill-opacity="0.12" stroke="currentColor" stroke-width="1.6" stroke-opacity="0.7"/><path d="M75,30 Q100,46 125,30" fill="none" stroke="currentColor" stroke-width="1" stroke-opacity="0.5"/><rect x="65" y="100" width="70" height="70" fill="none" stroke="currentColor" stroke-width="0.8" stroke-dasharray="3,3" stroke-opacity="0.65"/><text x="100" y="140" text-anchor="middle" font-family="Inter, sans-serif" font-size="8" fill="currentColor" fill-opacity="0.75" letter-spacing="0.12em">ARTWORK</text></svg>
@@ -2552,8 +2591,8 @@ h1, h2, h3, h4 { font-weight: 500; letter-spacing: -0.025em; line-height: 1; }
               <div class="ad-tag">Drop N°001</div>
             </div>
             <div>
-              <h3 class="ad-headline ad-headline--display" style="max-width: 9ch;">Art you wear.</h3>
-              <p class="ad-sub">Made in the UK, with the artist named on the label.</p>
+              <h3 class="ad-headline ad-headline--display" style="max-width: 9ch;"><em>Art</em> you wear.</h3>
+              <p class="ad-sub">Made in London, with the artist named on the label.</p>
             </div>
             <div class="ad-shirt-inline" style="right:32px;bottom:140px;width:110px;height:140px;background:var(--bone);border-color:rgba(10,10,10,0.08);">
               <svg viewBox="0 0 200 240" width="100%" height="100%" preserveAspectRatio="xMidYMid meet" style="color: var(--clay); opacity:0.95;"><path d="M75,30 L60,25 L35,30 L25,75 L55,75 L55,220 L145,220 L145,75 L175,75 L165,30 L140,25 L125,30 Q100,46 75,30 Z" fill="currentColor" fill-opacity="0.12" stroke="currentColor" stroke-width="1.6" stroke-opacity="0.7"/><path d="M75,30 Q100,46 125,30" fill="none" stroke="currentColor" stroke-width="1" stroke-opacity="0.5"/><rect x="65" y="100" width="70" height="70" fill="none" stroke="currentColor" stroke-width="0.8" stroke-dasharray="3,3" stroke-opacity="0.65"/><text x="100" y="140" text-anchor="middle" font-family="Inter, sans-serif" font-size="8" fill="currentColor" fill-opacity="0.75" letter-spacing="0.12em">ARTWORK</text></svg>
@@ -2672,7 +2711,7 @@ h1, h2, h3, h4 { font-weight: 500; letter-spacing: -0.025em; line-height: 1; }
   <div class="container">
     <p class="meta hero-eyebrow">IX — Buy intent <span class="q-status" data-q="buy_intent">Question 9 of 9</span></p>
     <h2 class="h-1" style="max-width: 20ch;">How likely are you to <em>actually</em> buy?</h2>
-    <p class="body mt-32">A signed, numbered piece of wearable art. Made in the UK. £140–160. Drop launches Jul / Aug 2026. Be honest — there's no wrong answer.</p>
+    <p class="body mt-32">A signed, numbered piece of wearable art. Made in London. £140–160. Drop launches Jul / Aug 2026. Be honest — there's no wrong answer.</p>
     <div class="action-prompt"><span class="action-prompt-arrow">↓</span><span><span class="action-prompt-prefix">Your turn</span>Tap the stars — one (very unlikely) to five (very likely)</span></div>
 
     <div class="star-rating" id="starRating">
