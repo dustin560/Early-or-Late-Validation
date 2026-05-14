@@ -1128,7 +1128,105 @@ h1, h2, h3, h4 { font-weight: 500; letter-spacing: -0.015em; line-height: 1.1; }
   .progress-label { font-size: 11px; }
 }
 
-/* ====== MANIFESTO ====== */
+/* ====== MOTIVATION ====== */
+.motivation-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+  margin-top: 48px;
+}
+@media (max-width: 720px) { .motivation-grid { grid-template-columns: 1fr; } }
+.motivation-card {
+  background: var(--white);
+  border: 1px solid rgba(10, 10, 10, 0.1);
+  border-radius: 4px;
+  padding: 22px 26px;
+  cursor: pointer;
+  font-family: var(--type);
+  text-align: left;
+  transition: all 0.2s ease;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.motivation-card:hover {
+  border-color: var(--clay);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(10, 10, 10, 0.06);
+}
+.motivation-card.selected {
+  background: rgba(162, 103, 76, 0.06);
+  border-color: var(--clay);
+  border-width: 2px;
+  padding: 21px 25px;
+}
+.motivation-card.selected::after {
+  content: "✓";
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  width: 24px;
+  height: 24px;
+  background: var(--clay);
+  color: var(--white);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  font-weight: 600;
+}
+.motivation-title {
+  font-size: 17px;
+  font-weight: 500;
+  color: var(--black);
+  letter-spacing: -0.01em;
+  line-height: 1.3;
+}
+.motivation-sub {
+  font-size: 12px;
+  color: var(--ink-soft);
+  letter-spacing: 0.04em;
+}
+.motivation-tracker {
+  margin-top: 48px;
+  padding: 24px 28px;
+  background: var(--white);
+  border-radius: 2px;
+  display: flex;
+  gap: 32px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.motivation-other-wrap {
+  margin-top: 36px;
+  padding: 18px 22px;
+  background: var(--white);
+  border: 1px dashed rgba(10, 10, 10, 0.18);
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.motivation-other-wrap label {
+  font-size: 13px;
+  color: var(--ink-soft);
+  font-weight: 500;
+  white-space: nowrap;
+}
+.motivation-other-wrap input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  font-family: var(--type);
+  font-size: 14px;
+  color: var(--black);
+}
+.motivation-other-wrap input::placeholder { color: rgba(10, 10, 10, 0.35); font-style: italic; }
+
+/* ====== MANIFESTO (legacy — kept for backwards compat) ====== */
 .manifesto-body {
   max-width: 780px;
   margin: 80px auto 0;
@@ -1313,8 +1411,8 @@ h1, h2, h3, h4 { font-weight: 500; letter-spacing: -0.015em; line-height: 1.1; }
   <input type="text" name="exit_location" />
   <input type="text" name="exit_nd_framing" />
   <input type="text" name="exit_discovery" />
-  <input type="text" name="manifesto_feeling" />
-  <textarea name="manifesto_feeling_other"></textarea>
+  <input type="text" name="motivations_selected" />
+  <input type="text" name="motivation_other" />
   <input type="text" name="retailer_other" />
   <textarea name="survey_data"></textarea>
   <input type="text" name="bot-field" />
@@ -1328,15 +1426,14 @@ h1, h2, h3, h4 { font-weight: 500; letter-spacing: -0.015em; line-height: 1.1; }
     <span class="progress-dot" data-q="drop_ranking" title="The drop ranking"></span>
     <span class="progress-dot" data-q="promise_ranking" title="The promise ranking"></span>
     <span class="progress-dot" data-q="retailers" title="Where you'd find it"></span>
-    <span class="progress-dot" data-q="manifesto_stanzas" title="Manifesto resonance"></span>
-    <span class="progress-dot" data-q="manifesto_feeling" title="Manifesto feeling"></span>
+    <span class="progress-dot" data-q="motivation" title="Why you'd wear it"></span>
     <span class="progress-dot" data-q="proposition" title="Proposition test"></span>
     <span class="progress-dot" data-q="ad_reactions" title="Ad reactions"></span>
     <span class="progress-dot" data-q="shirts_selected" title="Shirts you'd wear"></span>
     <span class="progress-dot" data-q="price" title="Willingness to pay"></span>
     <span class="progress-dot" data-q="buy_intent" title="Buy intent"></span>
   </div>
-  <p class="progress-label"><span class="progress-num">0</span> of <span class="progress-total">10</span> answered</p>
+  <p class="progress-label"><span class="progress-num">0</span> of <span class="progress-total">9</span> answered</p>
 </div>
 
 <!-- ============================================================
@@ -1765,76 +1862,75 @@ h1, h2, h3, h4 { font-weight: 500; letter-spacing: -0.015em; line-height: 1.1; }
 </section>
 
 <!-- ============================================================
-     MANIFESTO — the brand's voice, made tappable.
-     Six stanzas. Tap any that resonate. Optional one-word feeling.
-     Plus passive: scroll, dwell, mouse-path already tracking this section.
+     MOTIVATION — why would you wear wearable art by independent artists?
+     Multi-select (max 3) + optional open-text "something else"
 ============================================================ -->
-<section class="section" id="manifesto" style="background: var(--bone);">
+<section class="section" id="motivation" style="background: var(--bone);">
   <div class="container">
-    <p class="meta hero-eyebrow">05 · Our manifesto <span class="q-status" data-q="manifesto_stanzas">Question 4 of 9</span></p>
-    <h2 class="h-1" style="max-width: 14ch;">What we believe.</h2>
-    <div class="action-prompt"><span class="action-prompt-arrow">↓</span><span><span class="action-prompt-prefix">Your turn</span>Tap any lines below that resonate with you</span></div>
+    <p class="meta hero-eyebrow">05 · Why wear it <span class="q-status" data-q="motivation">Question 4 of 9</span></p>
+    <h2 class="h-1" style="max-width: 22ch;">What would draw you to wear a piece like this?</h2>
+    <p class="body mt-32" style="max-width:54ch;">Wearable art by independent artists isn't fast fashion. People who wear it tend to do so for reasons that aren't just "I needed a top." We want to understand yours.</p>
+    <div class="action-prompt"><span class="action-prompt-arrow">↓</span><span><span class="action-prompt-prefix">Your turn</span>Tap up to THREE motivations that feel true for you</span></div>
 
-    <div class="manifesto-body">
+    <div class="motivation-grid">
+      <button class="motivation-card" data-mot="self_expression" onclick="toggleMotivation(this, 'self_expression')">
+        <span class="motivation-title">It's a way to express who I am</span>
+        <span class="motivation-sub">Self-expression · taste</span>
+      </button>
 
-      <div class="stanza" data-stanza="1" onclick="toggleStanza(this, 1)">
-        Not everything needs to be fast.<br>
-        Not everything needs to be for everyone.<br>
-        We believe in making fewer things — <em>with more meaning.</em>
-      </div>
+      <button class="motivation-card" data-mot="scarcity" onclick="toggleMotivation(this, 'scarcity')">
+        <span class="motivation-title">I'd wear something nobody else has</span>
+        <span class="motivation-sub">Uniqueness · rarity</span>
+      </button>
 
-      <div class="stanza" data-stanza="2" onclick="toggleStanza(this, 2)">
-        Early or Late exists as a different kind of canvas.<br>
-        One that moves beyond walls, beyond galleries,<br>
-        into <em>something you can live in.</em>
-      </div>
+      <button class="motivation-card" data-mot="artist_support" onclick="toggleMotivation(this, 'artist_support')">
+        <span class="motivation-title">To support the artist directly</span>
+        <span class="motivation-sub">Direct artist support · ethics</span>
+      </button>
 
-      <div class="stanza" data-stanza="3" onclick="toggleStanza(this, 3)">
-        Every piece begins with an artist.<br>
-        A perspective. A way of seeing the world<br>
-        that isn't always obvious — <em>but is always intentional.</em>
-      </div>
+      <button class="motivation-card" data-mot="aesthetic" onclick="toggleMotivation(this, 'aesthetic')">
+        <span class="motivation-title">Because the artwork moves me</span>
+        <span class="motivation-sub">Aesthetic · art appreciation</span>
+      </button>
 
-      <div class="stanza" data-stanza="4" onclick="toggleStanza(this, 4)">
-        We don't mass produce. We don't repeat.<br>
-        Each work is released in limited numbers, numbered and final.<br>
-        Because <em>value comes from scarcity. And from care.</em>
-      </div>
+      <button class="motivation-card" data-mot="storytelling" onclick="toggleMotivation(this, 'storytelling')">
+        <span class="motivation-title">It tells a story I want to wear</span>
+        <span class="motivation-sub">Storytelling · meaning</span>
+      </button>
 
-      <div class="stanza" data-stanza="5" onclick="toggleStanza(this, 5)">
-        Some of the people we collaborate with<br>
-        see the world differently.<br>
-        <em>We think that's exactly the point.</em>
-      </div>
+      <button class="motivation-card" data-mot="anti_mass" onclick="toggleMotivation(this, 'anti_mass')">
+        <span class="motivation-title">To opt out of fast fashion</span>
+        <span class="motivation-sub">Anti-mass-production · sustainability</span>
+      </button>
 
-      <div class="stanza" data-stanza="6" onclick="toggleStanza(this, 6)">
-        This isn't just clothing.<br>
-        It's something you wear, keep, and come back to.<br>
-        <span class="stanza-signoff">Early or LA<em style="color:var(--clay);">(t)</em>E.</span>
-      </div>
+      <button class="motivation-card" data-mot="values_aligned" onclick="toggleMotivation(this, 'values_aligned')">
+        <span class="motivation-title">To back a brand that platforms independent artists</span>
+        <span class="motivation-sub">Values · inclusion · structural</span>
+      </button>
 
+      <button class="motivation-card" data-mot="longevity" onclick="toggleMotivation(this, 'longevity')">
+        <span class="motivation-title">To own something built to be kept</span>
+        <span class="motivation-sub">Longevity · investment · craft</span>
+      </button>
     </div>
 
-    <div class="q-skip-row" style="max-width:780px;margin-left:auto;margin-right:auto;">
-      <span class="q-skip-helper">Nothing resonated?</span>
-      <button class="q-skip" onclick="skipQuestion('manifesto_stanzas')">Skip this question →</button>
+    <div class="motivation-tracker" id="motivation-tracker">
+      <div class="tracker-label">Your top three<br>so far</div>
+      <div class="tracker-items">
+        <div class="track-item"><span class="track-rank">1</span><span class="track-name">Tap a motivation above</span></div>
+        <div class="track-item"><span class="track-rank">2</span><span class="track-name">—</span></div>
+        <div class="track-item"><span class="track-rank">3</span><span class="track-name">—</span></div>
+      </div>
     </div>
 
-    <div class="manifesto-reaction">
-      <p class="meta">In a word — how did that feel? <span class="q-status" data-q="manifesto_feeling">Question 4 of 8</span></p>
-      <div class="word-chips">
-        <button class="word-chip" onclick="pickWord(this, 'curious')">Curious</button>
-        <button class="word-chip" onclick="pickWord(this, 'moved')">Moved</button>
-        <button class="word-chip" onclick="pickWord(this, 'intrigued')">Intrigued</button>
-        <button class="word-chip" onclick="pickWord(this, 'considered')">Considered</button>
-        <button class="word-chip" onclick="pickWord(this, 'unsure')">Unsure</button>
-        <button class="word-chip" onclick="pickWord(this, 'didnt_connect')">Didn't connect</button>
-      </div>
-      <input type="text" class="manifesto-other" placeholder="Or in your own words..." onchange="captureOwnWord(this.value)" oninput="captureOwnWord(this.value)">
-      <div class="q-skip-row">
-        <span class="q-skip-helper">Prefer not to say?</span>
-        <button class="q-skip" onclick="skipQuestion('manifesto_feeling')">Skip this question →</button>
-      </div>
+    <div class="motivation-other-wrap">
+      <label>Something else?</label>
+      <input type="text" id="motivationOther" placeholder="Tell us what motivates you in your own words..." onchange="captureMotivationOther(this.value)" oninput="captureMotivationOther(this.value)">
+    </div>
+
+    <div class="q-skip-row">
+      <span class="q-skip-helper">Rather not say?</span>
+      <button class="q-skip" onclick="skipQuestion('motivation')">Skip this question →</button>
     </div>
   </div>
 </section>
@@ -2303,7 +2399,7 @@ h1, h2, h3, h4 { font-weight: 500; letter-spacing: -0.015em; line-height: 1.1; }
   <div class="container">
     <div class="completion-summary">
       <p class="completion-summary-eyebrow">You're almost done</p>
-      <h2 class="completion-summary-title">You've answered <span class="summary-num" id="summaryAnswered">0</span> of <span id="summaryTotal">10</span> questions.</h2>
+      <h2 class="completion-summary-title">You've answered <span class="summary-num" id="summaryAnswered">0</span> of <span id="summaryTotal">9</span> questions.</h2>
       <p class="completion-summary-body">Thank you. The next step claims your spot on the drop and tells us a little more about who you are. Two minutes.</p>
     </div>
   </div>
@@ -2428,17 +2524,18 @@ window.surveyData = {
   manifesto_feeling: null, // one-word reaction (from chip)
   manifesto_feeling_other: null, // free-text override
   questions: {
-    drop_ranking:      { state: 'pending', num: 1 },
-    promise_ranking:   { state: 'pending', num: 2 },
-    retailers:         { state: 'pending', num: 3 },
-    manifesto_stanzas: { state: 'pending', num: 4 },
-    manifesto_feeling: { state: 'pending', num: 5 },
-    proposition:       { state: 'pending', num: 6 },
-    ad_reactions:      { state: 'pending', num: 7 },
-    shirts_selected:   { state: 'pending', num: 8 },
-    price:             { state: 'pending', num: 9 },
-    buy_intent:        { state: 'pending', num: 10 }
+    drop_ranking:    { state: 'pending', num: 1 },
+    promise_ranking: { state: 'pending', num: 2 },
+    retailers:       { state: 'pending', num: 3 },
+    motivation:      { state: 'pending', num: 4 },
+    proposition:     { state: 'pending', num: 5 },
+    ad_reactions:    { state: 'pending', num: 6 },
+    shirts_selected: { state: 'pending', num: 7 },
+    price:           { state: 'pending', num: 8 },
+    buy_intent:      { state: 'pending', num: 9 }
   },
+  motivations_selected: [],
+  motivation_other: null,
   entry_age: null,
   entry_gender: null,
   retailers_selected: [],
@@ -2591,6 +2688,51 @@ function captureRetailerOther(text) {
   if (trimmed.length > 0) {
     logEvent('retailer_other', { text: trimmed });
     markAnswered('retailers');
+  }
+}
+
+/* ===== Motivation: multi-select max 3 + open text ===== */
+function toggleMotivation(btn, motId) {
+  const currentlySelected = Array.from(document.querySelectorAll('.motivation-card.selected'));
+  const isSelected = btn.classList.contains('selected');
+
+  if (isSelected) {
+    btn.classList.remove('selected');
+  } else {
+    if (currentlySelected.length >= 3) {
+      // Bump the oldest
+      currentlySelected[0].classList.remove('selected');
+    }
+    btn.classList.add('selected');
+  }
+
+  const selected = Array.from(document.querySelectorAll('.motivation-card.selected'))
+    .map(c => c.dataset.mot);
+  window.surveyData.motivations_selected = selected;
+
+  // Update the tracker panel
+  const tracker = document.querySelector('#motivation-tracker .tracker-items');
+  if (tracker) {
+    tracker.innerHTML = [0, 1, 2].map(i => {
+      const id = selected[i];
+      const filled = !!id;
+      let name = filled
+        ? (document.querySelector(`[data-mot="${id}"] .motivation-title`)?.textContent || id)
+        : (i === 0 ? 'Tap a motivation above' : '—');
+      return `<div class="track-item ${filled ? 'filled' : ''}"><span class="track-rank">${i + 1}</span><span class="track-name">${name}</span></div>`;
+    }).join('');
+  }
+
+  logEvent('motivation_toggled', { mot: motId, now_selected: selected });
+  if (selected.length > 0) markAnswered('motivation');
+}
+
+function captureMotivationOther(text) {
+  const trimmed = text.trim();
+  window.surveyData.motivation_other = trimmed || null;
+  if (trimmed.length > 0) {
+    logEvent('motivation_other', { text: trimmed });
+    markAnswered('motivation');
   }
 }
 
@@ -2783,8 +2925,8 @@ function captureSignup(e) {
   fd.append('exit_location', window.surveyData.exit_gate?.location || '');
   fd.append('exit_nd_framing', window.surveyData.exit_gate?.nd_framing || '');
   fd.append('exit_discovery', window.surveyData.exit_gate?.discovery || '');
-  fd.append('manifesto_feeling', window.surveyData.manifesto_feeling || '');
-  fd.append('manifesto_feeling_other', window.surveyData.manifesto_feeling_other || '');
+  fd.append('motivations_selected', (window.surveyData.motivations_selected || []).join(','));
+  fd.append('motivation_other', window.surveyData.motivation_other || '');
   fd.append('retailer_other', window.surveyData.retailer_other || '');
   fd.append('survey_data', JSON.stringify(window.surveyData));
   fd.append('bot-field', '');
