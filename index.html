@@ -1326,6 +1326,97 @@ h1, h2, h3, h4 { font-weight: 500; letter-spacing: -0.015em; line-height: 1.1; }
 .manifesto-other:focus { border-bottom-color: var(--clay); }
 .manifesto-other::placeholder { color: rgba(10, 10, 10, 0.4); font-style: italic; }
 
+/* ====== GDPR CONSENT BANNER ====== */
+.consent-banner {
+  position: fixed;
+  bottom: 0; left: 0; right: 0;
+  background: var(--black);
+  color: var(--white);
+  z-index: 9999;
+  padding: 24px 32px;
+  border-top: 3px solid var(--clay);
+  box-shadow: 0 -8px 32px rgba(10, 10, 10, 0.18);
+  display: none;
+  transform: translateY(0);
+  animation: consent-slide-up 0.4s ease;
+}
+@keyframes consent-slide-up {
+  from { transform: translateY(100%); }
+  to { transform: translateY(0); }
+}
+.consent-banner.visible { display: block; }
+.consent-inner {
+  max-width: 1240px;
+  margin: 0 auto;
+  display: flex;
+  gap: 32px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.consent-text {
+  flex: 1;
+  min-width: 280px;
+  font-size: 14px;
+  line-height: 1.55;
+  color: rgba(245, 245, 243, 0.85);
+}
+.consent-text strong {
+  display: block;
+  color: var(--white);
+  font-weight: 500;
+  font-size: 16px;
+  letter-spacing: -0.005em;
+  margin-bottom: 6px;
+}
+.consent-text a {
+  color: var(--clay);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.consent-text a:hover { color: var(--white); }
+.consent-actions {
+  display: flex;
+  gap: 10px;
+  flex-shrink: 0;
+}
+.consent-btn {
+  font-family: var(--type);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 12px 22px;
+  border-radius: 2px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: 1px solid;
+}
+.consent-btn--accept {
+  background: var(--clay);
+  color: var(--white);
+  border-color: var(--clay);
+}
+.consent-btn--accept:hover {
+  background: var(--white);
+  color: var(--black);
+  border-color: var(--white);
+}
+.consent-btn--decline {
+  background: transparent;
+  color: rgba(245, 245, 243, 0.85);
+  border-color: rgba(245, 245, 243, 0.25);
+}
+.consent-btn--decline:hover {
+  color: var(--white);
+  border-color: var(--white);
+}
+@media (max-width: 720px) {
+  .consent-banner { padding: 20px 20px 24px; }
+  .consent-inner { gap: 18px; }
+  .consent-actions { width: 100%; }
+  .consent-btn { flex: 1; padding: 14px 16px; font-size: 12px; }
+}
+
 /* TODO marker for prototype */
 .todo {
   border: 1px dashed var(--clay);
@@ -1342,14 +1433,7 @@ h1, h2, h3, h4 { font-weight: 500; letter-spacing: -0.015em; line-height: 1.1; }
 
 </style>
 
-<!-- Microsoft Clarity — behavioural analytics, session replay, heatmaps -->
-<script type="text/javascript">
-    (function(c,l,a,r,i,t,y){
-        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-    })(window, document, "clarity", "script", "wqxnrfu5up");
-</script>
+<!-- Microsoft Clarity loads ONLY after explicit consent — see consent banner JS at bottom of body -->
 
 </head>
 <body>
@@ -1391,6 +1475,27 @@ h1, h2, h3, h4 { font-weight: 500; letter-spacing: -0.015em; line-height: 1.1; }
     <div class="gate-actions">
       <button class="gate-skip" onclick="dismissGate(true)">Just let me browse</button>
       <button class="gate-continue" id="gateContinue" onclick="dismissGate(false)">Continue →</button>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================
+     GDPR CONSENT BANNER — appears on first visit until choice made.
+     Until accepted, Microsoft Clarity does NOT load. Netlify Forms
+     (strictly necessary for the survey to function) still runs.
+============================================================ -->
+<div class="consent-banner" id="consentBanner" role="dialog" aria-labelledby="consentTitle" aria-describedby="consentDescription">
+  <div class="consent-inner">
+    <div class="consent-text">
+      <strong id="consentTitle">We use cookies to improve this brand.</strong>
+      <span id="consentDescription">
+        With your consent, Microsoft Clarity records anonymous session behaviour (no form inputs, no identifying data) so we can learn how to make the brand better.
+        See our <a href="/privacy.html" target="_blank">privacy policy</a> for details. You can change your choice any time.
+      </span>
+    </div>
+    <div class="consent-actions">
+      <button class="consent-btn consent-btn--decline" onclick="handleConsent(false)">Decline</button>
+      <button class="consent-btn consent-btn--accept" onclick="handleConsent(true)">Accept analytics</button>
     </div>
   </div>
 </div>
@@ -2501,7 +2606,11 @@ h1, h2, h3, h4 { font-weight: 500; letter-spacing: -0.015em; line-height: 1.1; }
         </g>
       </svg>
     </div>
-    <div class="footer-meta">Made in the UK · Unicorn United Ltd · Drop N°001 · Late June 2026</div>
+    <div class="footer-meta">
+      <a href="/privacy.html" style="color: rgba(245, 245, 243, 0.7); text-decoration: none; margin-right: 16px;">Privacy &amp; cookies</a>
+      <a href="#" onclick="event.preventDefault(); revokeConsent();" style="color: rgba(245, 245, 243, 0.7); text-decoration: none; margin-right: 16px;">Change cookie choice</a>
+      <span>Unicorn United Ltd · Drop N°001 · Late June 2026</span>
+    </div>
   </div>
 </footer>
 
@@ -2512,9 +2621,52 @@ h1, h2, h3, h4 { font-weight: 500; letter-spacing: -0.015em; line-height: 1.1; }
      log to the console and persist in window.surveyData.
 ============================================================ -->
 <script>
+/* =============================================================
+   GDPR CONSENT — must run BEFORE Clarity or any analytics.
+   Shows banner if no prior choice. Persists in localStorage.
+============================================================= */
+const CONSENT_KEY = 'eol_consent_v1';
+const CLARITY_ID = 'wqxnrfu5up';
+
+function loadClarity() {
+  if (window.clarity) return; // already loaded
+  (function(c,l,a,r,i,t,y){
+    c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+    t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+    y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+  })(window, document, "clarity", "script", CLARITY_ID);
+}
+
+function handleConsent(accepted) {
+  localStorage.setItem(CONSENT_KEY, accepted ? 'accepted' : 'declined');
+  document.getElementById('consentBanner').classList.remove('visible');
+  if (accepted) loadClarity();
+}
+
+function revokeConsent() {
+  localStorage.removeItem(CONSENT_KEY);
+  document.getElementById('consentBanner').classList.add('visible');
+  // Note: a full revoke also means we should stop Clarity, but Clarity once loaded
+  // continues to run. The cleanest approach is to ask user to reload the page.
+  alert('Your cookie choice has been cleared. Reload the page to update analytics consent.');
+}
+
+// Run on initial page load
+(function() {
+  const stored = localStorage.getItem(CONSENT_KEY);
+  if (stored === 'accepted') {
+    loadClarity();
+  } else if (!stored) {
+    // No choice yet — show the banner
+    document.getElementById('consentBanner').classList.add('visible');
+  }
+  // If declined, do nothing (banner stays hidden, Clarity does not load)
+})();
+
 window.surveyData = {
   visitor_id: 'visitor_' + Math.random().toString(36).slice(2, 11),
   arrived_at: new Date().toISOString(),
+  consent_state: localStorage.getItem(CONSENT_KEY) || 'pending',
   variant_shown: 'A', // would be randomised server-side for the real test
   proposition_choice: null,
   ad_reactions: {}, // keyed by ad ID (A-E), value: scroll | stop | tap
