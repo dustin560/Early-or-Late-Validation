@@ -4,7 +4,7 @@ A single-page concept validation experience for the Early or Late wearable-art b
 
 ## What this is
 
-A static HTML survey that doubles as a brand experience. Visitors land, engage with 10 embedded survey moments, and either claim early access or skip out — all behaviour and answers captured for the validation scorecard.
+A static HTML survey that doubles as a brand experience. Visitors land, engage with 8 embedded survey questions, and either claim early access or skip out — all behaviour and answers captured for the validation scorecard.
 
 ## Live site
 
@@ -29,5 +29,5 @@ It's a single HTML file. Open `index.html` in a browser. No build step.
 
 ## Prepared by
 
-Unicorn United Ltd for Firat Çelebi & Raul. Lead artist: Conor Powell.
-First drop: late June 2026.
+Unicorn United Ltd for Firat Çelebi & Raul. Featured artists: Conor Powell & Chris Sullivan.
+First drop: Jul–Aug 2026.

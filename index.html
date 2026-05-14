@@ -756,6 +756,10 @@ h1, h2, h3, h4 { font-weight: 500; letter-spacing: -0.025em; line-height: 1; }
   justify-content: space-between;
   gap: 12px;
 }
+@media (max-width: 600px) {
+  .price-range { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+  .price-range .price-button:last-child { grid-column: 1 / -1; }
+}
 .price-button {
   flex: 1;
   background: var(--white);
@@ -1292,7 +1296,8 @@ h1, h2, h3, h4 { font-weight: 500; letter-spacing: -0.025em; line-height: 1; }
 .star-scale {
   display: flex;
   justify-content: space-between;
-  max-width: 320px;
+  /* 5 stars × 56px + 4 gaps × 12px = 328px — match exactly */
+  max-width: 328px;
   margin-top: 12px;
   font-size: 11px;
   color: var(--ink-soft);
@@ -1439,6 +1444,34 @@ h1, h2, h3, h4 { font-weight: 500; letter-spacing: -0.025em; line-height: 1; }
   box-shadow: 0 12px 32px rgba(162, 103, 76, 0.42);
 }
 .final-submit-button:active { transform: translateY(0); }
+
+/* ====== KEYBOARD FOCUS STYLES (accessibility) ====== */
+*:focus { outline: none; }
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+[tabindex]:focus-visible {
+  outline: 2px solid var(--clay);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+.cta-primary:focus-visible,
+.final-submit-button:focus-visible,
+.gate-continue:focus-visible {
+  outline-offset: 4px;
+}
+.consent-banner *:focus-visible,
+.entry-gate-overlay *:focus-visible {
+  outline-color: var(--clay-warm);
+}
+
+/* Toast animation for inline notifications */
+@keyframes toast-rise {
+  from { transform: translate(-50%, 20px); opacity: 0; }
+  to   { transform: translate(-50%, 0); opacity: 1; }
+}
 
 /* ====== QUESTION STATE INDICATORS ====== */
 .q-status {
@@ -1647,105 +1680,6 @@ h1, h2, h3, h4 { font-weight: 500; letter-spacing: -0.025em; line-height: 1; }
 }
 .motivation-other-wrap input::placeholder { color: rgba(10, 10, 10, 0.35); font-style: italic; }
 
-/* ====== MANIFESTO (legacy — kept for backwards compat) ====== */
-.manifesto-body {
-  max-width: 780px;
-  margin: 80px auto 0;
-}
-.stanza {
-  font-family: var(--type);
-  font-weight: 400;
-  font-size: clamp(22px, 2.4vw, 28px);
-  line-height: 1.5;
-  letter-spacing: -0.01em;
-  color: var(--black);
-  padding: 28px 32px;
-  margin-bottom: 12px;
-  border-left: 3px solid transparent;
-  border-radius: 2px;
-  cursor: pointer;
-  transition: all 0.25s ease;
-  position: relative;
-}
-.stanza:hover {
-  background: rgba(162, 103, 76, 0.05);
-  border-left-color: rgba(162, 103, 76, 0.25);
-}
-.stanza.selected {
-  background: rgba(162, 103, 76, 0.08);
-  border-left-color: var(--clay);
-}
-.stanza.selected::after {
-  content: "";
-  position: absolute;
-  top: 50%;
-  right: 24px;
-  width: 20px;
-  height: 20px;
-  background: var(--clay);
-  border-radius: 50%;
-  transform: translateY(-50%);
-  box-shadow: 0 0 0 4px rgba(162, 103, 76, 0.15);
-}
-.stanza em {
-  font-style: italic;
-  color: var(--clay);
-}
-.stanza-signoff {
-  font-family: 'Georgia', serif;
-  font-style: italic;
-  font-weight: 400;
-  font-size: clamp(28px, 3vw, 38px);
-  text-align: left;
-}
-
-.manifesto-reaction {
-  max-width: 780px;
-  margin: 56px auto 0;
-  padding: 32px;
-  border-top: 1px solid rgba(10, 10, 10, 0.12);
-}
-.manifesto-reaction .meta {
-  margin-bottom: 20px;
-  color: var(--clay);
-}
-.word-chips {
-  display: flex;
-  gap: 8px;
-  flex-wrap: wrap;
-  margin-bottom: 20px;
-}
-.word-chip {
-  background: var(--white);
-  border: 1px solid rgba(10, 10, 10, 0.15);
-  padding: 12px 20px;
-  font-family: var(--type);
-  font-size: 14px;
-  font-weight: 500;
-  color: var(--black);
-  cursor: pointer;
-  border-radius: 999px;
-  transition: all 0.2s ease;
-}
-.word-chip:hover { border-color: var(--clay); color: var(--clay); }
-.word-chip.selected {
-  background: var(--clay);
-  color: var(--white);
-  border-color: var(--clay);
-}
-.manifesto-other {
-  width: 100%;
-  background: transparent;
-  border: none;
-  border-bottom: 1px solid rgba(10, 10, 10, 0.18);
-  padding: 12px 0;
-  font-family: var(--type);
-  font-size: 15px;
-  color: var(--black);
-  outline: none;
-}
-.manifesto-other:focus { border-bottom-color: var(--clay); }
-.manifesto-other::placeholder { color: rgba(10, 10, 10, 0.4); font-style: italic; }
 
 /* ====== GDPR CONSENT BANNER ====== */
 .consent-banner {
@@ -1838,19 +1772,6 @@ h1, h2, h3, h4 { font-weight: 500; letter-spacing: -0.025em; line-height: 1; }
   .consent-btn { flex: 1; padding: 14px 16px; font-size: 12px; }
 }
 
-/* TODO marker for prototype */
-.todo {
-  border: 1px dashed var(--clay);
-  background: rgba(162, 103, 76, 0.05);
-  padding: 16px 20px;
-  font-size: 12px;
-  color: var(--clay);
-  margin: 16px 0;
-  border-radius: 2px;
-  font-family: 'SF Mono', Menlo, monospace;
-  letter-spacing: 0.03em;
-}
-.todo strong { font-weight: 600; }
 
 </style>
 
@@ -1864,11 +1785,11 @@ h1, h2, h3, h4 { font-weight: 500; letter-spacing: -0.025em; line-height: 1; }
      Two questions, framed as "tell us about you." Hard requirement
      to ensure generational segmentation in the data.
 ============================================================ -->
-<div class="entry-gate-overlay" id="entryGate">
+<div class="entry-gate-overlay" id="entryGate" role="dialog" aria-modal="true" aria-labelledby="entryGateTitle" aria-describedby="entryGateBody">
   <div class="entry-gate-card">
     <p class="entry-gate-eyebrow">Before you begin</p>
-    <h2 class="entry-gate-title">Tell us a little about you.</h2>
-    <p class="entry-gate-body">Two quick questions. It helps us understand who's reading — and shapes what we make next.</p>
+    <h2 class="entry-gate-title" id="entryGateTitle">Tell us a little about you.</h2>
+    <p class="entry-gate-body" id="entryGateBody">Two quick questions. It helps us understand who's reading — and shapes what we make next.</p>
 
     <div class="gate-question">
       <span class="gate-question-label">How old are you?</span>
@@ -2036,23 +1957,6 @@ h1, h2, h3, h4 { font-weight: 500; letter-spacing: -0.025em; line-height: 1; }
     </div>
   </div>
 </section>
-
-
-<!-- ============================================================
-     THE DROP — 5 t-shirts grid
-
-     ✱✱✱ ARTWORK PLACEHOLDERS ✱✱✱
-     Each .shirt-card needs the real product imagery:
-     - Conor Powell (lead — selected)
-     - Artist 2 (TBC — Chris via Maria?)
-     - Artist 3 (TBC — Michelle via Sarah?)
-     - Artist 4 (TBC — Peter Rap?)
-     - Artist 5 (TBC — Firat/Sarah's recommendation)
-
-     Image spec: 1200×1560 front-facing t-shirt mockup,
-     neutral grey/bone background, artwork centred on chest,
-     consistent lighting and framing across all 5.
-============================================================ -->
 <section class="section" id="drop">
   <div class="container">
     <div class="section-divider">
@@ -2063,10 +1967,6 @@ h1, h2, h3, h4 { font-weight: 500; letter-spacing: -0.025em; line-height: 1; }
     <h2 class="h-1" style="max-width:18ch;">Two artists.<br><em>Fifty of each.</em><br>One hundred pieces.</h2>
     <p class="body mt-32">The first chapter of something new. Two artists to start — chosen, named, paid a fair share. Each will release a small body of work for N°001. Every garment is numbered, signed by the artist, and shipped in a hand-folded matte-black box.</p>
     <div class="action-prompt"><span class="action-prompt-arrow">↓</span><span><span class="action-prompt-prefix">Your turn</span>Tap any artworks that appeal to you — select as many as you like</span></div>
-
-    <div class="todo">
-      <strong>// PROTOTYPE NOTE:</strong> Artwork titles and descriptions are placeholder concepts. Replace with real titles and descriptions once Conor and Chris confirm their final pieces. Image spec: 1200×1560, front-facing, neutral background.
-    </div>
 
     <!-- ===== CONOR POWELL — 5 artworks ===== -->
     <div class="drop-artist-section">
@@ -2565,9 +2465,9 @@ h1, h2, h3, h4 { font-weight: 500; letter-spacing: -0.025em; line-height: 1; }
       </button>
     </div>
 
-    <div class="q-skip-row">
+    <div class="q-skip-row q-skip-row--dark">
       <span class="q-skip-helper">None of these feel right?</span>
-      <button class="q-skip" onclick="skipQuestion('proposition')">Skip this question →</button>
+      <button class="q-skip q-skip--dark" onclick="skipQuestion('proposition')">Skip this question →</button>
     </div>
   </div>
 </section>
@@ -2897,7 +2797,7 @@ h1, h2, h3, h4 { font-weight: 500; letter-spacing: -0.025em; line-height: 1; }
               <div class="ad-tag">The first drop</div>
             </div>
             <div>
-              <h3 class="ad-headline">Two artists. <em>One hundred pieces.</em> Made for keeping.</h3>
+              <h3 class="ad-headline">Designed for <em>every body</em>. Soft cotton, wider neck, no labels.</h3>
             </div>            <div class="ad-row">
               <div class="ad-cta">Get early access</div>
               <div class="ad-spec">// 265gsm · Milled Leicester · Made London · Water-based ink</div>
@@ -2957,7 +2857,7 @@ h1, h2, h3, h4 { font-weight: 500; letter-spacing: -0.025em; line-height: 1; }
 
 <!-- ============================================================
      BUY INTENT — 5-star rating + open-text "anything to add"
-     Q10 of 10. The headline purchase-intent signal for the scorecard.
+     Q8 of 8. The headline purchase-intent signal for the scorecard.
 ============================================================ -->
 <section class="section" id="buy-intent" style="background: var(--bone); padding-bottom: 32px;">
   <div class="container">
@@ -3019,7 +2919,7 @@ h1, h2, h3, h4 { font-weight: 500; letter-spacing: -0.025em; line-height: 1; }
 ============================================================ -->
 <section class="signup-block" id="signup">
   <div class="container">
-    <p class="meta" style="margin-bottom: 24px;">V — Final step</p>
+    <p class="meta" style="margin-bottom: 24px;">X — Final step</p>
     <h2 class="h-1" style="max-width:14ch;">Send your answers.<br><em>Claim your spot.</em></h2>
     <p class="body" style="max-width:50ch;">
       Three quick fields, then your email. The first drop is fifty pieces of each artwork — <em>one hundred in total</em> — and you'll see it forty-eight hours before public launch.
@@ -3124,6 +3024,38 @@ h1, h2, h3, h4 { font-weight: 500; letter-spacing: -0.025em; line-height: 1; }
 ============================================================ -->
 <script>
 /* =============================================================
+   FOCUS TRAP — keeps keyboard focus inside a modal element
+   until it's dismissed. Used by the entry gate and consent banner.
+============================================================= */
+function trapFocus(modalEl) {
+  if (!modalEl || modalEl._focusTrapped) return;
+  modalEl._focusTrapped = true;
+  const FOCUSABLE = 'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])';
+  function handleKey(e) {
+    if (e.key !== 'Tab') return;
+    if (modalEl.classList.contains('hidden') || !modalEl.offsetParent) return;
+    const focusables = Array.from(modalEl.querySelectorAll(FOCUSABLE))
+      .filter(el => !el.disabled && el.offsetParent !== null);
+    if (focusables.length === 0) return;
+    const first = focusables[0];
+    const last = focusables[focusables.length - 1];
+    if (e.shiftKey && document.activeElement === first) {
+      e.preventDefault(); last.focus();
+    } else if (!e.shiftKey && document.activeElement === last) {
+      e.preventDefault(); first.focus();
+    }
+  }
+  modalEl.addEventListener('keydown', handleKey);
+  // Auto-focus first interactive element when modal becomes visible
+  setTimeout(() => {
+    const first = modalEl.querySelector(FOCUSABLE);
+    if (first && (modalEl.classList.contains('visible') || !modalEl.classList.contains('hidden'))) {
+      first.focus();
+    }
+  }, 100);
+}
+
+/* =============================================================
    GDPR CONSENT — must run BEFORE Clarity or any analytics.
    Shows banner if no prior choice. Persists in localStorage.
 ============================================================= */
@@ -3148,9 +3080,31 @@ function handleConsent(accepted) {
 function revokeConsent() {
   localStorage.removeItem(CONSENT_KEY);
   document.getElementById('consentBanner').classList.add('visible');
-  // Note: a full revoke also means we should stop Clarity, but Clarity once loaded
-  // continues to run. The cleanest approach is to ask user to reload the page.
-  alert('Your cookie choice has been cleared. Reload the page to update analytics consent.');
+  // Show inline toast — auto-reloads after 2.5s to fully clear Clarity
+  showInlineToast('Cookie choice cleared. Reloading the page…');
+  setTimeout(() => window.location.reload(), 2500);
+}
+
+/* Inline toast — premium-feeling notification, replaces native alert() */
+function showInlineToast(message) {
+  const existing = document.getElementById('inlineToast');
+  if (existing) existing.remove();
+  const toast = document.createElement('div');
+  toast.id = 'inlineToast';
+  toast.textContent = message;
+  toast.style.cssText = `
+    position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%);
+    background: var(--ink); color: var(--bone);
+    padding: 18px 28px; border-radius: 2px;
+    font-family: var(--sans); font-size: 14px; font-weight: 500;
+    letter-spacing: -0.005em;
+    box-shadow: 0 8px 32px rgba(10, 10, 10, 0.18);
+    z-index: 10000;
+    border-left: 4px solid var(--clay);
+    animation: toast-rise 0.3s ease;
+  `;
+  document.body.appendChild(toast);
+  setTimeout(() => toast.remove(), 3000);
 }
 
 // Run on initial page load
@@ -3160,9 +3114,17 @@ function revokeConsent() {
     loadClarity();
   } else if (!stored) {
     // No choice yet — show the banner
-    document.getElementById('consentBanner').classList.add('visible');
+    const banner = document.getElementById('consentBanner');
+    banner.classList.add('visible');
+    trapFocus(banner);
   }
   // If declined, do nothing (banner stays hidden, Clarity does not load)
+
+  // Entry gate (Age + Gender) — trap focus while visible
+  const entryGate = document.getElementById('entryGate');
+  if (entryGate && !entryGate.classList.contains('hidden')) {
+    trapFocus(entryGate);
+  }
 })();
 
 window.surveyData = {
@@ -3173,10 +3135,7 @@ window.surveyData = {
   proposition_choice: null,
   ad_reactions: {}, // keyed by ad ID (A-E), value: scroll | stop | tap
   drop_ranking: {}, // { 1: shirt_id, 2: shirt_id, 3: shirt_id }
-  promise_ranking: {}, // { 1: promise_id, 2: promise_id, 3: promise_id }
-  manifesto_stanzas: [], // array of stanza numbers that resonated
-  manifesto_feeling: null, // one-word reaction (from chip)
-  manifesto_feeling_other: null, // free-text override
+  promise_ranking: {}, // { 1: promise_id, 2: promise_id, 3: promise_id } // free-text override
   questions: {
     drop_ranking:    { state: 'pending', num: 1 },
     promise_ranking: { state: 'pending', num: 2 },
@@ -3195,7 +3154,6 @@ window.surveyData = {
   retailer_other: null,
   buy_intent_stars: null,
   final_thoughts: null,
-  shirts_selected: [],
   price_choice: null,
   email: null,
   scroll_max_pct: 0,
@@ -3528,37 +3486,6 @@ function updateRankUI(itemSelector, dataAttr, ranking, trackerSelector, labelFn,
   }).join('');
 }
 
-/* ===== Manifesto: tap-to-resonate + emotional reaction ===== */
-function toggleStanza(el, stanzaNum) {
-  el.classList.toggle('selected');
-  const selected = Array.from(document.querySelectorAll('.stanza.selected'))
-    .map(s => Number(s.dataset.stanza))
-    .sort((a, b) => a - b);
-  window.surveyData.manifesto_stanzas = selected;
-  logEvent('manifesto_stanza_toggled', {
-    stanza: stanzaNum,
-    now_selected: selected
-  });
-  if (selected.length > 0) markAnswered('manifesto_stanzas');
-}
-
-function pickWord(btn, word) {
-  document.querySelectorAll('.word-chip').forEach(b => b.classList.remove('selected'));
-  btn.classList.add('selected');
-  window.surveyData.manifesto_feeling = word;
-  logEvent('manifesto_feeling', { word });
-  markAnswered('manifesto_feeling');
-}
-
-function captureOwnWord(text) {
-  const trimmed = text.trim();
-  window.surveyData.manifesto_feeling_other = trimmed || null;
-  // Don't log on every keystroke — debounce by only logging on change/blur
-  if (text === text.trim() && trimmed.length > 0) {
-    logEvent('manifesto_feeling_other', { text: trimmed });
-    markAnswered('manifesto_feeling');
-  }
-}
 
 function reactToAd(btn, adId, reaction) {
   // Clear other reactions for this ad
@@ -3570,14 +3497,6 @@ function reactToAd(btn, adId, reaction) {
   if (Object.keys(window.surveyData.ad_reactions).length > 0) markAnswered('ad_reactions');
 }
 
-function toggleShirt(btn, shirtId) {
-  btn.classList.toggle('selected');
-  const selected = Array.from(document.querySelectorAll('.select-shirt.selected'))
-    .map(b => b.dataset.shirt);
-  window.surveyData.shirts_selected = selected;
-  logEvent('shirt_toggled', { shirt_id: shirtId, currently_selected: selected });
-  if (selected.length > 0) markAnswered('shirts_selected');
-}
 
 function selectPrice(btn, band) {
   document.querySelectorAll('.price-button').forEach(b => b.classList.remove('selected'));
@@ -3651,7 +3570,10 @@ function showSubmissionSuccess(form, withWarning = false) {
     : 'You\'re on the list. We\'ll see you in July or August.';
   form.innerHTML = `
     <div style="text-align:center;padding:64px 32px;background:var(--bone);border-radius:4px;">
-      <div style="font-size:56px;color:var(--clay);margin-bottom:24px;">✓</div>
+      <svg viewBox="0 0 60 60" width="56" height="56" style="display:block;margin:0 auto 24px;color:var(--clay);" aria-hidden="true">
+        <circle cx="30" cy="30" r="28" fill="none" stroke="currentColor" stroke-width="2.5"/>
+        <path d="M 18 30 L 26 38 L 42 22" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
       <h3 style="font-family:var(--type);font-weight:500;font-size:32px;color:var(--black);margin-bottom:16px;letter-spacing:-0.02em;">Thank you.</h3>
       <p style="font-size:17px;color:var(--ink-soft);max-width:38ch;margin:0 auto;line-height:1.5;">${message}</p>
     </div>
@@ -3773,13 +3695,14 @@ logEvent('session_context', window.surveyData.device);
     });
   };
   trackHover('.shirt-card', 'shirt');
-  trackHover('.select-shirt', 'select_shirt');
+  trackHover('.retailer-card', 'retailer');
+  trackHover('.motivation-card', 'motivation');
   trackHover('.ad-card', 'ad');
 })();
 
 // 5) Form interaction — focus, blur, abandonment
 (function() {
-  const emailInput = document.querySelector('.signup-form input');
+  const emailInput = document.querySelector('#finalSubmitForm input[name="email"]');
   if (!emailInput) return;
   let focusedAt = null;
   let typedAnything = false;
