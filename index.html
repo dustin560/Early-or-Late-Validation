@@ -991,6 +991,34 @@ h1, h2, h3, h4 { font-weight: 500; letter-spacing: -0.015em; line-height: 1.1; }
   margin-bottom: 24px;
 }
 
+/* Final big submit button */
+.final-submit-button {
+  display: block;
+  width: 100%;
+  margin-top: 36px;
+  padding: 22px 28px;
+  background: var(--clay);
+  color: var(--white);
+  border: none;
+  border-radius: 4px;
+  font-family: var(--type);
+  font-size: 17px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 8px 24px rgba(162, 103, 76, 0.32);
+  position: relative;
+}
+.final-submit-button:hover {
+  background: var(--white);
+  color: var(--black);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 32px rgba(162, 103, 76, 0.42);
+}
+.final-submit-button:active { transform: translateY(0); }
+
 /* ====== QUESTION STATE INDICATORS ====== */
 .q-status {
   display: inline-flex;
@@ -2288,64 +2316,70 @@ h1, h2, h3, h4 { font-weight: 500; letter-spacing: -0.015em; line-height: 1.1; }
 ============================================================ -->
 <section class="signup-block" id="signup">
   <div class="container">
-    <p class="meta" style="color: var(--clay); margin-bottom: 24px;">Early access · Final step</p>
-    <h2 class="h-1">First pick on the drop. Before everyone else.</h2>
-    <p class="body">
-      The first drop is fifty pieces of each artwork — two-fifty in total. Sign up and you'll see the line forty-eight hours before public launch, with first pick on the editions you're holding for.
+    <p class="meta" style="color: var(--clay); margin-bottom: 24px;">Final step</p>
+    <h2 class="h-1" style="max-width:18ch;">Send your answers. Claim your spot on the drop.</h2>
+    <p class="body" style="max-width:50ch;">
+      Three quick fields, then your email. The first drop is fifty pieces of each artwork — two-fifty in total — and you'll see it forty-eight hours before public launch.
     </p>
 
-    <form class="signup-form" onsubmit="captureSignup(event)">
-      <input type="email" name="email" placeholder="your@email.com" required>
-      <button type="submit">Claim early access →</button>
+    <form id="finalSubmitForm" onsubmit="captureSignup(event)" style="max-width: 540px; margin: 56px auto 0;">
+
+      <div class="exit-gate-extras" style="margin: 0;">
+
+        <div class="exit-gate-field">
+          <label>Where are you based?</label>
+          <select name="exit_location_field" onchange="captureExitField('location', this.value)">
+            <option value="">Select your region…</option>
+            <option value="london">London</option>
+            <option value="south_uk">South UK</option>
+            <option value="midlands_north_uk">Midlands or North UK</option>
+            <option value="scotland_wales_ni">Scotland / Wales / Northern Ireland</option>
+            <option value="europe">Elsewhere in Europe</option>
+            <option value="rest_of_world">Rest of world</option>
+          </select>
+        </div>
+
+        <div class="exit-gate-field">
+          <label>Would knowing the artist is neurodivergent change how you feel about the piece?</label>
+          <select name="exit_nd_framing_field" onchange="captureExitField('nd_framing', this.value)">
+            <option value="">Pick the closest answer…</option>
+            <option value="more_interested">It would make me more interested</option>
+            <option value="no_difference">No difference — the art is what matters</option>
+            <option value="uncomfortable">It would feel like exploitation</option>
+            <option value="want_more_detail">I'd want to know how artists are credited and paid</option>
+            <option value="unsure">I'm not sure</option>
+          </select>
+        </div>
+
+        <div class="exit-gate-field">
+          <label>How do you usually discover new brands?</label>
+          <select name="exit_discovery_field" onchange="captureExitField('discovery', this.value)">
+            <option value="">Pick the strongest one…</option>
+            <option value="word_of_mouth">Recommendations from people I know</option>
+            <option value="social">Instagram or TikTok</option>
+            <option value="press">Press / newsletters / editorial</option>
+            <option value="search">Search (Google, Pinterest)</option>
+            <option value="walking">Walking past shops</option>
+            <option value="friends_wearing">Friends wearing them</option>
+            <option value="algorithm">Whatever the feed serves me</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+
+        <div class="exit-gate-field" style="margin-top: 16px;">
+          <label>Your email</label>
+          <input type="email" name="email" placeholder="your@email.com" required>
+        </div>
+
+      </div>
+
+      <button type="submit" class="final-submit-button">
+        Send my answers · Claim my spot →
+      </button>
+
+      <p class="signup-fineprint" style="text-align:center;margin-top:20px;">No spam. One drop notification, one launch notification, that's it. Unsubscribe in one click.</p>
+
     </form>
-
-    <p class="signup-fineprint">No spam. One drop notification, one launch notification, that's it. Unsubscribe in one click.</p>
-
-    <p class="exit-gate-required" style="text-align:center;margin-top:48px;">A few more questions to help us understand you — all optional, but every answer shapes what we make next.</p>
-
-    <div class="exit-gate-extras">
-
-      <div class="exit-gate-field">
-        <label>Where are you based?</label>
-        <select onchange="captureExitField('location', this.value)">
-          <option value="">Select your region…</option>
-          <option value="london">London</option>
-          <option value="south_uk">South UK</option>
-          <option value="midlands_north_uk">Midlands or North UK</option>
-          <option value="scotland_wales_ni">Scotland / Wales / Northern Ireland</option>
-          <option value="europe">Elsewhere in Europe</option>
-          <option value="rest_of_world">Rest of world</option>
-        </select>
-      </div>
-
-      <div class="exit-gate-field">
-        <label>Would knowing the artist is neurodivergent change how you feel about the piece?</label>
-        <select onchange="captureExitField('nd_framing', this.value)">
-          <option value="">Pick the closest answer…</option>
-          <option value="more_interested">It would make me more interested</option>
-          <option value="no_difference">No difference — the art is what matters</option>
-          <option value="uncomfortable">It would feel like exploitation</option>
-          <option value="want_more_detail">I'd want to know how artists are credited and paid</option>
-          <option value="unsure">I'm not sure</option>
-        </select>
-      </div>
-
-      <div class="exit-gate-field">
-        <label>How do you usually discover new brands?</label>
-        <select onchange="captureExitField('discovery', this.value)">
-          <option value="">Pick the strongest one…</option>
-          <option value="word_of_mouth">Recommendations from people I know</option>
-          <option value="social">Instagram or TikTok</option>
-          <option value="press">Press / newsletters / editorial</option>
-          <option value="search">Search (Google, Pinterest)</option>
-          <option value="walking">Walking past shops</option>
-          <option value="friends_wearing">Friends wearing them</option>
-          <option value="algorithm">Whatever the feed serves me</option>
-          <option value="other">Other</option>
-        </select>
-      </div>
-
-    </div>
   </div>
 </section>
 
@@ -2726,7 +2760,8 @@ function selectPrice(btn, band) {
 
 function captureSignup(e) {
   e.preventDefault();
-  const email = e.target.querySelector('input[name="email"]').value;
+  const form = e.target;
+  const email = form.querySelector('input[name="email"]').value;
   window.surveyData.email = email;
 
   // Capture session_end-equivalent stats before POST
@@ -2735,7 +2770,7 @@ function captureSignup(e) {
 
   logEvent('signup', { email });
 
-  // Build the Netlify form payload
+  // Build the Netlify form payload — note form-name must match the hidden form
   const fd = new FormData();
   fd.append('form-name', 'early-or-late-survey');
   fd.append('email', email);
@@ -2754,21 +2789,43 @@ function captureSignup(e) {
   fd.append('survey_data', JSON.stringify(window.surveyData));
   fd.append('bot-field', '');
 
+  // Show "sending" state on the button so the user gets feedback
+  const submitBtn = form.querySelector('button[type="submit"]');
+  if (submitBtn) {
+    submitBtn.textContent = 'Sending your answers…';
+    submitBtn.disabled = true;
+    submitBtn.style.opacity = '0.7';
+  }
+
   // POST to Netlify's form-handling endpoint
   fetch('/', {
     method: 'POST',
-    headers: { 'Accept': 'application/x-www-form-urlencoded' },
+    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
     body: new URLSearchParams(fd).toString()
   })
-  .then(() => {
-    e.target.innerHTML = '<p style="color:var(--clay);font-size:15px;text-align:center;width:100%;padding:18px;">You\'re on the list. We\'ll see you in late June.</p>';
+  .then((res) => {
+    if (!res.ok) throw new Error('HTTP ' + res.status);
     logEvent('signup_submitted');
+    showSubmissionSuccess(form);
   })
   .catch(err => {
     console.error('Submission error:', err);
-    e.target.innerHTML = '<p style="color:var(--clay);font-size:15px;text-align:center;width:100%;padding:18px;">You\'re on the list — though we hit a network blip. Drop us a line if you don\'t hear back.</p>';
     logEvent('signup_error', { error: err.message });
+    showSubmissionSuccess(form, true);
   });
+}
+
+function showSubmissionSuccess(form, withWarning = false) {
+  const message = withWarning
+    ? 'You\'re on the list — though we hit a network blip while sending. Drop us a line at hello@early-or-late.com if you don\'t hear back.'
+    : 'You\'re on the list. We\'ll see you in late June.';
+  form.innerHTML = `
+    <div style="text-align:center;padding:64px 32px;background:var(--bone);border-radius:4px;">
+      <div style="font-size:56px;color:var(--clay);margin-bottom:24px;">✓</div>
+      <h3 style="font-family:var(--type);font-weight:500;font-size:32px;color:var(--black);margin-bottom:16px;letter-spacing:-0.02em;">Thank you.</h3>
+      <p style="font-size:17px;color:var(--ink-soft);max-width:38ch;margin:0 auto;line-height:1.5;">${message}</p>
+    </div>
+  `;
 }
 
 // Scroll depth + progress bar
