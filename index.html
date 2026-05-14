@@ -1,0 +1,2927 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Early or Late · Limited edition wearable art</title>
+
+<!-- NOTE: TT Hoves Pro is the locked brand typeface (paid TypeType font).
+     Inter is used here as the closest free equivalent for the prototype.
+     Swap in TT Hoves Pro for the live build. -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,700;1,800&display=swap" rel="stylesheet">
+
+<style>
+/* ====== BRAND TOKENS (locked from client brand board, May 2026) ====== */
+:root {
+  --black: #0A0A0A;
+  --white: #F5F5F3;
+  --stone: #D8D2C8;
+  --ash:   #B9B9B6;
+  --bone:  #EAE6DF;
+  --clay:  #A2674C;
+  --ink-soft: #4A4742;
+
+  --type: 'Inter', -apple-system, 'TT Hoves Pro', sans-serif;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--type);
+  font-weight: 400;
+  color: var(--black);
+  background: var(--white);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ====== TYPOGRAPHY SCALE ====== */
+h1, h2, h3, h4 { font-weight: 500; letter-spacing: -0.015em; line-height: 1.1; }
+.display       { font-size: clamp(48px, 7vw, 96px); font-weight: 500; line-height: 0.98; letter-spacing: -0.025em; }
+.h-1           { font-size: clamp(36px, 4.5vw, 64px); font-weight: 500; line-height: 1.05; letter-spacing: -0.02em; }
+.h-2           { font-size: clamp(24px, 3vw, 36px); font-weight: 500; line-height: 1.15; }
+.h-3           { font-size: 20px; font-weight: 500; }
+.body          { font-size: 17px; line-height: 1.55; color: var(--ink-soft); max-width: 60ch; }
+.body-l        { font-size: 19px; line-height: 1.5; color: var(--black); max-width: 56ch; }
+.meta          { font-size: 11px; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase; }
+.meta-l        { font-size: 13px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; }
+
+/* ====== LAYOUT ====== */
+.container { max-width: 1240px; margin: 0 auto; padding: 0 32px; }
+.section { padding: 120px 0; }
+.section--tight { padding: 80px 0; }
+.section--bone { background: var(--bone); }
+.section--black { background: var(--black); color: var(--white); }
+.section--stone { background: var(--stone); }
+
+.grid { display: grid; gap: 32px; }
+.grid-2 { grid-template-columns: repeat(2, 1fr); }
+.grid-3 { grid-template-columns: repeat(3, 1fr); }
+.grid-5 { grid-template-columns: repeat(5, 1fr); }
+
+@media (max-width: 900px) {
+  .grid-3, .grid-5 { grid-template-columns: repeat(2, 1fr); }
+  .grid-2 { grid-template-columns: 1fr; }
+}
+
+/* ====== NAV ====== */
+.nav {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(245, 245, 243, 0.92);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(10,10,10,0.06);
+}
+.nav-inner {
+  max-width: 1240px; margin: 0 auto; padding: 18px 32px;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.nav-brand { font-size: 14px; font-weight: 500; letter-spacing: -0.005em; }
+.nav-brand em { font-style: normal; }
+.nav-links { display: flex; gap: 32px; align-items: center; }
+.nav-links a { color: var(--black); text-decoration: none; font-size: 13px; font-weight: 400; letter-spacing: 0.02em; }
+.nav-links a:hover { color: var(--clay); }
+.nav-cta {
+  background: var(--black); color: var(--white) !important;
+  padding: 10px 18px; border-radius: 2px; font-size: 12px !important;
+  font-weight: 500 !important; letter-spacing: 0.06em !important; text-transform: uppercase;
+}
+.nav-cta:hover { background: var(--clay); color: var(--white) !important; }
+
+/* ====== HERO ====== */
+.hero {
+  padding: 140px 0 80px;
+  position: relative;
+  overflow: hidden;
+  background: var(--white);
+}
+.hero-supergraphic {
+  position: absolute;
+  top: 80px;
+  right: -120px;
+  font-family: var(--type);
+  font-weight: 500;
+  font-size: 720px;
+  line-height: 0.78;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(10,10,10,0.06);
+  pointer-events: none;
+  user-select: none;
+}
+.hero-inner { position: relative; z-index: 1; }
+.hero-eyebrow { color: var(--clay); margin-bottom: 32px; }
+.hero h1 { max-width: 18ch; margin-bottom: 40px; }
+.hero h1 em { font-style: normal; color: var(--clay); }
+.hero-spec {
+  display: flex; gap: 48px; flex-wrap: wrap;
+  margin-top: 64px; padding-top: 32px;
+  border-top: 1px solid rgba(10,10,10,0.12);
+}
+.hero-spec-item { font-size: 13px; }
+.hero-spec-item strong { display: block; color: var(--black); font-weight: 500; margin-bottom: 4px; }
+.hero-spec-item span { color: var(--ink-soft); }
+
+/* ====== T-SHIRT PLACEHOLDER CARDS ====== */
+.drop-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 24px; margin-top: 64px; }
+@media (max-width: 1100px) { .drop-grid { grid-template-columns: repeat(3, 1fr); } }
+@media (max-width: 700px) { .drop-grid { grid-template-columns: repeat(2, 1fr); } }
+
+.shirt-card {
+  background: var(--bone);
+  aspect-ratio: 1/1.3;
+  position: relative;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+  overflow: hidden;
+  border-radius: 2px;
+}
+.shirt-card:hover { transform: translateY(-4px); }
+
+/* PLACEHOLDER FOR T-SHIRT ARTWORK
+   Replace .shirt-placeholder with real shirt image once Conor + 4 other artists' work is selected.
+   Suggested treatment: front-facing t-shirt mockup, neutral background, artwork centred on chest. */
+.shirt-placeholder {
+  position: absolute; inset: 0;
+  display: flex; align-items: center; justify-content: center;
+  flex-direction: column;
+  padding: 24px;
+  text-align: center;
+}
+.shirt-placeholder-mark {
+  font-size: 64px;
+  font-weight: 500;
+  color: var(--clay);
+  opacity: 0.4;
+  margin-bottom: 12px;
+}
+.shirt-placeholder-label {
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  opacity: 0.7;
+}
+.shirt-meta {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  padding: 14px 16px;
+  background: rgba(245, 245, 243, 0.96);
+  border-top: 1px solid rgba(10,10,10,0.08);
+}
+.shirt-artist { font-size: 13px; font-weight: 500; color: var(--black); margin-bottom: 2px; }
+.shirt-edition { font-size: 11px; color: var(--ink-soft); letter-spacing: 0.04em; }
+.shirt-price { position: absolute; top: 14px; right: 14px; font-size: 11px; font-weight: 500; color: var(--black); background: var(--white); padding: 4px 8px; border-radius: 2px; }
+
+/* ====== FEATURED ARTWORK BLOCK ====== */
+.featured {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+@media (max-width: 900px) { .featured { grid-template-columns: 1fr; gap: 48px; } }
+
+.featured-visual {
+  background: var(--stone);
+  aspect-ratio: 1/1.2;
+  border-radius: 2px;
+  position: relative;
+  overflow: hidden;
+}
+.featured-visual::after {
+  content: "";
+  position: absolute; inset: 0;
+  background: radial-gradient(circle at 50% 50%, rgba(162, 103, 76, 0.12) 0%, transparent 65%);
+}
+.featured-visual-mark {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 200px;
+  font-weight: 500;
+  color: var(--clay);
+  opacity: 0.35;
+  line-height: 1;
+}
+.featured-visual-label {
+  position: absolute;
+  bottom: 24px; left: 24px;
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+.featured-meta { color: var(--clay); margin-bottom: 24px; }
+.featured h2 { margin-bottom: 24px; }
+.featured-spec {
+  margin-top: 40px;
+  padding-top: 32px;
+  border-top: 1px solid rgba(10,10,10,0.12);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+.featured-spec dt { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-soft); margin-bottom: 4px; }
+.featured-spec dd { font-size: 14px; font-weight: 500; color: var(--black); }
+
+/* ====== PROMISE STRIP ====== */
+.promise-strip {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+  border-top: 1px solid rgba(245, 245, 243, 0.15);
+  border-bottom: 1px solid rgba(245, 245, 243, 0.15);
+}
+@media (max-width: 700px) { .promise-strip { grid-template-columns: repeat(2, 1fr); } }
+
+.promise-item {
+  padding: 48px 32px;
+  border-right: 1px solid rgba(245, 245, 243, 0.15);
+}
+.promise-item:last-child { border-right: none; }
+.promise-num { font-size: 11px; letter-spacing: 0.16em; color: var(--clay); margin-bottom: 16px; }
+.promise-title { font-size: 18px; font-weight: 500; color: var(--white); margin-bottom: 12px; }
+.promise-body { font-size: 14px; line-height: 1.55; color: rgba(245, 245, 243, 0.72); }
+
+/* ====== SURVEY MOMENTS ====== */
+.survey-block {
+  background: var(--bone);
+  padding: 80px 0;
+}
+.survey-eyebrow { color: var(--clay); margin-bottom: 16px; }
+.survey-question { max-width: 22ch; margin-bottom: 48px; }
+.survey-helper { font-size: 14px; color: var(--ink-soft); margin-bottom: 40px; max-width: 50ch; }
+
+/* Proposition variant buttons */
+.props-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+  max-width: 760px;
+}
+.prop-option {
+  background: var(--white);
+  padding: 28px 32px;
+  border: 1px solid rgba(10,10,10,0.08);
+  border-radius: 3px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  position: relative;
+  text-align: left;
+  font-family: var(--type);
+  width: 100%;
+}
+.prop-option:hover { border-color: var(--clay); transform: translateX(4px); }
+.prop-option.selected { border-color: var(--clay); background: rgba(162, 103, 76, 0.04); }
+.prop-option.selected::before {
+  content: "";
+  position: absolute;
+  left: -1px; top: -1px; bottom: -1px;
+  width: 4px;
+  background: var(--clay);
+  border-radius: 3px 0 0 3px;
+}
+.prop-label { font-size: 11px; color: var(--ink-soft); letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 10px; }
+.prop-text { font-size: 19px; line-height: 1.4; color: var(--black); font-weight: 400; }
+
+/* Shirt multi-select */
+.select-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 16px;
+  margin-top: 40px;
+}
+@media (max-width: 900px) { .select-grid { grid-template-columns: repeat(3, 1fr); } }
+@media (max-width: 600px) { .select-grid { grid-template-columns: repeat(2, 1fr); } }
+
+.select-shirt {
+  cursor: pointer;
+  position: relative;
+  transition: transform 0.25s ease;
+  background: none;
+  border: none;
+  padding: 0;
+  font-family: var(--type);
+}
+.select-shirt:hover { transform: translateY(-3px); }
+.select-shirt-visual {
+  background: var(--white);
+  aspect-ratio: 1/1.15;
+  border: 2px solid transparent;
+  border-radius: 2px;
+  position: relative;
+  overflow: hidden;
+  display: flex; align-items: center; justify-content: center;
+  transition: border-color 0.25s ease;
+}
+.select-shirt.selected .select-shirt-visual { border-color: var(--clay); }
+.select-shirt.selected::after {
+  content: "✓";
+  position: absolute;
+  top: 10px; right: 10px;
+  width: 26px; height: 26px;
+  background: var(--clay); color: var(--white);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 14px;
+  font-weight: 500;
+}
+.select-shirt-mark { font-size: 48px; color: var(--clay); opacity: 0.4; }
+.select-shirt-name { font-size: 12px; font-weight: 500; margin-top: 12px; color: var(--black); text-align: center; }
+
+/* Price slider */
+.price-slider-wrap { max-width: 640px; margin-top: 48px; }
+.price-range {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+}
+.price-button {
+  flex: 1;
+  background: var(--white);
+  border: 1px solid rgba(10,10,10,0.12);
+  padding: 22px 12px;
+  cursor: pointer;
+  font-family: var(--type);
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--black);
+  border-radius: 3px;
+  transition: all 0.2s ease;
+}
+.price-button:hover { border-color: var(--clay); }
+.price-button.selected { background: var(--clay); color: var(--white); border-color: var(--clay); }
+
+/* ====== ARTIST ROSTER ====== */
+.artist-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 24px;
+  margin-top: 48px;
+}
+@media (max-width: 900px) { .artist-grid { grid-template-columns: repeat(3, 1fr); } }
+@media (max-width: 600px) { .artist-grid { grid-template-columns: 1fr 1fr; } }
+
+.artist-tile {
+  text-align: left;
+}
+.artist-portrait {
+  background: var(--stone);
+  aspect-ratio: 1/1.15;
+  border-radius: 2px;
+  margin-bottom: 16px;
+  position: relative;
+  overflow: hidden;
+}
+.artist-portrait-mark {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 80px;
+  color: var(--clay);
+  opacity: 0.3;
+  font-weight: 300;
+}
+.artist-portrait-label {
+  position: absolute;
+  bottom: 12px; left: 14px;
+  font-size: 9px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+.artist-name { font-size: 16px; font-weight: 500; margin-bottom: 4px; }
+.artist-detail { font-size: 13px; color: var(--ink-soft); }
+
+/* ====== SIGN-UP ====== */
+.signup-block {
+  background: var(--black);
+  color: var(--white);
+  padding: 120px 0;
+  text-align: center;
+}
+.signup-block h2 { color: var(--white); max-width: 22ch; margin: 0 auto 24px; }
+.signup-block .body { color: rgba(245, 245, 243, 0.72); margin: 0 auto 48px; }
+.signup-form {
+  max-width: 480px;
+  margin: 0 auto;
+  display: flex;
+  gap: 8px;
+}
+.signup-form input {
+  flex: 1;
+  background: transparent;
+  border: 1px solid rgba(245, 245, 243, 0.3);
+  color: var(--white);
+  padding: 16px 20px;
+  font-family: var(--type);
+  font-size: 15px;
+  border-radius: 2px;
+  outline: none;
+}
+.signup-form input:focus { border-color: var(--clay); }
+.signup-form input::placeholder { color: rgba(245, 245, 243, 0.4); }
+.signup-form button {
+  background: var(--clay);
+  color: var(--white);
+  border: none;
+  padding: 0 28px;
+  font-family: var(--type);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  border-radius: 2px;
+}
+.signup-form button:hover { background: var(--white); color: var(--black); }
+.signup-fineprint { font-size: 12px; color: rgba(245, 245, 243, 0.4); margin-top: 24px; }
+
+/* ====== FOOTER ====== */
+.footer { padding: 48px 0 32px; background: var(--black); color: var(--white); border-top: 1px solid rgba(245, 245, 243, 0.08); }
+.footer-inner { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
+.footer-brand { font-size: 13px; }
+.footer-meta { font-size: 11px; color: rgba(245, 245, 243, 0.4); letter-spacing: 0.06em; }
+
+/* ====== UTILITIES ====== */
+.mt-32 { margin-top: 32px; }
+.mt-48 { margin-top: 48px; }
+.mt-64 { margin-top: 64px; }
+.mt-80 { margin-top: 80px; }
+.mb-16 { margin-bottom: 16px; }
+.mb-24 { margin-bottom: 24px; }
+.mb-32 { margin-bottom: 32px; }
+
+/* Survey progress indicator */
+.progress-bar {
+  position: fixed; top: 0; left: 0;
+  height: 2px; background: var(--clay);
+  width: 0%;
+  z-index: 200;
+  transition: width 0.2s ease;
+}
+
+/* ====== RANKING INTERACTIONS ====== */
+.rank-badge {
+  position: absolute;
+  top: 14px; left: 14px;
+  width: 36px; height: 36px;
+  background: var(--clay);
+  color: var(--white);
+  border-radius: 50%;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--type);
+  font-size: 15px;
+  font-weight: 600;
+  z-index: 10;
+  box-shadow: 0 4px 14px rgba(162, 103, 76, 0.42);
+  pointer-events: none;
+}
+.ranked .rank-badge { display: flex; }
+.shirt-card.ranked, .promise-item.ranked {
+  outline: 2px solid var(--clay);
+  outline-offset: -2px;
+}
+.shirt-card { cursor: pointer; }
+.promise-item { cursor: pointer; transition: background 0.2s ease; }
+.promise-item:hover { background: rgba(245, 245, 243, 0.04); }
+
+/* The "Your top 3" tracker panel */
+.rank-tracker {
+  margin-top: 48px;
+  padding: 24px 28px;
+  background: var(--bone);
+  border-radius: 2px;
+  display: flex;
+  gap: 32px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.rank-tracker--dark {
+  background: rgba(245, 245, 243, 0.05);
+  border: 1px solid rgba(245, 245, 243, 0.12);
+}
+.tracker-label {
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  font-weight: 500;
+}
+.rank-tracker--dark .tracker-label { color: rgba(245, 245, 243, 0.6); }
+.tracker-items {
+  display: flex;
+  gap: 24px;
+  flex: 1;
+  flex-wrap: wrap;
+}
+.track-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+  color: var(--ink-soft);
+}
+.track-item.filled { color: var(--black); font-weight: 500; }
+.rank-tracker--dark .track-item { color: rgba(245, 245, 243, 0.5); }
+.rank-tracker--dark .track-item.filled { color: var(--white); }
+.track-rank {
+  background: var(--clay);
+  color: var(--white);
+  width: 26px; height: 26px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  font-weight: 600;
+  flex-shrink: 0;
+}
+.track-item:not(.filled) .track-rank {
+  background: transparent;
+  color: var(--ink-soft);
+  border: 1px solid rgba(10, 10, 10, 0.2);
+}
+.rank-tracker--dark .track-item:not(.filled) .track-rank {
+  color: rgba(245, 245, 243, 0.4);
+  border-color: rgba(245, 245, 243, 0.18);
+}
+.rank-helper {
+  font-size: 13px;
+  color: var(--ink-soft);
+  font-style: italic;
+  margin-top: 8px;
+  max-width: 60ch;
+}
+
+/* ====== LOUD ACTION PROMPTS (full-width, can't miss) ====== */
+.action-prompt {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 20px 26px;
+  background: var(--clay);
+  border-radius: 6px;
+  margin-top: 32px;
+  font-family: var(--type);
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--white);
+  letter-spacing: -0.005em;
+  max-width: 720px;
+  box-shadow: 0 6px 20px rgba(162, 103, 76, 0.18);
+  position: relative;
+  overflow: hidden;
+}
+.action-prompt::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; bottom: 0;
+  width: 6px;
+  background: rgba(10, 10, 10, 0.18);
+}
+.action-prompt-arrow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px; height: 36px;
+  background: rgba(245, 245, 243, 0.18);
+  border-radius: 50%;
+  font-size: 18px;
+  font-weight: 700;
+  flex-shrink: 0;
+  animation: prompt-pulse 1.8s ease-in-out infinite;
+}
+.action-prompt-prefix {
+  display: inline-block;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  background: rgba(10, 10, 10, 0.18);
+  padding: 4px 10px;
+  border-radius: 2px;
+  margin-right: 8px;
+  vertical-align: middle;
+}
+@keyframes prompt-pulse {
+  0%, 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(245, 245, 243, 0.4); }
+  50% { transform: scale(1.08); box-shadow: 0 0 0 8px rgba(245, 245, 243, 0); }
+}
+.action-prompt--dark {
+  background: var(--clay);
+  color: var(--white);
+}
+.action-prompt--dark::before { background: rgba(245, 245, 243, 0.2); }
+
+/* ====== ENTRY GATE MODAL ====== */
+.entry-gate-overlay {
+  position: fixed; inset: 0;
+  background: rgba(245, 245, 243, 0.92);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  z-index: 1000;
+  display: flex; align-items: center; justify-content: center;
+  padding: 32px;
+  animation: gate-fade-in 0.4s ease;
+}
+@keyframes gate-fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+.entry-gate-overlay.hidden { display: none; }
+.entry-gate-card {
+  background: var(--white);
+  border-radius: 4px;
+  padding: 56px 48px 40px;
+  max-width: 540px;
+  width: 100%;
+  box-shadow: 0 24px 80px rgba(10, 10, 10, 0.12);
+  animation: gate-rise 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+@keyframes gate-rise {
+  from { transform: translateY(20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+.entry-gate-eyebrow {
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--clay);
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+.entry-gate-title {
+  font-family: var(--type);
+  font-weight: 500;
+  font-size: 32px;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  color: var(--black);
+  margin-bottom: 12px;
+}
+.entry-gate-body {
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--ink-soft);
+  margin-bottom: 32px;
+}
+.gate-question {
+  margin-bottom: 28px;
+}
+.gate-question-label {
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--clay);
+  font-weight: 600;
+  margin-bottom: 12px;
+  display: block;
+}
+.pill-row {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+.pill-select {
+  background: var(--white);
+  border: 1px solid rgba(10, 10, 10, 0.18);
+  padding: 11px 18px;
+  font-family: var(--type);
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--black);
+  cursor: pointer;
+  border-radius: 999px;
+  transition: all 0.2s ease;
+}
+.pill-select:hover { border-color: var(--clay); color: var(--clay); }
+.pill-select.selected {
+  background: var(--clay);
+  color: var(--white);
+  border-color: var(--clay);
+}
+.gate-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 32px;
+  padding-top: 24px;
+  border-top: 1px solid rgba(10, 10, 10, 0.08);
+}
+.gate-skip {
+  background: transparent;
+  border: none;
+  color: var(--ink-soft);
+  font-family: var(--type);
+  font-size: 13px;
+  cursor: pointer;
+  text-decoration: underline;
+  text-decoration-color: rgba(10, 10, 10, 0.2);
+  text-underline-offset: 3px;
+}
+.gate-skip:hover { color: var(--clay); }
+.gate-continue {
+  background: var(--black);
+  color: var(--white);
+  border: none;
+  padding: 14px 28px;
+  font-family: var(--type);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  cursor: pointer;
+  border-radius: 2px;
+  transition: all 0.2s ease;
+  opacity: 0.4;
+  pointer-events: none;
+}
+.gate-continue.ready {
+  opacity: 1;
+  pointer-events: auto;
+}
+.gate-continue.ready:hover { background: var(--clay); }
+
+/* ====== RETAILER SECTION ====== */
+.retailer-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 14px;
+  margin-top: 48px;
+}
+@media (max-width: 1000px) { .retailer-grid { grid-template-columns: repeat(3, 1fr); } }
+@media (max-width: 640px) { .retailer-grid { grid-template-columns: repeat(2, 1fr); } }
+.retailer-card {
+  background: var(--white);
+  border: 1px solid rgba(10, 10, 10, 0.1);
+  border-radius: 4px;
+  aspect-ratio: 1.4 / 1;
+  cursor: pointer;
+  position: relative;
+  font-family: var(--type);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  text-align: center;
+  transition: all 0.25s ease;
+  overflow: hidden;
+}
+.retailer-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--clay);
+  box-shadow: 0 8px 24px rgba(10, 10, 10, 0.06);
+}
+.retailer-card.selected {
+  border-color: var(--clay);
+  border-width: 2px;
+  background: rgba(162, 103, 76, 0.04);
+}
+.retailer-card.selected::after {
+  content: "✓";
+  position: absolute;
+  top: 10px; right: 10px;
+  width: 22px; height: 22px;
+  background: var(--clay);
+  color: var(--white);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 12px;
+  font-weight: 600;
+}
+.retailer-logo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+/* Brand-specific logo treatments */
+.r-liberty { font-family: 'Georgia', serif; font-style: italic; font-size: 26px; color: #00563F; font-weight: 400; letter-spacing: -0.005em; }
+.r-liberty-sub { font-family: var(--type); font-size: 8px; letter-spacing: 0.32em; color: #00563F; font-weight: 500; }
+.r-selfridges { background: #FED402; color: #000; padding: 8px 12px; font-weight: 700; font-size: 13px; letter-spacing: 0.02em; }
+.r-mr-porter { font-weight: 600; font-size: 15px; letter-spacing: 0.1em; color: #1A1A1A; }
+.r-mr-porter .dot { color: var(--clay); }
+.r-ssense { font-weight: 500; font-size: 16px; letter-spacing: 0.06em; color: #000; }
+.r-end { font-weight: 800; font-size: 22px; letter-spacing: -0.01em; color: #000; }
+.r-end-dot { color: var(--clay); }
+.r-goodhood { font-weight: 600; font-size: 13px; letter-spacing: 0.02em; color: #000; }
+.r-goodhood-sub { font-size: 9px; letter-spacing: 0.16em; color: rgba(0,0,0,0.5); margin-top: 2px; }
+.r-wolf-badger { font-weight: 700; font-size: 12px; letter-spacing: 0.12em; color: #000; line-height: 1.3; }
+.r-tate { font-weight: 900; font-size: 32px; letter-spacing: -0.02em; color: #000; font-family: 'Helvetica Neue', Helvetica, sans-serif; }
+.r-ra { font-family: 'Helvetica Neue', Helvetica, sans-serif; font-weight: 700; font-size: 14px; letter-spacing: 0.04em; color: #000; line-height: 1.2; }
+.r-ra-mark { font-size: 28px; font-weight: 300; line-height: 1; margin-bottom: 4px; }
+.r-direct { font-style: italic; font-size: 13px; color: var(--ink-soft); line-height: 1.4; }
+.r-direct strong { color: var(--black); font-style: normal; }
+
+/* Retailer "other" field */
+.retailer-other-wrap {
+  margin-top: 28px;
+  padding: 18px 22px;
+  background: var(--white);
+  border: 1px dashed rgba(10, 10, 10, 0.18);
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.retailer-other-wrap label {
+  font-size: 13px;
+  color: var(--ink-soft);
+  font-weight: 500;
+  white-space: nowrap;
+}
+.retailer-other-wrap input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  font-family: var(--type);
+  font-size: 14px;
+  color: var(--black);
+}
+.retailer-other-wrap input::placeholder { color: rgba(10, 10, 10, 0.35); font-style: italic; }
+
+/* ====== 5-STAR RATING ====== */
+.star-rating {
+  display: flex;
+  gap: 8px;
+  margin-top: 16px;
+}
+.star-button {
+  background: transparent;
+  border: none;
+  font-size: 52px;
+  line-height: 1;
+  color: rgba(10, 10, 10, 0.16);
+  cursor: pointer;
+  transition: all 0.15s ease;
+  padding: 0 4px;
+  font-family: var(--type);
+}
+.star-button:hover { transform: scale(1.1); }
+.star-button.active { color: var(--clay); }
+.star-scale {
+  display: flex;
+  justify-content: space-between;
+  max-width: 320px;
+  margin-top: 12px;
+  font-size: 11px;
+  color: var(--ink-soft);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.star-label {
+  margin-top: 24px;
+  font-size: 16px;
+  color: var(--clay);
+  font-weight: 500;
+  font-style: italic;
+  min-height: 24px;
+}
+
+/* Final-thoughts textarea */
+.final-textarea-wrap {
+  margin-top: 56px;
+  max-width: 640px;
+}
+.final-textarea-wrap label {
+  display: block;
+  font-family: var(--type);
+  font-size: 18px;
+  font-weight: 500;
+  color: var(--black);
+  margin-bottom: 14px;
+}
+.final-textarea-wrap textarea {
+  width: 100%;
+  min-height: 110px;
+  background: var(--white);
+  border: 1px solid rgba(10, 10, 10, 0.12);
+  border-radius: 4px;
+  padding: 18px 22px;
+  font-family: var(--type);
+  font-size: 15px;
+  color: var(--black);
+  outline: none;
+  resize: vertical;
+  line-height: 1.5;
+}
+.final-textarea-wrap textarea:focus { border-color: var(--clay); }
+.final-textarea-wrap textarea::placeholder { color: rgba(10, 10, 10, 0.35); font-style: italic; }
+
+/* ====== COMPLETION SUMMARY ====== */
+.completion-summary {
+  background: var(--bone);
+  border-radius: 4px;
+  padding: 32px 40px;
+  margin: 80px auto 0;
+  max-width: 720px;
+  text-align: center;
+}
+.completion-summary-eyebrow {
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--clay);
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+.completion-summary-title {
+  font-family: var(--type);
+  font-weight: 500;
+  font-size: 28px;
+  letter-spacing: -0.015em;
+  color: var(--black);
+  margin-bottom: 8px;
+  line-height: 1.2;
+}
+.completion-summary-title .summary-num { color: var(--clay); }
+.completion-summary-body {
+  font-size: 15px;
+  color: var(--ink-soft);
+  line-height: 1.5;
+}
+
+/* ====== EXIT GATE — extended signup form ====== */
+.exit-gate-extras {
+  max-width: 480px;
+  margin: 32px auto 0;
+  text-align: left;
+}
+.exit-gate-field {
+  margin-bottom: 20px;
+}
+.exit-gate-field label {
+  display: block;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(245, 245, 243, 0.6);
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+.exit-gate-field input,
+.exit-gate-field select {
+  width: 100%;
+  background: transparent;
+  border: 1px solid rgba(245, 245, 243, 0.25);
+  color: var(--white);
+  padding: 12px 16px;
+  font-family: var(--type);
+  font-size: 14px;
+  border-radius: 2px;
+  outline: none;
+}
+.exit-gate-field select { -webkit-appearance: none; appearance: none; cursor: pointer; background-image: url("data:image/svg+xml,%3Csvg width='10' height='6' viewBox='0 0 10 6' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1L5 5L9 1' stroke='%23a2674c' stroke-width='1.5'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 16px center; }
+.exit-gate-field input:focus,
+.exit-gate-field select:focus { border-color: var(--clay); }
+.exit-gate-field select option { background: var(--black); color: var(--white); }
+.exit-gate-required {
+  font-size: 11px;
+  color: var(--clay);
+  font-style: italic;
+  margin-bottom: 24px;
+}
+
+/* ====== QUESTION STATE INDICATORS ====== */
+.q-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 12px;
+  border-radius: 999px;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  margin-left: 12px;
+  background: rgba(10, 10, 10, 0.06);
+  color: var(--ink-soft);
+  vertical-align: middle;
+  text-transform: uppercase;
+  transition: all 0.3s ease;
+}
+.q-status::before { content: "○"; font-size: 11px; font-weight: 400; }
+.q-status.answered { background: rgba(162, 103, 76, 0.14); color: var(--clay); }
+.q-status.answered::before { content: "●"; }
+.q-status.skipped { background: rgba(10, 10, 10, 0.04); color: rgba(10, 10, 10, 0.4); }
+.q-status.skipped::before { content: "—"; }
+.q-status--dark { background: rgba(245, 245, 243, 0.12); color: rgba(245, 245, 243, 0.75); }
+.q-status--dark.answered { background: rgba(162, 103, 76, 0.22); color: var(--clay); }
+.q-status--dark.skipped { background: rgba(245, 245, 243, 0.05); color: rgba(245, 245, 243, 0.4); }
+
+/* Skip button */
+.q-skip-row {
+  margin-top: 40px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(10, 10, 10, 0.08);
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 16px;
+}
+.q-skip-row--dark { border-top-color: rgba(245, 245, 243, 0.15); }
+.q-skip-helper {
+  font-size: 12px;
+  color: var(--ink-soft);
+  font-style: italic;
+}
+.q-skip-row--dark .q-skip-helper { color: rgba(245, 245, 243, 0.5); }
+.q-skip {
+  background: transparent;
+  border: 1px solid rgba(10, 10, 10, 0.15);
+  color: var(--ink-soft);
+  font-family: var(--type);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  cursor: pointer;
+  padding: 10px 18px;
+  border-radius: 2px;
+  transition: all 0.2s ease;
+}
+.q-skip:hover { color: var(--clay); border-color: var(--clay); }
+.q-skip--dark { color: rgba(245, 245, 243, 0.6); border-color: rgba(245, 245, 243, 0.2); }
+.q-skip--dark:hover { color: var(--clay); border-color: var(--clay); }
+
+/* Floating progress widget — bottom-right, always visible */
+.progress-widget {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  background: var(--white);
+  border: 1px solid rgba(10, 10, 10, 0.1);
+  padding: 14px 20px;
+  border-radius: 999px;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  z-index: 90;
+  box-shadow: 0 8px 32px rgba(10, 10, 10, 0.1);
+  transition: all 0.3s ease;
+}
+.progress-widget:hover { transform: translateY(-2px); }
+.progress-dots { display: flex; gap: 6px; }
+.progress-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: rgba(10, 10, 10, 0.18);
+  transition: all 0.3s ease;
+  position: relative;
+}
+.progress-dot.answered { background: var(--clay); transform: scale(1.2); }
+.progress-dot.skipped { background: transparent; border: 1px solid rgba(10, 10, 10, 0.18); }
+.progress-label {
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  color: var(--ink-soft);
+  margin: 0;
+  white-space: nowrap;
+}
+.progress-label .progress-num { color: var(--clay); font-weight: 600; }
+
+@media (max-width: 600px) {
+  .progress-widget {
+    bottom: 16px; right: 16px;
+    padding: 10px 16px; gap: 12px;
+  }
+  .progress-dots { gap: 4px; }
+  .progress-dot { width: 7px; height: 7px; }
+  .progress-label { font-size: 11px; }
+}
+
+/* ====== MANIFESTO ====== */
+.manifesto-body {
+  max-width: 780px;
+  margin: 80px auto 0;
+}
+.stanza {
+  font-family: var(--type);
+  font-weight: 400;
+  font-size: clamp(22px, 2.4vw, 28px);
+  line-height: 1.5;
+  letter-spacing: -0.01em;
+  color: var(--black);
+  padding: 28px 32px;
+  margin-bottom: 12px;
+  border-left: 3px solid transparent;
+  border-radius: 2px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  position: relative;
+}
+.stanza:hover {
+  background: rgba(162, 103, 76, 0.05);
+  border-left-color: rgba(162, 103, 76, 0.25);
+}
+.stanza.selected {
+  background: rgba(162, 103, 76, 0.08);
+  border-left-color: var(--clay);
+}
+.stanza.selected::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: 24px;
+  width: 20px;
+  height: 20px;
+  background: var(--clay);
+  border-radius: 50%;
+  transform: translateY(-50%);
+  box-shadow: 0 0 0 4px rgba(162, 103, 76, 0.15);
+}
+.stanza em {
+  font-style: italic;
+  color: var(--clay);
+}
+.stanza-signoff {
+  font-family: 'Georgia', serif;
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(28px, 3vw, 38px);
+  text-align: left;
+}
+
+.manifesto-reaction {
+  max-width: 780px;
+  margin: 56px auto 0;
+  padding: 32px;
+  border-top: 1px solid rgba(10, 10, 10, 0.12);
+}
+.manifesto-reaction .meta {
+  margin-bottom: 20px;
+  color: var(--clay);
+}
+.word-chips {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+.word-chip {
+  background: var(--white);
+  border: 1px solid rgba(10, 10, 10, 0.15);
+  padding: 12px 20px;
+  font-family: var(--type);
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--black);
+  cursor: pointer;
+  border-radius: 999px;
+  transition: all 0.2s ease;
+}
+.word-chip:hover { border-color: var(--clay); color: var(--clay); }
+.word-chip.selected {
+  background: var(--clay);
+  color: var(--white);
+  border-color: var(--clay);
+}
+.manifesto-other {
+  width: 100%;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid rgba(10, 10, 10, 0.18);
+  padding: 12px 0;
+  font-family: var(--type);
+  font-size: 15px;
+  color: var(--black);
+  outline: none;
+}
+.manifesto-other:focus { border-bottom-color: var(--clay); }
+.manifesto-other::placeholder { color: rgba(10, 10, 10, 0.4); font-style: italic; }
+
+/* TODO marker for prototype */
+.todo {
+  border: 1px dashed var(--clay);
+  background: rgba(162, 103, 76, 0.05);
+  padding: 16px 20px;
+  font-size: 12px;
+  color: var(--clay);
+  margin: 16px 0;
+  border-radius: 2px;
+  font-family: 'SF Mono', Menlo, monospace;
+  letter-spacing: 0.03em;
+}
+.todo strong { font-weight: 600; }
+
+</style>
+</head>
+<body>
+
+<!-- ============================================================
+     ENTRY GATE — captures Age + Gender before the brand experience.
+     Two questions, framed as "tell us about you." Hard requirement
+     to ensure generational segmentation in the data.
+============================================================ -->
+<div class="entry-gate-overlay" id="entryGate">
+  <div class="entry-gate-card">
+    <p class="entry-gate-eyebrow">Before you begin</p>
+    <h2 class="entry-gate-title">Tell us a little about you.</h2>
+    <p class="entry-gate-body">Two quick questions. It helps us understand who's reading — and shapes what we make next.</p>
+
+    <div class="gate-question">
+      <span class="gate-question-label">How old are you?</span>
+      <div class="pill-row" id="entryAgeRow">
+        <button class="pill-select" onclick="entryPick('age', '18-21', this)">18–21</button>
+        <button class="pill-select" onclick="entryPick('age', '22-26', this)">22–26</button>
+        <button class="pill-select" onclick="entryPick('age', '27-32', this)">27–32</button>
+        <button class="pill-select" onclick="entryPick('age', '33-39', this)">33–39</button>
+        <button class="pill-select" onclick="entryPick('age', '40-49', this)">40–49</button>
+        <button class="pill-select" onclick="entryPick('age', '50+', this)">50+</button>
+      </div>
+    </div>
+
+    <div class="gate-question">
+      <span class="gate-question-label">How do you identify?</span>
+      <div class="pill-row" id="entryGenderRow">
+        <button class="pill-select" onclick="entryPick('gender', 'woman', this)">Woman</button>
+        <button class="pill-select" onclick="entryPick('gender', 'man', this)">Man</button>
+        <button class="pill-select" onclick="entryPick('gender', 'non_binary', this)">Non-binary</button>
+        <button class="pill-select" onclick="entryPick('gender', 'self_describe', this)">Prefer to self-describe</button>
+        <button class="pill-select" onclick="entryPick('gender', 'prefer_not', this)">Prefer not to say</button>
+      </div>
+    </div>
+
+    <div class="gate-actions">
+      <button class="gate-skip" onclick="dismissGate(true)">Just let me browse</button>
+      <button class="gate-continue" id="gateContinue" onclick="dismissGate(false)">Continue →</button>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================
+     NETLIFY FORM — hidden detector. Netlify's build scanner picks
+     this up and registers the form name so submissions appear in
+     the dashboard. We submit programmatically from captureSignup().
+============================================================ -->
+<form name="early-or-late-survey" data-netlify="true" netlify-honeypot="bot-field" hidden>
+  <input type="email" name="email" />
+  <input type="text" name="entry_age" />
+  <input type="text" name="entry_gender" />
+  <input type="text" name="proposition_choice" />
+  <input type="text" name="buy_intent_stars" />
+  <input type="text" name="price_choice" />
+  <textarea name="final_thoughts"></textarea>
+  <input type="text" name="exit_location" />
+  <input type="text" name="exit_nd_framing" />
+  <input type="text" name="exit_discovery" />
+  <input type="text" name="manifesto_feeling" />
+  <textarea name="manifesto_feeling_other"></textarea>
+  <input type="text" name="retailer_other" />
+  <textarea name="survey_data"></textarea>
+  <input type="text" name="bot-field" />
+</form>
+
+<div class="progress-bar" id="progressBar"></div>
+
+<!-- Floating question-progress widget -->
+<div class="progress-widget" id="progressWidget" title="Survey progress">
+  <div class="progress-dots">
+    <span class="progress-dot" data-q="drop_ranking" title="The drop ranking"></span>
+    <span class="progress-dot" data-q="promise_ranking" title="The promise ranking"></span>
+    <span class="progress-dot" data-q="retailers" title="Where you'd find it"></span>
+    <span class="progress-dot" data-q="manifesto_stanzas" title="Manifesto resonance"></span>
+    <span class="progress-dot" data-q="manifesto_feeling" title="Manifesto feeling"></span>
+    <span class="progress-dot" data-q="proposition" title="Proposition test"></span>
+    <span class="progress-dot" data-q="ad_reactions" title="Ad reactions"></span>
+    <span class="progress-dot" data-q="shirts_selected" title="Shirts you'd wear"></span>
+    <span class="progress-dot" data-q="price" title="Willingness to pay"></span>
+    <span class="progress-dot" data-q="buy_intent" title="Buy intent"></span>
+  </div>
+  <p class="progress-label"><span class="progress-num">0</span> of <span class="progress-total">10</span> answered</p>
+</div>
+
+<!-- ============================================================
+     NAVIGATION
+============================================================ -->
+<nav class="nav">
+  <div class="nav-inner">
+    <div class="nav-brand" style="color: var(--black);">
+      <svg viewBox="0 0 720 130" width="140" height="auto" style="display:block;" aria-label="early or LA(t)E">
+        <g font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-weight="800" font-size="92" font-style="italic">
+          <text x="0" y="100" fill="currentColor">early</text>
+        </g>
+        <g font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-weight="500" font-size="64">
+          <text x="240" y="100" fill="currentColor">or</text>
+        </g>
+        <g font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-weight="800" font-size="92" letter-spacing="-2">
+          <text x="338" y="100" fill="none" stroke="currentColor" stroke-width="3">LA</text>
+          <text x="465" y="100" fill="currentColor" font-style="italic" font-weight="700">(</text>
+          <text x="495" y="100" fill="currentColor" font-style="italic" font-weight="800" font-size="76">t</text>
+          <text x="525" y="100" fill="currentColor" font-style="italic" font-weight="700">)</text>
+          <text x="565" y="100" fill="none" stroke="currentColor" stroke-width="3">E</text>
+        </g>
+      </svg>
+    </div>
+    <div class="nav-links">
+      <a href="#drop">The drop</a>
+      <a href="#artists">Artists</a>
+      <a href="#story">Story</a>
+      <a href="#signup" class="nav-cta">Early access</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ============================================================
+     HERO — Route 1 (Timeless) register applied to the brand-board palette.
+     Sparse, confident, editorial. The wordmark IS the hero device.
+     The proposition (Variant A) is the single statement that follows.
+============================================================ -->
+<section class="hero" style="padding: 120px 0 80px; background: var(--bone);">
+  <div class="container hero-inner">
+    <p class="meta hero-eyebrow" style="color: var(--clay); margin-bottom: 56px;">N°001 — Made to be kept</p>
+
+    <!-- The wordmark — large, hero-scale, Route 1 construction -->
+    <svg viewBox="0 0 720 130" width="100%" height="auto" style="max-width: 560px; display: block; color: var(--black); margin-bottom: 80px;" aria-label="early or LA(t)E">
+      <g font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-weight="800" font-size="92" font-style="italic">
+        <text x="0" y="100" fill="currentColor">early</text>
+      </g>
+      <g font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-weight="500" font-size="64">
+        <text x="240" y="100" fill="currentColor">or</text>
+      </g>
+      <g font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-weight="800" font-size="92" letter-spacing="-2">
+        <text x="338" y="100" fill="none" stroke="currentColor" stroke-width="3">LA</text>
+        <text x="465" y="100" fill="currentColor" font-style="italic" font-weight="700">(</text>
+        <text x="495" y="100" fill="currentColor" font-style="italic" font-weight="800" font-size="76">t</text>
+        <text x="525" y="100" fill="currentColor" font-style="italic" font-weight="700">)</text>
+        <text x="565" y="100" fill="none" stroke="currentColor" stroke-width="3">E</text>
+      </g>
+    </svg>
+
+    <!-- The single editorial statement. Variant A proposition. -->
+    <h1 style="font-family: var(--type); font-weight: 700; font-size: clamp(48px, 7vw, 92px); line-height: 0.98; letter-spacing: -0.03em; color: var(--black); max-width: 16ch; margin: 0 0 32px;">
+      Limited edition wearable art, in collaboration with an <em style="font-family: 'Georgia','Times New Roman',serif; font-weight: 400; font-style: italic; color: var(--clay);">independent artist</em>.
+    </h1>
+
+    <p style="font-family: var(--type); font-size: 20px; line-height: 1.5; color: var(--ink-soft); max-width: 38ch; margin: 0 0 24px;">
+      Fifty pieces per artwork. Never made again. Signed by the artist who made it.
+    </p>
+    <p style="font-family: 'Georgia', serif; font-style: italic; font-size: 18px; color: var(--clay); max-width: 38ch; margin: 0 0 56px; line-height: 1.4;">
+      This isn't fast fashion. This is <strong style="font-style: normal; font-weight: 500;">forward fashion</strong> — independent, inclusive, made to last.
+    </p>
+
+    <!-- One CTA. Confident. -->
+    <a href="#drop" style="display: inline-block; background: var(--black); color: var(--white); padding: 18px 32px; text-decoration: none; font-family: var(--type); font-size: 14px; font-weight: 500; letter-spacing: 0.06em; border-radius: 2px;">See the drop →</a>
+
+    <div class="hero-spec">
+      <div class="hero-spec-item"><strong>Drop</strong><span>5 artworks · 250 pieces</span></div>
+      <div class="hero-spec-item"><strong>Edition</strong><span>50 of each, numbered</span></div>
+      <div class="hero-spec-item"><strong>Price</strong><span>£140 — £160</span></div>
+      <div class="hero-spec-item"><strong>Made</strong><span>UK cotton, Leicester</span></div>
+      <div class="hero-spec-item"><strong>Launch</strong><span>Late June 2026</span></div>
+    </div>
+  </div>
+
+  <!-- Route 1 scroll marker: muted clay sun on the horizon -->
+  <div style="max-width: 1240px; margin: 96px auto 0; padding: 0 32px;">
+    <div style="display: flex; justify-content: center; align-items: center; padding: 32px 0; border-top: 1px solid rgba(10, 10, 10, 0.12);">
+      <svg viewBox="0 0 80 40" width="64" height="32" aria-hidden="true">
+        <circle cx="40" cy="38" r="22" fill="var(--clay)"/>
+        <line x1="0" y1="38" x2="80" y2="38" stroke="var(--black)" stroke-width="0.5"/>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     THE DROP — 5 t-shirts grid
+
+     ✱✱✱ ARTWORK PLACEHOLDERS ✱✱✱
+     Each .shirt-card needs the real product imagery:
+     - Conor Powell (lead — selected)
+     - Artist 2 (TBC — Chris via Maria?)
+     - Artist 3 (TBC — Michelle via Sarah?)
+     - Artist 4 (TBC — Peter Rap?)
+     - Artist 5 (TBC — Firat/Sarah's recommendation)
+
+     Image spec: 1200×1560 front-facing t-shirt mockup,
+     neutral grey/bone background, artwork centred on chest,
+     consistent lighting and framing across all 5.
+============================================================ -->
+<section class="section" id="drop">
+  <div class="container">
+    <p class="meta hero-eyebrow">01 · The first drop <span class="q-status" data-q="drop_ranking">Question 1 of 8</span></p>
+    <h2 class="h-1" style="max-width:18ch;">Five artworks. Five artists.<br>Two-fifty pieces in total.</h2>
+    <p class="body mt-32">A single drop, all live at once. When a piece is gone, it's gone. Every garment is numbered, signed, and shipped in a hand-folded matte-black box.</p>
+    <div class="action-prompt"><span class="action-prompt-arrow">↓</span><span><span class="action-prompt-prefix">Your turn</span>Tap to rank your top three in order of preference</span></div>
+
+    <div class="todo">
+      <strong>// PROTOTYPE NOTE:</strong> Replace .shirt-placeholder content with real t-shirt mockups once artists are confirmed and artwork is approved. Image spec: 1200×1560, front-facing, neutral background.
+    </div>
+
+    <div class="drop-grid">
+
+      <!-- Shirt 01 -->
+      <div class="shirt-card" data-shirt="01" onclick="rankShirt('01')">
+        <div class="rank-badge"></div>
+        <div class="shirt-placeholder">
+          <div class="shirt-placeholder-mark">(t)</div>
+          <div class="shirt-placeholder-label">Artwork 01<br>Conor Powell</div>
+        </div>
+        <div class="shirt-price">£148</div>
+        <div class="shirt-meta">
+          <div class="shirt-artist">Conor Powell</div>
+          <div class="shirt-edition">Edition of 50 · N°001</div>
+        </div>
+      </div>
+
+      <!-- Shirt 02 -->
+      <div class="shirt-card" data-shirt="02" onclick="rankShirt('02')">
+        <div class="rank-badge"></div>
+        <div class="shirt-placeholder">
+          <div class="shirt-placeholder-mark">(t)</div>
+          <div class="shirt-placeholder-label">Artwork 02<br>Artist TBC</div>
+        </div>
+        <div class="shirt-price">£148</div>
+        <div class="shirt-meta">
+          <div class="shirt-artist">Artist 02</div>
+          <div class="shirt-edition">Edition of 50 · N°002</div>
+        </div>
+      </div>
+
+      <!-- Shirt 03 -->
+      <div class="shirt-card" data-shirt="03" onclick="rankShirt('03')">
+        <div class="rank-badge"></div>
+        <div class="shirt-placeholder">
+          <div class="shirt-placeholder-mark">(t)</div>
+          <div class="shirt-placeholder-label">Artwork 03<br>Artist TBC</div>
+        </div>
+        <div class="shirt-price">£148</div>
+        <div class="shirt-meta">
+          <div class="shirt-artist">Artist 03</div>
+          <div class="shirt-edition">Edition of 50 · N°003</div>
+        </div>
+      </div>
+
+      <!-- Shirt 04 -->
+      <div class="shirt-card" data-shirt="04" onclick="rankShirt('04')">
+        <div class="rank-badge"></div>
+        <div class="shirt-placeholder">
+          <div class="shirt-placeholder-mark">(t)</div>
+          <div class="shirt-placeholder-label">Artwork 04<br>Artist TBC</div>
+        </div>
+        <div class="shirt-price">£148</div>
+        <div class="shirt-meta">
+          <div class="shirt-artist">Artist 04</div>
+          <div class="shirt-edition">Edition of 50 · N°004</div>
+        </div>
+      </div>
+
+      <!-- Shirt 05 -->
+      <div class="shirt-card" data-shirt="05" onclick="rankShirt('05')">
+        <div class="rank-badge"></div>
+        <div class="shirt-placeholder">
+          <div class="shirt-placeholder-mark">(t)</div>
+          <div class="shirt-placeholder-label">Artwork 05<br>Artist TBC</div>
+        </div>
+        <div class="shirt-price">£148</div>
+        <div class="shirt-meta">
+          <div class="shirt-artist">Artist 05</div>
+          <div class="shirt-edition">Edition of 50 · N°005</div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Top 3 tracker -->
+    <div class="rank-tracker" id="drop-tracker">
+      <div class="tracker-label">Your top three<br>so far</div>
+      <div class="tracker-items">
+        <div class="track-item"><span class="track-rank">1</span><span class="track-name">Tap a shirt above</span></div>
+        <div class="track-item"><span class="track-rank">2</span><span class="track-name">—</span></div>
+        <div class="track-item"><span class="track-rank">3</span><span class="track-name">—</span></div>
+      </div>
+    </div>
+
+    <div class="q-skip-row">
+      <span class="q-skip-helper">Rather not rank?</span>
+      <button class="q-skip" onclick="skipQuestion('drop_ranking')">Skip this question →</button>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     FEATURED ARTWORK — Conor Powell (lead artist)
+============================================================ -->
+<section class="section section--bone">
+  <div class="container">
+    <div class="featured">
+
+      <div>
+        <p class="meta featured-meta">02 · Lead artist</p>
+        <h2 class="h-1">Conor Powell. The first signature on the line.</h2>
+        <p class="body-l mt-32">
+          Conor is an illustrator working between London and Leicester. His artwork for N°001 is the first piece in the Early or Late catalogue — a study in pattern, rhythm, and the kind of detail you only see on the second look.
+        </p>
+        <p class="body mt-32">
+          He sets the creative direction on the piece. He signs every one of the fifty. He receives a share of every sale.
+        </p>
+
+        <dl class="featured-spec">
+          <div><dt>Artist</dt><dd>Conor Powell</dd></div>
+          <div><dt>Based in</dt><dd>London / Leicester</dd></div>
+          <div><dt>Edition</dt><dd>50 pieces, numbered</dd></div>
+          <div><dt>Released</dt><dd>Late June 2026</dd></div>
+        </dl>
+      </div>
+
+      <div class="featured-visual">
+        <!-- ✱ PLACEHOLDER: Conor's hero artwork or studio portrait ✱ -->
+        <div class="featured-visual-mark">(t)</div>
+        <div class="featured-visual-label">Artwork placeholder · Conor Powell</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     PROMISE STRIP — what makes this different
+============================================================ -->
+<section class="section section--black section--tight">
+  <div class="container">
+    <p class="meta" style="color: var(--clay); margin-bottom: 32px;">03 · The promise <span class="q-status q-status--dark" data-q="promise_ranking">Question 2 of 8</span></p>
+    <h2 class="h-1" style="color: var(--white); max-width: 18ch;">Eight things that hold for every piece we make.</h2>
+    <div class="action-prompt action-prompt--dark"><span class="action-prompt-arrow">↓</span><span><span class="action-prompt-prefix">Your turn</span>Tap to rank your top three — what matters most to you?</span></div>
+  </div>
+  <div class="container" style="margin-top: 64px;">
+    <div class="promise-strip">
+      <div class="promise-item" data-promise="numbered" onclick="rankPromise('numbered', 'Numbered')" style="position:relative;">
+        <div class="rank-badge"></div>
+        <div class="promise-num">01</div>
+        <div class="promise-title">Numbered</div>
+        <div class="promise-body">Every garment is numbered by hand. 1 of 50, signed on a satin label.</div>
+      </div>
+      <div class="promise-item" data-promise="named" onclick="rankPromise('named', 'Named')" style="position:relative;">
+        <div class="rank-badge"></div>
+        <div class="promise-num">02</div>
+        <div class="promise-title">Named</div>
+        <div class="promise-body">The artist's name lives on the certificate card. The piece is theirs, not ours.</div>
+      </div>
+      <div class="promise-item" data-promise="shared" onclick="rankPromise('shared', 'Shared')" style="position:relative;">
+        <div class="rank-badge"></div>
+        <div class="promise-num">03</div>
+        <div class="promise-title">Shared</div>
+        <div class="promise-body">Every artist receives a share of every sale. Buying is a direct transaction.</div>
+      </div>
+      <div class="promise-item" data-promise="uk_made" onclick="rankPromise('uk_made', 'UK-made')" style="position:relative;">
+        <div class="rank-badge"></div>
+        <div class="promise-num">04</div>
+        <div class="promise-title">UK-made</div>
+        <div class="promise-body">Cotton grown and combed in the UK. Stitched in Leicester. Printed with water-based ink.</div>
+      </div>
+    </div>
+    <div class="promise-strip" style="border-top: none;">
+      <div class="promise-item" data-promise="never_repeated" onclick="rankPromise('never_repeated', 'Never repeated')" style="position:relative;">
+        <div class="rank-badge"></div>
+        <div class="promise-num">05</div>
+        <div class="promise-title">Never repeated</div>
+        <div class="promise-body">Fifty pieces. Never made again. The drop closes when it closes.</div>
+      </div>
+      <div class="promise-item" data-promise="repaired_for_life" onclick="rankPromise('repaired_for_life', 'Repaired for life')" style="position:relative;">
+        <div class="rank-badge"></div>
+        <div class="promise-num">06</div>
+        <div class="promise-title">Repaired for life</div>
+        <div class="promise-body">Bring it back. We repair it, re-stamp it, and record the repair on the line.</div>
+      </div>
+      <div class="promise-item" data-promise="heavyweight_cotton" onclick="rankPromise('heavyweight_cotton', 'Heavyweight cotton')" style="position:relative;">
+        <div class="rank-badge"></div>
+        <div class="promise-num">07</div>
+        <div class="promise-title">Heavyweight cotton</div>
+        <div class="promise-body">240gsm organic combed cotton. Designed to outlast the algorithm.</div>
+      </div>
+      <div class="promise-item" data-promise="a6_certificate" onclick="rankPromise('a6_certificate', 'A6 certificate')" style="position:relative;">
+        <div class="rank-badge"></div>
+        <div class="promise-num">08</div>
+        <div class="promise-title">A6 certificate</div>
+        <div class="promise-body">Every piece arrives with a numbered certificate card on uncoated stock.</div>
+      </div>
+    </div>
+
+    <!-- Top 3 tracker (dark variant) -->
+    <div class="rank-tracker rank-tracker--dark" id="promise-tracker">
+      <div class="tracker-label">Your top three<br>so far</div>
+      <div class="tracker-items">
+        <div class="track-item"><span class="track-rank">1</span><span class="track-name">Tap a promise above</span></div>
+        <div class="track-item"><span class="track-rank">2</span><span class="track-name">—</span></div>
+        <div class="track-item"><span class="track-rank">3</span><span class="track-name">—</span></div>
+      </div>
+    </div>
+
+    <div class="q-skip-row q-skip-row--dark">
+      <span class="q-skip-helper">Rather not rank?</span>
+      <button class="q-skip q-skip--dark" onclick="skipQuestion('promise_ranking')">Skip this question →</button>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     RETAILER SECTION — "Where would feel like home?"
+     Pick TWO retailers. Visual recognition via brand-styled type cards.
+============================================================ -->
+<section class="section" id="retailers" style="background: var(--stone);">
+  <div class="container">
+    <p class="meta hero-eyebrow">04 · Where you'd find us <span class="q-status" data-q="retailers">Question 3 of 9</span></p>
+    <h2 class="h-1" style="max-width: 22ch;">If this brand existed, where would feel like home?</h2>
+    <p class="body mt-32">A handful of considered retailers. Pick the two you'd most likely buy from — in store or online.</p>
+    <div class="action-prompt"><span class="action-prompt-arrow">↓</span><span><span class="action-prompt-prefix">Your turn</span>Tap up to TWO retailers below</span></div>
+
+    <div class="retailer-grid">
+
+      <!-- Direct from brand -->
+      <button class="retailer-card" data-retailer="direct" onclick="toggleRetailer(this, 'direct')">
+        <div class="retailer-logo">
+          <p class="r-direct"><strong>Direct from the brand</strong><br>early-or-late.com</p>
+        </div>
+      </button>
+
+      <!-- Goodhood -->
+      <button class="retailer-card" data-retailer="goodhood" onclick="toggleRetailer(this, 'goodhood')">
+        <div class="retailer-logo">
+          <span class="r-goodhood">GOODHOOD</span>
+          <span class="r-goodhood-sub">SHOREDITCH · LONDON</span>
+        </div>
+      </button>
+
+      <!-- Wolf & Badger -->
+      <button class="retailer-card" data-retailer="wolf_badger" onclick="toggleRetailer(this, 'wolf_badger')">
+        <div class="retailer-logo">
+          <span class="r-wolf-badger">WOLF &amp;<br>BADGER</span>
+        </div>
+      </button>
+
+      <!-- Liberty London -->
+      <button class="retailer-card" data-retailer="liberty" onclick="toggleRetailer(this, 'liberty')">
+        <div class="retailer-logo">
+          <span class="r-liberty">Liberty</span>
+          <span class="r-liberty-sub">LONDON</span>
+        </div>
+      </button>
+
+      <!-- Selfridges -->
+      <button class="retailer-card" data-retailer="selfridges" onclick="toggleRetailer(this, 'selfridges')">
+        <div class="retailer-logo">
+          <span class="r-selfridges">SELFRIDGES&amp;Co</span>
+        </div>
+      </button>
+
+      <!-- MR PORTER -->
+      <button class="retailer-card" data-retailer="mr_porter" onclick="toggleRetailer(this, 'mr_porter')">
+        <div class="retailer-logo">
+          <span class="r-mr-porter">MR<span class="dot"> · </span>PORTER</span>
+        </div>
+      </button>
+
+      <!-- SSENSE -->
+      <button class="retailer-card" data-retailer="ssense" onclick="toggleRetailer(this, 'ssense')">
+        <div class="retailer-logo">
+          <span class="r-ssense">SSENSE</span>
+        </div>
+      </button>
+
+      <!-- END. -->
+      <button class="retailer-card" data-retailer="end" onclick="toggleRetailer(this, 'end')">
+        <div class="retailer-logo">
+          <span class="r-end">END<span class="r-end-dot">.</span></span>
+        </div>
+      </button>
+
+      <!-- TATE shop -->
+      <button class="retailer-card" data-retailer="tate" onclick="toggleRetailer(this, 'tate')">
+        <div class="retailer-logo">
+          <span class="r-tate">TATE</span>
+          <span style="font-size: 9px; letter-spacing: 0.18em; margin-top: 6px; color: rgba(0,0,0,0.6);">SHOP</span>
+        </div>
+      </button>
+
+      <!-- Royal Academy -->
+      <button class="retailer-card" data-retailer="ra" onclick="toggleRetailer(this, 'ra')">
+        <div class="retailer-logo">
+          <span class="r-ra-mark">RA</span>
+          <span class="r-ra">ROYAL<br>ACADEMY</span>
+        </div>
+      </button>
+
+    </div>
+
+    <div class="retailer-other-wrap">
+      <label>Somewhere else?</label>
+      <input type="text" id="retailerOther" placeholder="Tell us where..." onchange="captureRetailerOther(this.value)">
+    </div>
+
+    <div class="q-skip-row">
+      <span class="q-skip-helper">Rather not say?</span>
+      <button class="q-skip" onclick="skipQuestion('retailers')">Skip this question →</button>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     MANIFESTO — the brand's voice, made tappable.
+     Six stanzas. Tap any that resonate. Optional one-word feeling.
+     Plus passive: scroll, dwell, mouse-path already tracking this section.
+============================================================ -->
+<section class="section" id="manifesto" style="background: var(--bone);">
+  <div class="container">
+    <p class="meta hero-eyebrow">05 · Our manifesto <span class="q-status" data-q="manifesto_stanzas">Question 4 of 9</span></p>
+    <h2 class="h-1" style="max-width: 14ch;">What we believe.</h2>
+    <div class="action-prompt"><span class="action-prompt-arrow">↓</span><span><span class="action-prompt-prefix">Your turn</span>Tap any lines below that resonate with you</span></div>
+
+    <div class="manifesto-body">
+
+      <div class="stanza" data-stanza="1" onclick="toggleStanza(this, 1)">
+        Not everything needs to be fast.<br>
+        Not everything needs to be for everyone.<br>
+        We believe in making fewer things — <em>with more meaning.</em>
+      </div>
+
+      <div class="stanza" data-stanza="2" onclick="toggleStanza(this, 2)">
+        Early or Late exists as a different kind of canvas.<br>
+        One that moves beyond walls, beyond galleries,<br>
+        into <em>something you can live in.</em>
+      </div>
+
+      <div class="stanza" data-stanza="3" onclick="toggleStanza(this, 3)">
+        Every piece begins with an artist.<br>
+        A perspective. A way of seeing the world<br>
+        that isn't always obvious — <em>but is always intentional.</em>
+      </div>
+
+      <div class="stanza" data-stanza="4" onclick="toggleStanza(this, 4)">
+        We don't mass produce. We don't repeat.<br>
+        Each work is released in limited numbers, numbered and final.<br>
+        Because <em>value comes from scarcity. And from care.</em>
+      </div>
+
+      <div class="stanza" data-stanza="5" onclick="toggleStanza(this, 5)">
+        Some of the people we collaborate with<br>
+        see the world differently.<br>
+        <em>We think that's exactly the point.</em>
+      </div>
+
+      <div class="stanza" data-stanza="6" onclick="toggleStanza(this, 6)">
+        This isn't just clothing.<br>
+        It's something you wear, keep, and come back to.<br>
+        <span class="stanza-signoff">Early or LA<em style="color:var(--clay);">(t)</em>E.</span>
+      </div>
+
+    </div>
+
+    <div class="q-skip-row" style="max-width:780px;margin-left:auto;margin-right:auto;">
+      <span class="q-skip-helper">Nothing resonated?</span>
+      <button class="q-skip" onclick="skipQuestion('manifesto_stanzas')">Skip this question →</button>
+    </div>
+
+    <div class="manifesto-reaction">
+      <p class="meta">In a word — how did that feel? <span class="q-status" data-q="manifesto_feeling">Question 4 of 8</span></p>
+      <div class="word-chips">
+        <button class="word-chip" onclick="pickWord(this, 'curious')">Curious</button>
+        <button class="word-chip" onclick="pickWord(this, 'moved')">Moved</button>
+        <button class="word-chip" onclick="pickWord(this, 'intrigued')">Intrigued</button>
+        <button class="word-chip" onclick="pickWord(this, 'considered')">Considered</button>
+        <button class="word-chip" onclick="pickWord(this, 'unsure')">Unsure</button>
+        <button class="word-chip" onclick="pickWord(this, 'didnt_connect')">Didn't connect</button>
+      </div>
+      <input type="text" class="manifesto-other" placeholder="Or in your own words..." onchange="captureOwnWord(this.value)" oninput="captureOwnWord(this.value)">
+      <div class="q-skip-row">
+        <span class="q-skip-helper">Prefer not to say?</span>
+        <button class="q-skip" onclick="skipQuestion('manifesto_feeling')">Skip this question →</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     SURVEY MOMENT 01 — Proposition test (4-5 variants)
+     The visitor reads this as "tell us what resonates" — not a survey.
+============================================================ -->
+<section class="survey-block" id="survey-1">
+  <div class="container">
+    <p class="meta survey-eyebrow">A question, before you go <span class="q-status" data-q="proposition">Question 5 of 8</span></p>
+    <h2 class="h-1 survey-question">Which line speaks loudest to you?</h2>
+    <p class="survey-helper">
+      We're shaping how this brand introduces itself. Five lines. Pick the one that feels most true. There's no wrong answer — we're listening.
+    </p>
+    <div class="action-prompt"><span class="action-prompt-arrow">↓</span><span><span class="action-prompt-prefix">Your turn</span>Tap the one line that speaks loudest to you</span></div>
+
+    <div class="props-grid">
+      <button class="prop-option" data-variant="A" onclick="selectProp(this, 'A')">
+        <div class="prop-label">Variant A</div>
+        <div class="prop-text">Limited edition wearable art. Each piece is created in collaboration with an independent artist.</div>
+      </button>
+      <button class="prop-option" data-variant="B" onclick="selectProp(this, 'B')">
+        <div class="prop-label">Variant B</div>
+        <div class="prop-text">Wearable art made to be kept. Designed by neurodivergent artists. Numbered, named, shared.</div>
+      </button>
+      <button class="prop-option" data-variant="C" onclick="selectProp(this, 'C')">
+        <div class="prop-label">Variant C</div>
+        <div class="prop-text">Fifty of each. Never made again. Signed by the artist who made it.</div>
+      </button>
+      <button class="prop-option" data-variant="D" onclick="selectProp(this, 'D')">
+        <div class="prop-label">Variant D</div>
+        <div class="prop-text">Art you wear. Made in the UK, with the artist named on the label.</div>
+      </button>
+      <button class="prop-option" data-variant="E" onclick="selectProp(this, 'E')">
+        <div class="prop-label">Variant E</div>
+        <div class="prop-text">Five artists. Five artworks. Two-fifty pieces. One drop a year.</div>
+      </button>
+    </div>
+
+    <div class="q-skip-row">
+      <span class="q-skip-helper">None of these feel right?</span>
+      <button class="q-skip" onclick="skipQuestion('proposition')">Skip this question →</button>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     SURVEY MOMENT 1B — The ad-mockup double test
+     Same five propositions, this time inside creative ad mockups.
+     Reaction per ad: scroll past / stop and look / tap to find out more.
+     This is the "revealed preference in stimulus" test — pairs with
+     the stated-preference test in Survey Moment 1.
+============================================================ -->
+<style>
+  .ad-feed { max-width: 540px; margin: 64px auto 0; }
+  .ad-card { margin-bottom: 56px; }
+  .ad-frame {
+    aspect-ratio: 1/1; position: relative; overflow: hidden; border-radius: 2px;
+    box-shadow: 0 2px 24px rgba(10, 10, 10, 0.08);
+  }
+  .ad-inner {
+    position: absolute; inset: 0; padding: 40px;
+    display: flex; flex-direction: column; justify-content: space-between;
+  }
+  .ad-frame--bone { background: var(--bone); color: var(--black); }
+  .ad-frame--black { background: var(--black); color: var(--white); }
+  .ad-frame--clay { background: var(--clay); color: var(--white); }
+  .ad-frame--white { background: var(--white); color: var(--black); border: 1px solid rgba(10,10,10,0.08); }
+  .ad-frame--stone { background: var(--stone); color: var(--black); }
+  .ad-row { display: flex; justify-content: space-between; align-items: center; }
+  .ad-brand { font-size: 13px; font-weight: 500; letter-spacing: -0.005em; }
+  .ad-tag { font-size: 10px; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase; opacity: 0.7; }
+  .ad-headline {
+    font-weight: 500; line-height: 1.0; letter-spacing: -0.025em;
+    font-size: 38px;
+  }
+  .ad-headline em { font-style: normal; color: var(--clay); }
+  .ad-frame--clay .ad-headline em,
+  .ad-frame--black .ad-headline em { color: var(--bone); }
+  .ad-headline--display { font-size: 56px; line-height: 0.95; letter-spacing: -0.03em; }
+  .ad-headline--italic { font-style: italic; font-weight: 400; }
+  .ad-sub { font-size: 15px; margin-top: 14px; max-width: 32ch; line-height: 1.4; opacity: 0.85; }
+  .ad-cta {
+    font-size: 11px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase;
+  }
+  .ad-cta::after { content: " →"; }
+  .ad-shirt-inline {
+    position: absolute; right: 40px; bottom: 100px;
+    width: 130px; height: 160px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(10, 10, 10, 0.06);
+    display: flex; align-items: center; justify-content: center;
+    border-radius: 2px;
+  }
+  .ad-frame--black .ad-shirt-inline,
+  .ad-frame--clay .ad-shirt-inline { background: rgba(255, 255, 255, 0.06); border-color: rgba(245, 245, 243, 0.1); }
+  .ad-shirt-inline-mark { font-size: 48px; opacity: 0.35; }
+  .ad-spec {
+    font-family: 'SF Mono', Menlo, monospace;
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    opacity: 0.55;
+    line-height: 1.6;
+    text-transform: uppercase;
+  }
+
+  /* Reactions */
+  .ad-reactions { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 16px; }
+  .ad-reaction {
+    background: var(--white);
+    border: 1px solid rgba(10, 10, 10, 0.12);
+    padding: 16px 10px;
+    font-family: var(--type);
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--black);
+    cursor: pointer;
+    border-radius: 2px;
+    text-align: center;
+    transition: all 0.2s ease;
+    line-height: 1.3;
+  }
+  .ad-reaction:hover { border-color: var(--clay); }
+  .ad-reaction.selected { background: var(--clay); color: var(--white); border-color: var(--clay); }
+  .ad-reaction-icon { display: block; font-size: 16px; margin-bottom: 6px; opacity: 0.85; }
+  .ad-label-row {
+    font-size: 11px;
+    color: var(--ink-soft);
+    margin-bottom: 12px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+</style>
+
+<section class="survey-block" id="survey-1b" style="background: var(--white);">
+  <div class="container">
+    <p class="meta survey-eyebrow">Another way of asking <span class="q-status" data-q="ad_reactions">Question 6 of 8</span></p>
+    <h2 class="h-1 survey-question" style="max-width: 24ch;">Now imagine you're scrolling Instagram. How would you react to each of these?</h2>
+    <p class="survey-helper">
+      The same five lines from before — this time, dressed as actual ads. Tap once per ad. No need to think too hard — just go with your gut.
+    </p>
+    <div class="action-prompt"><span class="action-prompt-arrow">↓</span><span><span class="action-prompt-prefix">Your turn</span>For each ad below, tap how you'd react</span></div>
+
+    <div class="ad-feed">
+
+      <!-- ===== AD A — Editorial / Independent Artist (Variant A) ===== -->
+      <div class="ad-card">
+        <div class="ad-frame ad-frame--bone">
+          <div class="ad-inner">
+            <div class="ad-row">
+              <div class="ad-brand"><svg viewBox="0 0 720 130" width="100" height="auto" style="display:block;" aria-label="early or LA(t)E"><g font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-weight="800" font-size="92" font-style="italic"><text x="0" y="100" fill="currentColor">early</text></g><g font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-weight="500" font-size="64"><text x="240" y="100" fill="currentColor">or</text></g><g font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-weight="800" font-size="92" letter-spacing="-2"><text x="338" y="100" fill="none" stroke="currentColor" stroke-width="3">LA</text><text x="465" y="100" fill="currentColor" font-style="italic" font-weight="700">(</text><text x="495" y="100" fill="currentColor" font-style="italic" font-weight="800" font-size="76">t</text><text x="525" y="100" fill="currentColor" font-style="italic" font-weight="700">)</text><text x="565" y="100" fill="none" stroke="currentColor" stroke-width="3">E</text></g></svg></div>
+              <div class="ad-tag">N°001 · Late June</div>
+            </div>
+            <div>
+              <h3 class="ad-headline">Limited edition <em>wearable art</em>. In collaboration with an independent artist.</h3>
+              <p class="ad-sub">Fifty pieces. Never made again.</p>
+            </div>
+            <div class="ad-shirt-inline" style="right:32px;bottom:140px;width:110px;height:140px;">
+              <svg viewBox="0 0 200 240" width="100%" height="100%" preserveAspectRatio="xMidYMid meet" style="opacity:0.85;"><path d="M75,30 L60,25 L35,30 L25,75 L55,75 L55,220 L145,220 L145,75 L175,75 L165,30 L140,25 L125,30 Q100,46 75,30 Z" fill="currentColor" fill-opacity="0.10" stroke="currentColor" stroke-width="1.6" stroke-opacity="0.55"/><path d="M75,30 Q100,46 125,30" fill="none" stroke="currentColor" stroke-width="1" stroke-opacity="0.45"/><rect x="65" y="100" width="70" height="70" fill="none" stroke="currentColor" stroke-width="0.8" stroke-dasharray="3,3" stroke-opacity="0.55"/><text x="100" y="140" text-anchor="middle" font-family="Inter, sans-serif" font-size="8" fill="currentColor" fill-opacity="0.6" letter-spacing="0.12em">ARTWORK</text></svg>
+            </div>
+            <div class="ad-row">
+              <div class="ad-cta">See the drop</div>
+              <div class="ad-spec">Made UK</div>
+            </div>
+          </div>
+        </div>
+        <div class="ad-label-row">Ad A · Variant A</div>
+        <div class="ad-reactions">
+          <button class="ad-reaction" onclick="reactToAd(this, 'A', 'scroll')"><span class="ad-reaction-icon">↓</span>Would scroll past</button>
+          <button class="ad-reaction" onclick="reactToAd(this, 'A', 'stop')"><span class="ad-reaction-icon">◯</span>Would stop and look</button>
+          <button class="ad-reaction" onclick="reactToAd(this, 'A', 'tap')"><span class="ad-reaction-icon">●</span>Would tap to find out more</button>
+        </div>
+      </div>
+
+      <!-- ===== AD B — Considered / Neurodivergent artists (Variant B) ===== -->
+      <div class="ad-card">
+        <div class="ad-frame ad-frame--black">
+          <div class="ad-inner">
+            <div class="ad-row">
+              <div class="ad-brand"><svg viewBox="0 0 720 130" width="100" height="auto" style="display:block;" aria-label="early or LA(t)E"><g font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-weight="800" font-size="92" font-style="italic"><text x="0" y="100" fill="currentColor">early</text></g><g font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-weight="500" font-size="64"><text x="240" y="100" fill="currentColor">or</text></g><g font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-weight="800" font-size="92" letter-spacing="-2"><text x="338" y="100" fill="none" stroke="currentColor" stroke-width="3">LA</text><text x="465" y="100" fill="currentColor" font-style="italic" font-weight="700">(</text><text x="495" y="100" fill="currentColor" font-style="italic" font-weight="800" font-size="76">t</text><text x="525" y="100" fill="currentColor" font-style="italic" font-weight="700">)</text><text x="565" y="100" fill="none" stroke="currentColor" stroke-width="3">E</text></g></svg></div>
+              <div class="ad-tag" style="color: var(--clay);">Drop 01</div>
+            </div>
+            <div>
+              <h3 class="ad-headline ad-headline--italic" style="font-size:42px;">Wearable art made <em>to be kept</em>.</h3>
+              <p class="ad-sub">Designed by neurodivergent artists. Numbered, named, shared.</p>
+            </div>
+            <div class="ad-shirt-inline" style="right:32px;bottom:140px;width:110px;height:140px;">
+              <svg viewBox="0 0 200 240" width="100%" height="100%" preserveAspectRatio="xMidYMid meet" style="color: var(--clay); opacity:0.95;"><path d="M75,30 L60,25 L35,30 L25,75 L55,75 L55,220 L145,220 L145,75 L175,75 L165,30 L140,25 L125,30 Q100,46 75,30 Z" fill="currentColor" fill-opacity="0.12" stroke="currentColor" stroke-width="1.6" stroke-opacity="0.7"/><path d="M75,30 Q100,46 125,30" fill="none" stroke="currentColor" stroke-width="1" stroke-opacity="0.5"/><rect x="65" y="100" width="70" height="70" fill="none" stroke="currentColor" stroke-width="0.8" stroke-dasharray="3,3" stroke-opacity="0.65"/><text x="100" y="140" text-anchor="middle" font-family="Inter, sans-serif" font-size="8" fill="currentColor" fill-opacity="0.75" letter-spacing="0.12em">ARTWORK</text></svg>
+            </div>
+            <div class="ad-row">
+              <div class="ad-cta" style="color: var(--clay);">Read the story</div>
+              <div class="ad-spec">N°001 · Late June 2026</div>
+            </div>
+          </div>
+        </div>
+        <div class="ad-label-row">Ad B · Variant B</div>
+        <div class="ad-reactions">
+          <button class="ad-reaction" onclick="reactToAd(this, 'B', 'scroll')"><span class="ad-reaction-icon">↓</span>Would scroll past</button>
+          <button class="ad-reaction" onclick="reactToAd(this, 'B', 'stop')"><span class="ad-reaction-icon">◯</span>Would stop and look</button>
+          <button class="ad-reaction" onclick="reactToAd(this, 'B', 'tap')"><span class="ad-reaction-icon">●</span>Would tap to find out more</button>
+        </div>
+      </div>
+
+      <!-- ===== AD C — Scarcity / Bold (Variant C) ===== -->
+      <div class="ad-card">
+        <div class="ad-frame ad-frame--clay">
+          <div class="ad-inner">
+            <div class="ad-row">
+              <div class="ad-brand" style="color: var(--white);"><svg viewBox="0 0 720 130" width="100" height="auto" style="display:block;" aria-label="early or LA(t)E"><g font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-weight="800" font-size="92" font-style="italic"><text x="0" y="100" fill="currentColor">early</text></g><g font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-weight="500" font-size="64"><text x="240" y="100" fill="currentColor">or</text></g><g font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-weight="800" font-size="92" letter-spacing="-2"><text x="338" y="100" fill="none" stroke="currentColor" stroke-width="3">LA</text><text x="465" y="100" fill="currentColor" font-style="italic" font-weight="700">(</text><text x="495" y="100" fill="currentColor" font-style="italic" font-weight="800" font-size="76">t</text><text x="525" y="100" fill="currentColor" font-style="italic" font-weight="700">)</text><text x="565" y="100" fill="none" stroke="currentColor" stroke-width="3">E</text></g></svg></div>
+              <div class="ad-tag" style="color: var(--white);">Edition 50</div>
+            </div>
+            <div>
+              <h3 class="ad-headline ad-headline--display" style="color: var(--white);">Fifty of each. Never made again.</h3>
+              <p class="ad-sub" style="color: rgba(245,245,243, 0.85);">Signed by the artist who made it.</p>
+            </div>
+            <div class="ad-shirt-inline" style="right:32px;bottom:140px;width:110px;height:140px;">
+              <svg viewBox="0 0 200 240" width="100%" height="100%" preserveAspectRatio="xMidYMid meet" style="color: var(--bone); opacity:0.95;"><path d="M75,30 L60,25 L35,30 L25,75 L55,75 L55,220 L145,220 L145,75 L175,75 L165,30 L140,25 L125,30 Q100,46 75,30 Z" fill="currentColor" fill-opacity="0.12" stroke="currentColor" stroke-width="1.6" stroke-opacity="0.7"/><path d="M75,30 Q100,46 125,30" fill="none" stroke="currentColor" stroke-width="1" stroke-opacity="0.5"/><rect x="65" y="100" width="70" height="70" fill="none" stroke="currentColor" stroke-width="0.8" stroke-dasharray="3,3" stroke-opacity="0.65"/><text x="100" y="140" text-anchor="middle" font-family="Inter, sans-serif" font-size="8" fill="currentColor" fill-opacity="0.75" letter-spacing="0.12em">ARTWORK</text></svg>
+            </div>
+            <div class="ad-row">
+              <div class="ad-cta" style="color: var(--white);">Claim N°001</div>
+              <div class="ad-spec" style="color: rgba(245,245,243, 0.6);">UK · Late June 2026</div>
+            </div>
+          </div>
+        </div>
+        <div class="ad-label-row">Ad C · Variant C</div>
+        <div class="ad-reactions">
+          <button class="ad-reaction" onclick="reactToAd(this, 'C', 'scroll')"><span class="ad-reaction-icon">↓</span>Would scroll past</button>
+          <button class="ad-reaction" onclick="reactToAd(this, 'C', 'stop')"><span class="ad-reaction-icon">◯</span>Would stop and look</button>
+          <button class="ad-reaction" onclick="reactToAd(this, 'C', 'tap')"><span class="ad-reaction-icon">●</span>Would tap to find out more</button>
+        </div>
+      </div>
+
+      <!-- ===== AD D — Plain-language minimal (Variant D) ===== -->
+      <div class="ad-card">
+        <div class="ad-frame ad-frame--white">
+          <div class="ad-inner">
+            <div class="ad-row">
+              <div class="ad-brand"><svg viewBox="0 0 720 130" width="100" height="auto" style="display:block;" aria-label="early or LA(t)E"><g font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-weight="800" font-size="92" font-style="italic"><text x="0" y="100" fill="currentColor">early</text></g><g font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-weight="500" font-size="64"><text x="240" y="100" fill="currentColor">or</text></g><g font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-weight="800" font-size="92" letter-spacing="-2"><text x="338" y="100" fill="none" stroke="currentColor" stroke-width="3">LA</text><text x="465" y="100" fill="currentColor" font-style="italic" font-weight="700">(</text><text x="495" y="100" fill="currentColor" font-style="italic" font-weight="800" font-size="76">t</text><text x="525" y="100" fill="currentColor" font-style="italic" font-weight="700">)</text><text x="565" y="100" fill="none" stroke="currentColor" stroke-width="3">E</text></g></svg></div>
+              <div class="ad-tag">Drop N°001</div>
+            </div>
+            <div>
+              <h3 class="ad-headline ad-headline--display" style="max-width: 9ch;">Art you wear.</h3>
+              <p class="ad-sub">Made in the UK, with the artist named on the label.</p>
+            </div>
+            <div class="ad-shirt-inline" style="right:32px;bottom:140px;width:110px;height:140px;background:var(--bone);border-color:rgba(10,10,10,0.08);">
+              <svg viewBox="0 0 200 240" width="100%" height="100%" preserveAspectRatio="xMidYMid meet" style="color: var(--clay); opacity:0.95;"><path d="M75,30 L60,25 L35,30 L25,75 L55,75 L55,220 L145,220 L145,75 L175,75 L165,30 L140,25 L125,30 Q100,46 75,30 Z" fill="currentColor" fill-opacity="0.12" stroke="currentColor" stroke-width="1.6" stroke-opacity="0.7"/><path d="M75,30 Q100,46 125,30" fill="none" stroke="currentColor" stroke-width="1" stroke-opacity="0.5"/><rect x="65" y="100" width="70" height="70" fill="none" stroke="currentColor" stroke-width="0.8" stroke-dasharray="3,3" stroke-opacity="0.65"/><text x="100" y="140" text-anchor="middle" font-family="Inter, sans-serif" font-size="8" fill="currentColor" fill-opacity="0.75" letter-spacing="0.12em">ARTWORK</text></svg>
+            </div>
+            <div class="ad-row">
+              <div class="ad-cta">Shop the drop</div>
+              <div class="ad-spec">Conor Powell · N°001 / 50</div>
+            </div>
+          </div>
+        </div>
+        <div class="ad-label-row">Ad D · Variant D</div>
+        <div class="ad-reactions">
+          <button class="ad-reaction" onclick="reactToAd(this, 'D', 'scroll')"><span class="ad-reaction-icon">↓</span>Would scroll past</button>
+          <button class="ad-reaction" onclick="reactToAd(this, 'D', 'stop')"><span class="ad-reaction-icon">◯</span>Would stop and look</button>
+          <button class="ad-reaction" onclick="reactToAd(this, 'D', 'tap')"><span class="ad-reaction-icon">●</span>Would tap to find out more</button>
+        </div>
+      </div>
+
+      <!-- ===== AD E — Structure / Spec-sheet (Variant E) ===== -->
+      <div class="ad-card">
+        <div class="ad-frame ad-frame--stone">
+          <div class="ad-inner">
+            <div class="ad-row">
+              <div class="ad-brand"><svg viewBox="0 0 720 130" width="100" height="auto" style="display:block;" aria-label="early or LA(t)E"><g font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-weight="800" font-size="92" font-style="italic"><text x="0" y="100" fill="currentColor">early</text></g><g font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-weight="500" font-size="64"><text x="240" y="100" fill="currentColor">or</text></g><g font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-weight="800" font-size="92" letter-spacing="-2"><text x="338" y="100" fill="none" stroke="currentColor" stroke-width="3">LA</text><text x="465" y="100" fill="currentColor" font-style="italic" font-weight="700">(</text><text x="495" y="100" fill="currentColor" font-style="italic" font-weight="800" font-size="76">t</text><text x="525" y="100" fill="currentColor" font-style="italic" font-weight="700">)</text><text x="565" y="100" fill="none" stroke="currentColor" stroke-width="3">E</text></g></svg></div>
+              <div class="ad-tag">The first drop</div>
+            </div>
+            <div>
+              <h3 class="ad-headline" style="font-size:38px;">Five artists.<br>Five artworks.<br><em>Two-fifty pieces.</em><br>One drop a year.</h3>
+            </div>
+            <div class="ad-shirt-inline" style="right:32px;bottom:130px;width:110px;height:140px;background:rgba(10,10,10,0.04);border-color:rgba(10,10,10,0.08);">
+              <svg viewBox="0 0 200 240" width="100%" height="100%" preserveAspectRatio="xMidYMid meet" style="opacity:0.85;"><path d="M75,30 L60,25 L35,30 L25,75 L55,75 L55,220 L145,220 L145,75 L175,75 L165,30 L140,25 L125,30 Q100,46 75,30 Z" fill="currentColor" fill-opacity="0.10" stroke="currentColor" stroke-width="1.6" stroke-opacity="0.55"/><path d="M75,30 Q100,46 125,30" fill="none" stroke="currentColor" stroke-width="1" stroke-opacity="0.45"/><rect x="65" y="100" width="70" height="70" fill="none" stroke="currentColor" stroke-width="0.8" stroke-dasharray="3,3" stroke-opacity="0.55"/><text x="100" y="140" text-anchor="middle" font-family="Inter, sans-serif" font-size="8" fill="currentColor" fill-opacity="0.6" letter-spacing="0.12em">ARTWORK</text></svg>
+            </div>
+            <div class="ad-row">
+              <div class="ad-cta">Get early access</div>
+              <div class="ad-spec">// 240gsm · UK cotton · Leicester · Water-based ink</div>
+            </div>
+          </div>
+        </div>
+        <div class="ad-label-row">Ad E · Variant E</div>
+        <div class="ad-reactions">
+          <button class="ad-reaction" onclick="reactToAd(this, 'E', 'scroll')"><span class="ad-reaction-icon">↓</span>Would scroll past</button>
+          <button class="ad-reaction" onclick="reactToAd(this, 'E', 'stop')"><span class="ad-reaction-icon">◯</span>Would stop and look</button>
+          <button class="ad-reaction" onclick="reactToAd(this, 'E', 'tap')"><span class="ad-reaction-icon">●</span>Would tap to find out more</button>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="q-skip-row" style="max-width:540px;margin-left:auto;margin-right:auto;">
+      <span class="q-skip-helper">Rather not react?</span>
+      <button class="q-skip" onclick="skipQuestion('ad_reactions')">Skip this question →</button>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     SURVEY MOMENT 02 — Which artwork(s) would you wear?
+============================================================ -->
+<section class="section">
+  <div class="container">
+    <p class="meta hero-eyebrow">A second question <span class="q-status" data-q="shirts_selected">Question 7 of 8</span></p>
+    <h2 class="h-1" style="max-width: 18ch;">Which artworks would you actually wear?</h2>
+    <p class="body mt-32">Tap any that you'd consider. Pick none, pick all five.</p>
+    <div class="action-prompt"><span class="action-prompt-arrow">↓</span><span><span class="action-prompt-prefix">Your turn</span>Tap any shirts you'd actually wear</span></div>
+
+    <div class="select-grid">
+      <button class="select-shirt" data-shirt="01" onclick="toggleShirt(this, '01')">
+        <div class="select-shirt-visual"><div class="select-shirt-mark">(t)</div></div>
+        <div class="select-shirt-name">Conor Powell</div>
+      </button>
+      <button class="select-shirt" data-shirt="02" onclick="toggleShirt(this, '02')">
+        <div class="select-shirt-visual"><div class="select-shirt-mark">(t)</div></div>
+        <div class="select-shirt-name">Artist 02</div>
+      </button>
+      <button class="select-shirt" data-shirt="03" onclick="toggleShirt(this, '03')">
+        <div class="select-shirt-visual"><div class="select-shirt-mark">(t)</div></div>
+        <div class="select-shirt-name">Artist 03</div>
+      </button>
+      <button class="select-shirt" data-shirt="04" onclick="toggleShirt(this, '04')">
+        <div class="select-shirt-visual"><div class="select-shirt-mark">(t)</div></div>
+        <div class="select-shirt-name">Artist 04</div>
+      </button>
+      <button class="select-shirt" data-shirt="05" onclick="toggleShirt(this, '05')">
+        <div class="select-shirt-visual"><div class="select-shirt-mark">(t)</div></div>
+        <div class="select-shirt-name">Artist 05</div>
+      </button>
+    </div>
+
+    <div class="q-skip-row">
+      <span class="q-skip-helper">None of them?</span>
+      <button class="q-skip" onclick="skipQuestion('shirts_selected')">Skip this question →</button>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     SURVEY MOMENT 03 — Willingness to pay
+============================================================ -->
+<section class="section section--stone">
+  <div class="container">
+    <p class="meta hero-eyebrow">One last question <span class="q-status" data-q="price">Question 8 of 8</span></p>
+    <h2 class="h-1" style="max-width: 22ch;">What would you expect to pay for a piece like this?</h2>
+    <p class="body mt-32">A numbered edition, signed by the artist, made in heavyweight UK cotton. Honest answers only — this shapes how we price the drop.</p>
+    <div class="action-prompt"><span class="action-prompt-arrow">↓</span><span><span class="action-prompt-prefix">Your turn</span>Pick the price band that feels right to you</span></div>
+
+    <div class="price-slider-wrap">
+      <div class="price-range">
+        <button class="price-button" onclick="selectPrice(this, '<80')">Under £80</button>
+        <button class="price-button" onclick="selectPrice(this, '80-120')">£80–£120</button>
+        <button class="price-button" onclick="selectPrice(this, '120-160')">£120–£160</button>
+        <button class="price-button" onclick="selectPrice(this, '160-200')">£160–£200</button>
+        <button class="price-button" onclick="selectPrice(this, '200+')">£200+</button>
+      </div>
+    </div>
+
+    <div class="q-skip-row">
+      <span class="q-skip-helper">Rather not say?</span>
+      <button class="q-skip" onclick="skipQuestion('price')">Skip this question →</button>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     BUY INTENT — 5-star rating + open-text "anything to add"
+     Q10 of 10. The headline purchase-intent signal for the scorecard.
+============================================================ -->
+<section class="section" id="buy-intent" style="background: var(--bone);">
+  <div class="container">
+    <p class="meta hero-eyebrow">10 · Final question <span class="q-status" data-q="buy_intent">Question 10 of 10</span></p>
+    <h2 class="h-1" style="max-width: 18ch;">How likely are you to actually buy a piece?</h2>
+    <p class="body mt-32">A signed, numbered piece of wearable art. Made in the UK. £140–160. Drop launches late June 2026. Be honest — there's no wrong answer.</p>
+    <div class="action-prompt"><span class="action-prompt-arrow">↓</span><span><span class="action-prompt-prefix">Your turn</span>Tap the stars — one (very unlikely) to five (very likely)</span></div>
+
+    <div class="star-rating" id="starRating">
+      <button type="button" class="star-button" data-stars="1" onclick="rateStar(1)" aria-label="1 star">★</button>
+      <button type="button" class="star-button" data-stars="2" onclick="rateStar(2)" aria-label="2 stars">★</button>
+      <button type="button" class="star-button" data-stars="3" onclick="rateStar(3)" aria-label="3 stars">★</button>
+      <button type="button" class="star-button" data-stars="4" onclick="rateStar(4)" aria-label="4 stars">★</button>
+      <button type="button" class="star-button" data-stars="5" onclick="rateStar(5)" aria-label="5 stars">★</button>
+    </div>
+    <div class="star-scale">
+      <span>Very unlikely</span>
+      <span>Very likely</span>
+    </div>
+    <p class="star-label" id="starLabel">&nbsp;</p>
+
+    <div class="final-textarea-wrap">
+      <label>Anything else you'd like to add?</label>
+      <textarea id="finalThoughts" placeholder="Tell us anything that's on your mind — about the brand, the artists, the drop, the price, the questions, anything we missed..." onchange="captureFinalThoughts(this.value)" oninput="captureFinalThoughts(this.value)"></textarea>
+    </div>
+
+    <div class="q-skip-row">
+      <span class="q-skip-helper">Rather not say?</span>
+      <button class="q-skip" onclick="skipQuestion('buy_intent')">Skip this question →</button>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     ARTIST ROSTER
+============================================================ -->
+<section class="section section--bone" id="artists">
+  <div class="container">
+    <p class="meta hero-eyebrow">04 · The artists</p>
+    <h2 class="h-1" style="max-width: 16ch;">Five voices, one drop.</h2>
+    <p class="body mt-32">Every artist on the line is independent. Every artist is named, paid, and credited. The brand is the platform — the artists are the work.</p>
+
+    <div class="artist-grid">
+      <div class="artist-tile">
+        <div class="artist-portrait">
+          <div class="artist-portrait-mark">(t)</div>
+          <div class="artist-portrait-label">Portrait placeholder</div>
+        </div>
+        <div class="artist-name">Conor Powell</div>
+        <div class="artist-detail">Illustrator · London / Leicester · Lead artist N°001</div>
+      </div>
+      <div class="artist-tile">
+        <div class="artist-portrait">
+          <div class="artist-portrait-mark">(t)</div>
+          <div class="artist-portrait-label">TBC</div>
+        </div>
+        <div class="artist-name">Artist 02</div>
+        <div class="artist-detail">Discipline · Location · TBC</div>
+      </div>
+      <div class="artist-tile">
+        <div class="artist-portrait">
+          <div class="artist-portrait-mark">(t)</div>
+          <div class="artist-portrait-label">TBC</div>
+        </div>
+        <div class="artist-name">Artist 03</div>
+        <div class="artist-detail">Discipline · Location · TBC</div>
+      </div>
+      <div class="artist-tile">
+        <div class="artist-portrait">
+          <div class="artist-portrait-mark">(t)</div>
+          <div class="artist-portrait-label">TBC</div>
+        </div>
+        <div class="artist-name">Artist 04</div>
+        <div class="artist-detail">Discipline · Location · TBC</div>
+      </div>
+      <div class="artist-tile">
+        <div class="artist-portrait">
+          <div class="artist-portrait-mark">(t)</div>
+          <div class="artist-portrait-label">TBC</div>
+        </div>
+        <div class="artist-name">Artist 05</div>
+        <div class="artist-detail">Discipline · Location · TBC</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     SIGN-UP — pre-sales database build
+============================================================ -->
+<!-- ============================================================
+     COMPLETION SUMMARY — acknowledges the visitor's engagement
+     before asking for the commitment. Lifts sign-up conversion.
+============================================================ -->
+<section class="section section--bone" style="padding: 80px 0 40px;">
+  <div class="container">
+    <div class="completion-summary">
+      <p class="completion-summary-eyebrow">You're almost done</p>
+      <h2 class="completion-summary-title">You've answered <span class="summary-num" id="summaryAnswered">0</span> of <span id="summaryTotal">10</span> questions.</h2>
+      <p class="completion-summary-body">Thank you. The next step claims your spot on the drop and tells us a little more about who you are. Two minutes.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     EXIT GATE — sign-up + extended demographics.
+     Email + postcode + ND framing test + discovery + trust drivers.
+     This is the moment we capture everything we need without a panel.
+============================================================ -->
+<section class="signup-block" id="signup">
+  <div class="container">
+    <p class="meta" style="color: var(--clay); margin-bottom: 24px;">Early access · Final step</p>
+    <h2 class="h-1">First pick on the drop. Before everyone else.</h2>
+    <p class="body">
+      The first drop is fifty pieces of each artwork — two-fifty in total. Sign up and you'll see the line forty-eight hours before public launch, with first pick on the editions you're holding for.
+    </p>
+
+    <form class="signup-form" onsubmit="captureSignup(event)">
+      <input type="email" name="email" placeholder="your@email.com" required>
+      <button type="submit">Claim early access →</button>
+    </form>
+
+    <p class="signup-fineprint">No spam. One drop notification, one launch notification, that's it. Unsubscribe in one click.</p>
+
+    <p class="exit-gate-required" style="text-align:center;margin-top:48px;">A few more questions to help us understand you — all optional, but every answer shapes what we make next.</p>
+
+    <div class="exit-gate-extras">
+
+      <div class="exit-gate-field">
+        <label>Where are you based?</label>
+        <select onchange="captureExitField('location', this.value)">
+          <option value="">Select your region…</option>
+          <option value="london">London</option>
+          <option value="south_uk">South UK</option>
+          <option value="midlands_north_uk">Midlands or North UK</option>
+          <option value="scotland_wales_ni">Scotland / Wales / Northern Ireland</option>
+          <option value="europe">Elsewhere in Europe</option>
+          <option value="rest_of_world">Rest of world</option>
+        </select>
+      </div>
+
+      <div class="exit-gate-field">
+        <label>Would knowing the artist is neurodivergent change how you feel about the piece?</label>
+        <select onchange="captureExitField('nd_framing', this.value)">
+          <option value="">Pick the closest answer…</option>
+          <option value="more_interested">It would make me more interested</option>
+          <option value="no_difference">No difference — the art is what matters</option>
+          <option value="uncomfortable">It would feel like exploitation</option>
+          <option value="want_more_detail">I'd want to know how artists are credited and paid</option>
+          <option value="unsure">I'm not sure</option>
+        </select>
+      </div>
+
+      <div class="exit-gate-field">
+        <label>How do you usually discover new brands?</label>
+        <select onchange="captureExitField('discovery', this.value)">
+          <option value="">Pick the strongest one…</option>
+          <option value="word_of_mouth">Recommendations from people I know</option>
+          <option value="social">Instagram or TikTok</option>
+          <option value="press">Press / newsletters / editorial</option>
+          <option value="search">Search (Google, Pinterest)</option>
+          <option value="walking">Walking past shops</option>
+          <option value="friends_wearing">Friends wearing them</option>
+          <option value="algorithm">Whatever the feed serves me</option>
+          <option value="other">Other</option>
+        </select>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     FOOTER
+============================================================ -->
+<footer class="footer">
+  <div class="container footer-inner">
+    <div class="footer-brand" style="color: var(--white);">
+      <svg viewBox="0 0 720 130" width="150" height="auto" style="display:block;" aria-label="early or LA(t)E">
+        <g font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-weight="800" font-size="92" font-style="italic">
+          <text x="0" y="100" fill="currentColor">early</text>
+        </g>
+        <g font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-weight="500" font-size="64">
+          <text x="240" y="100" fill="currentColor">or</text>
+        </g>
+        <g font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-weight="800" font-size="92" letter-spacing="-2">
+          <text x="338" y="100" fill="none" stroke="currentColor" stroke-width="3">LA</text>
+          <text x="465" y="100" fill="currentColor" font-style="italic" font-weight="700">(</text>
+          <text x="495" y="100" fill="currentColor" font-style="italic" font-weight="800" font-size="76">t</text>
+          <text x="525" y="100" fill="currentColor" font-style="italic" font-weight="700">)</text>
+          <text x="565" y="100" fill="none" stroke="currentColor" stroke-width="3">E</text>
+        </g>
+      </svg>
+    </div>
+    <div class="footer-meta">Made in the UK · Unicorn United Ltd · Drop N°001 · Late June 2026</div>
+  </div>
+</footer>
+
+<!-- ============================================================
+     EMBEDDED TRACKING
+     Each interaction is captured as an event. In production, these
+     post to the validation endpoint. For the prototype they
+     log to the console and persist in window.surveyData.
+============================================================ -->
+<script>
+window.surveyData = {
+  visitor_id: 'visitor_' + Math.random().toString(36).slice(2, 11),
+  arrived_at: new Date().toISOString(),
+  variant_shown: 'A', // would be randomised server-side for the real test
+  proposition_choice: null,
+  ad_reactions: {}, // keyed by ad ID (A-E), value: scroll | stop | tap
+  drop_ranking: {}, // { 1: shirt_id, 2: shirt_id, 3: shirt_id }
+  promise_ranking: {}, // { 1: promise_id, 2: promise_id, 3: promise_id }
+  manifesto_stanzas: [], // array of stanza numbers that resonated
+  manifesto_feeling: null, // one-word reaction (from chip)
+  manifesto_feeling_other: null, // free-text override
+  questions: {
+    drop_ranking:      { state: 'pending', num: 1 },
+    promise_ranking:   { state: 'pending', num: 2 },
+    retailers:         { state: 'pending', num: 3 },
+    manifesto_stanzas: { state: 'pending', num: 4 },
+    manifesto_feeling: { state: 'pending', num: 5 },
+    proposition:       { state: 'pending', num: 6 },
+    ad_reactions:      { state: 'pending', num: 7 },
+    shirts_selected:   { state: 'pending', num: 8 },
+    price:             { state: 'pending', num: 9 },
+    buy_intent:        { state: 'pending', num: 10 }
+  },
+  entry_age: null,
+  entry_gender: null,
+  retailers_selected: [],
+  retailer_other: null,
+  buy_intent_stars: null,
+  final_thoughts: null,
+  shirts_selected: [],
+  price_choice: null,
+  email: null,
+  scroll_max_pct: 0,
+  events: []
+};
+
+function logEvent(type, payload) {
+  const e = { type, payload, at: new Date().toISOString() };
+  window.surveyData.events.push(e);
+  console.log('[EVENT]', type, payload);
+}
+
+/* ===== Question state: answered / skipped / pending ===== */
+function markAnswered(qId) {
+  const q = window.surveyData.questions[qId];
+  if (!q) return;
+  if (q.state !== 'answered') {
+    q.state = 'answered';
+    logEvent('question_answered', { question: qId });
+    updateProgressUI();
+  }
+}
+
+function skipQuestion(qId) {
+  const q = window.surveyData.questions[qId];
+  if (!q) return;
+  q.state = 'skipped';
+  logEvent('question_skipped', { question: qId });
+  updateProgressUI();
+  // Gentle scroll to next section
+  const sections = Array.from(document.querySelectorAll('section'));
+  const currentBadge = document.querySelector(`.q-status[data-q="${qId}"]`);
+  if (currentBadge) {
+    const currentSection = currentBadge.closest('section');
+    const currentIdx = sections.indexOf(currentSection);
+    const nextSection = sections[currentIdx + 1];
+    if (nextSection) nextSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+}
+
+function updateProgressUI() {
+  const qs = window.surveyData.questions;
+  const total = Object.keys(qs).length;
+  let answeredCount = 0;
+  Object.entries(qs).forEach(([qId, data]) => {
+    // Update inline status badges
+    document.querySelectorAll(`.q-status[data-q="${qId}"]`).forEach(el => {
+      el.classList.remove('answered', 'skipped');
+      if (data.state === 'answered') {
+        el.classList.add('answered');
+        el.textContent = 'Answered';
+      } else if (data.state === 'skipped') {
+        el.classList.add('skipped');
+        el.textContent = 'Skipped';
+      } else {
+        el.textContent = `Question ${data.num} of ${total}`;
+      }
+    });
+    // Update progress dots
+    document.querySelectorAll(`.progress-dot[data-q="${qId}"]`).forEach(el => {
+      el.classList.remove('answered', 'skipped');
+      if (data.state === 'answered') {
+        el.classList.add('answered');
+        answeredCount++;
+      } else if (data.state === 'skipped') {
+        el.classList.add('skipped');
+      }
+    });
+  });
+  // Update tally + total
+  const num = document.querySelector('.progress-num');
+  if (num) num.textContent = answeredCount;
+  const totalEl = document.querySelector('.progress-total');
+  if (totalEl) totalEl.textContent = total;
+  // Update completion summary if present
+  const summaryNum = document.getElementById('summaryAnswered');
+  if (summaryNum) summaryNum.textContent = answeredCount;
+  const summaryTotal = document.getElementById('summaryTotal');
+  if (summaryTotal) summaryTotal.textContent = total;
+}
+
+// Initial paint
+if (document.readyState !== 'loading') {
+  updateProgressUI();
+} else {
+  document.addEventListener('DOMContentLoaded', updateProgressUI);
+}
+
+/* ===== Entry gate: Age + Gender capture ===== */
+function entryPick(field, value, btn) {
+  const row = btn.parentElement;
+  row.querySelectorAll('.pill-select').forEach(b => b.classList.remove('selected'));
+  btn.classList.add('selected');
+  if (field === 'age') window.surveyData.entry_age = value;
+  if (field === 'gender') window.surveyData.entry_gender = value;
+  logEvent('entry_' + field, { value });
+  // Enable continue when both filled
+  if (window.surveyData.entry_age && window.surveyData.entry_gender) {
+    const cont = document.getElementById('gateContinue');
+    if (cont) cont.classList.add('ready');
+  }
+}
+
+function dismissGate(skipped) {
+  const overlay = document.getElementById('entryGate');
+  if (overlay) overlay.classList.add('hidden');
+  if (skipped) {
+    window.surveyData.entry_skipped = true;
+    logEvent('entry_gate_skipped');
+  } else {
+    logEvent('entry_gate_completed', {
+      age: window.surveyData.entry_age,
+      gender: window.surveyData.entry_gender
+    });
+  }
+}
+
+/* ===== Retailer selection: max 2 ===== */
+function toggleRetailer(btn, retailerId) {
+  const currentlySelected = Array.from(document.querySelectorAll('.retailer-card.selected'));
+  const isSelected = btn.classList.contains('selected');
+
+  if (isSelected) {
+    btn.classList.remove('selected');
+  } else {
+    // If already 2 selected, bump the oldest
+    if (currentlySelected.length >= 2) {
+      currentlySelected[0].classList.remove('selected');
+    }
+    btn.classList.add('selected');
+  }
+
+  const selected = Array.from(document.querySelectorAll('.retailer-card.selected'))
+    .map(c => c.dataset.retailer);
+  window.surveyData.retailers_selected = selected;
+  logEvent('retailer_toggled', { retailer: retailerId, now_selected: selected });
+  if (selected.length > 0) markAnswered('retailers');
+}
+
+function captureRetailerOther(text) {
+  const trimmed = text.trim();
+  window.surveyData.retailer_other = trimmed || null;
+  if (trimmed.length > 0) {
+    logEvent('retailer_other', { text: trimmed });
+    markAnswered('retailers');
+  }
+}
+
+/* ===== Final question: 5-star buy intent + open thoughts ===== */
+const STAR_LABELS = ['', 'Very unlikely', 'Unlikely', 'Maybe / undecided', 'Likely', 'Very likely — I want one'];
+
+function rateStar(value) {
+  window.surveyData.buy_intent_stars = value;
+  document.querySelectorAll('#starRating .star-button').forEach((s, i) => {
+    s.classList.toggle('active', i < value);
+  });
+  const label = document.getElementById('starLabel');
+  if (label) label.textContent = STAR_LABELS[value];
+  logEvent('buy_intent_rated', { stars: value });
+  markAnswered('buy_intent');
+}
+
+function captureFinalThoughts(text) {
+  const trimmed = text.trim();
+  window.surveyData.final_thoughts = trimmed || null;
+  if (trimmed.length > 0) {
+    logEvent('final_thoughts', { text: trimmed });
+    markAnswered('buy_intent');
+  }
+}
+
+/* ===== Exit gate fields (location, ND framing, discovery) ===== */
+window.surveyData.exit_gate = {};
+function captureExitField(field, value) {
+  if (!value) return;
+  window.surveyData.exit_gate[field] = value;
+  logEvent('exit_gate_field', { field, value });
+}
+
+function selectProp(btn, variant) {
+  document.querySelectorAll('.prop-option').forEach(b => b.classList.remove('selected'));
+  btn.classList.add('selected');
+  window.surveyData.proposition_choice = variant;
+  logEvent('proposition_selected', { variant });
+  markAnswered('proposition');
+}
+
+/* ===== Ranking interactions: top-3 by preference ===== */
+function rankItem(currentRanking, itemId) {
+  // If already ranked, remove it and compact the remaining ranks
+  const existingRank = Object.keys(currentRanking).find(k => currentRanking[k] === itemId);
+  if (existingRank) {
+    delete currentRanking[existingRank];
+    const remaining = Object.entries(currentRanking)
+      .sort(([a], [b]) => Number(a) - Number(b))
+      .map(([, v]) => v);
+    Object.keys(currentRanking).forEach(k => delete currentRanking[k]);
+    remaining.forEach((id, i) => { currentRanking[i + 1] = id; });
+    return currentRanking;
+  }
+  // Add to next available slot, or shift everything if already at 3
+  const nextRank = [1, 2, 3].find(r => !currentRanking[r]);
+  if (nextRank) {
+    currentRanking[nextRank] = itemId;
+  } else {
+    currentRanking[1] = currentRanking[2];
+    currentRanking[2] = currentRanking[3];
+    currentRanking[3] = itemId;
+  }
+  return currentRanking;
+}
+
+function rankShirt(shirtId) {
+  rankItem(window.surveyData.drop_ranking, shirtId);
+  updateRankUI('.shirt-card', 'shirt', window.surveyData.drop_ranking, '#drop-tracker', (id) => {
+    const card = document.querySelector(`[data-shirt="${id}"]`);
+    return card?.querySelector('.shirt-artist')?.textContent || `Artwork ${id}`;
+  }, 'Tap a shirt above');
+  logEvent('shirt_ranked', { ranking: { ...window.surveyData.drop_ranking } });
+  if (Object.keys(window.surveyData.drop_ranking).length > 0) markAnswered('drop_ranking');
+}
+
+function rankPromise(promiseId, promiseLabel) {
+  rankItem(window.surveyData.promise_ranking, promiseId);
+  updateRankUI('.promise-item', 'promise', window.surveyData.promise_ranking, '#promise-tracker', (id) => {
+    const item = document.querySelector(`[data-promise="${id}"]`);
+    return item?.querySelector('.promise-title')?.textContent || id;
+  }, 'Tap a promise above');
+  logEvent('promise_ranked', { ranking: { ...window.surveyData.promise_ranking } });
+  if (Object.keys(window.surveyData.promise_ranking).length > 0) markAnswered('promise_ranking');
+}
+
+function updateRankUI(itemSelector, dataAttr, ranking, trackerSelector, labelFn, emptyLabel) {
+  // Update badges + ranked class on each item
+  document.querySelectorAll(itemSelector).forEach(item => {
+    const id = item.dataset[dataAttr];
+    const rank = Object.keys(ranking).find(r => ranking[r] === id);
+    item.classList.toggle('ranked', !!rank);
+    const badge = item.querySelector('.rank-badge');
+    if (badge) badge.textContent = rank || '';
+  });
+  // Update tracker panel
+  const tracker = document.querySelector(trackerSelector);
+  if (!tracker) return;
+  const items = tracker.querySelector('.tracker-items');
+  items.innerHTML = [1, 2, 3].map(r => {
+    const id = ranking[r];
+    const filled = !!id;
+    const display = filled ? labelFn(id) : (r === 1 ? emptyLabel : '—');
+    return `<div class="track-item ${filled ? 'filled' : ''}"><span class="track-rank">${r}</span><span class="track-name">${display}</span></div>`;
+  }).join('');
+}
+
+/* ===== Manifesto: tap-to-resonate + emotional reaction ===== */
+function toggleStanza(el, stanzaNum) {
+  el.classList.toggle('selected');
+  const selected = Array.from(document.querySelectorAll('.stanza.selected'))
+    .map(s => Number(s.dataset.stanza))
+    .sort((a, b) => a - b);
+  window.surveyData.manifesto_stanzas = selected;
+  logEvent('manifesto_stanza_toggled', {
+    stanza: stanzaNum,
+    now_selected: selected
+  });
+  if (selected.length > 0) markAnswered('manifesto_stanzas');
+}
+
+function pickWord(btn, word) {
+  document.querySelectorAll('.word-chip').forEach(b => b.classList.remove('selected'));
+  btn.classList.add('selected');
+  window.surveyData.manifesto_feeling = word;
+  logEvent('manifesto_feeling', { word });
+  markAnswered('manifesto_feeling');
+}
+
+function captureOwnWord(text) {
+  const trimmed = text.trim();
+  window.surveyData.manifesto_feeling_other = trimmed || null;
+  // Don't log on every keystroke — debounce by only logging on change/blur
+  if (text === text.trim() && trimmed.length > 0) {
+    logEvent('manifesto_feeling_other', { text: trimmed });
+    markAnswered('manifesto_feeling');
+  }
+}
+
+function reactToAd(btn, adId, reaction) {
+  // Clear other reactions for this ad
+  const adCard = btn.closest('.ad-card');
+  adCard.querySelectorAll('.ad-reaction').forEach(b => b.classList.remove('selected'));
+  btn.classList.add('selected');
+  window.surveyData.ad_reactions[adId] = reaction;
+  logEvent('ad_reaction', { ad_id: adId, reaction });
+  if (Object.keys(window.surveyData.ad_reactions).length > 0) markAnswered('ad_reactions');
+}
+
+function toggleShirt(btn, shirtId) {
+  btn.classList.toggle('selected');
+  const selected = Array.from(document.querySelectorAll('.select-shirt.selected'))
+    .map(b => b.dataset.shirt);
+  window.surveyData.shirts_selected = selected;
+  logEvent('shirt_toggled', { shirt_id: shirtId, currently_selected: selected });
+  if (selected.length > 0) markAnswered('shirts_selected');
+}
+
+function selectPrice(btn, band) {
+  document.querySelectorAll('.price-button').forEach(b => b.classList.remove('selected'));
+  btn.classList.add('selected');
+  window.surveyData.price_choice = band;
+  logEvent('price_selected', { band });
+  markAnswered('price');
+}
+
+function captureSignup(e) {
+  e.preventDefault();
+  const email = e.target.querySelector('input[name="email"]').value;
+  window.surveyData.email = email;
+
+  // Capture session_end-equivalent stats before POST
+  const elapsed = Math.round((Date.now() - new Date(window.surveyData.arrived_at).getTime()) / 1000);
+  window.surveyData.seconds_on_page_at_submit = elapsed;
+
+  logEvent('signup', { email });
+
+  // Build the Netlify form payload
+  const fd = new FormData();
+  fd.append('form-name', 'early-or-late-survey');
+  fd.append('email', email);
+  fd.append('entry_age', window.surveyData.entry_age || '');
+  fd.append('entry_gender', window.surveyData.entry_gender || '');
+  fd.append('proposition_choice', window.surveyData.proposition_choice || '');
+  fd.append('buy_intent_stars', window.surveyData.buy_intent_stars || '');
+  fd.append('price_choice', window.surveyData.price_choice || '');
+  fd.append('final_thoughts', window.surveyData.final_thoughts || '');
+  fd.append('exit_location', window.surveyData.exit_gate?.location || '');
+  fd.append('exit_nd_framing', window.surveyData.exit_gate?.nd_framing || '');
+  fd.append('exit_discovery', window.surveyData.exit_gate?.discovery || '');
+  fd.append('manifesto_feeling', window.surveyData.manifesto_feeling || '');
+  fd.append('manifesto_feeling_other', window.surveyData.manifesto_feeling_other || '');
+  fd.append('retailer_other', window.surveyData.retailer_other || '');
+  fd.append('survey_data', JSON.stringify(window.surveyData));
+  fd.append('bot-field', '');
+
+  // POST to Netlify's form-handling endpoint
+  fetch('/', {
+    method: 'POST',
+    headers: { 'Accept': 'application/x-www-form-urlencoded' },
+    body: new URLSearchParams(fd).toString()
+  })
+  .then(() => {
+    e.target.innerHTML = '<p style="color:var(--clay);font-size:15px;text-align:center;width:100%;padding:18px;">You\'re on the list. We\'ll see you in late June.</p>';
+    logEvent('signup_submitted');
+  })
+  .catch(err => {
+    console.error('Submission error:', err);
+    e.target.innerHTML = '<p style="color:var(--clay);font-size:15px;text-align:center;width:100%;padding:18px;">You\'re on the list — though we hit a network blip. Drop us a line if you don\'t hear back.</p>';
+    logEvent('signup_error', { error: err.message });
+  });
+}
+
+// Scroll depth + progress bar
+window.addEventListener('scroll', () => {
+  const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+  const pct = Math.round((window.scrollY / docHeight) * 100);
+  document.getElementById('progressBar').style.width = pct + '%';
+  if (pct > window.surveyData.scroll_max_pct) {
+    window.surveyData.scroll_max_pct = pct;
+  }
+}, { passive: true });
+
+// Capture time-on-page when leaving
+window.addEventListener('beforeunload', () => {
+  const elapsed = Math.round((Date.now() - new Date(window.surveyData.arrived_at).getTime()) / 1000);
+  logEvent('session_end', { seconds_on_page: elapsed, max_scroll_pct: window.surveyData.scroll_max_pct });
+});
+
+/* =============================================================
+   BEHAVIOURAL TRACKING LAYER
+   Mouse path, section dwell, rage clicks, hover trails,
+   form abandonment, device + referrer. Forwards to logEvent().
+   When Microsoft Clarity is installed (one <script> tag), all
+   of this also flows into Clarity custom events automatically.
+============================================================= */
+
+// Initial session context
+window.surveyData.device = {
+  width: window.innerWidth,
+  height: window.innerHeight,
+  is_mobile: window.innerWidth < 768,
+  user_agent: navigator.userAgent,
+  referrer: document.referrer || 'direct',
+  utm: Object.fromEntries(new URLSearchParams(window.location.search))
+};
+window.surveyData.mouse_path = [];
+window.surveyData.section_dwell = {};
+window.surveyData.hover_trails = {};
+window.surveyData.rage_clicks = [];
+logEvent('session_context', window.surveyData.device);
+
+// 1) Mouse movement — throttled to 4 samples per second
+(function() {
+  let last = 0;
+  document.addEventListener('mousemove', (e) => {
+    const now = Date.now();
+    if (now - last < 250) return;
+    last = now;
+    window.surveyData.mouse_path.push({
+      x: e.clientX,
+      y: e.clientY + window.scrollY,
+      t: now - new Date(window.surveyData.arrived_at).getTime()
+    });
+    // Cap the array — protect memory in long sessions
+    if (window.surveyData.mouse_path.length > 800) {
+      window.surveyData.mouse_path.shift();
+    }
+  }, { passive: true });
+})();
+
+// 2) Section dwell time — IntersectionObserver
+(function() {
+  const sections = document.querySelectorAll('section, [id]');
+  const enterTimes = new Map();
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      const id = entry.target.id || entry.target.tagName.toLowerCase();
+      if (entry.isIntersecting) {
+        enterTimes.set(id, Date.now());
+      } else if (enterTimes.has(id)) {
+        const dwell = Date.now() - enterTimes.get(id);
+        window.surveyData.section_dwell[id] = (window.surveyData.section_dwell[id] || 0) + dwell;
+        enterTimes.delete(id);
+      }
+    });
+  }, { threshold: 0.4 });
+  sections.forEach(s => observer.observe(s));
+})();
+
+// 3) Rage click detection — 3+ clicks in same node within 800ms
+(function() {
+  const recent = [];
+  document.addEventListener('click', (e) => {
+    const node = e.target.closest('[id]') || e.target;
+    const id = node.id || node.className || node.tagName.toLowerCase();
+    const now = Date.now();
+    recent.push({ id, t: now });
+    while (recent.length && now - recent[0].t > 800) recent.shift();
+    const matching = recent.filter(r => r.id === id);
+    if (matching.length >= 3) {
+      const rage = { target: id, count: matching.length, at: new Date().toISOString() };
+      window.surveyData.rage_clicks.push(rage);
+      logEvent('rage_click', rage);
+      recent.length = 0;
+    }
+  }, { passive: true });
+})();
+
+// 4) Hover trails on shirt cards + ad mockups
+(function() {
+  const trackHover = (selector, key) => {
+    document.querySelectorAll(selector).forEach((el, i) => {
+      let enterTime = null;
+      const itemId = el.dataset.shirt || el.querySelector('.ad-label-row')?.textContent?.trim() || `${key}_${i}`;
+      el.addEventListener('mouseenter', () => { enterTime = Date.now(); });
+      el.addEventListener('mouseleave', () => {
+        if (!enterTime) return;
+        const dwell = Date.now() - enterTime;
+        if (dwell > 300) { // ignore quick flybys
+          window.surveyData.hover_trails[itemId] =
+            (window.surveyData.hover_trails[itemId] || 0) + dwell;
+        }
+        enterTime = null;
+      });
+    });
+  };
+  trackHover('.shirt-card', 'shirt');
+  trackHover('.select-shirt', 'select_shirt');
+  trackHover('.ad-card', 'ad');
+})();
+
+// 5) Form interaction — focus, blur, abandonment
+(function() {
+  const emailInput = document.querySelector('.signup-form input');
+  if (!emailInput) return;
+  let focusedAt = null;
+  let typedAnything = false;
+  emailInput.addEventListener('focus', () => {
+    focusedAt = Date.now();
+    logEvent('signup_field_focus');
+  });
+  emailInput.addEventListener('input', () => { typedAnything = true; });
+  emailInput.addEventListener('blur', () => {
+    if (focusedAt && typedAnything && !emailInput.value) {
+      logEvent('signup_abandoned', {
+        seconds_focused: Math.round((Date.now() - focusedAt) / 1000)
+      });
+    }
+    focusedAt = null;
+  });
+})();
+
+// 6) Dead click detection — clicks on non-interactive elements
+(function() {
+  document.addEventListener('click', (e) => {
+    const interactive = e.target.closest('button, a, input, textarea, select, [onclick], [role="button"]');
+    if (!interactive) {
+      const id = e.target.closest('[id]')?.id || e.target.tagName.toLowerCase();
+      logEvent('dead_click', { target: id, x: e.clientX, y: e.clientY });
+    }
+  }, { passive: true });
+})();
+
+/* =============================================================
+   MICROSOFT CLARITY HOOK (placeholder — drop in the project ID
+   once generated at clarity.microsoft.com and Clarity will pick up
+   all the events above automatically via the window.clarity('event') call.
+============================================================= */
+// Uncomment and replace PROJECT_ID once Clarity is set up:
+// (function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y)})(window, document, "clarity", "script", "PROJECT_ID");
+//
+// Then in logEvent(), add: if (window.clarity) window.clarity('event', type);
+</script>
+
+</body>
+</html>

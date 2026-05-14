@@ -1,0 +1,12 @@
+# Netlify configuration for Early or Late validation site
+
+[build]
+  publish = "."
+
+# Security headers (best practice for static sites)
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
