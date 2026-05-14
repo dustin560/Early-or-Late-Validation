@@ -1918,11 +1918,11 @@ h1, h2, h3, h4 { font-weight: 500; letter-spacing: -0.025em; line-height: 1; }
 
         <!-- Editorial spec strip -->
         <div class="hero-spec">
-          <div class="hero-spec-item"><strong>Drop</strong><span>5 × 50</span></div>
+          <div class="hero-spec-item"><strong>Drop</strong><span>2 × 50</span></div>
           <div class="hero-spec-item"><strong>Edition</strong><span>50 of each</span></div>
           <div class="hero-spec-item"><strong>Price</strong><span>£140 — 160</span></div>
-          <div class="hero-spec-item"><strong>Made</strong><span>UK · Leicester</span></div>
-          <div class="hero-spec-item"><strong>Launch</strong><span>Late June '26</span></div>
+          <div class="hero-spec-item"><strong>Made</strong><span>London · Leicester</span></div>
+          <div class="hero-spec-item"><strong>Launch</strong><span>Jul — Aug '26</span></div>
         </div>
 
       </div>
@@ -1934,7 +1934,7 @@ h1, h2, h3, h4 { font-weight: 500; letter-spacing: -0.025em; line-height: 1; }
 <div class="container">
   <div class="section-divider">
     <span class="section-divider-num">II.</span>
-    <span class="section-divider-label">The first drop · 250 pieces · Five artworks</span>
+    <span class="section-divider-label">The first drop · 100 pieces · Two artworks</span>
     <span class="section-divider-right">Q1 of 9 · Ranking</span>
   </div>
 </div>
@@ -1957,9 +1957,9 @@ h1, h2, h3, h4 { font-weight: 500; letter-spacing: -0.025em; line-height: 1; }
 <section class="section" id="drop">
   <div class="container">
     <p class="meta hero-eyebrow">II — The first drop <span class="q-status" data-q="drop_ranking">Question 1 of 9</span></p>
-    <h2 class="h-1" style="max-width:18ch;">Five artworks.<br><em>Fifty of each.</em><br>Never made again.</h2>
-    <p class="body mt-32">A single drop, all live at once. When a piece is gone, it's gone. Every garment is numbered, signed, and shipped in a hand-folded matte-black box.</p>
-    <div class="action-prompt"><span class="action-prompt-arrow">↓</span><span><span class="action-prompt-prefix">Your turn</span>Tap to rank your top three in order of preference</span></div>
+    <h2 class="h-1" style="max-width:18ch;">Two artists.<br><em>Fifty of each.</em><br>One hundred pieces.</h2>
+    <p class="body mt-32">The first chapter of something new. Two artists to start — chosen, named, paid a fair share. When a piece is gone, it's gone. Every garment is numbered, signed by the artist, and shipped in a hand-folded matte-black box.</p>
+    <div class="action-prompt"><span class="action-prompt-arrow">↓</span><span><span class="action-prompt-prefix">Your turn</span>Tap the artwork that appeals to you most</span></div>
 
     <div class="todo">
       <strong>// PROTOTYPE NOTE:</strong> Replace .shirt-placeholder content with real t-shirt mockups once artists are confirmed and artwork is approved. Image spec: 1200×1560, front-facing, neutral background.
@@ -1986,66 +1986,23 @@ h1, h2, h3, h4 { font-weight: 500; letter-spacing: -0.025em; line-height: 1; }
         <div class="rank-badge"></div>
         <div class="shirt-placeholder">
           <div class="shirt-placeholder-mark">(t)</div>
-          <div class="shirt-placeholder-label">Artwork 02<br>Artist TBC</div>
+          <div class="shirt-placeholder-label">Artwork 02<br>Chris</div>
         </div>
         <div class="shirt-price">£148</div>
         <div class="shirt-meta">
-          <div class="shirt-artist">Artist 02</div>
+          <div class="shirt-artist">Chris</div>
           <div class="shirt-edition">Edition of 50 · N°002</div>
-        </div>
-      </div>
-
-      <!-- Shirt 03 -->
-      <div class="shirt-card" data-shirt="03" onclick="rankShirt('03')">
-        <div class="rank-badge"></div>
-        <div class="shirt-placeholder">
-          <div class="shirt-placeholder-mark">(t)</div>
-          <div class="shirt-placeholder-label">Artwork 03<br>Artist TBC</div>
-        </div>
-        <div class="shirt-price">£148</div>
-        <div class="shirt-meta">
-          <div class="shirt-artist">Artist 03</div>
-          <div class="shirt-edition">Edition of 50 · N°003</div>
-        </div>
-      </div>
-
-      <!-- Shirt 04 -->
-      <div class="shirt-card" data-shirt="04" onclick="rankShirt('04')">
-        <div class="rank-badge"></div>
-        <div class="shirt-placeholder">
-          <div class="shirt-placeholder-mark">(t)</div>
-          <div class="shirt-placeholder-label">Artwork 04<br>Artist TBC</div>
-        </div>
-        <div class="shirt-price">£148</div>
-        <div class="shirt-meta">
-          <div class="shirt-artist">Artist 04</div>
-          <div class="shirt-edition">Edition of 50 · N°004</div>
-        </div>
-      </div>
-
-      <!-- Shirt 05 -->
-      <div class="shirt-card" data-shirt="05" onclick="rankShirt('05')">
-        <div class="rank-badge"></div>
-        <div class="shirt-placeholder">
-          <div class="shirt-placeholder-mark">(t)</div>
-          <div class="shirt-placeholder-label">Artwork 05<br>Artist TBC</div>
-        </div>
-        <div class="shirt-price">£148</div>
-        <div class="shirt-meta">
-          <div class="shirt-artist">Artist 05</div>
-          <div class="shirt-edition">Edition of 50 · N°005</div>
         </div>
       </div>
 
     </div>
 
-    <!-- Top 3 tracker -->
+    <!-- Top picks tracker -->
     <div class="rank-tracker" id="drop-tracker">
-      <div class="tracker-label">Your top three<br>so far</div>
+      <div class="tracker-label">Your picks<br>so far</div>
       <div class="tracker-items">
-        <div class="track-item"><span class="track-rank">1</span><span class="track-name">Tap a shirt above</span></div>
+        <div class="track-item"><span class="track-rank">1</span><span class="track-name">Tap an artwork above</span></div>
         <div class="track-item"><span class="track-rank">2</span><span class="track-name">—</span></div>
-        <div class="track-item"><span class="track-rank">3</span><span class="track-name">—</span></div>
       </div>
     </div>
 
@@ -2067,7 +2024,7 @@ h1, h2, h3, h4 { font-weight: 500; letter-spacing: -0.025em; line-height: 1; }
         <p class="meta featured-meta">III — Lead artist</p>
         <h2 class="h-1">Conor Powell.<br>The first <em>signature</em>.</h2>
         <p class="body-l mt-32">
-          Conor is an illustrator working between London and Leicester. His artwork for N°001 is the first piece in the Early or Late catalogue — a study in pattern, rhythm, and the kind of detail you only see on the second look.
+          Conor is a south-London-based illustrator. His artwork for N°001 is the first piece in the Early or Late catalogue — a study in pattern, rhythm, and the kind of detail you only see on the second look.
         </p>
         <p class="body mt-32">
           He sets the creative direction on the piece. He signs every one of the fifty. He receives a share of every sale.
@@ -2075,9 +2032,9 @@ h1, h2, h3, h4 { font-weight: 500; letter-spacing: -0.025em; line-height: 1; }
 
         <dl class="featured-spec">
           <div><dt>Artist</dt><dd>Conor Powell</dd></div>
-          <div><dt>Based in</dt><dd>London / Leicester</dd></div>
+          <div><dt>Based in</dt><dd>South London</dd></div>
           <div><dt>Edition</dt><dd>50 pieces, numbered</dd></div>
-          <div><dt>Released</dt><dd>Late June 2026</dd></div>
+          <div><dt>Released</dt><dd>July / August 2026</dd></div>
         </dl>
       </div>
 
@@ -2124,7 +2081,7 @@ h1, h2, h3, h4 { font-weight: 500; letter-spacing: -0.025em; line-height: 1; }
         <div class="rank-badge"></div>
         <div class="promise-num">04</div>
         <div class="promise-title">UK-made</div>
-        <div class="promise-body">Cotton grown and combed in the UK. Stitched in Leicester. Printed with water-based ink.</div>
+        <div class="promise-body">Cotton milled in Leicester. Designed and finished in London. Printed with water-based ink.</div>
       </div>
     </div>
     <div class="promise-strip" style="border-top: none;">
@@ -2140,17 +2097,17 @@ h1, h2, h3, h4 { font-weight: 500; letter-spacing: -0.025em; line-height: 1; }
         <div class="promise-title">Repaired for life</div>
         <div class="promise-body">Bring it back. We repair it, re-stamp it, and record the repair on the line.</div>
       </div>
-      <div class="promise-item" data-promise="heavyweight_cotton" onclick="rankPromise('heavyweight_cotton', 'Heavyweight cotton')" style="position:relative;">
+      <div class="promise-item" data-promise="inclusive_design" onclick="rankPromise('inclusive_design', 'Inclusive by design')" style="position:relative;">
         <div class="rank-badge"></div>
         <div class="promise-num">07</div>
-        <div class="promise-title">Heavyweight cotton</div>
-        <div class="promise-body">240gsm organic combed cotton. Designed to outlast the algorithm.</div>
+        <div class="promise-title">Inclusive by design</div>
+        <div class="promise-body">Soft 265gsm cotton, wider neckline, no neck labels. Made to be worn by every body.</div>
       </div>
-      <div class="promise-item" data-promise="a6_certificate" onclick="rankPromise('a6_certificate', 'A6 certificate')" style="position:relative;">
+      <div class="promise-item" data-promise="ethical_transparent" onclick="rankPromise('ethical_transparent', 'Ethically transparent')" style="position:relative;">
         <div class="rank-badge"></div>
         <div class="promise-num">08</div>
-        <div class="promise-title">A6 certificate</div>
-        <div class="promise-body">Every piece arrives with a numbered certificate card on uncoated stock.</div>
+        <div class="promise-title">Ethically transparent</div>
+        <div class="promise-body">You see where every penny goes — cotton, cut, print, artist's share. No greenwash.</div>
       </div>
     </div>
 
@@ -2311,12 +2268,12 @@ h1, h2, h3, h4 { font-weight: 500; letter-spacing: -0.025em; line-height: 1; }
 
       <button class="motivation-card" data-mot="anti_mass" onclick="toggleMotivation(this, 'anti_mass')">
         <span class="motivation-title">To opt out of fast fashion</span>
-        <span class="motivation-sub">Anti-mass-production · sustainability</span>
+        <span class="motivation-sub">Sustainability · ethical sourcing · transparency</span>
       </button>
 
       <button class="motivation-card" data-mot="values_aligned" onclick="toggleMotivation(this, 'values_aligned')">
-        <span class="motivation-title">To back a brand that platforms independent artists</span>
-        <span class="motivation-sub">Values · inclusion · structural</span>
+        <span class="motivation-title">Because it's designed for every body</span>
+        <span class="motivation-sub">Soft feel · wider neck · no neck labels · inclusive fit</span>
       </button>
 
       <button class="motivation-card" data-mot="longevity" onclick="toggleMotivation(this, 'longevity')">
@@ -2386,8 +2343,8 @@ h1, h2, h3, h4 { font-weight: 500; letter-spacing: -0.025em; line-height: 1; }
       </button>
       <button class="prop-option" data-variant="E" onclick="selectProp(this, 'E')">
         <span>
-          <span class="prop-label">Promise E — One drop a year</span>
-          <span class="prop-text">Five artists. Five artworks. Two-fifty pieces. <em>One drop a year.</em></span>
+          <span class="prop-label">Promise E — Inclusive by design</span>
+          <span class="prop-text">Designed to be worn by <em>every body</em>. Soft cotton, wider neck, no neck labels. Numbered, named, shared.</span>
         </span>
       </button>
     </div>
@@ -2505,7 +2462,7 @@ h1, h2, h3, h4 { font-weight: 500; letter-spacing: -0.025em; line-height: 1; }
           <div class="ad-inner">
             <div class="ad-row">
               <div class="ad-brand"><svg viewBox="0 0 720 130" width="100" height="auto" style="display:block;" aria-label="early or LA(t)E"><g font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-weight="800" font-size="92" font-style="italic"><text x="0" y="100" fill="currentColor">early</text></g><g font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-weight="500" font-size="64"><text x="240" y="100" fill="currentColor">or</text></g><g font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-weight="800" font-size="92" letter-spacing="-2"><text x="338" y="100" fill="none" stroke="currentColor" stroke-width="3">LA</text><text x="465" y="100" fill="currentColor" font-style="italic" font-weight="700">(</text><text x="495" y="100" fill="currentColor" font-style="italic" font-weight="800" font-size="76">t</text><text x="525" y="100" fill="currentColor" font-style="italic" font-weight="700">)</text><text x="565" y="100" fill="none" stroke="currentColor" stroke-width="3">E</text></g></svg></div>
-              <div class="ad-tag">N°001 · Late June</div>
+              <div class="ad-tag">N°001 · Jul / Aug</div>
             </div>
             <div>
               <h3 class="ad-headline">Limited edition <em>wearable art</em>. In collaboration with an independent artist.</h3>
@@ -2545,7 +2502,7 @@ h1, h2, h3, h4 { font-weight: 500; letter-spacing: -0.025em; line-height: 1; }
             </div>
             <div class="ad-row">
               <div class="ad-cta" style="color: var(--clay);">Read the story</div>
-              <div class="ad-spec">N°001 · Late June 2026</div>
+              <div class="ad-spec">N°001 · Jul–Aug 2026</div>
             </div>
           </div>
         </div>
@@ -2574,7 +2531,7 @@ h1, h2, h3, h4 { font-weight: 500; letter-spacing: -0.025em; line-height: 1; }
             </div>
             <div class="ad-row">
               <div class="ad-cta" style="color: var(--white);">Claim N°001</div>
-              <div class="ad-spec" style="color: rgba(245,245,243, 0.6);">UK · Late June 2026</div>
+              <div class="ad-spec" style="color: rgba(245,245,243, 0.6);">UK · Jul–Aug 2026</div>
             </div>
           </div>
         </div>
@@ -2624,14 +2581,14 @@ h1, h2, h3, h4 { font-weight: 500; letter-spacing: -0.025em; line-height: 1; }
               <div class="ad-tag">The first drop</div>
             </div>
             <div>
-              <h3 class="ad-headline" style="font-size:38px;">Five artists.<br>Five artworks.<br><em>Two-fifty pieces.</em><br>One drop a year.</h3>
+              <h3 class="ad-headline" style="font-size:38px;">Two artists.<br>Fifty of each.<br><em>One hundred pieces.</em><br>Made for keeping.</h3>
             </div>
             <div class="ad-shirt-inline" style="right:32px;bottom:130px;width:110px;height:140px;background:rgba(10,10,10,0.04);border-color:rgba(10,10,10,0.08);">
               <svg viewBox="0 0 200 240" width="100%" height="100%" preserveAspectRatio="xMidYMid meet" style="opacity:0.85;"><path d="M75,30 L60,25 L35,30 L25,75 L55,75 L55,220 L145,220 L145,75 L175,75 L165,30 L140,25 L125,30 Q100,46 75,30 Z" fill="currentColor" fill-opacity="0.10" stroke="currentColor" stroke-width="1.6" stroke-opacity="0.55"/><path d="M75,30 Q100,46 125,30" fill="none" stroke="currentColor" stroke-width="1" stroke-opacity="0.45"/><rect x="65" y="100" width="70" height="70" fill="none" stroke="currentColor" stroke-width="0.8" stroke-dasharray="3,3" stroke-opacity="0.55"/><text x="100" y="140" text-anchor="middle" font-family="Inter, sans-serif" font-size="8" fill="currentColor" fill-opacity="0.6" letter-spacing="0.12em">ARTWORK</text></svg>
             </div>
             <div class="ad-row">
               <div class="ad-cta">Get early access</div>
-              <div class="ad-spec">// 240gsm · UK cotton · Leicester · Water-based ink</div>
+              <div class="ad-spec">// 265gsm · Milled Leicester · Made London · Water-based ink</div>
             </div>
           </div>
         </div>
@@ -2669,19 +2626,7 @@ h1, h2, h3, h4 { font-weight: 500; letter-spacing: -0.025em; line-height: 1; }
       </button>
       <button class="select-shirt" data-shirt="02" onclick="toggleShirt(this, '02')">
         <div class="select-shirt-visual"><div class="select-shirt-mark">(t)</div></div>
-        <div class="select-shirt-name">Artist 02</div>
-      </button>
-      <button class="select-shirt" data-shirt="03" onclick="toggleShirt(this, '03')">
-        <div class="select-shirt-visual"><div class="select-shirt-mark">(t)</div></div>
-        <div class="select-shirt-name">Artist 03</div>
-      </button>
-      <button class="select-shirt" data-shirt="04" onclick="toggleShirt(this, '04')">
-        <div class="select-shirt-visual"><div class="select-shirt-mark">(t)</div></div>
-        <div class="select-shirt-name">Artist 04</div>
-      </button>
-      <button class="select-shirt" data-shirt="05" onclick="toggleShirt(this, '05')">
-        <div class="select-shirt-visual"><div class="select-shirt-mark">(t)</div></div>
-        <div class="select-shirt-name">Artist 05</div>
+        <div class="select-shirt-name">Chris</div>
       </button>
     </div>
 
@@ -2727,7 +2672,7 @@ h1, h2, h3, h4 { font-weight: 500; letter-spacing: -0.025em; line-height: 1; }
   <div class="container">
     <p class="meta hero-eyebrow">IX — Buy intent <span class="q-status" data-q="buy_intent">Question 9 of 9</span></p>
     <h2 class="h-1" style="max-width: 20ch;">How likely are you to <em>actually</em> buy?</h2>
-    <p class="body mt-32">A signed, numbered piece of wearable art. Made in the UK. £140–160. Drop launches late June 2026. Be honest — there's no wrong answer.</p>
+    <p class="body mt-32">A signed, numbered piece of wearable art. Made in the UK. £140–160. Drop launches Jul / Aug 2026. Be honest — there's no wrong answer.</p>
     <div class="action-prompt"><span class="action-prompt-arrow">↓</span><span><span class="action-prompt-prefix">Your turn</span>Tap the stars — one (very unlikely) to five (very likely)</span></div>
 
     <div class="star-rating" id="starRating">
@@ -2761,8 +2706,8 @@ h1, h2, h3, h4 { font-weight: 500; letter-spacing: -0.025em; line-height: 1; }
 <section class="section section--bone" id="artists">
   <div class="container">
     <p class="meta hero-eyebrow">— The artists</p>
-    <h2 class="h-1" style="max-width: 16ch;">Five voices, <em>one drop</em>.</h2>
-    <p class="body mt-32">Every artist on the line is independent. Every artist is named, paid, and credited. The brand is the platform — the artists are the work.</p>
+    <h2 class="h-1" style="max-width: 16ch;">Two voices, <em>one drop</em>.</h2>
+    <p class="body mt-32">Every artist on the line is independent. Every artist is named, paid, and credited. The brand is the platform — the artists are the work. The first drop launches with two; more follow as the brand grows.</p>
 
     <div class="artist-grid">
       <div class="artist-tile">
@@ -2771,39 +2716,15 @@ h1, h2, h3, h4 { font-weight: 500; letter-spacing: -0.025em; line-height: 1; }
           <div class="artist-portrait-label">Portrait placeholder</div>
         </div>
         <div class="artist-name">Conor Powell</div>
-        <div class="artist-detail">Illustrator · London / Leicester · Lead artist N°001</div>
+        <div class="artist-detail">Illustrator · South London · Lead artist N°001</div>
       </div>
       <div class="artist-tile">
         <div class="artist-portrait">
           <div class="artist-portrait-mark">(t)</div>
-          <div class="artist-portrait-label">TBC</div>
+          <div class="artist-portrait-label">Portrait placeholder</div>
         </div>
-        <div class="artist-name">Artist 02</div>
-        <div class="artist-detail">Discipline · Location · TBC</div>
-      </div>
-      <div class="artist-tile">
-        <div class="artist-portrait">
-          <div class="artist-portrait-mark">(t)</div>
-          <div class="artist-portrait-label">TBC</div>
-        </div>
-        <div class="artist-name">Artist 03</div>
-        <div class="artist-detail">Discipline · Location · TBC</div>
-      </div>
-      <div class="artist-tile">
-        <div class="artist-portrait">
-          <div class="artist-portrait-mark">(t)</div>
-          <div class="artist-portrait-label">TBC</div>
-        </div>
-        <div class="artist-name">Artist 04</div>
-        <div class="artist-detail">Discipline · Location · TBC</div>
-      </div>
-      <div class="artist-tile">
-        <div class="artist-portrait">
-          <div class="artist-portrait-mark">(t)</div>
-          <div class="artist-portrait-label">TBC</div>
-        </div>
-        <div class="artist-name">Artist 05</div>
-        <div class="artist-detail">Discipline · Location · TBC</div>
+        <div class="artist-name">Chris</div>
+        <div class="artist-detail">Artist · N°002 · Confirmation pending</div>
       </div>
     </div>
   </div>
@@ -2836,7 +2757,7 @@ h1, h2, h3, h4 { font-weight: 500; letter-spacing: -0.025em; line-height: 1; }
     <p class="meta" style="margin-bottom: 24px;">V — Final step</p>
     <h2 class="h-1" style="max-width:14ch;">Send your answers.<br><em>Claim your spot.</em></h2>
     <p class="body" style="max-width:50ch;">
-      Three quick fields, then your email. The first drop is fifty pieces of each artwork — <em>two-fifty in total</em> — and you'll see it forty-eight hours before public launch.
+      Three quick fields, then your email. The first drop is fifty pieces of each artwork — <em>one hundred in total</em> — and you'll see it forty-eight hours before public launch.
     </p>
 
     <form id="finalSubmitForm" onsubmit="captureSignup(event)" style="max-width: 540px; margin: 56px auto 0;">
@@ -2925,7 +2846,7 @@ h1, h2, h3, h4 { font-weight: 500; letter-spacing: -0.025em; line-height: 1; }
     <div class="footer-meta">
       <a href="/privacy.html" style="color: rgba(245, 245, 243, 0.7); text-decoration: none; margin-right: 16px;">Privacy &amp; cookies</a>
       <a href="#" onclick="event.preventDefault(); revokeConsent();" style="color: rgba(245, 245, 243, 0.7); text-decoration: none; margin-right: 16px;">Change cookie choice</a>
-      <span>Unicorn United Ltd · Drop N°001 · Late June 2026</span>
+      <span>Unicorn United Ltd · Drop N°001 · Jul–Aug 2026</span>
     </div>
   </div>
 </footer>
@@ -3428,7 +3349,7 @@ function captureSignup(e) {
 function showSubmissionSuccess(form, withWarning = false) {
   const message = withWarning
     ? 'You\'re on the list — though we hit a network blip while sending. Drop us a line at hello@early-or-late.com if you don\'t hear back.'
-    : 'You\'re on the list. We\'ll see you in late June.';
+    : 'You\'re on the list. We\'ll see you in July or August.';
   form.innerHTML = `
     <div style="text-align:center;padding:64px 32px;background:var(--bone);border-radius:4px;">
       <div style="font-size:56px;color:var(--clay);margin-bottom:24px;">✓</div>
