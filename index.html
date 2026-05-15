@@ -3,1000 +3,425 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Early or Late · Limited edition wearable art</title>
+<title>Early or Late · Wearable works by independent artists · Hackney, London</title>
 
-<!-- NOTE: TT Hoves Pro is the locked brand typeface (paid TypeType font).
-     Inter is used here as the closest free equivalent for the prototype.
-     Swap in TT Hoves Pro for the live build. -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400..700;1,6..72,400..700&family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 
 <style>
-/* ====== BRAND TOKENS (locked from client brand board, May 2026) ====== */
+/* ============================================================
+   EARLY OR LATE — VISUAL REFRESH v2
+   Bold Minimalism, executed bravely. Hackney register.
+   Locked palette: Black · Bone · White · Stone · Clay
+   Type system: Inter · Newsreader (italic accents) · JetBrains Mono
+============================================================ */
+
 :root {
   --black: #0A0A0A;
   --ink:   #1A1814;
   --white: #F5F5F3;
   --stone: #D8D2C8;
-  --ash:   #B9B9B6;
   --bone:  #EAE6DF;
   --clay:  #A2674C;
   --clay-warm: #B07355;
   --ink-soft: #4A4742;
 
-  --type:  'Inter', -apple-system, 'TT Hoves Pro', sans-serif;
   --sans:  'Inter', -apple-system, sans-serif;
   --serif: 'Newsreader', 'Georgia', serif;
   --mono:  'JetBrains Mono', 'SF Mono', Menlo, monospace;
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
-
 html { scroll-behavior: smooth; }
-
 body {
-  font-family: var(--type);
+  font-family: var(--sans);
   font-weight: 400;
   color: var(--black);
-  background: var(--white);
+  background: var(--bone);
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
 }
 
-/* ====== TYPOGRAPHY — Bold Minimalism ======
-   Fixed pixel sizes at desktop, responsive via media queries.
-   Italic em accents in Newsreader serif for emotional emphasis. */
-h1, h2, h3, h4 { font-weight: 500; letter-spacing: -0.025em; line-height: 1; }
+/* ============================================================
+   TYPE SYSTEM — recalibrated for bravery
+============================================================ */
+.it { font-family: var(--serif); font-style: italic; font-weight: 500; }
 
-/* Hero-scale display */
+/* Display XL — hero only */
+.display-xl {
+  font-family: var(--sans);
+  font-weight: 900;
+  font-size: 120px;
+  line-height: 0.9;
+  letter-spacing: -0.04em;
+  color: var(--black);
+}
+.display-xl em, .display-xl .it {
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 500;
+  color: var(--clay);
+  letter-spacing: -0.025em;
+}
+@media (max-width: 1200px) { .display-xl { font-size: 96px; } }
+@media (max-width: 900px)  { .display-xl { font-size: 72px;  letter-spacing: -0.035em; } }
+@media (max-width: 600px)  { .display-xl { font-size: 48px;  letter-spacing: -0.03em; line-height: 0.95; } }
+
+/* Display — section openers */
 .display {
   font-family: var(--sans);
   font-weight: 900;
-  font-size: 88px;
-  line-height: 1.0;
-  letter-spacing: -0.035em;
+  font-size: 104px;
+  line-height: 0.9;
+  letter-spacing: -0.04em;
   color: var(--black);
-  max-width: 20ch;
 }
-.display em {
+.display em, .display .it {
   font-family: var(--serif);
   font-style: italic;
   font-weight: 500;
   color: var(--clay);
-  letter-spacing: -0.015em;
+  letter-spacing: -0.025em;
 }
-@media (max-width: 1200px) { .display { font-size: 72px; } }
-@media (max-width: 900px)  { .display { font-size: 56px; } }
-@media (max-width: 600px)  { .display { font-size: 40px; line-height: 1.05; } }
+@media (max-width: 1200px) { .display { font-size: 84px; } }
+@media (max-width: 900px)  { .display { font-size: 64px; } }
+@media (max-width: 600px)  { .display { font-size: 48px; line-height: 0.95; } }
 
-/* Section title — H1 */
-.h-1 {
+/* Massive italic phrase — standalone graphic moments */
+.phrase-italic {
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 500;
+  font-size: 200px;
+  line-height: 0.85;
+  letter-spacing: -0.03em;
+  color: var(--clay);
+}
+@media (max-width: 1200px) { .phrase-italic { font-size: 152px; } }
+@media (max-width: 900px)  { .phrase-italic { font-size: 100px; } }
+@media (max-width: 600px)  { .phrase-italic { font-size: 64px;  letter-spacing: -0.025em; } }
+
+/* Section headline — H1 */
+.h-section {
   font-family: var(--sans);
   font-weight: 800;
-  font-size: 96px;
+  font-size: 64px;
   line-height: 0.95;
-  letter-spacing: -0.035em;
+  letter-spacing: -0.03em;
   color: var(--black);
 }
-.h-1 em {
+.h-section em, .h-section .it {
   font-family: var(--serif);
   font-style: italic;
   font-weight: 500;
   color: var(--clay);
+  letter-spacing: -0.02em;
 }
-@media (max-width: 1200px) { .h-1 { font-size: 76px; } }
-@media (max-width: 900px)  { .h-1 { font-size: 56px; } }
-@media (max-width: 600px)  { .h-1 { font-size: 40px; } }
+@media (max-width: 900px) { .h-section { font-size: 48px; } }
+@media (max-width: 600px) { .h-section { font-size: 36px; } }
 
-/* Sub-section — H2 */
 .h-2 {
   font-family: var(--sans);
   font-weight: 700;
-  font-size: 44px;
+  font-size: 36px;
   line-height: 1.05;
-  letter-spacing: -0.025em;
+  letter-spacing: -0.02em;
   color: var(--black);
 }
-.h-2 em {
+.h-2 em, .h-2 .it {
   font-family: var(--serif);
   font-style: italic;
-  font-weight: 400;
+  font-weight: 500;
   color: var(--clay);
 }
-@media (max-width: 900px) { .h-2 { font-size: 32px; } }
 
-.h-3 { font-family: var(--sans); font-size: 20px; font-weight: 600; letter-spacing: -0.005em; }
+.h-3 { font-family: var(--sans); font-size: 22px; font-weight: 600; letter-spacing: -0.01em; color: var(--black); line-height: 1.2; }
 
-/* Section numeral — Roman/decorative */
+/* Section numeral — the architectural mark */
 .section-numeral {
   font-family: var(--serif);
   font-style: italic;
-  font-weight: 400;
-  font-size: 140px;
-  line-height: 0.9;
-  letter-spacing: -0.04em;
+  font-weight: 500;
+  font-size: 200px;
+  line-height: 0.85;
+  letter-spacing: -0.03em;
   color: var(--clay);
   display: block;
 }
-@media (max-width: 1200px) { .section-numeral { font-size: 108px; } }
-@media (max-width: 900px)  { .section-numeral { font-size: 72px; } }
+@media (max-width: 1200px) { .section-numeral { font-size: 152px; } }
+@media (max-width: 900px)  { .section-numeral { font-size: 96px; } }
 
 /* Body */
-.body  { font-family: var(--sans); font-size: 17px; line-height: 1.55; color: var(--ink-soft); max-width: 60ch; }
-.body em { font-family: var(--serif); font-style: italic; color: var(--black); }
+.body  { font-family: var(--sans); font-size: 18px; font-weight: 400; line-height: 1.55; color: var(--black); max-width: 64ch; }
+.body em, .body .it { font-family: var(--serif); font-style: italic; font-weight: 500; color: var(--clay); }
 .body-l {
   font-family: var(--sans);
   font-size: 22px;
   line-height: 1.45;
-  letter-spacing: -0.01em;
-  color: var(--ink-soft);
-  max-width: 42ch;
+  letter-spacing: -0.005em;
+  color: var(--black);
+  max-width: 52ch;
   font-weight: 400;
 }
-.body-l em {
+.body-l em, .body-l .it {
   font-family: var(--serif);
   font-style: italic;
-  color: var(--black);
+  font-weight: 500;
+  color: var(--clay);
 }
-@media (max-width: 900px) { .body-l { font-size: 18px; } }
+@media (max-width: 900px) { .body-l { font-size: 19px; } .body { font-size: 17px; } }
 
 /* Editorial labels — mono */
 .meta {
   font-family: var(--mono);
   font-size: 11px;
   font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--black);
+}
+.meta-clay { color: var(--clay); }
+.meta-bone { color: var(--bone); }
+.meta-l { font-size: 13px; letter-spacing: 0.14em; }
+
+/* ============================================================
+   LAYOUT PRIMITIVES
+============================================================ */
+.container { max-width: 1320px; margin: 0 auto; padding: 0 40px; }
+.container--wide { max-width: 1480px; }
+@media (max-width: 600px) { .container { padding: 0 24px; } }
+
+.section { padding: 160px 0; }
+.section--tight { padding: 100px 0; }
+.section--bone   { background: var(--bone); }
+.section--white  { background: var(--white); }
+.section--stone  { background: var(--stone); }
+.section--clay   { background: var(--clay);  color: var(--bone); }
+.section--black  { background: var(--black); color: var(--bone); }
+
+@media (max-width: 900px) { .section { padding: 100px 0; } .section--tight { padding: 72px 0; } }
+
+/* Thick rules — architectural dividers */
+.rule        { border: 0; border-top: 1px solid var(--black); margin: 0; }
+.rule-thick  { border: 0; border-top: 6px solid var(--black); margin: 0; }
+.rule-clay   { border: 0; border-top: 6px solid var(--clay); margin: 0; }
+.rule-bone   { border: 0; border-top: 1px solid var(--bone); margin: 0; opacity: 0.3; }
+.rule-thick-bone { border: 0; border-top: 6px solid var(--bone); margin: 0; opacity: 0.5; }
+
+/* ============================================================
+   NAVIGATION — solid, no backdrop blur
+============================================================ */
+.nav {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--bone);
+  border-bottom: 1px solid var(--black);
+}
+.nav-inner {
+  max-width: 1320px; margin: 0 auto; padding: 18px 40px;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.nav-brand { display: flex; align-items: center; gap: 18px; color: var(--black); }
+.nav-brand-place {
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 500;
   letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--clay);
+  display: none;
 }
-.meta-l {
-  font-family: var(--mono);
-  font-size: 13px;
-  font-weight: 500;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--clay);
-}
-.label-mono {
-  font-family: var(--mono);
-  font-weight: 500;
-  font-size: 12px;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--clay);
-}
-.label-mono--ink { color: var(--ink-soft); }
-
-/* ====== LAYOUT ====== */
-.container { max-width: 1240px; margin: 0 auto; padding: 0 32px; }
-.section { padding: 120px 0; }
-.section--tight { padding: 80px 0; }
-.section--bone { background: var(--bone); }
-.section--black { background: var(--black); color: var(--white); }
-.section--stone { background: var(--stone); }
-
-.grid { display: grid; gap: 32px; }
-.grid-2 { grid-template-columns: repeat(2, 1fr); }
-.grid-3 { grid-template-columns: repeat(3, 1fr); }
-.grid-5 { grid-template-columns: repeat(5, 1fr); }
-
-@media (max-width: 900px) {
-  .grid-3, .grid-5 { grid-template-columns: repeat(2, 1fr); }
-  .grid-2 { grid-template-columns: 1fr; }
-}
-
-/* ====== NAV ====== */
-.nav {
-  position: sticky; top: 0; z-index: 100;
-  background: rgba(245, 245, 243, 0.92);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border-bottom: 1px solid rgba(10,10,10,0.06);
-}
-.nav-inner {
-  max-width: 1240px; margin: 0 auto; padding: 18px 32px;
-  display: flex; align-items: center; justify-content: space-between;
-}
-.nav-brand { font-size: 14px; font-weight: 500; letter-spacing: -0.005em; }
-.nav-brand em { font-style: normal; }
+@media (min-width: 720px) { .nav-brand-place { display: block; } }
 .nav-links { display: flex; gap: 32px; align-items: center; }
 .nav-links a { color: var(--black); text-decoration: none; font-size: 13px; font-weight: 400; letter-spacing: 0.02em; }
 .nav-links a:hover { color: var(--clay); }
 .nav-cta {
-  background: var(--black); color: var(--white) !important;
-  padding: 10px 18px; border-radius: 2px; font-size: 12px !important;
-  font-weight: 500 !important; letter-spacing: 0.06em !important; text-transform: uppercase;
+  background: var(--black); color: var(--bone) !important;
+  padding: 12px 22px; font-size: 11px !important;
+  font-weight: 600 !important; letter-spacing: 0.14em !important; text-transform: uppercase;
+  font-family: var(--mono);
 }
-.nav-cta:hover { background: var(--clay); color: var(--white) !important; }
+.nav-cta:hover { background: var(--clay); color: var(--bone) !important; }
+@media (max-width: 600px) { .nav-inner { padding: 14px 24px; } }
 
-/* ====== HERO — Editorial, wordmark-led ====== */
+/* ============================================================
+   HERO — massive, decisive
+============================================================ */
 .hero {
-  padding: 80px 0 140px;
+  padding: 80px 0 120px;
   background: var(--bone);
-  position: relative;
-  overflow: hidden;
+  border-bottom: 6px solid var(--black);
 }
-.hero-supergraphic { display: none; }
-.hero-inner { position: relative; z-index: 1; }
-.hero-grid {
+.hero-label-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding-bottom: 28px;
+  border-bottom: 1px solid var(--black);
+  margin-bottom: 80px;
+}
+.hero-label-left { display: flex; gap: 36px; align-items: baseline; flex-wrap: wrap; }
+
+.hero-headline-block {
+  margin-bottom: 80px;
+}
+.hero-headline-block .display-xl { max-width: 14ch; }
+
+.hero-body-row {
   display: grid;
-  grid-template-columns: 200px 1fr;
-  gap: 64px;
-  align-items: start;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  margin-bottom: 64px;
 }
-@media (max-width: 900px) {
-  .hero-grid { grid-template-columns: 1fr; gap: 48px; }
-}
-.hero-section-mark {
-  position: relative;
-  padding-top: 80px;
-}
-.hero-section-mark .label-mono { margin-bottom: 18px; display: block; }
-.hero-main { display: flex; flex-direction: column; gap: 56px; }
+@media (max-width: 900px) { .hero-body-row { grid-template-columns: 1fr; gap: 32px; } }
+.hero-body-row .body-l { max-width: 44ch; }
 
-.wordmark-hero {
-  width: 100%;
-  max-width: 720px;
-  color: var(--black);
-  display: block;
-}
-
-/* CTA — architectural square */
 .cta-block {
   display: flex;
   gap: 32px;
   align-items: center;
   flex-wrap: wrap;
-  margin-top: 8px;
 }
 .cta-primary {
   display: inline-flex;
   align-items: center;
-  gap: 16px;
+  gap: 18px;
   background: var(--black);
   color: var(--bone);
-  padding: 22px 32px;
-  font-family: var(--sans);
-  font-size: 14px;
+  padding: 22px 36px;
+  font-family: var(--mono);
+  font-size: 12px;
   font-weight: 600;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
   text-decoration: none;
   border-radius: 0;
-  transition: all 0.2s ease;
+  border: 2px solid var(--black);
 }
-.cta-primary:hover { background: var(--clay); }
-.cta-primary-arrow {
-  display: inline-block;
-  width: 24px; height: 1px;
-  background: var(--bone);
-  position: relative;
-}
-.cta-primary-arrow::after {
-  content: "";
-  position: absolute;
-  right: 0; top: -3px;
-  width: 7px; height: 7px;
-  border-top: 1px solid var(--bone);
-  border-right: 1px solid var(--bone);
-  transform: rotate(45deg);
-}
+.cta-primary:hover { background: var(--clay); border-color: var(--clay); }
+.cta-primary-arrow { font-family: var(--serif); font-style: italic; font-size: 18px; line-height: 1; }
 .cta-supporting {
   font-family: var(--serif);
   font-style: italic;
-  font-weight: 400;
+  font-weight: 500;
   font-size: 18px;
   color: var(--clay);
 }
 
-/* Editorial spec strip — grid */
+/* HERO SPEC STRIP — newspaper masthead register */
 .hero-spec {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 1px;
-  background: rgba(10, 10, 10, 0.1);
-  border-top: 1px solid rgba(10, 10, 10, 0.1);
-  border-bottom: 1px solid rgba(10, 10, 10, 0.1);
-  margin-top: 32px;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 0;
+  border-top: 6px solid var(--black);
+  border-bottom: 1px solid var(--black);
+  padding: 22px 0;
+  margin-top: 16px;
 }
-@media (max-width: 900px) { .hero-spec { grid-template-columns: repeat(2, 1fr); } }
-.hero-spec-item {
-  background: var(--bone);
-  padding: 18px 20px;
-  font-size: 13px;
-}
-.hero-spec-item strong {
-  display: block;
-  font-family: var(--mono);
-  font-size: 10px;
-  font-weight: 600;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--clay);
-  margin-bottom: 6px;
-}
-.hero-spec-item span {
+@media (max-width: 900px) { .hero-spec { grid-template-columns: repeat(2, 1fr); row-gap: 24px; } }
+@media (max-width: 600px) { .hero-spec { grid-template-columns: 1fr 1fr; } }
+.hero-spec-item { padding-right: 16px; border-right: 1px solid rgba(10, 10, 10, 0.12); }
+.hero-spec-item:last-child { border-right: 0; }
+@media (max-width: 900px) { .hero-spec-item:nth-child(2n) { border-right: 0; } }
+.hero-spec-item .meta { display: block; margin-bottom: 10px; color: var(--clay); }
+.hero-spec-item .val {
   font-family: var(--sans);
-  font-weight: 500;
-  font-size: 16px;
+  font-weight: 700;
+  font-size: 24px;
+  letter-spacing: -0.015em;
   color: var(--black);
-  letter-spacing: -0.005em;
 }
-
-/* Hero eyebrow — kept for legacy */
-.hero-eyebrow { color: var(--clay); margin-bottom: 32px; }
-
-/* Architectural section divider — canonical question heading */
-.section-divider {
-  border-top: 1px solid var(--black);
-  padding: 28px 0 40px;
-  display: grid;
-  grid-template-columns: 200px 1fr auto;
-  gap: 32px;
-  align-items: center;
-  margin-bottom: 48px;
-}
-.section-divider-num {
+.hero-spec-item .val em, .hero-spec-item .val .it {
   font-family: var(--serif);
   font-style: italic;
-  font-weight: 400;
-  font-size: 56px;
+  font-weight: 500;
   color: var(--clay);
-  line-height: 1;
+}
+@media (max-width: 900px) { .hero-spec-item .val { font-size: 20px; } }
+
+/* ============================================================
+   SECTION DIVIDER — 140px numeral + 6px clay rule + label + headline
+============================================================ */
+.section-divider {
+  padding-bottom: 40px;
+  margin-bottom: 56px;
+}
+.section-divider-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding-bottom: 18px;
+  border-bottom: 6px solid var(--clay);
+  margin-bottom: 32px;
+  gap: 24px;
+  flex-wrap: wrap;
 }
 .section-divider-label {
   font-family: var(--mono);
   font-size: 12px;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: var(--ink-soft);
+  color: var(--clay);
+  font-weight: 600;
 }
 .section-divider-right {
-  text-align: right;
   font-family: var(--mono);
   font-size: 12px;
-  letter-spacing: 0.14em;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: var(--ink-soft);
-}
-/* Dark variant for sections with black background */
-.section-divider--dark {
-  border-top-color: rgba(245, 241, 235, 0.4);
-}
-.section-divider--dark .section-divider-num { color: var(--clay-warm); }
-.section-divider--dark .section-divider-label,
-.section-divider--dark .section-divider-right { color: rgba(245, 241, 235, 0.65); }
-
-/* Q-status integrated into section-divider-right — strip the pill styling */
-.section-divider .q-status {
-  background: transparent !important;
-  padding: 0 !important;
-  margin: 0 !important;
-  font-family: var(--mono);
-  font-size: 12px;
+  color: var(--black);
   font-weight: 600;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  border: none;
 }
-.section-divider .q-status::before { display: none; }
-.section-divider .q-status.answered { color: var(--clay); }
-.section-divider .q-status.skipped { color: var(--ink-soft); text-decoration: line-through; }
-.section-divider--dark .q-status { color: rgba(245, 241, 235, 0.65); }
+.section-divider-numhead {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 48px;
+  align-items: end;
+}
+@media (max-width: 720px) {
+  .section-divider-numhead { grid-template-columns: 1fr; gap: 24px; }
+}
+.section-divider-numhead .section-numeral { line-height: 0.78; }
+
+/* Dark variant */
+.section-divider--dark .section-divider-top { border-bottom-color: var(--clay-warm); }
+.section-divider--dark .section-divider-label { color: var(--clay-warm); }
+.section-divider--dark .section-divider-right { color: var(--bone); }
+.section-divider--dark .section-numeral { color: var(--clay-warm); }
+
+/* Light-on-clay variant */
+.section-divider--clay .section-divider-top { border-bottom-color: var(--bone); }
+.section-divider--clay .section-divider-label { color: var(--bone); }
+.section-divider--clay .section-divider-right { color: var(--bone); }
+.section-divider--clay .section-numeral { color: var(--bone); }
+
+/* Q-status states — inline progress */
+.section-divider-right.q-status.answered { color: var(--clay); }
+.section-divider-right.q-status.skipped  { color: var(--ink-soft); text-decoration: line-through; }
 .section-divider--dark .q-status.answered { color: var(--clay-warm); }
+.section-divider--dark .q-status.skipped  { color: rgba(245, 241, 235, 0.45); }
+.section-divider--clay .q-status.answered { color: var(--bone); font-weight: 700; }
 
-@media (max-width: 900px) {
-  .section-divider { grid-template-columns: 1fr; gap: 12px; text-align: left; padding-bottom: 32px; margin-bottom: 32px; }
-  .section-divider-right { text-align: left; }
-}
-
-/* ====== T-SHIRT PLACEHOLDER CARDS ====== */
-.drop-grid {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 20px;
-  margin-top: 64px;
-}
-@media (max-width: 1100px) { .drop-grid { grid-template-columns: repeat(3, 1fr); } }
-@media (max-width: 700px)  { .drop-grid { grid-template-columns: repeat(2, 1fr); gap: 14px; } }
-
-.drop-artist-section {
-  margin-top: 72px;
-}
-.drop-artist-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  padding-bottom: 18px;
-  border-bottom: 1px solid rgba(10, 10, 10, 0.12);
-  margin-bottom: 32px;
-}
-.drop-artist-name {
-  font-family: var(--sans);
-  font-weight: 700;
-  font-size: 32px;
-  letter-spacing: -0.02em;
-  color: var(--black);
-}
-.drop-artist-name em {
-  font-family: var(--serif);
-  font-style: italic;
-  font-weight: 400;
-  color: var(--clay);
-}
-.drop-artist-meta {
-  font-family: var(--mono);
-  font-size: 11px;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--ink-soft);
-}
-
-.shirt-card {
-  background: var(--white);
-  position: relative;
-  cursor: pointer;
-  transition: all 0.25s ease;
-  overflow: hidden;
-  border-radius: 0;
-  border: 1px solid rgba(10, 10, 10, 0.08);
-  display: flex;
-  flex-direction: column;
-}
-.shirt-card:hover {
-  transform: translateY(-3px);
-  border-color: var(--clay);
-}
-.shirt-card.ranked {
-  outline: 2px solid var(--clay);
-  outline-offset: -2px;
-  background: rgba(162, 103, 76, 0.04);
-}
-
-/* Card artwork area — top portion */
-.shirt-placeholder {
-  position: relative;
-  aspect-ratio: 1/1;
-  background: var(--bone);
-  display: flex; align-items: center; justify-content: center;
-  flex-direction: column;
-  padding: 24px;
-  text-align: center;
-}
-.shirt-placeholder-mark {
-  font-size: 48px;
-  font-weight: 500;
-  color: var(--clay);
-  opacity: 0.35;
-  margin-bottom: 10px;
-  font-family: var(--sans);
-}
-.shirt-placeholder-label {
-  font-family: var(--mono);
-  font-size: 9px;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--ink-soft);
-  opacity: 0.7;
-}
-/* Card body — title + description + meta */
-.shirt-meta {
-  padding: 18px 20px 20px;
-  border-top: 1px solid rgba(10, 10, 10, 0.08);
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-  flex: 1;
-}
-.shirt-title {
-  font-family: var(--sans);
-  font-size: 15px;
-  font-weight: 600;
-  letter-spacing: -0.01em;
-  color: var(--black);
-  line-height: 1.25;
-}
-.shirt-description {
-  font-family: var(--serif);
-  font-style: italic;
-  font-weight: 400;
-  font-size: 13px;
-  line-height: 1.4;
-  color: var(--ink-soft);
-  margin: 2px 0 8px;
-}
-.shirt-artist {
-  font-family: var(--mono);
-  font-size: 10px;
-  font-weight: 600;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--clay);
-  margin-top: auto;
-}
-.shirt-edition {
-  font-family: var(--mono);
-  font-size: 10px;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--ink-soft);
-}
-.shirt-price {
-  position: absolute;
-  top: 14px;
-  right: 14px;
-  font-family: var(--mono);
-  font-size: 11px;
-  font-weight: 600;
-  color: var(--black);
-  background: var(--white);
-  padding: 6px 10px;
-  border-radius: 2px;
-  border: 1px solid rgba(10, 10, 10, 0.08);
-  z-index: 2;
-}
-
-/* ====== FEATURED ARTWORK BLOCK ====== */
-.featured {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 80px;
-  align-items: center;
-}
-@media (max-width: 900px) { .featured { grid-template-columns: 1fr; gap: 48px; } }
-
-.featured-visual {
-  background: var(--stone);
-  aspect-ratio: 1/1.2;
-  border-radius: 2px;
-  position: relative;
-  overflow: hidden;
-}
-.featured-visual::after {
-  content: "";
-  position: absolute; inset: 0;
-  background: radial-gradient(circle at 50% 50%, rgba(162, 103, 76, 0.12) 0%, transparent 65%);
-}
-.featured-visual-mark {
-  position: absolute;
-  top: 50%; left: 50%;
-  transform: translate(-50%, -50%);
-  font-size: 200px;
-  font-weight: 500;
-  color: var(--clay);
-  opacity: 0.35;
-  line-height: 1;
-}
-.featured-visual-label {
-  position: absolute;
-  bottom: 24px; left: 24px;
-  font-size: 10px;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--ink-soft);
-}
-.featured-meta { color: var(--clay); margin-bottom: 24px; }
-.featured h2 { margin-bottom: 24px; }
-.featured-spec {
-  margin-top: 40px;
-  padding-top: 32px;
-  border-top: 1px solid rgba(10,10,10,0.12);
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 20px;
-}
-.featured-spec dt { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-soft); margin-bottom: 4px; }
-.featured-spec dd { font-size: 14px; font-weight: 500; color: var(--black); }
-
-/* ====== PROMISE STRIP ====== */
-.promise-strip {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 0;
-  border-top: 1px solid rgba(245, 245, 243, 0.15);
-  border-bottom: 1px solid rgba(245, 245, 243, 0.15);
-}
-@media (max-width: 700px) { .promise-strip { grid-template-columns: repeat(2, 1fr); } }
-
-.promise-item {
-  padding: 48px 32px;
-  border-right: 1px solid rgba(245, 245, 243, 0.15);
-}
-.promise-item:last-child { border-right: none; }
-.promise-num { font-size: 11px; letter-spacing: 0.16em; color: var(--clay); margin-bottom: 16px; }
-.promise-title { font-size: 18px; font-weight: 500; color: var(--white); margin-bottom: 12px; }
-.promise-body { font-size: 14px; line-height: 1.55; color: rgba(245, 245, 243, 0.72); }
-
-/* ====== SURVEY MOMENTS ====== */
-.survey-block {
-  background: var(--bone);
-  padding: 120px 0;
-}
-.survey-block--black {
-  background: var(--black);
-  color: var(--bone);
-}
-.survey-block--black .h-1 { color: var(--bone); }
-.survey-block--black .h-1 em { color: var(--clay-warm); }
-.survey-block--black .survey-helper { color: rgba(245, 241, 235, 0.7); }
-.survey-block--black .survey-eyebrow { color: var(--clay-warm); }
-.survey-block--black .body { color: rgba(245, 241, 235, 0.7); }
-.survey-block--black .body-l { color: rgba(245, 241, 235, 0.75); }
-.survey-eyebrow { color: var(--clay); margin-bottom: 16px; }
-.survey-question { max-width: 22ch; margin-bottom: 32px; }
-.survey-helper { font-size: 16px; color: var(--ink-soft); margin-bottom: 32px; max-width: 56ch; line-height: 1.5; }
-.survey-helper em { font-family: var(--serif); font-style: italic; color: var(--black); }
-.survey-block--black .survey-helper em { color: var(--bone); }
-
-/* Proposition options — architectural layout on dark background */
-.props-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 14px;
-  max-width: 100%;
-}
-.prop-option {
-  background: rgba(245, 241, 235, 0.04);
-  border: 1px solid rgba(245, 241, 235, 0.14);
-  padding: 36px 40px 36px 32px;
-  border-radius: 0;
-  cursor: pointer;
-  transition: all 0.25s ease;
-  position: relative;
-  text-align: left;
-  font-family: var(--sans);
-  width: 100%;
-  display: grid;
-  grid-template-columns: 100px 1fr;
-  gap: 56px;
-  align-items: start;
-}
-.prop-option:hover {
-  background: rgba(245, 241, 235, 0.08);
-  border-color: var(--clay);
-  transform: translateX(8px);
-}
-.prop-option.selected {
-  background: rgba(162, 103, 76, 0.18);
-  border-color: var(--clay);
-}
-.prop-option::before {
-  content: attr(data-variant) ".";
-  font-family: var(--serif);
-  font-style: italic;
-  font-weight: 400;
-  font-size: 56px;
-  line-height: 0.9;
-  color: var(--clay-warm);
-}
-.prop-label {
-  font-family: var(--mono);
-  font-size: 10px;
-  font-weight: 600;
-  color: var(--clay-warm);
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  margin-bottom: 12px;
-  display: block;
-}
-.prop-text {
-  font-family: var(--sans);
-  font-size: 22px;
-  font-weight: 500;
-  line-height: 1.3;
-  letter-spacing: -0.015em;
-  color: var(--bone);
-}
-.prop-text em {
-  font-family: var(--serif);
-  font-style: italic;
-  font-weight: 400;
-  color: var(--clay-warm);
-}
-@media (max-width: 700px) {
-  .prop-option { grid-template-columns: 1fr; padding: 24px 24px; gap: 12px; }
-  .prop-option::before { font-size: 40px; }
-  .prop-text { font-size: 18px; }
-}
-
-/* Shirt multi-select */
-.select-grid {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 16px;
-  margin-top: 40px;
-}
-@media (max-width: 900px) { .select-grid { grid-template-columns: repeat(3, 1fr); } }
-@media (max-width: 600px) { .select-grid { grid-template-columns: repeat(2, 1fr); } }
-
-.select-shirt {
-  cursor: pointer;
-  position: relative;
-  transition: transform 0.25s ease;
-  background: none;
-  border: none;
-  padding: 0;
-  font-family: var(--type);
-}
-.select-shirt:hover { transform: translateY(-3px); }
-.select-shirt-visual {
-  background: var(--white);
-  aspect-ratio: 1/1.15;
-  border: 2px solid transparent;
-  border-radius: 2px;
-  position: relative;
-  overflow: hidden;
-  display: flex; align-items: center; justify-content: center;
-  transition: border-color 0.25s ease;
-}
-.select-shirt.selected .select-shirt-visual { border-color: var(--clay); }
-.select-shirt.selected::after {
-  content: "✓";
-  position: absolute;
-  top: 10px; right: 10px;
-  width: 26px; height: 26px;
-  background: var(--clay); color: var(--white);
-  border-radius: 50%;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 14px;
-  font-weight: 500;
-}
-.select-shirt-mark { font-size: 48px; color: var(--clay); opacity: 0.4; }
-.select-shirt-name { font-size: 12px; font-weight: 500; margin-top: 12px; color: var(--black); text-align: center; }
-
-/* Price slider */
-.price-slider-wrap { max-width: 640px; margin-top: 48px; }
-.price-range {
-  display: flex;
-  justify-content: space-between;
-  gap: 12px;
-}
-@media (max-width: 600px) {
-  .price-range { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
-  .price-range .price-button:last-child { grid-column: 1 / -1; }
-}
-.price-button {
-  flex: 1;
-  background: var(--white);
-  border: 1px solid rgba(10,10,10,0.12);
-  padding: 22px 12px;
-  cursor: pointer;
-  font-family: var(--type);
-  font-size: 15px;
-  font-weight: 500;
-  color: var(--black);
-  border-radius: 3px;
-  transition: all 0.2s ease;
-}
-.price-button:hover { border-color: var(--clay); }
-.price-button.selected { background: var(--clay); color: var(--white); border-color: var(--clay); }
-
-/* ====== ARTIST ROSTER ====== */
-.artist-grid {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 24px;
-  margin-top: 48px;
-}
-@media (max-width: 900px) { .artist-grid { grid-template-columns: repeat(3, 1fr); } }
-@media (max-width: 600px) { .artist-grid { grid-template-columns: 1fr 1fr; } }
-
-.artist-tile {
-  text-align: left;
-}
-.artist-portrait {
-  background: var(--stone);
-  aspect-ratio: 1/1.15;
-  border-radius: 2px;
-  margin-bottom: 16px;
-  position: relative;
-  overflow: hidden;
-}
-.artist-portrait-mark {
-  position: absolute;
-  top: 50%; left: 50%;
-  transform: translate(-50%, -50%);
-  font-size: 80px;
-  color: var(--clay);
-  opacity: 0.3;
-  font-weight: 300;
-}
-.artist-portrait-label {
-  position: absolute;
-  bottom: 12px; left: 14px;
-  font-size: 9px;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--ink-soft);
-}
-.artist-name { font-size: 16px; font-weight: 500; margin-bottom: 4px; }
-.artist-detail { font-size: 13px; color: var(--ink-soft); }
-
-/* ====== SIGN-UP / EXIT GATE ====== */
-.signup-block {
-  background: var(--black);
-  color: var(--bone);
-  padding: 140px 0;
-  text-align: left;
-}
-.signup-block h2 { color: var(--bone); max-width: 14ch; margin: 0 0 32px; }
-.signup-block .h-1 em { color: var(--clay-warm); }
-.signup-block .body { color: rgba(245, 245, 243, 0.7); max-width: 50ch; margin-bottom: 48px; }
-.signup-block .body em { color: var(--bone); }
-.signup-block .meta { color: var(--clay-warm); }
-.signup-form {
-  max-width: 480px;
-  margin: 0 auto;
-  display: flex;
-  gap: 8px;
-}
-.signup-form input {
-  flex: 1;
-  background: transparent;
-  border: 1px solid rgba(245, 245, 243, 0.3);
-  color: var(--white);
-  padding: 16px 20px;
-  font-family: var(--type);
-  font-size: 15px;
-  border-radius: 2px;
-  outline: none;
-}
-.signup-form input:focus { border-color: var(--clay); }
-.signup-form input::placeholder { color: rgba(245, 245, 243, 0.4); }
-.signup-form button {
-  background: var(--clay);
-  color: var(--white);
-  border: none;
-  padding: 0 28px;
-  font-family: var(--type);
-  font-size: 13px;
-  font-weight: 500;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  cursor: pointer;
-  border-radius: 2px;
-}
-.signup-form button:hover { background: var(--white); color: var(--black); }
-.signup-fineprint { font-size: 12px; color: rgba(245, 245, 243, 0.4); margin-top: 24px; }
-
-/* ====== FOOTER ====== */
-.footer { padding: 48px 0 32px; background: var(--black); color: var(--white); border-top: 1px solid rgba(245, 245, 243, 0.08); }
-.footer-inner { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
-.footer-brand { font-size: 13px; }
-.footer-meta { font-size: 11px; color: rgba(245, 245, 243, 0.4); letter-spacing: 0.06em; }
-
-/* ====== UTILITIES ====== */
-.mt-32 { margin-top: 32px; }
-.mt-48 { margin-top: 48px; }
-.mt-64 { margin-top: 64px; }
-.mt-80 { margin-top: 80px; }
-.mb-16 { margin-bottom: 16px; }
-.mb-24 { margin-bottom: 24px; }
-.mb-32 { margin-bottom: 32px; }
-
-/* Survey progress indicator */
-.progress-bar {
-  position: fixed; top: 0; left: 0;
-  height: 2px; background: var(--clay);
-  width: 0%;
-  z-index: 200;
-  transition: width 0.2s ease;
-}
-
-/* ====== RANKING INTERACTIONS ====== */
-.rank-badge {
-  position: absolute;
-  top: 14px; left: 14px;
-  width: 36px; height: 36px;
-  background: var(--clay);
-  color: var(--white);
-  border-radius: 50%;
-  display: none;
-  align-items: center;
-  justify-content: center;
-  font-family: var(--type);
-  font-size: 15px;
-  font-weight: 600;
-  z-index: 10;
-  box-shadow: 0 4px 14px rgba(162, 103, 76, 0.42);
-  pointer-events: none;
-}
-.ranked .rank-badge { display: flex; }
-.shirt-card.ranked, .promise-item.ranked {
-  outline: 2px solid var(--clay);
-  outline-offset: -2px;
-}
-.shirt-card { cursor: pointer; }
-.promise-item { cursor: pointer; transition: background 0.2s ease; }
-.promise-item:hover { background: rgba(245, 245, 243, 0.04); }
-
-/* The "Your top 3" tracker panel */
-.rank-tracker {
-  margin-top: 48px;
-  padding: 24px 28px;
-  background: var(--bone);
-  border-radius: 2px;
-  display: flex;
-  gap: 32px;
-  flex-wrap: wrap;
-  align-items: center;
-}
-.rank-tracker--dark {
-  background: rgba(245, 245, 243, 0.05);
-  border: 1px solid rgba(245, 245, 243, 0.12);
-}
-.tracker-label {
-  font-size: 11px;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--ink-soft);
-  font-weight: 500;
-}
-.rank-tracker--dark .tracker-label { color: rgba(245, 245, 243, 0.6); }
-.tracker-items {
-  display: flex;
-  gap: 24px;
-  flex: 1;
-  flex-wrap: wrap;
-}
-.track-item {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  font-size: 14px;
-  color: var(--ink-soft);
-}
-.track-item.filled { color: var(--black); font-weight: 500; }
-.rank-tracker--dark .track-item { color: rgba(245, 245, 243, 0.5); }
-.rank-tracker--dark .track-item.filled { color: var(--white); }
-.track-rank {
-  background: var(--clay);
-  color: var(--white);
-  width: 26px; height: 26px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 13px;
-  font-weight: 600;
-  flex-shrink: 0;
-}
-.track-item:not(.filled) .track-rank {
-  background: transparent;
-  color: var(--ink-soft);
-  border: 1px solid rgba(10, 10, 10, 0.2);
-}
-.rank-tracker--dark .track-item:not(.filled) .track-rank {
-  color: rgba(245, 245, 243, 0.4);
-  border-color: rgba(245, 245, 243, 0.18);
-}
-.rank-helper {
-  font-size: 13px;
-  color: var(--ink-soft);
-  font-style: italic;
-  margin-top: 8px;
-  max-width: 60ch;
-}
-
-/* ====== LOUD ACTION PROMPTS (bold black with clay accent) ====== */
+/* ============================================================
+   ACTION PROMPT — flat, architectural, NO pulse
+============================================================ */
 .action-prompt {
   display: flex;
   align-items: center;
-  gap: 18px;
+  gap: 20px;
   padding: 22px 28px;
   background: var(--black);
-  border-radius: 0;
-  margin-top: 32px;
+  margin-top: 40px;
   font-family: var(--sans);
   font-size: 17px;
   font-weight: 500;
   color: var(--bone);
   letter-spacing: -0.005em;
-  max-width: 720px;
+  max-width: 760px;
   position: relative;
-  overflow: hidden;
+  border-radius: 0;
 }
 .action-prompt::before {
   content: "";
@@ -1011,253 +436,452 @@ h1, h2, h3, h4 { font-weight: 500; letter-spacing: -0.025em; line-height: 1; }
   justify-content: center;
   width: 38px; height: 38px;
   background: var(--clay);
-  border-radius: 50%;
+  border-radius: 0;
   font-size: 18px;
   font-weight: 700;
   flex-shrink: 0;
   color: var(--bone);
-  animation: prompt-pulse 1.8s ease-in-out infinite;
 }
 .action-prompt-prefix {
   display: inline-block;
   font-family: var(--mono);
   font-size: 10px;
   font-weight: 700;
-  letter-spacing: 0.18em;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
   background: var(--clay);
   color: var(--bone);
-  padding: 4px 10px;
-  border-radius: 0;
-  margin-right: 10px;
+  padding: 5px 10px;
+  margin-right: 12px;
   vertical-align: middle;
 }
-@keyframes prompt-pulse {
-  0%, 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(162, 103, 76, 0.4); }
-  50% { transform: scale(1.08); box-shadow: 0 0 0 8px rgba(162, 103, 76, 0); }
+.action-prompt--bone {
+  background: var(--bone);
+  color: var(--black);
+  border: 1px solid var(--black);
 }
-.action-prompt--dark {
-  background: rgba(245, 241, 235, 0.05);
-  border: 1px solid rgba(245, 241, 235, 0.15);
+.action-prompt--bone::before { background: var(--clay); }
+.action-prompt--clay {
+  background: var(--ink);
   color: var(--bone);
 }
-.action-prompt--dark::before { background: var(--clay); }
 
-/* ====== ENTRY GATE MODAL ====== */
-.entry-gate-overlay {
-  position: fixed; inset: 0;
-  background: rgba(245, 245, 243, 0.92);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  z-index: 1000;
-  display: flex; align-items: center; justify-content: center;
-  padding: 32px;
-  animation: gate-fade-in 0.4s ease;
+/* ============================================================
+   STANDALONE PHRASE MOMENT — massive italic in whitespace
+============================================================ */
+.phrase-moment {
+  padding: 200px 0;
+  text-align: left;
 }
-@keyframes gate-fade-in {
-  from { opacity: 0; }
-  to { opacity: 1; }
+.phrase-moment .meta { display: block; margin-bottom: 56px; }
+.phrase-moment .phrase-italic { max-width: 14ch; }
+@media (max-width: 900px) { .phrase-moment { padding: 120px 0; } }
+
+/* ============================================================
+   WORDMARK PATTERN MOMENT — decorative crop
+============================================================ */
+.wordmark-pattern {
+  background: var(--black);
+  padding: 100px 0 80px;
+  border-top: 6px solid var(--clay);
+  border-bottom: 6px solid var(--clay);
+  overflow: hidden;
+  position: relative;
 }
-.entry-gate-overlay.hidden { display: none; }
-.entry-gate-card {
-  background: var(--white);
-  border-radius: 4px;
-  padding: 56px 48px 40px;
-  max-width: 540px;
-  width: 100%;
-  box-shadow: 0 24px 80px rgba(10, 10, 10, 0.12);
-  animation: gate-rise 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
-}
-@keyframes gate-rise {
-  from { transform: translateY(20px); opacity: 0; }
-  to { transform: translateY(0); opacity: 1; }
-}
-.entry-gate-eyebrow {
-  font-size: 11px;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--clay);
-  font-weight: 600;
-  margin-bottom: 16px;
-}
-.entry-gate-title {
-  font-family: var(--type);
-  font-weight: 500;
-  font-size: 32px;
-  line-height: 1.05;
-  letter-spacing: -0.02em;
-  color: var(--black);
-  margin-bottom: 12px;
-}
-.entry-gate-body {
-  font-size: 15px;
-  line-height: 1.5;
-  color: var(--ink-soft);
-  margin-bottom: 32px;
-}
-.gate-question {
-  margin-bottom: 28px;
-}
-.gate-question-label {
-  font-size: 11px;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--clay);
-  font-weight: 600;
-  margin-bottom: 12px;
+.wordmark-pattern-mark {
+  width: 180%;
+  margin-left: -40%;
   display: block;
 }
-.pill-row {
-  display: flex;
-  gap: 6px;
-  flex-wrap: wrap;
-}
-.pill-select {
-  background: var(--white);
-  border: 1px solid rgba(10, 10, 10, 0.18);
-  padding: 11px 18px;
-  font-family: var(--type);
-  font-size: 14px;
-  font-weight: 500;
-  color: var(--black);
-  cursor: pointer;
-  border-radius: 999px;
-  transition: all 0.2s ease;
-}
-.pill-select:hover { border-color: var(--clay); color: var(--clay); }
-.pill-select.selected {
-  background: var(--clay);
-  color: var(--white);
-  border-color: var(--clay);
-}
-.gate-actions {
+.wordmark-pattern-meta {
+  text-align: center;
+  margin-top: 48px;
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  margin-top: 32px;
-  padding-top: 24px;
-  border-top: 1px solid rgba(10, 10, 10, 0.08);
+  padding: 0 40px;
+  flex-wrap: wrap;
+  gap: 16px;
 }
-.gate-skip {
-  background: transparent;
-  border: none;
-  color: var(--ink-soft);
-  font-family: var(--type);
-  font-size: 13px;
-  cursor: pointer;
-  text-decoration: underline;
-  text-decoration-color: rgba(10, 10, 10, 0.2);
-  text-underline-offset: 3px;
-}
-.gate-skip:hover { color: var(--clay); }
-.gate-continue {
-  background: var(--black);
-  color: var(--white);
-  border: none;
-  padding: 14px 28px;
-  font-family: var(--type);
-  font-size: 13px;
-  font-weight: 500;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  cursor: pointer;
-  border-radius: 2px;
-  transition: all 0.2s ease;
-  opacity: 0.4;
-  pointer-events: none;
-}
-.gate-continue.ready {
-  opacity: 1;
-  pointer-events: auto;
-}
-.gate-continue.ready:hover { background: var(--clay); }
+.wordmark-pattern-meta span { color: var(--clay); }
+@media (max-width: 900px) { .wordmark-pattern { padding: 64px 0 48px; } .wordmark-pattern-mark { width: 220%; margin-left: -60%; } }
 
-/* ====== RETAILER SECTION ====== */
+/* ============================================================
+   DROP CATALOG — exhibition catalogue grid
+============================================================ */
+.drop-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 24px;
+  margin-top: 56px;
+}
+@media (max-width: 1100px) { .drop-grid { grid-template-columns: repeat(3, 1fr); } }
+@media (max-width: 700px)  { .drop-grid { grid-template-columns: repeat(2, 1fr); gap: 14px; } }
+
+.drop-artist-section { margin-top: 80px; }
+.drop-artist-header {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 24px;
+  align-items: baseline;
+  padding: 22px 0;
+  border-top: 6px solid var(--black);
+  border-bottom: 1px solid var(--black);
+  margin-bottom: 32px;
+}
+.drop-artist-name {
+  font-family: var(--sans);
+  font-weight: 800;
+  font-size: 36px;
+  letter-spacing: -0.025em;
+  color: var(--black);
+  line-height: 1;
+}
+.drop-artist-name em, .drop-artist-name .it {
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 500;
+  color: var(--clay);
+}
+.drop-artist-meta {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--clay);
+  text-align: right;
+}
+@media (max-width: 720px) {
+  .drop-artist-header { grid-template-columns: 1fr; }
+  .drop-artist-name { font-size: 28px; }
+  .drop-artist-meta { text-align: left; }
+}
+
+.shirt-card {
+  background: var(--white);
+  position: relative;
+  cursor: pointer;
+  overflow: hidden;
+  border-radius: 0;
+  border: 1px solid var(--black);
+  display: flex;
+  flex-direction: column;
+}
+.shirt-card:hover { border-color: var(--clay); }
+.shirt-card.ranked {
+  border-color: var(--clay);
+  border-width: 2px;
+  background: var(--white);
+}
+.shirt-placeholder {
+  position: relative;
+  aspect-ratio: 1/1;
+  background: var(--bone);
+  display: flex; align-items: center; justify-content: center;
+  flex-direction: column;
+  padding: 24px;
+  text-align: center;
+  border-bottom: 1px solid var(--black);
+}
+.shirt-card.ranked .shirt-placeholder { border-bottom-color: var(--clay); }
+.shirt-placeholder-mark {
+  font-size: 56px;
+  font-weight: 500;
+  color: var(--clay);
+  opacity: 0.4;
+  margin-bottom: 10px;
+  font-family: var(--serif);
+  font-style: italic;
+}
+.shirt-placeholder-label {
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--clay);
+}
+.shirt-meta {
+  padding: 18px 20px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  flex: 1;
+}
+.shirt-title {
+  font-family: var(--sans);
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: -0.015em;
+  color: var(--black);
+  line-height: 1.2;
+}
+.shirt-description {
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.4;
+  color: var(--ink-soft);
+  margin: 2px 0 8px;
+}
+.shirt-artist {
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--clay);
+  margin-top: auto;
+}
+.shirt-edition {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+.shirt-price {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--bone);
+  background: var(--black);
+  padding: 6px 10px;
+  z-index: 2;
+}
+
+/* Selection ribbon — replaces tick mark */
+.shirt-card.ranked::after {
+  content: "SELECTED";
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  font-family: var(--mono);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  background: var(--clay);
+  color: var(--bone);
+  padding: 6px 10px;
+  z-index: 2;
+}
+
+/* ============================================================
+   PROMISE STRIP — 8 promises, top-3 ranking
+============================================================ */
+.promise-strip {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+  border-top: 1px solid var(--bone);
+}
+.promise-strip + .promise-strip { border-top: 0; }
+@media (max-width: 900px) { .promise-strip { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 500px) { .promise-strip { grid-template-columns: 1fr; } }
+
+.promise-item {
+  padding: 48px 32px;
+  border-right: 1px solid var(--bone);
+  border-bottom: 1px solid var(--bone);
+  position: relative;
+  cursor: pointer;
+}
+.promise-item:last-child { border-right: none; }
+@media (max-width: 900px) { .promise-item:nth-child(2n) { border-right: none; } }
+@media (max-width: 500px) { .promise-item { border-right: none; } }
+.promise-item:hover { background: rgba(245, 241, 235, 0.04); }
+.promise-item.ranked { background: rgba(176, 115, 85, 0.12); }
+.promise-num {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  color: var(--clay-warm);
+  font-weight: 600;
+  margin-bottom: 18px;
+  text-transform: uppercase;
+}
+.promise-title {
+  font-family: var(--sans);
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--bone);
+  margin-bottom: 12px;
+  line-height: 1.05;
+}
+.promise-body { font-size: 14px; line-height: 1.55; color: rgba(245, 245, 243, 0.72); }
+.promise-item .rank-badge {
+  position: absolute;
+  top: 22px;
+  right: 22px;
+  width: 36px; height: 36px;
+  background: var(--clay-warm);
+  color: var(--bone);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--mono);
+  font-size: 16px;
+  font-weight: 700;
+}
+.promise-item.ranked .rank-badge { display: flex; }
+
+/* ============================================================
+   RANK TRACKER PANEL
+============================================================ */
+.rank-tracker {
+  margin-top: 56px;
+  padding: 28px 32px;
+  background: var(--white);
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 40px;
+  align-items: center;
+  border-left: 6px solid var(--clay);
+}
+.rank-tracker--dark {
+  background: rgba(245, 245, 243, 0.06);
+  border-left-color: var(--clay-warm);
+}
+.rank-tracker--clay { background: var(--ink); border-left-color: var(--bone); }
+.tracker-label {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--clay);
+  font-weight: 600;
+}
+.rank-tracker--dark .tracker-label { color: var(--clay-warm); }
+.rank-tracker--clay .tracker-label { color: var(--bone); }
+.tracker-items {
+  display: flex;
+  gap: 32px;
+  flex-wrap: wrap;
+}
+.track-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 14px;
+  color: var(--ink-soft);
+}
+.track-item.filled { color: var(--black); font-weight: 600; }
+.rank-tracker--dark .track-item { color: rgba(245, 245, 243, 0.55); }
+.rank-tracker--dark .track-item.filled { color: var(--bone); }
+.rank-tracker--clay .track-item { color: rgba(245, 245, 243, 0.65); }
+.rank-tracker--clay .track-item.filled { color: var(--bone); }
+.track-rank {
+  font-family: var(--mono);
+  background: var(--clay);
+  color: var(--bone);
+  width: 30px; height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+.track-item:not(.filled) .track-rank {
+  background: transparent;
+  color: var(--ink-soft);
+  border: 1px solid var(--black);
+}
+.rank-tracker--dark .track-item:not(.filled) .track-rank {
+  color: rgba(245, 245, 243, 0.4);
+  border-color: rgba(245, 245, 243, 0.25);
+}
+
+/* ============================================================
+   RETAILER GRID
+============================================================ */
 .retailer-grid {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
-  gap: 14px;
-  margin-top: 48px;
+  gap: 0;
+  margin-top: 56px;
+  border-top: 1px solid var(--black);
+  border-left: 1px solid var(--black);
 }
 @media (max-width: 1000px) { .retailer-grid { grid-template-columns: repeat(3, 1fr); } }
-@media (max-width: 640px) { .retailer-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 640px)  { .retailer-grid { grid-template-columns: repeat(2, 1fr); } }
 .retailer-card {
   background: var(--white);
-  border: 1px solid rgba(10, 10, 10, 0.1);
-  border-radius: 4px;
+  border-right: 1px solid var(--black);
+  border-bottom: 1px solid var(--black);
   aspect-ratio: 1.4 / 1;
   cursor: pointer;
   position: relative;
-  font-family: var(--type);
+  font-family: var(--sans);
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 16px;
   text-align: center;
-  transition: all 0.25s ease;
   overflow: hidden;
 }
-.retailer-card:hover {
-  transform: translateY(-3px);
-  border-color: var(--clay);
-  box-shadow: 0 8px 24px rgba(10, 10, 10, 0.06);
-}
-.retailer-card.selected {
-  border-color: var(--clay);
-  border-width: 2px;
-  background: rgba(162, 103, 76, 0.04);
-}
+.retailer-card:hover { background: var(--bone); }
+.retailer-card.selected { background: var(--clay); }
 .retailer-card.selected::after {
-  content: "✓";
+  content: "SELECTED";
   position: absolute;
-  top: 10px; right: 10px;
-  width: 22px; height: 22px;
-  background: var(--clay);
-  color: var(--white);
-  border-radius: 50%;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 12px;
-  font-weight: 600;
+  top: 10px; left: 10px;
+  font-family: var(--mono);
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  background: var(--black);
+  color: var(--bone);
+  padding: 4px 8px;
 }
+.retailer-card.selected .retailer-logo > * { color: var(--bone) !important; }
+.retailer-card.selected .r-liberty { color: var(--bone) !important; }
+.retailer-card.selected .r-selfridges { background: var(--bone); color: var(--black); }
+.retailer-card.selected .r-mr-porter .dot,
+.retailer-card.selected .r-end-dot { color: var(--bone); }
 .retailer-logo {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 4px;
 }
-/* Brand-specific logo treatments */
-.r-liberty { font-family: 'Georgia', serif; font-style: italic; font-size: 26px; color: #00563F; font-weight: 400; letter-spacing: -0.005em; }
-.r-liberty-sub { font-family: var(--type); font-size: 8px; letter-spacing: 0.32em; color: #00563F; font-weight: 500; }
+.r-liberty { font-family: 'Georgia', serif; font-style: italic; font-size: 28px; color: #00563F; font-weight: 400; letter-spacing: -0.005em; }
+.r-liberty-sub { font-family: var(--sans); font-size: 8px; letter-spacing: 0.32em; color: #00563F; font-weight: 500; }
 .r-selfridges { background: #FED402; color: #000; padding: 8px 12px; font-weight: 700; font-size: 13px; letter-spacing: 0.02em; }
-.r-mr-porter { font-weight: 600; font-size: 15px; letter-spacing: 0.1em; color: #1A1A1A; }
+.r-mr-porter { font-weight: 700; font-size: 15px; letter-spacing: 0.1em; color: #1A1A1A; }
 .r-mr-porter .dot { color: var(--clay); }
-.r-ssense { font-weight: 500; font-size: 16px; letter-spacing: 0.06em; color: #000; }
-.r-end { font-weight: 800; font-size: 22px; letter-spacing: -0.01em; color: #000; }
+.r-ssense { font-weight: 500; font-size: 17px; letter-spacing: 0.06em; color: #000; }
+.r-end { font-weight: 900; font-size: 24px; letter-spacing: -0.01em; color: #000; }
 .r-end-dot { color: var(--clay); }
-.r-goodhood { font-weight: 600; font-size: 13px; letter-spacing: 0.02em; color: #000; }
-.r-goodhood-sub { font-size: 9px; letter-spacing: 0.16em; color: rgba(0,0,0,0.5); margin-top: 2px; }
+.r-goodhood { font-weight: 700; font-size: 13px; letter-spacing: 0.04em; color: #000; }
+.r-goodhood-sub { font-family: var(--mono); font-size: 9px; letter-spacing: 0.16em; color: rgba(0,0,0,0.55); margin-top: 2px; }
 .r-wolf-badger { font-weight: 700; font-size: 12px; letter-spacing: 0.12em; color: #000; line-height: 1.3; }
-.r-tate { font-weight: 900; font-size: 32px; letter-spacing: -0.02em; color: #000; font-family: 'Helvetica Neue', Helvetica, sans-serif; }
+.r-tate { font-weight: 900; font-size: 36px; letter-spacing: -0.025em; color: #000; font-family: 'Helvetica Neue', Helvetica, sans-serif; }
 .r-ra { font-family: 'Helvetica Neue', Helvetica, sans-serif; font-weight: 700; font-size: 14px; letter-spacing: 0.04em; color: #000; line-height: 1.2; }
-.r-ra-mark { font-size: 28px; font-weight: 300; line-height: 1; margin-bottom: 4px; }
-.r-direct { font-style: italic; font-size: 13px; color: var(--ink-soft); line-height: 1.4; }
-.r-direct strong { color: var(--black); font-style: normal; }
+.r-ra-mark { font-size: 30px; font-weight: 300; line-height: 1; margin-bottom: 4px; }
+.r-direct { font-family: var(--sans); font-size: 13px; color: var(--ink-soft); line-height: 1.4; font-weight: 500; }
+.r-direct strong { color: var(--black); font-weight: 700; }
 
-/* Retailer "other" field */
 .retailer-other-wrap {
-  margin-top: 28px;
-  padding: 18px 22px;
+  margin-top: 32px;
+  padding: 22px 26px;
   background: var(--white);
-  border: 1px dashed rgba(10, 10, 10, 0.18);
-  border-radius: 4px;
+  border: 1px solid var(--black);
+  border-left: 6px solid var(--clay);
   display: flex;
   align-items: center;
-  gap: 14px;
+  gap: 16px;
 }
 .retailer-other-wrap label {
-  font-size: 13px;
-  color: var(--ink-soft);
-  font-weight: 500;
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--clay);
   white-space: nowrap;
 }
 .retailer-other-wrap input {
@@ -1265,405 +889,91 @@ h1, h2, h3, h4 { font-weight: 500; letter-spacing: -0.025em; line-height: 1; }
   background: transparent;
   border: none;
   outline: none;
-  font-family: var(--type);
-  font-size: 14px;
-  color: var(--black);
-}
-.retailer-other-wrap input::placeholder { color: rgba(10, 10, 10, 0.35); font-style: italic; }
-
-/* ====== 5-STAR RATING (SVG, no emoji) ====== */
-.star-rating {
-  display: flex;
-  gap: 12px;
-  margin-top: 16px;
-}
-.star-button {
-  background: transparent;
-  border: none;
-  width: 56px;
-  height: 56px;
-  cursor: pointer;
-  transition: all 0.15s ease;
-  padding: 0;
-  color: rgba(10, 10, 10, 0.16);
-}
-.star-button svg { width: 100%; height: 100%; display: block; fill: currentColor; }
-.star-button:hover { transform: scale(1.1); }
-.star-button.active { color: var(--clay); }
-.star-scale {
-  display: flex;
-  justify-content: space-between;
-  /* 5 stars × 56px + 4 gaps × 12px = 328px — match exactly */
-  max-width: 328px;
-  margin-top: 12px;
-  font-size: 11px;
-  color: var(--ink-soft);
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-}
-.star-label {
-  margin-top: 24px;
-  font-size: 16px;
-  color: var(--clay);
-  font-weight: 500;
-  font-style: italic;
-  min-height: 24px;
-}
-
-/* Final-thoughts textarea */
-.final-textarea-wrap {
-  margin-top: 56px;
-  max-width: 640px;
-}
-.final-textarea-wrap label {
-  display: block;
-  font-family: var(--type);
-  font-size: 18px;
-  font-weight: 500;
-  color: var(--black);
-  margin-bottom: 14px;
-}
-.final-textarea-wrap textarea {
-  width: 100%;
-  min-height: 110px;
-  background: var(--white);
-  border: 1px solid rgba(10, 10, 10, 0.12);
-  border-radius: 4px;
-  padding: 18px 22px;
-  font-family: var(--type);
+  font-family: var(--sans);
   font-size: 15px;
   color: var(--black);
-  outline: none;
-  resize: vertical;
-  line-height: 1.5;
 }
-.final-textarea-wrap textarea:focus { border-color: var(--clay); }
-.final-textarea-wrap textarea::placeholder { color: rgba(10, 10, 10, 0.35); font-style: italic; }
+.retailer-other-wrap input::placeholder { color: rgba(10, 10, 10, 0.35); font-style: italic; font-family: var(--serif); }
 
-/* ====== COMPLETION SUMMARY ====== */
-.completion-summary {
-  background: var(--bone);
-  border-radius: 4px;
-  padding: 32px 40px;
-  margin: 80px auto 0;
-  max-width: 720px;
-  text-align: center;
-}
-.completion-summary-eyebrow {
-  font-size: 11px;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--clay);
-  font-weight: 600;
-  margin-bottom: 12px;
-}
-.completion-summary-title {
-  font-family: var(--type);
-  font-weight: 500;
-  font-size: 28px;
-  letter-spacing: -0.015em;
-  color: var(--black);
-  margin-bottom: 8px;
-  line-height: 1.2;
-}
-.completion-summary-title .summary-num { color: var(--clay); }
-.completion-summary-body {
-  font-size: 15px;
-  color: var(--ink-soft);
-  line-height: 1.5;
-}
-
-/* ====== EXIT GATE — extended signup form ====== */
-.exit-gate-extras {
-  max-width: 480px;
-  margin: 32px auto 0;
-  text-align: left;
-}
-.exit-gate-field {
-  margin-bottom: 20px;
-}
-.exit-gate-field label {
-  display: block;
-  font-size: 11px;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: rgba(245, 245, 243, 0.6);
-  font-weight: 600;
-  margin-bottom: 8px;
-}
-.exit-gate-field input,
-.exit-gate-field select {
-  width: 100%;
-  background: transparent;
-  border: 1px solid rgba(245, 245, 243, 0.25);
-  color: var(--white);
-  padding: 12px 16px;
-  font-family: var(--type);
-  font-size: 14px;
-  border-radius: 2px;
-  outline: none;
-}
-.exit-gate-field select { -webkit-appearance: none; appearance: none; cursor: pointer; background-image: url("data:image/svg+xml,%3Csvg width='10' height='6' viewBox='0 0 10 6' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1L5 5L9 1' stroke='%23a2674c' stroke-width='1.5'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 16px center; }
-.exit-gate-field input:focus,
-.exit-gate-field select:focus { border-color: var(--clay); }
-.exit-gate-field select option { background: var(--black); color: var(--white); }
-.exit-gate-required {
-  font-size: 11px;
-  color: var(--clay);
-  font-style: italic;
-  margin-bottom: 24px;
-}
-
-/* Final big submit button */
-.final-submit-button {
-  display: block;
-  width: 100%;
-  margin-top: 36px;
-  padding: 22px 28px;
-  background: var(--clay);
-  color: var(--white);
-  border: none;
-  border-radius: 4px;
-  font-family: var(--type);
-  font-size: 17px;
-  font-weight: 600;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  box-shadow: 0 8px 24px rgba(162, 103, 76, 0.32);
-  position: relative;
-}
-.final-submit-button:hover {
-  background: var(--white);
-  color: var(--black);
-  transform: translateY(-2px);
-  box-shadow: 0 12px 32px rgba(162, 103, 76, 0.42);
-}
-.final-submit-button:active { transform: translateY(0); }
-
-/* ====== KEYBOARD FOCUS STYLES (accessibility) ====== */
-*:focus { outline: none; }
-button:focus-visible,
-a:focus-visible,
-input:focus-visible,
-select:focus-visible,
-textarea:focus-visible,
-[tabindex]:focus-visible {
-  outline: 2px solid var(--clay);
-  outline-offset: 3px;
-  border-radius: 2px;
-}
-.cta-primary:focus-visible,
-.final-submit-button:focus-visible,
-.gate-continue:focus-visible {
-  outline-offset: 4px;
-}
-.consent-banner *:focus-visible,
-.entry-gate-overlay *:focus-visible {
-  outline-color: var(--clay-warm);
-}
-
-/* Toast animation for inline notifications */
-@keyframes toast-rise {
-  from { transform: translate(-50%, 20px); opacity: 0; }
-  to   { transform: translate(-50%, 0); opacity: 1; }
-}
-
-/* ====== QUESTION STATE INDICATORS ====== */
-.q-status {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  padding: 5px 12px;
-  border-radius: 999px;
-  font-size: 10px;
-  font-weight: 600;
-  letter-spacing: 0.1em;
-  margin-left: 12px;
-  background: rgba(10, 10, 10, 0.06);
-  color: var(--ink-soft);
-  vertical-align: middle;
-  text-transform: uppercase;
-  transition: all 0.3s ease;
-}
-.q-status::before { content: "○"; font-size: 11px; font-weight: 400; }
-.q-status.answered { background: rgba(162, 103, 76, 0.14); color: var(--clay); }
-.q-status.answered::before { content: "●"; }
-.q-status.skipped { background: rgba(10, 10, 10, 0.04); color: rgba(10, 10, 10, 0.4); }
-.q-status.skipped::before { content: "—"; }
-.q-status--dark { background: rgba(245, 245, 243, 0.12); color: rgba(245, 245, 243, 0.75); }
-.q-status--dark.answered { background: rgba(162, 103, 76, 0.22); color: var(--clay); }
-.q-status--dark.skipped { background: rgba(245, 245, 243, 0.05); color: rgba(245, 245, 243, 0.4); }
-
-/* Skip button */
-.q-skip-row {
-  margin-top: 40px;
-  padding-top: 20px;
-  border-top: 1px solid rgba(10, 10, 10, 0.08);
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  gap: 16px;
-}
-.q-skip-row--dark { border-top-color: rgba(245, 245, 243, 0.15); }
-.q-skip-helper {
-  font-size: 12px;
-  color: var(--ink-soft);
-  font-style: italic;
-}
-.q-skip-row--dark .q-skip-helper { color: rgba(245, 245, 243, 0.5); }
-.q-skip {
-  background: transparent;
-  border: 1px solid rgba(10, 10, 10, 0.15);
-  color: var(--ink-soft);
-  font-family: var(--type);
-  font-size: 12px;
-  font-weight: 500;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  cursor: pointer;
-  padding: 10px 18px;
-  border-radius: 2px;
-  transition: all 0.2s ease;
-}
-.q-skip:hover { color: var(--clay); border-color: var(--clay); }
-.q-skip--dark { color: rgba(245, 245, 243, 0.6); border-color: rgba(245, 245, 243, 0.2); }
-.q-skip--dark:hover { color: var(--clay); border-color: var(--clay); }
-
-/* Floating progress widget — bottom-right, always visible */
-.progress-widget {
-  position: fixed;
-  bottom: 24px;
-  right: 24px;
-  background: var(--white);
-  border: 1px solid rgba(10, 10, 10, 0.1);
-  padding: 14px 20px;
-  border-radius: 999px;
-  display: flex;
-  align-items: center;
-  gap: 18px;
-  z-index: 90;
-  box-shadow: 0 8px 32px rgba(10, 10, 10, 0.1);
-  transition: all 0.3s ease;
-}
-.progress-widget:hover { transform: translateY(-2px); }
-.progress-dots { display: flex; gap: 6px; }
-.progress-dot {
-  width: 9px;
-  height: 9px;
-  border-radius: 50%;
-  background: rgba(10, 10, 10, 0.18);
-  transition: all 0.3s ease;
-  position: relative;
-}
-.progress-dot.answered { background: var(--clay); transform: scale(1.2); }
-.progress-dot.skipped { background: transparent; border: 1px solid rgba(10, 10, 10, 0.18); }
-.progress-label {
-  font-size: 12px;
-  font-weight: 500;
-  letter-spacing: 0.04em;
-  color: var(--ink-soft);
-  margin: 0;
-  white-space: nowrap;
-}
-.progress-label .progress-num { color: var(--clay); font-weight: 600; }
-
-@media (max-width: 600px) {
-  .progress-widget {
-    bottom: 16px; right: 16px;
-    padding: 10px 16px; gap: 12px;
-  }
-  .progress-dots { gap: 4px; }
-  .progress-dot { width: 7px; height: 7px; }
-  .progress-label { font-size: 11px; }
-}
-
-/* ====== MOTIVATION ====== */
+/* ============================================================
+   MOTIVATION GRID
+============================================================ */
 .motivation-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 14px;
-  margin-top: 48px;
+  gap: 0;
+  margin-top: 56px;
+  border-top: 1px solid var(--black);
+  border-left: 1px solid var(--black);
 }
 @media (max-width: 720px) { .motivation-grid { grid-template-columns: 1fr; } }
 .motivation-card {
   background: var(--white);
-  border: 1px solid rgba(10, 10, 10, 0.1);
-  border-radius: 4px;
-  padding: 22px 26px;
+  border-right: 1px solid var(--black);
+  border-bottom: 1px solid var(--black);
+  padding: 28px 32px;
   cursor: pointer;
-  font-family: var(--type);
+  font-family: var(--sans);
   text-align: left;
-  transition: all 0.2s ease;
   position: relative;
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 8px;
+  min-height: 130px;
 }
-.motivation-card:hover {
-  border-color: var(--clay);
-  transform: translateY(-2px);
-  box-shadow: 0 6px 18px rgba(10, 10, 10, 0.06);
-}
-.motivation-card.selected {
-  background: rgba(162, 103, 76, 0.06);
-  border-color: var(--clay);
-  border-width: 2px;
-  padding: 21px 25px;
-}
+.motivation-card:hover { background: var(--bone); }
+.motivation-card.selected { background: var(--clay); }
+.motivation-card.selected .motivation-title { color: var(--bone); }
+.motivation-card.selected .motivation-sub { color: rgba(245, 241, 235, 0.75); }
 .motivation-card.selected::after {
-  content: "✓";
+  content: "SELECTED";
   position: absolute;
   top: 14px;
   right: 14px;
-  width: 24px;
-  height: 24px;
-  background: var(--clay);
-  color: var(--white);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 13px;
-  font-weight: 600;
+  font-family: var(--mono);
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  background: var(--black);
+  color: var(--bone);
+  padding: 4px 8px;
 }
 .motivation-title {
-  font-size: 17px;
-  font-weight: 500;
+  font-family: var(--sans);
+  font-size: 22px;
+  font-weight: 700;
   color: var(--black);
-  letter-spacing: -0.01em;
-  line-height: 1.3;
+  letter-spacing: -0.015em;
+  line-height: 1.15;
+  max-width: 24ch;
 }
 .motivation-sub {
-  font-size: 12px;
-  color: var(--ink-soft);
-  letter-spacing: 0.04em;
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--clay);
+  margin-top: auto;
 }
-.motivation-tracker {
-  margin-top: 48px;
-  padding: 24px 28px;
-  background: var(--white);
-  border-radius: 2px;
-  display: flex;
-  gap: 32px;
-  flex-wrap: wrap;
-  align-items: center;
-}
+
 .motivation-other-wrap {
-  margin-top: 36px;
-  padding: 18px 22px;
+  margin-top: 40px;
+  padding: 22px 26px;
   background: var(--white);
-  border: 1px dashed rgba(10, 10, 10, 0.18);
-  border-radius: 4px;
+  border: 1px solid var(--black);
+  border-left: 6px solid var(--clay);
   display: flex;
   align-items: center;
-  gap: 14px;
+  gap: 16px;
 }
 .motivation-other-wrap label {
-  font-size: 13px;
-  color: var(--ink-soft);
-  font-weight: 500;
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--clay);
   white-space: nowrap;
 }
 .motivation-other-wrap input {
@@ -1671,37 +981,740 @@ textarea:focus-visible,
   background: transparent;
   border: none;
   outline: none;
-  font-family: var(--type);
-  font-size: 14px;
+  font-family: var(--sans);
+  font-size: 15px;
   color: var(--black);
 }
-.motivation-other-wrap input::placeholder { color: rgba(10, 10, 10, 0.35); font-style: italic; }
+.motivation-other-wrap input::placeholder { color: rgba(10, 10, 10, 0.35); font-style: italic; font-family: var(--serif); }
 
+/* ============================================================
+   PROPOSITIONS — full-bleed black declaration wall
+============================================================ */
+.props-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0;
+  border-top: 1px solid var(--clay-warm);
+  margin-top: 56px;
+}
+.prop-option {
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid rgba(245, 241, 235, 0.16);
+  padding: 44px 0;
+  cursor: pointer;
+  position: relative;
+  text-align: left;
+  font-family: var(--sans);
+  width: 100%;
+  display: grid;
+  grid-template-columns: 120px 1fr;
+  gap: 56px;
+  align-items: start;
+  color: var(--bone);
+}
+.prop-option:hover { background: rgba(245, 241, 235, 0.04); padding-left: 24px; }
+.prop-option.selected { background: rgba(176, 115, 85, 0.18); padding-left: 24px; border-left: 6px solid var(--clay-warm); }
+.prop-option::before {
+  content: attr(data-variant);
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 500;
+  font-size: 88px;
+  line-height: 0.85;
+  color: var(--clay-warm);
+  letter-spacing: -0.02em;
+}
+.prop-label {
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--clay-warm);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+  display: block;
+}
+.prop-text {
+  font-family: var(--sans);
+  font-size: 28px;
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  color: var(--bone);
+}
+.prop-text em, .prop-text .it {
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 500;
+  color: var(--clay-warm);
+}
+@media (max-width: 700px) {
+  .prop-option { grid-template-columns: 1fr; padding: 32px 0; gap: 12px; }
+  .prop-option::before { font-size: 56px; }
+  .prop-text { font-size: 22px; }
+}
 
-/* ====== GDPR CONSENT BANNER ====== */
+/* ============================================================
+   AD MOCKUPS — preserve, remove shadows
+============================================================ */
+.ad-feed { max-width: 960px; margin: 64px auto 0; }
+.ad-card { margin-bottom: 80px; }
+.ad-frame {
+  aspect-ratio: 4/5;
+  position: relative;
+  overflow: hidden;
+  border-radius: 0;
+  display: grid;
+  grid-template-rows: 1.4fr 1fr;
+  border: 1px solid var(--black);
+}
+@media (min-width: 720px) {
+  .ad-frame {
+    aspect-ratio: 16/9;
+    grid-template-rows: 1fr;
+    grid-template-columns: 1.4fr 1fr;
+  }
+}
+.ad-inner, .ad-text {
+  padding: 48px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+}
+.ad-product {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--ink);
+  padding: 32px;
+  border-left: 1px solid rgba(245, 241, 235, 0.18);
+}
+@media (max-width: 720px) { .ad-product { border-left: 0; border-top: 1px solid rgba(245, 241, 235, 0.18); } }
+.ad-product-placeholder {
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(245, 241, 235, 0.55);
+  border: 1px dashed rgba(245, 241, 235, 0.3);
+  padding: 56px 64px;
+  text-align: center;
+  line-height: 1.8;
+}
+.ad-frame--bone  { background: var(--bone);  color: var(--black); }
+.ad-frame--black { background: var(--black); color: var(--bone); }
+.ad-frame--black .ad-product { background: rgba(245, 241, 235, 0.04); }
+.ad-frame--clay  { background: var(--clay);  color: var(--bone); }
+.ad-frame--white { background: var(--white); color: var(--black); }
+.ad-frame--stone { background: var(--stone); color: var(--black); }
+.ad-row { display: flex; justify-content: space-between; align-items: center; }
+.ad-brand { font-size: 13px; font-weight: 500; }
+.ad-tag {
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  opacity: 0.75;
+}
+.ad-headline {
+  font-family: var(--sans);
+  font-weight: 900;
+  line-height: 0.9;
+  letter-spacing: -0.04em;
+  font-size: 64px;
+}
+.ad-headline em, .ad-headline .it {
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  color: var(--clay);
+}
+.ad-frame--clay .ad-headline em { color: var(--ink); }
+.ad-frame--black .ad-headline em,
+.ad-frame--white .ad-headline em { color: var(--clay); }
+.ad-frame--bone .ad-headline em,
+.ad-frame--stone .ad-headline em { color: var(--clay); }
+@media (max-width: 720px) { .ad-headline { font-size: 48px; } }
+.ad-text > * + * { border-top: 1px solid currentColor; padding-top: 24px; }
+.ad-text > * { padding-bottom: 24px; }
+.ad-text > *:last-child { padding-bottom: 0; }
+.ad-text > *:first-child { padding-top: 0; }
+.ad-frame--bone .ad-text > * + *,
+.ad-frame--white .ad-text > * + *,
+.ad-frame--stone .ad-text > * + * { border-color: rgba(10, 10, 10, 0.18); }
+.ad-frame--black .ad-text > * + *,
+.ad-frame--clay .ad-text > * + * { border-color: rgba(245, 241, 235, 0.22); }
+.ad-sub {
+  font-family: var(--sans);
+  font-size: 16px;
+  margin-top: 16px;
+  max-width: 36ch;
+  line-height: 1.4;
+  opacity: 0.85;
+  font-weight: 400;
+}
+.ad-sub em, .ad-sub .it {
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 500;
+  color: var(--clay);
+}
+.ad-cta {
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+.ad-cta::after { content: " →"; }
+.ad-spec {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  opacity: 0.6;
+  line-height: 1.6;
+  text-transform: uppercase;
+}
+.ad-reactions { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; margin-top: 0; border: 1px solid var(--black); border-top: 0; }
+.ad-reaction {
+  background: var(--white);
+  border: 0;
+  border-right: 1px solid var(--black);
+  padding: 22px 18px;
+  font-family: var(--sans);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--black);
+  cursor: pointer;
+  text-align: left;
+  line-height: 1.3;
+}
+.ad-reaction:last-child { border-right: 0; }
+.ad-reaction:hover { background: var(--bone); }
+.ad-reaction.selected { background: var(--clay); color: var(--bone); }
+.ad-reaction-icon {
+  display: block;
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+  color: var(--clay);
+}
+.ad-reaction.selected .ad-reaction-icon { color: var(--bone); }
+.ad-label-row {
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--clay);
+  margin: 24px 0 0;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  font-weight: 700;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--black);
+}
+
+/* ============================================================
+   PRICE BUTTONS
+============================================================ */
+.price-wrap { max-width: 720px; margin-top: 56px; }
+.price-range {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 0;
+  border-top: 1px solid var(--black);
+  border-left: 1px solid var(--black);
+}
+@media (max-width: 600px) {
+  .price-range { grid-template-columns: repeat(2, 1fr); }
+}
+.price-button {
+  background: var(--white);
+  border: 0;
+  border-right: 1px solid var(--black);
+  border-bottom: 1px solid var(--black);
+  padding: 28px 16px;
+  cursor: pointer;
+  font-family: var(--sans);
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--black);
+  letter-spacing: -0.01em;
+  text-align: center;
+}
+@media (max-width: 600px) {
+  .price-button:last-child { grid-column: 1 / -1; }
+}
+.price-button:hover { background: var(--bone); }
+.price-button.selected { background: var(--clay); color: var(--bone); }
+
+/* ============================================================
+   NUMBERED RATING SCALE — replaces stars (01-05)
+============================================================ */
+.number-rating {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 0;
+  margin-top: 32px;
+  max-width: 640px;
+  border-top: 1px solid var(--black);
+  border-left: 1px solid var(--black);
+}
+.number-button {
+  background: var(--white);
+  border: 0;
+  border-right: 1px solid var(--black);
+  border-bottom: 1px solid var(--black);
+  padding: 32px 0 28px;
+  cursor: pointer;
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 500;
+  font-size: 56px;
+  line-height: 0.9;
+  letter-spacing: -0.02em;
+  color: var(--clay);
+  text-align: center;
+  position: relative;
+}
+.number-button:hover { background: var(--bone); }
+.number-button.active { background: var(--clay); color: var(--bone); }
+.number-button-label {
+  font-family: var(--mono);
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  margin-top: 8px;
+  display: block;
+}
+.number-button.active .number-button-label { color: rgba(245, 241, 235, 0.85); }
+@media (max-width: 600px) { .number-button { font-size: 36px; padding: 22px 0 18px; } }
+
+.number-scale {
+  display: flex;
+  justify-content: space-between;
+  max-width: 640px;
+  margin-top: 14px;
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--clay);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+.number-label {
+  margin-top: 24px;
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 500;
+  font-size: 22px;
+  color: var(--clay);
+  min-height: 28px;
+}
+
+/* ============================================================
+   SKIP ROW
+============================================================ */
+.q-skip-row {
+  margin-top: 48px;
+  padding-top: 24px;
+  border-top: 1px solid var(--black);
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 18px;
+}
+.q-skip-row--dark { border-top-color: rgba(245, 241, 235, 0.2); }
+.q-skip-row--clay { border-top-color: var(--bone); }
+.q-skip-helper {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 14px;
+  color: var(--ink-soft);
+}
+.q-skip-row--dark .q-skip-helper { color: rgba(245, 241, 235, 0.5); }
+.q-skip-row--clay .q-skip-helper { color: var(--bone); opacity: 0.75; }
+.q-skip {
+  background: transparent;
+  border: 1px solid var(--black);
+  color: var(--black);
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  cursor: pointer;
+  padding: 12px 22px;
+  border-radius: 0;
+}
+.q-skip:hover { background: var(--black); color: var(--bone); }
+.q-skip--dark { color: var(--bone); border-color: var(--bone); }
+.q-skip--dark:hover { background: var(--bone); color: var(--black); }
+.q-skip--clay { color: var(--bone); border-color: var(--bone); }
+.q-skip--clay:hover { background: var(--bone); color: var(--clay); }
+
+/* ============================================================
+   FINAL THOUGHTS TEXTAREA
+============================================================ */
+.final-textarea-wrap {
+  margin-top: 64px;
+  max-width: 720px;
+}
+.final-textarea-wrap label {
+  display: block;
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--clay);
+  margin-bottom: 16px;
+}
+.final-textarea-wrap textarea {
+  width: 100%;
+  min-height: 130px;
+  background: var(--white);
+  border: 1px solid var(--black);
+  border-left: 6px solid var(--clay);
+  padding: 22px 24px;
+  font-family: var(--sans);
+  font-size: 16px;
+  color: var(--black);
+  outline: none;
+  resize: vertical;
+  line-height: 1.55;
+}
+.final-textarea-wrap textarea:focus { border-color: var(--clay); border-left-color: var(--clay); }
+.final-textarea-wrap textarea::placeholder { color: rgba(10, 10, 10, 0.35); font-family: var(--serif); font-style: italic; }
+
+/* ============================================================
+   COMPLETION SUMMARY
+============================================================ */
+.completion-summary {
+  padding: 80px 40px;
+  max-width: 800px;
+  margin: 0 auto;
+  border-top: 6px solid var(--black);
+  border-bottom: 6px solid var(--black);
+  text-align: left;
+}
+.completion-summary-eyebrow {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--clay);
+  font-weight: 600;
+  margin-bottom: 24px;
+}
+.completion-summary-title {
+  font-family: var(--sans);
+  font-weight: 800;
+  font-size: 56px;
+  letter-spacing: -0.025em;
+  color: var(--black);
+  line-height: 0.95;
+  margin-bottom: 16px;
+}
+.completion-summary-title .summary-num {
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 500;
+  color: var(--clay);
+}
+.completion-summary-body {
+  font-size: 18px;
+  color: var(--black);
+  line-height: 1.5;
+  max-width: 48ch;
+}
+.completion-summary-body em, .completion-summary-body .it {
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 500;
+  color: var(--clay);
+}
+@media (max-width: 600px) { .completion-summary-title { font-size: 40px; } }
+
+/* ============================================================
+   EXIT GATE / SIGNUP
+============================================================ */
+.signup-block {
+  background: var(--black);
+  color: var(--bone);
+  padding: 160px 0 120px;
+}
+.signup-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 96px;
+  align-items: start;
+}
+@media (max-width: 1000px) { .signup-grid { grid-template-columns: 1fr; gap: 64px; } }
+.signup-block h2 { color: var(--bone); max-width: 14ch; margin: 0 0 32px; }
+.signup-block .h-section em { color: var(--clay-warm); }
+.signup-block .body { color: rgba(245, 245, 243, 0.75); max-width: 44ch; }
+.signup-block .body em { color: var(--bone); }
+.signup-block .meta { color: var(--clay-warm); }
+.signup-form { width: 100%; }
+
+.exit-gate-field {
+  margin-bottom: 28px;
+}
+.exit-gate-field label {
+  display: block;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--clay-warm);
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+.exit-gate-field input,
+.exit-gate-field select {
+  width: 100%;
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid rgba(245, 245, 243, 0.35);
+  color: var(--bone);
+  padding: 14px 0;
+  font-family: var(--sans);
+  font-size: 18px;
+  font-weight: 500;
+  border-radius: 0;
+  outline: none;
+}
+.exit-gate-field select {
+  -webkit-appearance: none;
+  appearance: none;
+  cursor: pointer;
+  background-image: url("data:image/svg+xml,%3Csvg width='10' height='6' viewBox='0 0 10 6' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1L5 5L9 1' stroke='%23B07355' stroke-width='1.5'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 4px center;
+  padding-right: 24px;
+}
+.exit-gate-field input:focus,
+.exit-gate-field select:focus { border-bottom-color: var(--clay-warm); border-bottom-width: 2px; }
+.exit-gate-field select option { background: var(--black); color: var(--bone); }
+.exit-gate-field input::placeholder { color: rgba(245, 241, 235, 0.4); }
+
+.final-submit-button {
+  display: block;
+  width: 100%;
+  margin-top: 40px;
+  padding: 26px 32px;
+  background: var(--clay);
+  color: var(--bone);
+  border: 0;
+  border-radius: 0;
+  font-family: var(--mono);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+.final-submit-button:hover { background: var(--bone); color: var(--black); }
+.final-submit-button:disabled { opacity: 0.5; cursor: not-allowed; }
+.signup-fineprint {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 14px;
+  color: rgba(245, 241, 235, 0.5);
+  margin-top: 24px;
+  text-align: left;
+}
+
+/* ============================================================
+   FOOTER — with Hackney provenance
+============================================================ */
+.footer {
+  background: var(--black);
+  color: var(--bone);
+  padding: 64px 0 40px;
+  border-top: 6px solid var(--clay);
+}
+.footer-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  align-items: end;
+}
+@media (max-width: 720px) { .footer-inner { grid-template-columns: 1fr; gap: 24px; } }
+.footer-brand { color: var(--bone); }
+.footer-meta {
+  text-align: right;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(245, 241, 235, 0.55);
+  line-height: 2;
+}
+@media (max-width: 720px) { .footer-meta { text-align: left; } }
+.footer-meta a {
+  color: rgba(245, 241, 235, 0.7);
+  text-decoration: none;
+  margin-right: 16px;
+}
+.footer-meta a:hover { color: var(--clay-warm); }
+.footer-place {
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 500;
+  font-size: 16px;
+  color: var(--clay-warm);
+  letter-spacing: -0.01em;
+  text-transform: none;
+  margin-bottom: 4px;
+}
+
+/* ============================================================
+   ENTRY GATE — square corners, no choreography
+============================================================ */
+.entry-gate-overlay {
+  position: fixed; inset: 0;
+  background: rgba(10, 10, 10, 0.55);
+  z-index: 1000;
+  display: flex; align-items: center; justify-content: center;
+  padding: 32px;
+}
+.entry-gate-overlay.hidden { display: none; }
+.entry-gate-card {
+  background: var(--bone);
+  border: 1px solid var(--black);
+  border-top: 6px solid var(--clay);
+  padding: 56px 48px 40px;
+  max-width: 600px;
+  width: 100%;
+}
+.entry-gate-eyebrow {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--clay);
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+.entry-gate-title {
+  font-family: var(--sans);
+  font-weight: 800;
+  font-size: 40px;
+  line-height: 0.95;
+  letter-spacing: -0.025em;
+  color: var(--black);
+  margin-bottom: 16px;
+}
+.entry-gate-title em {
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 500;
+  color: var(--clay);
+}
+.entry-gate-body {
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--ink-soft);
+  margin-bottom: 36px;
+}
+.gate-question { margin-bottom: 32px; }
+.gate-question-label {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--clay);
+  font-weight: 600;
+  margin-bottom: 14px;
+  display: block;
+}
+.pill-row { display: flex; gap: 8px; flex-wrap: wrap; }
+.pill-select {
+  background: var(--white);
+  border: 1px solid var(--black);
+  padding: 11px 18px;
+  font-family: var(--sans);
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--black);
+  cursor: pointer;
+  border-radius: 0;
+}
+.pill-select:hover { background: var(--bone); }
+.pill-select.selected {
+  background: var(--black);
+  color: var(--bone);
+}
+.gate-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 36px;
+  padding-top: 28px;
+  border-top: 1px solid var(--black);
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.gate-skip {
+  background: transparent;
+  border: 0;
+  color: var(--ink-soft);
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 14px;
+  cursor: pointer;
+  text-decoration: underline;
+  text-decoration-color: rgba(10, 10, 10, 0.25);
+  text-underline-offset: 4px;
+}
+.gate-skip:hover { color: var(--clay); }
+.gate-continue {
+  background: var(--black);
+  color: var(--bone);
+  border: 0;
+  padding: 16px 32px;
+  font-family: var(--mono);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  cursor: pointer;
+  border-radius: 0;
+  opacity: 0.35;
+  pointer-events: none;
+}
+.gate-continue.ready { opacity: 1; pointer-events: auto; }
+.gate-continue.ready:hover { background: var(--clay); }
+
+/* ============================================================
+   GDPR CONSENT BANNER
+============================================================ */
 .consent-banner {
   position: fixed;
   bottom: 0; left: 0; right: 0;
   background: var(--black);
-  color: var(--white);
+  color: var(--bone);
   z-index: 9999;
-  padding: 24px 32px;
-  border-top: 3px solid var(--clay);
-  box-shadow: 0 -8px 32px rgba(10, 10, 10, 0.18);
+  padding: 28px 40px;
+  border-top: 6px solid var(--clay);
   display: none;
-  transform: translateY(0);
-  animation: consent-slide-up 0.4s ease;
-}
-@keyframes consent-slide-up {
-  from { transform: translateY(100%); }
-  to { transform: translateY(0); }
 }
 .consent-banner.visible { display: block; }
 .consent-inner {
-  max-width: 1240px;
+  max-width: 1320px;
   margin: 0 auto;
   display: flex;
-  gap: 32px;
+  gap: 40px;
   align-items: center;
   flex-wrap: wrap;
 }
@@ -1714,78 +1727,106 @@ textarea:focus-visible,
 }
 .consent-text strong {
   display: block;
-  color: var(--white);
-  font-weight: 500;
-  font-size: 16px;
-  letter-spacing: -0.005em;
-  margin-bottom: 6px;
+  color: var(--bone);
+  font-family: var(--sans);
+  font-weight: 700;
+  font-size: 18px;
+  letter-spacing: -0.01em;
+  margin-bottom: 8px;
 }
 .consent-text a {
-  color: var(--clay);
+  color: var(--clay-warm);
   text-decoration: underline;
   text-underline-offset: 3px;
 }
-.consent-text a:hover { color: var(--white); }
-.consent-actions {
-  display: flex;
-  gap: 10px;
-  flex-shrink: 0;
-}
+.consent-text a:hover { color: var(--bone); }
+.consent-actions { display: flex; gap: 10px; flex-shrink: 0; }
 .consent-btn {
-  font-family: var(--type);
-  font-size: 13px;
-  font-weight: 500;
-  letter-spacing: 0.06em;
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
-  padding: 12px 22px;
-  border-radius: 2px;
+  padding: 14px 24px;
+  border-radius: 0;
   cursor: pointer;
-  transition: all 0.2s ease;
   border: 1px solid;
 }
 .consent-btn--accept {
   background: var(--clay);
-  color: var(--white);
+  color: var(--bone);
   border-color: var(--clay);
 }
-.consent-btn--accept:hover {
-  background: var(--white);
-  color: var(--black);
-  border-color: var(--white);
-}
+.consent-btn--accept:hover { background: var(--bone); color: var(--black); border-color: var(--bone); }
 .consent-btn--decline {
   background: transparent;
   color: rgba(245, 245, 243, 0.85);
-  border-color: rgba(245, 245, 243, 0.25);
+  border-color: rgba(245, 245, 243, 0.3);
 }
-.consent-btn--decline:hover {
-  color: var(--white);
-  border-color: var(--white);
-}
+.consent-btn--decline:hover { color: var(--bone); border-color: var(--bone); }
 @media (max-width: 720px) {
-  .consent-banner { padding: 20px 20px 24px; }
-  .consent-inner { gap: 18px; }
+  .consent-banner { padding: 20px 24px; }
+  .consent-inner { gap: 20px; }
   .consent-actions { width: 100%; }
-  .consent-btn { flex: 1; padding: 14px 16px; font-size: 12px; }
+  .consent-btn { flex: 1; padding: 14px 12px; font-size: 10px; }
 }
 
+/* ============================================================
+   PROGRESS BAR — top of viewport
+============================================================ */
+.progress-bar {
+  position: fixed; top: 0; left: 0;
+  height: 3px; background: var(--clay);
+  width: 0%;
+  z-index: 200;
+}
+
+/* ============================================================
+   KEYBOARD FOCUS
+============================================================ */
+*:focus { outline: none; }
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+[tabindex]:focus-visible {
+  outline: 2px solid var(--clay);
+  outline-offset: 3px;
+}
+.section--black *:focus-visible,
+.entry-gate-overlay *:focus-visible,
+.consent-banner *:focus-visible {
+  outline-color: var(--clay-warm);
+}
+
+/* ============================================================
+   TOAST
+============================================================ */
+@keyframes toast-rise {
+  from { transform: translate(-50%, 20px); opacity: 0; }
+  to   { transform: translate(-50%, 0); opacity: 1; }
+}
+
+/* ============================================================
+   UTILITIES
+============================================================ */
+.mt-32 { margin-top: 32px; }
+.mt-48 { margin-top: 48px; }
+.mt-64 { margin-top: 64px; }
+.mt-80 { margin-top: 80px; }
 
 </style>
-
-<!-- Microsoft Clarity loads ONLY after explicit consent — see consent banner JS at bottom of body -->
-
 </head>
 <body>
 
 <!-- ============================================================
-     ENTRY GATE — captures Age + Gender before the brand experience.
-     Two questions, framed as "tell us about you." Hard requirement
-     to ensure generational segmentation in the data.
+     ENTRY GATE — Age + Gender capture
 ============================================================ -->
 <div class="entry-gate-overlay" id="entryGate" role="dialog" aria-modal="true" aria-labelledby="entryGateTitle" aria-describedby="entryGateBody">
   <div class="entry-gate-card">
-    <p class="entry-gate-eyebrow">Before you begin</p>
-    <h2 class="entry-gate-title" id="entryGateTitle">Tell us a little about you.</h2>
+    <p class="entry-gate-eyebrow">Programme 01 · Curatorial Preview</p>
+    <h2 class="entry-gate-title" id="entryGateTitle">Tell us a <em>little</em> about you.</h2>
     <p class="entry-gate-body" id="entryGateBody">Two quick questions. It helps us understand who's reading — and shapes what we make next.</p>
 
     <div class="gate-question">
@@ -1819,9 +1860,7 @@ textarea:focus-visible,
 </div>
 
 <!-- ============================================================
-     GDPR CONSENT BANNER — appears on first visit until choice made.
-     Until accepted, Microsoft Clarity does NOT load. Netlify Forms
-     (strictly necessary for the survey to function) still runs.
+     GDPR CONSENT BANNER
 ============================================================ -->
 <div class="consent-banner" id="consentBanner" role="dialog" aria-labelledby="consentTitle" aria-describedby="consentDescription">
   <div class="consent-inner">
@@ -1840,9 +1879,7 @@ textarea:focus-visible,
 </div>
 
 <!-- ============================================================
-     NETLIFY FORM — hidden detector. Netlify's build scanner picks
-     this up and registers the form name so submissions appear in
-     the dashboard. We submit programmatically from captureSignup().
+     NETLIFY FORM DETECTOR
 ============================================================ -->
 <form name="early-or-late-survey" data-netlify="true" netlify-honeypot="bot-field" hidden>
   <input type="email" name="email" />
@@ -1865,27 +1902,12 @@ textarea:focus-visible,
 
 <div class="progress-bar" id="progressBar"></div>
 
-<!-- Floating question-progress widget -->
-<div class="progress-widget" id="progressWidget" title="Survey progress">
-  <div class="progress-dots">
-    <span class="progress-dot" data-q="drop_ranking" title="The drop catalog"></span>
-    <span class="progress-dot" data-q="promise_ranking" title="The promise ranking"></span>
-    <span class="progress-dot" data-q="retailers" title="Where you'd find it"></span>
-    <span class="progress-dot" data-q="motivation" title="Why you'd wear it"></span>
-    <span class="progress-dot" data-q="proposition" title="Proposition test"></span>
-    <span class="progress-dot" data-q="ad_reactions" title="Ad reactions"></span>
-    <span class="progress-dot" data-q="price" title="Willingness to pay"></span>
-    <span class="progress-dot" data-q="buy_intent" title="Buy intent"></span>
-  </div>
-  <p class="progress-label"><span class="progress-num">0</span> of <span class="progress-total">8</span> answered</p>
-</div>
-
 <!-- ============================================================
-     NAVIGATION
+     NAV
 ============================================================ -->
 <nav class="nav">
   <div class="nav-inner">
-    <div class="nav-brand" style="color: var(--black);">
+    <div class="nav-brand">
       <svg viewBox="0 0 720 130" width="140" height="auto" style="display:block;" aria-label="early or LA(t)E">
         <g font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-weight="800" font-size="92" font-style="italic">
           <text x="0" y="100" fill="currentColor">early</text>
@@ -1901,6 +1923,7 @@ textarea:focus-visible,
           <text x="565" y="100" fill="none" stroke="currentColor" stroke-width="3">E</text>
         </g>
       </svg>
+      <span class="nav-brand-place">Hackney · London · Est. 2026</span>
     </div>
     <div class="nav-links">
       <a href="#signup" class="nav-cta">Early access</a>
@@ -1909,71 +1932,91 @@ textarea:focus-visible,
 </nav>
 
 <!-- ============================================================
-     HERO — Route 1 (Timeless) register applied to the brand-board palette.
-     Sparse, confident, editorial. The wordmark IS the hero device.
-     The proposition (Variant A) is the single statement that follows.
+     HERO
 ============================================================ -->
 <section class="hero">
-  <div class="container hero-inner">
-    <div class="hero-grid">
+  <div class="container">
 
-      <div class="hero-section-mark">
-        <span class="label-mono">I — N°001</span>
-        <span class="section-numeral">I.</span>
+    <div class="hero-label-row">
+      <div class="hero-label-left">
+        <span class="meta meta-clay">I.</span>
+        <span class="meta">Programme N°01</span>
+        <span class="meta">Curatorial Preview</span>
       </div>
-
-      <div class="hero-main">
-
-        <!-- Bold editorial headline — Variant A proposition -->
-        <h1 class="display">
-          Limited edition wearable art, in collaboration with <em>independent artists</em>.
-        </h1>
-
-        <p class="body-l">
-          Five artworks. Fifty of each. <em>Two-fifty pieces</em>. Conor Powell opens the catalogue — Chris Sullivan follows. Designed and <em>made in London</em>, milled in Leicester. Not fast fashion. <em>Forward fashion</em> — independent, inclusive, made to last.
-        </p>
-
-        <div class="cta-block">
-          <a href="#drop" class="cta-primary">
-            See N°001
-            <span class="cta-primary-arrow"></span>
-          </a>
-          <span class="cta-supporting">or scroll on</span>
-        </div>
-
-        <!-- Editorial spec strip -->
-        <div class="hero-spec">
-          <div class="hero-spec-item"><strong>Drop</strong><span>5 × 50</span></div>
-          <div class="hero-spec-item"><strong>Edition</strong><span>50 of each</span></div>
-          <div class="hero-spec-item"><strong>Price</strong><span>£140 — 160</span></div>
-          <div class="hero-spec-item"><strong>Made in</strong><span>London</span></div>
-          <div class="hero-spec-item"><strong>Launch</strong><span>Jul — Aug '26</span></div>
-        </div>
-
-      </div>
+      <span class="meta meta-clay">Hackney · London · 2026</span>
     </div>
+
+    <div class="hero-headline-block">
+      <h1 class="display-xl">
+        A curated collection<br>of wearable artworks<br>by <em>independent artists.</em>
+      </h1>
+    </div>
+
+    <div class="hero-body-row">
+      <p class="body-l">
+        Five artworks. Fifty of each. <em>Two-fifty pieces.</em> Conor Powell opens the catalogue — Chris Sullivan follows. Designed and <em>made in London</em>, milled in Leicester.
+      </p>
+      <p class="body-l">
+        Not fast fashion. <em>Forward fashion</em> — independent, inclusive, made to last. The first programme opens July to August 2026. This page is the curatorial preview.
+      </p>
+    </div>
+
+    <div class="cta-block">
+      <a href="#drop" class="cta-primary">
+        See Programme N°01
+        <span class="cta-primary-arrow">→</span>
+      </a>
+      <span class="cta-supporting">or scroll on</span>
+    </div>
+
+    <div class="hero-spec">
+      <div class="hero-spec-item"><span class="meta">Programme</span><span class="val">N°<em>01</em></span></div>
+      <div class="hero-spec-item"><span class="meta">Drop</span><span class="val">5 × <em>50</em></span></div>
+      <div class="hero-spec-item"><span class="meta">Edition</span><span class="val">250 pieces</span></div>
+      <div class="hero-spec-item"><span class="meta">Located</span><span class="val"><em>Hackney</em> London</span></div>
+      <div class="hero-spec-item"><span class="meta">Made in</span><span class="val">London</span></div>
+      <div class="hero-spec-item"><span class="meta">Opens</span><span class="val">Jul — Aug '26</span></div>
+    </div>
+
   </div>
 </section>
-<section class="section" id="drop">
+
+<!-- ============================================================
+     SECTION II — THE FIRST DROP (Q1: drop_ranking)
+============================================================ -->
+<section class="section section--bone" id="drop">
   <div class="container">
+
     <div class="section-divider">
-      <span class="section-divider-num">II.</span>
-      <span class="section-divider-label">The first drop · 250 pieces · Conor leads</span>
-      <span class="section-divider-right q-status" data-q="drop_ranking">Question 1 of 8</span>
+      <div class="section-divider-top">
+        <span class="section-divider-label">Programme N°01 · The first drop · Conor leads</span>
+        <span class="section-divider-right q-status" data-q="drop_ranking">Question 1 of 8</span>
+      </div>
+      <div class="section-divider-numhead">
+        <span class="section-numeral">II.</span>
+        <h2 class="h-section" style="max-width:14ch;">
+          Five artworks.<br><em>Fifty of each.</em>
+        </h2>
+      </div>
     </div>
-    <h2 class="h-1" style="max-width:18ch;">Five artworks.<br><em>Fifty of each.</em><br>Two-fifty pieces.</h2>
-    <p class="body mt-32">The first drop is <em>Conor Powell's range</em> — five new artworks, fifty pieces of each, signed and numbered. <em>Chris Sullivan</em> follows as the next range. Both shown below: see what's launching, and see what's coming. Every garment is shipped in a hand-folded matte-black box.</p>
-    <div class="action-prompt"><span class="action-prompt-arrow">↓</span><span><span class="action-prompt-prefix">Your turn</span>Tap any artworks that appeal to you — select as many as you like</span></div>
+
+    <p class="body">
+      The first drop is <em>Conor Powell's range</em> — five new artworks, fifty pieces of each, signed and numbered. <em>Chris Sullivan</em> follows as the next range. Both shown below: see what's launching, see what's coming. Every garment ships in a hand-folded matte-black box.
+    </p>
+
+    <div class="action-prompt">
+      <span class="action-prompt-arrow">↓</span>
+      <span><span class="action-prompt-prefix">Your turn</span>Tap any artworks that appeal to you — select as many as you like</span>
+    </div>
 
     <!-- ===== CONOR POWELL — 5 artworks (the first drop) ===== -->
     <div class="drop-artist-section">
       <div class="drop-artist-header">
         <div class="drop-artist-name">Conor Powell — <em>the first drop</em></div>
-        <div class="drop-artist-meta">Illustrator · South London · Launching Jul / Aug 2026</div>
+        <div class="drop-artist-meta">Illustrator · South London · Launching Jul/Aug 2026</div>
       </div>
 
       <div class="drop-grid">
-
         <div class="shirt-card" data-shirt="C01" onclick="toggleSelection('C01')">
           <div class="shirt-placeholder">
             <div class="shirt-placeholder-mark">(t)</div>
@@ -2043,7 +2086,6 @@ textarea:focus-visible,
             <div class="shirt-edition">Edition of 50 · N°005</div>
           </div>
         </div>
-
       </div>
     </div>
 
@@ -2051,11 +2093,10 @@ textarea:focus-visible,
     <div class="drop-artist-section">
       <div class="drop-artist-header">
         <div class="drop-artist-name">Chris Sullivan — <em>coming next</em></div>
-        <div class="drop-artist-meta">Painter · London · Founder of The Wag Club · The next range</div>
+        <div class="drop-artist-meta">Painter · London · The Wag Club founder</div>
       </div>
 
       <div class="drop-grid">
-
         <div class="shirt-card" data-shirt="S01" onclick="toggleSelection('S01')">
           <div class="shirt-placeholder">
             <div class="shirt-placeholder-mark">(t)</div>
@@ -2125,13 +2166,11 @@ textarea:focus-visible,
             <div class="shirt-edition">Edition of 50 · N°010</div>
           </div>
         </div>
-
       </div>
     </div>
 
-    <!-- Selection tracker -->
     <div class="rank-tracker" id="drop-tracker">
-      <div class="tracker-label">Your selections</div>
+      <div class="tracker-label">Your<br>selections</div>
       <div class="tracker-items">
         <div class="track-item"><span class="track-rank"><span id="dropSelectionCount">0</span></span><span class="track-name" id="dropSelectionList">Tap any artworks above to select</span></div>
       </div>
@@ -2144,75 +2183,92 @@ textarea:focus-visible,
   </div>
 </section>
 
+<!-- ============================================================
+     STANDALONE PHRASE MOMENT — between II and III
+============================================================ -->
+<section class="phrase-moment section--bone">
+  <div class="container">
+    <span class="meta meta-clay">Programme N°01 · The promise</span>
+    <p class="phrase-italic">Numbered.<br>Named.<br>Never made again.</p>
+  </div>
+</section>
 
 <!-- ============================================================
-     PROMISE STRIP — what makes this different
+     SECTION III — THE PROMISE (Q2: promise_ranking)
 ============================================================ -->
-<section class="section section--black section--tight">
+<section class="section section--black">
   <div class="container">
     <div class="section-divider section-divider--dark">
-      <span class="section-divider-num">III.</span>
-      <span class="section-divider-label">The promise · Top 3 ranking</span>
-      <span class="section-divider-right q-status" data-q="promise_ranking">Question 2 of 8</span>
+      <div class="section-divider-top">
+        <span class="section-divider-label">The promise · Top 3 ranking</span>
+        <span class="section-divider-right q-status" data-q="promise_ranking">Question 2 of 8</span>
+      </div>
+      <div class="section-divider-numhead">
+        <span class="section-numeral">III.</span>
+        <h2 class="h-section" style="color: var(--bone); max-width:18ch;">Eight things that hold for <em>every piece</em>.</h2>
+      </div>
     </div>
-    <h2 class="h-1" style="color: var(--bone); max-width: 18ch;">Eight things that hold for <em>every piece</em>.</h2>
-    <div class="action-prompt action-prompt--dark"><span class="action-prompt-arrow">↓</span><span><span class="action-prompt-prefix">Your turn</span>Tap to rank your top three — what matters most to you?</span></div>
+
+    <div class="action-prompt action-prompt--clay">
+      <span class="action-prompt-arrow">↓</span>
+      <span><span class="action-prompt-prefix">Your turn</span>Tap to rank your top three — what matters most to you?</span>
+    </div>
   </div>
+
   <div class="container" style="margin-top: 64px;">
     <div class="promise-strip">
-      <div class="promise-item" data-promise="numbered" onclick="rankPromise('numbered', 'Numbered')" style="position:relative;">
+      <div class="promise-item" data-promise="numbered" onclick="rankPromise('numbered', 'Numbered')">
         <div class="rank-badge"></div>
-        <div class="promise-num">01</div>
+        <div class="promise-num">N°01</div>
         <div class="promise-title">Numbered</div>
         <div class="promise-body">Every garment is numbered by hand. 1 of 50, signed on a satin label.</div>
       </div>
-      <div class="promise-item" data-promise="named" onclick="rankPromise('named', 'Named')" style="position:relative;">
+      <div class="promise-item" data-promise="named" onclick="rankPromise('named', 'Named')">
         <div class="rank-badge"></div>
-        <div class="promise-num">02</div>
+        <div class="promise-num">N°02</div>
         <div class="promise-title">Named</div>
         <div class="promise-body">The artist's name lives on the certificate card. The piece is theirs, not ours.</div>
       </div>
-      <div class="promise-item" data-promise="shared" onclick="rankPromise('shared', 'Shared')" style="position:relative;">
+      <div class="promise-item" data-promise="shared" onclick="rankPromise('shared', 'Shared')">
         <div class="rank-badge"></div>
-        <div class="promise-num">03</div>
+        <div class="promise-num">N°03</div>
         <div class="promise-title">Shared</div>
         <div class="promise-body">Every artist receives a share of every sale. Buying is a direct transaction.</div>
       </div>
-      <div class="promise-item" data-promise="uk_made" onclick="rankPromise('uk_made', 'Made in London')" style="position:relative;">
+      <div class="promise-item" data-promise="uk_made" onclick="rankPromise('uk_made', 'Made in London')">
         <div class="rank-badge"></div>
-        <div class="promise-num">04</div>
+        <div class="promise-num">N°04</div>
         <div class="promise-title">Made in London</div>
-        <div class="promise-body">Designed, cut and finished in London. Cotton milled in Leicester. Printed with water-based ink.</div>
+        <div class="promise-body">Designed, cut and finished in London. Cotton milled in Leicester. Water-based ink.</div>
       </div>
     </div>
-    <div class="promise-strip" style="border-top: none;">
-      <div class="promise-item" data-promise="never_repeated" onclick="rankPromise('never_repeated', 'Never repeated')" style="position:relative;">
+    <div class="promise-strip">
+      <div class="promise-item" data-promise="never_repeated" onclick="rankPromise('never_repeated', 'Never repeated')">
         <div class="rank-badge"></div>
-        <div class="promise-num">05</div>
+        <div class="promise-num">N°05</div>
         <div class="promise-title">Never repeated</div>
         <div class="promise-body">Fifty pieces. Never made again. The drop closes when it closes.</div>
       </div>
-      <div class="promise-item" data-promise="repaired_for_life" onclick="rankPromise('repaired_for_life', 'Repaired for life')" style="position:relative;">
+      <div class="promise-item" data-promise="repaired_for_life" onclick="rankPromise('repaired_for_life', 'Repaired for life')">
         <div class="rank-badge"></div>
-        <div class="promise-num">06</div>
+        <div class="promise-num">N°06</div>
         <div class="promise-title">Repaired for life</div>
         <div class="promise-body">Bring it back. We repair it, re-stamp it, and record the repair on the line.</div>
       </div>
-      <div class="promise-item" data-promise="inclusive_design" onclick="rankPromise('inclusive_design', 'Inclusive by design')" style="position:relative;">
+      <div class="promise-item" data-promise="inclusive_design" onclick="rankPromise('inclusive_design', 'Inclusive by design')">
         <div class="rank-badge"></div>
-        <div class="promise-num">07</div>
+        <div class="promise-num">N°07</div>
         <div class="promise-title">Inclusive by design</div>
         <div class="promise-body">Soft 265gsm cotton, wider neckline, no neck labels. Made to be worn by every body.</div>
       </div>
-      <div class="promise-item" data-promise="ethical_transparent" onclick="rankPromise('ethical_transparent', 'Ethically transparent')" style="position:relative;">
+      <div class="promise-item" data-promise="ethical_transparent" onclick="rankPromise('ethical_transparent', 'Ethically transparent')">
         <div class="rank-badge"></div>
-        <div class="promise-num">08</div>
+        <div class="promise-num">N°08</div>
         <div class="promise-title">Ethically transparent</div>
         <div class="promise-body">You see where every penny goes — cotton, cut, print, artist's share. No greenwash.</div>
       </div>
     </div>
 
-    <!-- Top 3 tracker (dark variant) -->
     <div class="rank-tracker rank-tracker--dark" id="promise-tracker">
       <div class="tracker-label">Your top three<br>so far</div>
       <div class="tracker-items">
@@ -2230,30 +2286,60 @@ textarea:focus-visible,
 </section>
 
 <!-- ============================================================
-     RETAILER SECTION — "Where would feel like home?"
-     Pick TWO retailers. Visual recognition via brand-styled type cards.
+     WORDMARK PATTERN MOMENT
 ============================================================ -->
-<section class="section" id="retailers" style="background: var(--stone);">
+<div class="wordmark-pattern">
+  <svg class="wordmark-pattern-mark" viewBox="0 0 720 130" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <g font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-weight="800" font-size="92" font-style="italic">
+      <text x="0" y="100" fill="#EAE6DF">early</text>
+    </g>
+    <g font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-weight="500" font-size="64">
+      <text x="240" y="100" fill="#EAE6DF">or</text>
+    </g>
+    <g font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-weight="800" font-size="92" letter-spacing="-2">
+      <text x="338" y="100" fill="none" stroke="#A2674C" stroke-width="3">LA</text>
+      <text x="465" y="100" fill="#EAE6DF" font-style="italic" font-weight="700">(</text>
+      <text x="495" y="100" fill="#EAE6DF" font-style="italic" font-weight="800" font-size="76">t</text>
+      <text x="525" y="100" fill="#EAE6DF" font-style="italic" font-weight="700">)</text>
+      <text x="565" y="100" fill="none" stroke="#A2674C" stroke-width="3">E</text>
+    </g>
+  </svg>
+  <div class="wordmark-pattern-meta">
+    <span class="meta">Programme N°01 · Curatorial Preview</span>
+    <span class="meta">Hackney · London · 2026</span>
+  </div>
+</div>
+
+<!-- ============================================================
+     SECTION IV — RETAILERS (Q3)
+============================================================ -->
+<section class="section section--stone" id="retailers">
   <div class="container">
     <div class="section-divider">
-      <span class="section-divider-num">IV.</span>
-      <span class="section-divider-label">Where you'd find us · Pick 2</span>
-      <span class="section-divider-right q-status" data-q="retailers">Question 3 of 8</span>
+      <div class="section-divider-top">
+        <span class="section-divider-label">Where you'd find us · Pick 2</span>
+        <span class="section-divider-right q-status" data-q="retailers">Question 3 of 8</span>
+      </div>
+      <div class="section-divider-numhead">
+        <span class="section-numeral">IV.</span>
+        <h2 class="h-section" style="max-width:18ch;">If this brand existed, where would feel like <em>home</em>?</h2>
+      </div>
     </div>
-    <h2 class="h-1" style="max-width: 22ch;">If this brand existed,<br>where would feel like <em>home</em>?</h2>
-    <p class="body mt-32">A handful of considered retailers. Pick the two you'd most likely buy from — in store or online.</p>
-    <div class="action-prompt"><span class="action-prompt-arrow">↓</span><span><span class="action-prompt-prefix">Your turn</span>Tap up to TWO retailers below</span></div>
+
+    <p class="body">A handful of considered retailers. Pick the two you'd most likely buy from — in store or online.</p>
+
+    <div class="action-prompt">
+      <span class="action-prompt-arrow">↓</span>
+      <span><span class="action-prompt-prefix">Your turn</span>Tap up to TWO retailers below</span>
+    </div>
 
     <div class="retailer-grid">
-
-      <!-- Direct from brand -->
       <button class="retailer-card" data-retailer="direct" onclick="toggleRetailer(this, 'direct')">
         <div class="retailer-logo">
           <p class="r-direct"><strong>Direct from the brand</strong><br>early-or-late.com</p>
         </div>
       </button>
 
-      <!-- Goodhood -->
       <button class="retailer-card" data-retailer="goodhood" onclick="toggleRetailer(this, 'goodhood')">
         <div class="retailer-logo">
           <span class="r-goodhood">GOODHOOD</span>
@@ -2261,14 +2347,12 @@ textarea:focus-visible,
         </div>
       </button>
 
-      <!-- Wolf & Badger -->
       <button class="retailer-card" data-retailer="wolf_badger" onclick="toggleRetailer(this, 'wolf_badger')">
         <div class="retailer-logo">
           <span class="r-wolf-badger">WOLF &amp;<br>BADGER</span>
         </div>
       </button>
 
-      <!-- Liberty London -->
       <button class="retailer-card" data-retailer="liberty" onclick="toggleRetailer(this, 'liberty')">
         <div class="retailer-logo">
           <span class="r-liberty">Liberty</span>
@@ -2276,50 +2360,43 @@ textarea:focus-visible,
         </div>
       </button>
 
-      <!-- Selfridges -->
       <button class="retailer-card" data-retailer="selfridges" onclick="toggleRetailer(this, 'selfridges')">
         <div class="retailer-logo">
           <span class="r-selfridges">SELFRIDGES&amp;Co</span>
         </div>
       </button>
 
-      <!-- MR PORTER -->
       <button class="retailer-card" data-retailer="mr_porter" onclick="toggleRetailer(this, 'mr_porter')">
         <div class="retailer-logo">
           <span class="r-mr-porter">MR<span class="dot"> · </span>PORTER</span>
         </div>
       </button>
 
-      <!-- SSENSE -->
       <button class="retailer-card" data-retailer="ssense" onclick="toggleRetailer(this, 'ssense')">
         <div class="retailer-logo">
           <span class="r-ssense">SSENSE</span>
         </div>
       </button>
 
-      <!-- END. -->
       <button class="retailer-card" data-retailer="end" onclick="toggleRetailer(this, 'end')">
         <div class="retailer-logo">
           <span class="r-end">END<span class="r-end-dot">.</span></span>
         </div>
       </button>
 
-      <!-- TATE shop -->
       <button class="retailer-card" data-retailer="tate" onclick="toggleRetailer(this, 'tate')">
         <div class="retailer-logo">
           <span class="r-tate">TATE</span>
-          <span style="font-size: 9px; letter-spacing: 0.18em; margin-top: 6px; color: rgba(0,0,0,0.6);">SHOP</span>
+          <span style="font-family: var(--mono); font-size: 9px; letter-spacing: 0.2em; margin-top: 6px; color: rgba(0,0,0,0.6); font-weight: 600;">SHOP</span>
         </div>
       </button>
 
-      <!-- Royal Academy -->
       <button class="retailer-card" data-retailer="ra" onclick="toggleRetailer(this, 'ra')">
         <div class="retailer-logo">
           <span class="r-ra-mark">RA</span>
           <span class="r-ra">ROYAL<br>ACADEMY</span>
         </div>
       </button>
-
     </div>
 
     <div class="retailer-other-wrap">
@@ -2335,63 +2412,64 @@ textarea:focus-visible,
 </section>
 
 <!-- ============================================================
-     MOTIVATION — why would you wear wearable art by independent artists?
-     Multi-select (max 3) + optional open-text "something else"
+     SECTION V — MOTIVATION (Q4)
 ============================================================ -->
-<section class="section" id="motivation" style="background: var(--bone);">
+<section class="section section--bone" id="motivation">
   <div class="container">
     <div class="section-divider">
-      <span class="section-divider-num">V.</span>
-      <span class="section-divider-label">Why wear it · Pick up to 3</span>
-      <span class="section-divider-right q-status" data-q="motivation">Question 4 of 8</span>
+      <div class="section-divider-top">
+        <span class="section-divider-label">Why wear it · Pick up to 3</span>
+        <span class="section-divider-right q-status" data-q="motivation">Question 4 of 8</span>
+      </div>
+      <div class="section-divider-numhead">
+        <span class="section-numeral">V.</span>
+        <h2 class="h-section" style="max-width:20ch;">What would draw you to wear a piece <em>like this</em>?</h2>
+      </div>
     </div>
-    <h2 class="h-1" style="max-width: 22ch;">What would draw you to wear a piece <em>like this</em>?</h2>
-    <p class="body mt-32" style="max-width:54ch;">Wearable art by independent artists isn't fast fashion. People who wear it tend to do so for reasons that aren't just "I needed a top." We want to understand yours.</p>
-    <div class="action-prompt"><span class="action-prompt-arrow">↓</span><span><span class="action-prompt-prefix">Your turn</span>Tap up to THREE motivations that feel true for you</span></div>
+
+    <p class="body">Wearable art by independent artists isn't fast fashion. People who wear it tend to do so for reasons that aren't just <em>"I needed a top."</em> We want to understand yours.</p>
+
+    <div class="action-prompt">
+      <span class="action-prompt-arrow">↓</span>
+      <span><span class="action-prompt-prefix">Your turn</span>Tap up to THREE motivations that feel true for you</span>
+    </div>
 
     <div class="motivation-grid">
       <button class="motivation-card" data-mot="self_expression" onclick="toggleMotivation(this, 'self_expression')">
         <span class="motivation-title">It's a way to express who I am</span>
         <span class="motivation-sub">Self-expression · taste</span>
       </button>
-
       <button class="motivation-card" data-mot="scarcity" onclick="toggleMotivation(this, 'scarcity')">
         <span class="motivation-title">I'd wear something nobody else has</span>
         <span class="motivation-sub">Uniqueness · rarity</span>
       </button>
-
       <button class="motivation-card" data-mot="artist_support" onclick="toggleMotivation(this, 'artist_support')">
         <span class="motivation-title">To support the artist directly</span>
         <span class="motivation-sub">Direct artist support · ethics</span>
       </button>
-
       <button class="motivation-card" data-mot="aesthetic" onclick="toggleMotivation(this, 'aesthetic')">
         <span class="motivation-title">Because the artwork moves me</span>
         <span class="motivation-sub">Aesthetic · art appreciation</span>
       </button>
-
       <button class="motivation-card" data-mot="storytelling" onclick="toggleMotivation(this, 'storytelling')">
         <span class="motivation-title">It tells a story I want to wear</span>
         <span class="motivation-sub">Storytelling · meaning</span>
       </button>
-
       <button class="motivation-card" data-mot="anti_mass" onclick="toggleMotivation(this, 'anti_mass')">
         <span class="motivation-title">To opt out of fast fashion</span>
-        <span class="motivation-sub">Sustainability · ethical sourcing · transparency</span>
+        <span class="motivation-sub">Sustainability · transparency</span>
       </button>
-
       <button class="motivation-card" data-mot="values_aligned" onclick="toggleMotivation(this, 'values_aligned')">
         <span class="motivation-title">Because it's designed for every body</span>
-        <span class="motivation-sub">Soft feel · wider neck · no neck labels · inclusive fit</span>
+        <span class="motivation-sub">Soft feel · wider neck · no labels · inclusive fit</span>
       </button>
-
       <button class="motivation-card" data-mot="longevity" onclick="toggleMotivation(this, 'longevity')">
         <span class="motivation-title">To own something built to be kept</span>
         <span class="motivation-sub">Longevity · investment · craft</span>
       </button>
     </div>
 
-    <div class="motivation-tracker" id="motivation-tracker">
+    <div class="rank-tracker" id="motivation-tracker">
       <div class="tracker-label">Your top three<br>so far</div>
       <div class="tracker-items">
         <div class="track-item"><span class="track-rank">1</span><span class="track-name">Tap a motivation above</span></div>
@@ -2413,21 +2491,29 @@ textarea:focus-visible,
 </section>
 
 <!-- ============================================================
-     SURVEY MOMENT 01 — Proposition test (4-5 variants)
-     The visitor reads this as "tell us what resonates" — not a survey.
+     SECTION VI — PROPOSITION (Q5) — FULL-BLEED BLACK DECLARATION WALL
 ============================================================ -->
-<section class="survey-block survey-block--black" id="survey-1">
+<section class="section section--black">
   <div class="container">
     <div class="section-divider section-divider--dark">
-      <span class="section-divider-num">VI.</span>
-      <span class="section-divider-label">The most compelling promise · Pick one</span>
-      <span class="section-divider-right q-status" data-q="proposition">Question 5 of 8</span>
+      <div class="section-divider-top">
+        <span class="section-divider-label">The most compelling promise · Pick one</span>
+        <span class="section-divider-right q-status" data-q="proposition">Question 5 of 8</span>
+      </div>
+      <div class="section-divider-numhead">
+        <span class="section-numeral">VI.</span>
+        <h2 class="h-section" style="color:var(--bone); max-width:14ch;">Which promise speaks <em>loudest</em>?</h2>
+      </div>
     </div>
-    <h2 class="h-1 survey-question">Which promise speaks <em>loudest</em>?</h2>
-    <p class="survey-helper">
-      We're shaping how this brand introduces itself. Five lines. Pick the one that feels most <em>true</em>. There's no wrong answer — we're listening.
+
+    <p class="body" style="color: rgba(245,241,235,0.75); max-width: 56ch;">
+      We're shaping how this brand introduces itself. Five lines. Pick the one that feels most <em style="color: var(--clay-warm);">true</em>. There's no wrong answer — we're listening.
     </p>
-    <div class="action-prompt action-prompt--dark"><span class="action-prompt-arrow">↓</span><span><span class="action-prompt-prefix">Your turn</span>Tap the one line that speaks loudest to you</span></div>
+
+    <div class="action-prompt action-prompt--clay">
+      <span class="action-prompt-arrow">↓</span>
+      <span><span class="action-prompt-prefix">Your turn</span>Tap the one line that speaks loudest to you</span>
+    </div>
 
     <div class="props-grid">
       <button class="prop-option" data-variant="A" onclick="selectProp(this, 'A')">
@@ -2470,206 +2556,29 @@ textarea:focus-visible,
 </section>
 
 <!-- ============================================================
-     SURVEY MOMENT 1B — The ad-mockup double test
-     Same five propositions, this time inside creative ad mockups.
-     Reaction per ad: scroll past / stop and look / tap to find out more.
-     This is the "revealed preference in stimulus" test — pairs with
-     the stated-preference test in Survey Moment 1.
+     SECTION VII — AD TEST (Q6)
 ============================================================ -->
-<style>
-  .ad-feed { max-width: 900px; margin: 64px auto 0; }
-  .ad-card { margin-bottom: 72px; }
-  .ad-frame {
-    aspect-ratio: 4/5;
-    position: relative;
-    overflow: hidden;
-    border-radius: 0;
-    box-shadow: 0 8px 32px rgba(10, 10, 10, 0.1);
-    display: grid;
-    grid-template-rows: 1.4fr 1fr;
-  }
-  @media (min-width: 720px) {
-    .ad-frame {
-      aspect-ratio: 16/9;
-      grid-template-rows: 1fr;
-      grid-template-columns: 1.4fr 1fr;
-    }
-  }
-  .ad-inner, .ad-text {
-    padding: 48px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    position: relative;
-  }
-  .ad-product {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: var(--ink);
-    padding: 32px;
-  }
-  .ad-product-placeholder {
-    font-family: var(--mono);
-    font-size: 11px;
-    font-weight: 500;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: rgba(245, 241, 235, 0.5);
-    border: 1px dashed rgba(245, 241, 235, 0.25);
-    padding: 56px 64px;
-    text-align: center;
-    line-height: 1.8;
-  }
-  .ad-frame--bone { background: var(--bone); color: var(--black); }
-  .ad-frame--black { background: var(--black); color: var(--bone); }
-  .ad-frame--black .ad-product { background: rgba(245, 241, 235, 0.04); }
-  .ad-frame--clay { background: var(--clay); color: var(--bone); }
-  .ad-frame--white { background: var(--white); color: var(--black); border: 1px solid rgba(10,10,10,0.08); }
-  .ad-frame--stone { background: var(--stone); color: var(--black); }
-  .ad-row { display: flex; justify-content: space-between; align-items: center; }
-  .ad-brand { font-size: 13px; font-weight: 500; letter-spacing: -0.005em; }
-  .ad-tag {
-    font-family: var(--mono);
-    font-size: 10px;
-    font-weight: 500;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-    opacity: 0.75;
-  }
-  .ad-headline {
-    font-family: var(--sans);
-    font-weight: 800;
-    line-height: 0.92;
-    letter-spacing: -0.035em;
-    font-size: 56px;
-  }
-  .ad-headline em {
-    font-family: var(--serif);
-    font-style: italic;
-    font-weight: 400;
-    letter-spacing: -0.02em;
-    color: var(--clay);
-  }
-  .ad-frame--clay .ad-headline em { color: var(--ink); }
-  .ad-frame--black .ad-headline em,
-  .ad-frame--white .ad-headline em { color: var(--clay); }
-  .ad-frame--bone .ad-headline em,
-  .ad-frame--stone .ad-headline em { color: var(--clay); }
-  /* Display + italic are now visually equal — italic is only the EM accent, never the whole headline */
-  .ad-headline--display,
-  .ad-headline--italic {
-    font-size: 56px;
-    line-height: 0.92;
-    letter-spacing: -0.035em;
-    font-family: var(--sans);
-    font-weight: 800;
-    font-style: normal;
-  }
-  /* Horizontal split inside ad-text — divides meta-top, headline, meta-bottom */
-  .ad-text > * + * { border-top: 1px solid currentColor; padding-top: 24px; }
-  .ad-text > * { padding-bottom: 24px; }
-  .ad-text > *:last-child { padding-bottom: 0; }
-  .ad-text > *:first-child { padding-top: 0; }
-  .ad-frame--bone .ad-text > * + *,
-  .ad-frame--white .ad-text > * + *,
-  .ad-frame--stone .ad-text > * + * { border-color: rgba(10, 10, 10, 0.12); }
-  .ad-frame--black .ad-text > * + *,
-  .ad-frame--clay .ad-text > * + * { border-color: rgba(245, 241, 235, 0.18); }
-  .ad-sub {
-    font-family: var(--sans);
-    font-size: 16px;
-    margin-top: 16px;
-    max-width: 34ch;
-    line-height: 1.4;
-    opacity: 0.85;
-    font-weight: 400;
-  }
-  .ad-sub em {
-    font-family: var(--serif);
-    font-style: italic;
-    color: var(--clay);
-  }
-  .ad-cta {
-    font-family: var(--mono);
-    font-size: 11px;
-    font-weight: 600;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-  }
-  .ad-cta::after { content: " →"; }
-  .ad-shirt-inline {
-    position: absolute; right: 40px; bottom: 100px;
-    width: 130px; height: 160px;
-    background: rgba(255, 255, 255, 0.04);
-    border: 1px solid rgba(10, 10, 10, 0.06);
-    display: flex; align-items: center; justify-content: center;
-    border-radius: 2px;
-  }
-  .ad-frame--black .ad-shirt-inline,
-  .ad-frame--clay .ad-shirt-inline { background: rgba(255, 255, 255, 0.06); border-color: rgba(245, 245, 243, 0.1); }
-  .ad-shirt-inline-mark { font-size: 48px; opacity: 0.35; }
-  .ad-spec {
-    font-family: 'SF Mono', Menlo, monospace;
-    font-size: 10px;
-    letter-spacing: 0.08em;
-    opacity: 0.55;
-    line-height: 1.6;
-    text-transform: uppercase;
-  }
-
-  /* Reactions */
-  .ad-reactions { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 20px; }
-  .ad-reaction {
-    background: var(--white);
-    border: 1px solid rgba(10, 10, 10, 0.14);
-    padding: 18px 12px;
-    font-family: var(--sans);
-    font-size: 13px;
-    font-weight: 500;
-    color: var(--black);
-    cursor: pointer;
-    border-radius: 0;
-    text-align: left;
-    transition: all 0.2s ease;
-    line-height: 1.3;
-  }
-  .ad-reaction:hover { border-color: var(--clay); }
-  .ad-reaction.selected { background: var(--clay); color: var(--bone); border-color: var(--clay); }
-  .ad-reaction-icon {
-    display: block;
-    font-family: var(--mono);
-    font-size: 9px;
-    font-weight: 600;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    margin-bottom: 8px;
-    color: var(--clay);
-  }
-  .ad-reaction.selected .ad-reaction-icon { color: var(--bone); }
-  .ad-label-row {
-    font-family: var(--mono);
-    font-size: 10px;
-    color: var(--clay);
-    margin-bottom: 14px;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    font-weight: 600;
-  }
-</style>
-
-<section class="survey-block" id="survey-1b" style="background: var(--white);">
+<section class="section section--white">
   <div class="container">
     <div class="section-divider">
-      <span class="section-divider-num">VII.</span>
-      <span class="section-divider-label">The ad test · React to 5 ads</span>
-      <span class="section-divider-right q-status" data-q="ad_reactions">Question 6 of 8</span>
+      <div class="section-divider-top">
+        <span class="section-divider-label">The ad test · React to 5 ads</span>
+        <span class="section-divider-right q-status" data-q="ad_reactions">Question 6 of 8</span>
+      </div>
+      <div class="section-divider-numhead">
+        <span class="section-numeral">VII.</span>
+        <h2 class="h-section" style="max-width:18ch;">Imagine you're <em>scrolling</em>. How would you react?</h2>
+      </div>
     </div>
-    <h2 class="h-1 survey-question" style="max-width: 24ch;">Imagine you're <em>scrolling</em>.<br>How would you react?</h2>
-    <p class="survey-helper">
+
+    <p class="body">
       The same five lines from before — this time, dressed as actual ads. Tap once per ad. No need to think too hard — just go with your gut.
     </p>
-    <div class="action-prompt"><span class="action-prompt-arrow">↓</span><span><span class="action-prompt-prefix">Your turn</span>For each ad below, tap how you'd react</span></div>
+
+    <div class="action-prompt">
+      <span class="action-prompt-arrow">↓</span>
+      <span><span class="action-prompt-prefix">Your turn</span>For each ad below, tap how you'd react</span>
+    </div>
 
     <div class="ad-feed">
 
@@ -2682,9 +2591,10 @@ textarea:focus-visible,
               <div class="ad-tag">N°001 · Jul / Aug</div>
             </div>
             <div>
-              <h3 class="ad-headline ad-headline--display">Limited edition<br><em>wearable art</em>.</h3>
+              <h3 class="ad-headline">Limited edition<br><em>wearable art</em>.</h3>
               <p class="ad-sub">Each piece in collaboration with an independent artist. Fifty pieces. <em>Never made again</em>.</p>
-            </div>            <div class="ad-row">
+            </div>
+            <div class="ad-row">
               <div class="ad-cta">See the drop</div>
               <div class="ad-spec">Made London</div>
             </div>
@@ -2692,40 +2602,41 @@ textarea:focus-visible,
           <div class="ad-product">
             <div class="ad-product-placeholder">Product<br>imagery<br>placeholder</div>
           </div>
-                </div>
+        </div>
         <div class="ad-label-row">Ad A · Promise A</div>
         <div class="ad-reactions">
-          <button class="ad-reaction" onclick="reactToAd(this, 'A', 'scroll')"><span class="ad-reaction-icon">↓</span>Would scroll past</button>
-          <button class="ad-reaction" onclick="reactToAd(this, 'A', 'stop')"><span class="ad-reaction-icon">◯</span>Would stop and look</button>
-          <button class="ad-reaction" onclick="reactToAd(this, 'A', 'tap')"><span class="ad-reaction-icon">●</span>Would tap to find out more</button>
+          <button class="ad-reaction" onclick="reactToAd(this, 'A', 'scroll')"><span class="ad-reaction-icon">↓ Scroll</span>Would scroll past</button>
+          <button class="ad-reaction" onclick="reactToAd(this, 'A', 'stop')"><span class="ad-reaction-icon">◯ Stop</span>Would stop and look</button>
+          <button class="ad-reaction" onclick="reactToAd(this, 'A', 'tap')"><span class="ad-reaction-icon">● Tap</span>Would tap to find out more</button>
         </div>
       </div>
 
-      <!-- ===== AD B — Considered / Neurodivergent artists (Variant B) ===== -->
+      <!-- ===== AD B — Considered / Neurodivergent (Variant B) ===== -->
       <div class="ad-card">
         <div class="ad-frame ad-frame--black">
           <div class="ad-inner">
             <div class="ad-row">
               <div class="ad-brand"><svg viewBox="0 0 720 130" width="100" height="auto" style="display:block;" aria-label="early or LA(t)E"><g font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-weight="800" font-size="92" font-style="italic"><text x="0" y="100" fill="currentColor">early</text></g><g font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-weight="500" font-size="64"><text x="240" y="100" fill="currentColor">or</text></g><g font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-weight="800" font-size="92" letter-spacing="-2"><text x="338" y="100" fill="none" stroke="currentColor" stroke-width="3">LA</text><text x="465" y="100" fill="currentColor" font-style="italic" font-weight="700">(</text><text x="495" y="100" fill="currentColor" font-style="italic" font-weight="800" font-size="76">t</text><text x="525" y="100" fill="currentColor" font-style="italic" font-weight="700">)</text><text x="565" y="100" fill="none" stroke="currentColor" stroke-width="3">E</text></g></svg></div>
-              <div class="ad-tag" style="color: var(--clay);">Drop 01</div>
+              <div class="ad-tag" style="color: var(--clay-warm);">Drop 01</div>
             </div>
             <div>
               <h3 class="ad-headline">Wearable art made <em>to be kept</em>.</h3>
               <p class="ad-sub">Designed by neurodivergent artists. Numbered, named, shared.</p>
-            </div>            <div class="ad-row">
-              <div class="ad-cta" style="color: var(--clay);">Read the story</div>
+            </div>
+            <div class="ad-row">
+              <div class="ad-cta" style="color: var(--clay-warm);">Read the story</div>
               <div class="ad-spec">N°001 · Jul–Aug 2026</div>
             </div>
           </div>
           <div class="ad-product">
             <div class="ad-product-placeholder">Product<br>imagery<br>placeholder</div>
           </div>
-                </div>
+        </div>
         <div class="ad-label-row">Ad B · Promise B</div>
         <div class="ad-reactions">
-          <button class="ad-reaction" onclick="reactToAd(this, 'B', 'scroll')"><span class="ad-reaction-icon">↓</span>Would scroll past</button>
-          <button class="ad-reaction" onclick="reactToAd(this, 'B', 'stop')"><span class="ad-reaction-icon">◯</span>Would stop and look</button>
-          <button class="ad-reaction" onclick="reactToAd(this, 'B', 'tap')"><span class="ad-reaction-icon">●</span>Would tap to find out more</button>
+          <button class="ad-reaction" onclick="reactToAd(this, 'B', 'scroll')"><span class="ad-reaction-icon">↓ Scroll</span>Would scroll past</button>
+          <button class="ad-reaction" onclick="reactToAd(this, 'B', 'stop')"><span class="ad-reaction-icon">◯ Stop</span>Would stop and look</button>
+          <button class="ad-reaction" onclick="reactToAd(this, 'B', 'tap')"><span class="ad-reaction-icon">● Tap</span>Would tap to find out more</button>
         </div>
       </div>
 
@@ -2734,26 +2645,27 @@ textarea:focus-visible,
         <div class="ad-frame ad-frame--clay">
           <div class="ad-inner">
             <div class="ad-row">
-              <div class="ad-brand" style="color: var(--white);"><svg viewBox="0 0 720 130" width="100" height="auto" style="display:block;" aria-label="early or LA(t)E"><g font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-weight="800" font-size="92" font-style="italic"><text x="0" y="100" fill="currentColor">early</text></g><g font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-weight="500" font-size="64"><text x="240" y="100" fill="currentColor">or</text></g><g font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-weight="800" font-size="92" letter-spacing="-2"><text x="338" y="100" fill="none" stroke="currentColor" stroke-width="3">LA</text><text x="465" y="100" fill="currentColor" font-style="italic" font-weight="700">(</text><text x="495" y="100" fill="currentColor" font-style="italic" font-weight="800" font-size="76">t</text><text x="525" y="100" fill="currentColor" font-style="italic" font-weight="700">)</text><text x="565" y="100" fill="none" stroke="currentColor" stroke-width="3">E</text></g></svg></div>
-              <div class="ad-tag" style="color: var(--white);">Edition 50</div>
+              <div class="ad-brand" style="color: var(--bone);"><svg viewBox="0 0 720 130" width="100" height="auto" style="display:block;" aria-label="early or LA(t)E"><g font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-weight="800" font-size="92" font-style="italic"><text x="0" y="100" fill="currentColor">early</text></g><g font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-weight="500" font-size="64"><text x="240" y="100" fill="currentColor">or</text></g><g font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-weight="800" font-size="92" letter-spacing="-2"><text x="338" y="100" fill="none" stroke="currentColor" stroke-width="3">LA</text><text x="465" y="100" fill="currentColor" font-style="italic" font-weight="700">(</text><text x="495" y="100" fill="currentColor" font-style="italic" font-weight="800" font-size="76">t</text><text x="525" y="100" fill="currentColor" font-style="italic" font-weight="700">)</text><text x="565" y="100" fill="none" stroke="currentColor" stroke-width="3">E</text></g></svg></div>
+              <div class="ad-tag" style="color: var(--bone);">Edition 50</div>
             </div>
             <div>
-              <h3 class="ad-headline ad-headline--display" style="color: var(--bone);">Fifty of each.<br><em style="color: var(--ink);">Never made again.</em></h3>
+              <h3 class="ad-headline" style="color: var(--bone);">Fifty of each.<br><em style="color: var(--ink);">Never made again.</em></h3>
               <p class="ad-sub" style="color: rgba(245,245,243, 0.9);">Signed by the artist who made it.</p>
-            </div>            <div class="ad-row">
-              <div class="ad-cta" style="color: var(--white);">Claim N°001</div>
-              <div class="ad-spec" style="color: rgba(245,245,243, 0.6);">UK · Jul–Aug 2026</div>
+            </div>
+            <div class="ad-row">
+              <div class="ad-cta" style="color: var(--bone);">Claim N°001</div>
+              <div class="ad-spec" style="color: rgba(245,245,243, 0.7);">UK · Jul–Aug 2026</div>
             </div>
           </div>
           <div class="ad-product">
             <div class="ad-product-placeholder">Product<br>imagery<br>placeholder</div>
           </div>
-                </div>
+        </div>
         <div class="ad-label-row">Ad C · Promise C</div>
         <div class="ad-reactions">
-          <button class="ad-reaction" onclick="reactToAd(this, 'C', 'scroll')"><span class="ad-reaction-icon">↓</span>Would scroll past</button>
-          <button class="ad-reaction" onclick="reactToAd(this, 'C', 'stop')"><span class="ad-reaction-icon">◯</span>Would stop and look</button>
-          <button class="ad-reaction" onclick="reactToAd(this, 'C', 'tap')"><span class="ad-reaction-icon">●</span>Would tap to find out more</button>
+          <button class="ad-reaction" onclick="reactToAd(this, 'C', 'scroll')"><span class="ad-reaction-icon">↓ Scroll</span>Would scroll past</button>
+          <button class="ad-reaction" onclick="reactToAd(this, 'C', 'stop')"><span class="ad-reaction-icon">◯ Stop</span>Would stop and look</button>
+          <button class="ad-reaction" onclick="reactToAd(this, 'C', 'tap')"><span class="ad-reaction-icon">● Tap</span>Would tap to find out more</button>
         </div>
       </div>
 
@@ -2766,9 +2678,10 @@ textarea:focus-visible,
               <div class="ad-tag">Drop N°001</div>
             </div>
             <div>
-              <h3 class="ad-headline ad-headline--display" style="max-width: 9ch;"><em>Art</em> you wear.</h3>
+              <h3 class="ad-headline" style="max-width: 9ch;"><em>Art</em> you wear.</h3>
               <p class="ad-sub">Made in London, with the artist named on the label.</p>
-            </div>            <div class="ad-row">
+            </div>
+            <div class="ad-row">
               <div class="ad-cta">Shop the drop</div>
               <div class="ad-spec">Conor Powell · N°001 / 50</div>
             </div>
@@ -2776,16 +2689,16 @@ textarea:focus-visible,
           <div class="ad-product">
             <div class="ad-product-placeholder">Product<br>imagery<br>placeholder</div>
           </div>
-                </div>
+        </div>
         <div class="ad-label-row">Ad D · Promise D</div>
         <div class="ad-reactions">
-          <button class="ad-reaction" onclick="reactToAd(this, 'D', 'scroll')"><span class="ad-reaction-icon">↓</span>Would scroll past</button>
-          <button class="ad-reaction" onclick="reactToAd(this, 'D', 'stop')"><span class="ad-reaction-icon">◯</span>Would stop and look</button>
-          <button class="ad-reaction" onclick="reactToAd(this, 'D', 'tap')"><span class="ad-reaction-icon">●</span>Would tap to find out more</button>
+          <button class="ad-reaction" onclick="reactToAd(this, 'D', 'scroll')"><span class="ad-reaction-icon">↓ Scroll</span>Would scroll past</button>
+          <button class="ad-reaction" onclick="reactToAd(this, 'D', 'stop')"><span class="ad-reaction-icon">◯ Stop</span>Would stop and look</button>
+          <button class="ad-reaction" onclick="reactToAd(this, 'D', 'tap')"><span class="ad-reaction-icon">● Tap</span>Would tap to find out more</button>
         </div>
       </div>
 
-      <!-- ===== AD E — Structure / Spec-sheet (Variant E) ===== -->
+      <!-- ===== AD E — Spec-sheet / Inclusive (Variant E) ===== -->
       <div class="ad-card">
         <div class="ad-frame ad-frame--stone">
           <div class="ad-inner">
@@ -2795,7 +2708,8 @@ textarea:focus-visible,
             </div>
             <div>
               <h3 class="ad-headline">Designed for <em>every body</em>. Soft cotton, wider neck, no labels.</h3>
-            </div>            <div class="ad-row">
+            </div>
+            <div class="ad-row">
               <div class="ad-cta">Get early access</div>
               <div class="ad-spec">// 265gsm · Milled Leicester · Made London · Water-based ink</div>
             </div>
@@ -2803,12 +2717,12 @@ textarea:focus-visible,
           <div class="ad-product">
             <div class="ad-product-placeholder">Product<br>imagery<br>placeholder</div>
           </div>
-                </div>
+        </div>
         <div class="ad-label-row">Ad E · Promise E</div>
         <div class="ad-reactions">
-          <button class="ad-reaction" onclick="reactToAd(this, 'E', 'scroll')"><span class="ad-reaction-icon">↓</span>Would scroll past</button>
-          <button class="ad-reaction" onclick="reactToAd(this, 'E', 'stop')"><span class="ad-reaction-icon">◯</span>Would stop and look</button>
-          <button class="ad-reaction" onclick="reactToAd(this, 'E', 'tap')"><span class="ad-reaction-icon">●</span>Would tap to find out more</button>
+          <button class="ad-reaction" onclick="reactToAd(this, 'E', 'scroll')"><span class="ad-reaction-icon">↓ Scroll</span>Would scroll past</button>
+          <button class="ad-reaction" onclick="reactToAd(this, 'E', 'stop')"><span class="ad-reaction-icon">◯ Stop</span>Would stop and look</button>
+          <button class="ad-reaction" onclick="reactToAd(this, 'E', 'tap')"><span class="ad-reaction-icon">● Tap</span>Would tap to find out more</button>
         </div>
       </div>
 
@@ -2822,20 +2736,29 @@ textarea:focus-visible,
 </section>
 
 <!-- ============================================================
-     SURVEY MOMENT 03 — Willingness to pay
+     SECTION VIII — PRICE (Q7)
 ============================================================ -->
 <section class="section section--stone">
   <div class="container">
     <div class="section-divider">
-      <span class="section-divider-num">VIII.</span>
-      <span class="section-divider-label">The price · Pick a band</span>
-      <span class="section-divider-right q-status" data-q="price">Question 7 of 8</span>
+      <div class="section-divider-top">
+        <span class="section-divider-label">The price · Pick a band</span>
+        <span class="section-divider-right q-status" data-q="price">Question 7 of 8</span>
+      </div>
+      <div class="section-divider-numhead">
+        <span class="section-numeral">VIII.</span>
+        <h2 class="h-section" style="max-width:18ch;">What would you <em>expect</em> to pay?</h2>
+      </div>
     </div>
-    <h2 class="h-1" style="max-width: 22ch;">What would you <em>expect</em> to pay?</h2>
-    <p class="body mt-32">A numbered edition, signed by the artist, made in heavyweight UK cotton. Honest answers only — this shapes how we price the drop.</p>
-    <div class="action-prompt"><span class="action-prompt-arrow">↓</span><span><span class="action-prompt-prefix">Your turn</span>Pick the price band that feels right to you</span></div>
 
-    <div class="price-slider-wrap">
+    <p class="body">A numbered edition, signed by the artist, made in heavyweight UK cotton. Honest answers only — this shapes how we price the drop.</p>
+
+    <div class="action-prompt">
+      <span class="action-prompt-arrow">↓</span>
+      <span><span class="action-prompt-prefix">Your turn</span>Pick the price band that feels right to you</span>
+    </div>
+
+    <div class="price-wrap">
       <div class="price-range">
         <button class="price-button" onclick="selectPrice(this, '<80')">Under £80</button>
         <button class="price-button" onclick="selectPrice(this, '80-120')">£80–£120</button>
@@ -2853,32 +2776,40 @@ textarea:focus-visible,
 </section>
 
 <!-- ============================================================
-     BUY INTENT — 5-star rating + open-text "anything to add"
-     Q8 of 8. The headline purchase-intent signal for the scorecard.
+     SECTION IX — BUY INTENT (Q8)
 ============================================================ -->
-<section class="section" id="buy-intent" style="background: var(--bone); padding-bottom: 32px;">
+<section class="section section--bone" id="buy-intent">
   <div class="container">
     <div class="section-divider">
-      <span class="section-divider-num">IX.</span>
-      <span class="section-divider-label">Buy intent · Rate &amp; add your thoughts</span>
-      <span class="section-divider-right q-status" data-q="buy_intent">Question 8 of 8</span>
+      <div class="section-divider-top">
+        <span class="section-divider-label">Buy intent · Rate from 01 to 05</span>
+        <span class="section-divider-right q-status" data-q="buy_intent">Question 8 of 8</span>
+      </div>
+      <div class="section-divider-numhead">
+        <span class="section-numeral">IX.</span>
+        <h2 class="h-section" style="max-width:18ch;">How likely are you to <em>actually</em> buy?</h2>
+      </div>
     </div>
-    <h2 class="h-1" style="max-width: 20ch;">How likely are you to <em>actually</em> buy?</h2>
-    <p class="body mt-32">A signed, numbered piece of wearable art. Made in London. £140–160. Drop launches Jul / Aug 2026. Be honest — there's no wrong answer.</p>
-    <div class="action-prompt"><span class="action-prompt-arrow">↓</span><span><span class="action-prompt-prefix">Your turn</span>Tap the stars — one (very unlikely) to five (very likely)</span></div>
 
-    <div class="star-rating" id="starRating">
-      <button type="button" class="star-button" data-stars="1" onclick="rateStar(1)" aria-label="1 star"><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></button>
-      <button type="button" class="star-button" data-stars="2" onclick="rateStar(2)" aria-label="2 stars"><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></button>
-      <button type="button" class="star-button" data-stars="3" onclick="rateStar(3)" aria-label="3 stars"><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></button>
-      <button type="button" class="star-button" data-stars="4" onclick="rateStar(4)" aria-label="4 stars"><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></button>
-      <button type="button" class="star-button" data-stars="5" onclick="rateStar(5)" aria-label="5 stars"><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></button>
+    <p class="body">A signed, numbered piece of wearable art. Made in London. £140–160. Drop launches Jul/Aug 2026. Be honest — there's no wrong answer.</p>
+
+    <div class="action-prompt">
+      <span class="action-prompt-arrow">↓</span>
+      <span><span class="action-prompt-prefix">Your turn</span>Pick a number — 01 (very unlikely) to 05 (would buy)</span>
     </div>
-    <div class="star-scale">
+
+    <div class="number-rating" id="numberRating">
+      <button type="button" class="number-button" data-stars="1" onclick="rateStar(1)" aria-label="1 — Very unlikely">01<span class="number-button-label">Very unlikely</span></button>
+      <button type="button" class="number-button" data-stars="2" onclick="rateStar(2)" aria-label="2 — Unlikely">02<span class="number-button-label">Unlikely</span></button>
+      <button type="button" class="number-button" data-stars="3" onclick="rateStar(3)" aria-label="3 — Undecided">03<span class="number-button-label">Maybe</span></button>
+      <button type="button" class="number-button" data-stars="4" onclick="rateStar(4)" aria-label="4 — Likely">04<span class="number-button-label">Likely</span></button>
+      <button type="button" class="number-button" data-stars="5" onclick="rateStar(5)" aria-label="5 — Would buy">05<span class="number-button-label">Would buy</span></button>
+    </div>
+    <div class="number-scale">
       <span>Very unlikely</span>
       <span>Very likely</span>
     </div>
-    <p class="star-label" id="starLabel">&nbsp;</p>
+    <p class="number-label" id="starLabel">&nbsp;</p>
 
     <div class="final-textarea-wrap">
       <label>Anything else you'd like to add?</label>
@@ -2893,38 +2824,45 @@ textarea:focus-visible,
 </section>
 
 <!-- ============================================================
-     SIGN-UP — pre-sales database build
+     COMPLETION SUMMARY
 ============================================================ -->
-<!-- ============================================================
-     COMPLETION SUMMARY — acknowledges the visitor's engagement
-     before asking for the commitment. Lifts sign-up conversion.
-============================================================ -->
-<section class="section section--bone" style="padding: 0 0 24px;">
+<section class="section--bone" style="padding: 0 0 80px;">
   <div class="container">
-    <div class="completion-summary" style="margin-top: 24px;">
+    <div class="completion-summary">
       <p class="completion-summary-eyebrow">You're almost done</p>
-      <h2 class="completion-summary-title">You've answered <span class="summary-num" id="summaryAnswered">0</span> of <span id="summaryTotal">8</span> questions.</h2>
-      <p class="completion-summary-body">Thank you. The next step <em style="font-family: 'Newsreader', serif; font-style: italic; color: var(--clay);">claims your spot</em> on the drop. Two minutes.</p>
+      <h2 class="completion-summary-title">You've answered <span class="summary-num" id="summaryAnswered">0</span> of <span id="summaryTotal">8</span>.</h2>
+      <p class="completion-summary-body">Thank you. The next step <em>claims your spot</em> on the drop. Two minutes.</p>
     </div>
   </div>
 </section>
 
 <!-- ============================================================
-     EXIT GATE — sign-up + extended demographics.
-     Email + postcode + ND framing test + discovery + trust drivers.
-     This is the moment we capture everything we need without a panel.
+     SECTION X — EXIT GATE / SIGNUP
 ============================================================ -->
 <section class="signup-block" id="signup">
   <div class="container">
-    <p class="meta" style="margin-bottom: 24px;">X — Final step</p>
-    <h2 class="h-1" style="max-width:14ch;">Send your answers.<br><em>Claim your spot.</em></h2>
-    <p class="body" style="max-width:50ch;">
-      Three quick fields, then your email. The first drop is five artworks by Conor Powell — fifty pieces of each, <em>two-fifty in total</em> — and you'll see it forty-eight hours before public launch.
-    </p>
+    <div class="section-divider section-divider--dark" style="margin-bottom: 80px;">
+      <div class="section-divider-top">
+        <span class="section-divider-label">Final step · Claim your spot</span>
+        <span class="section-divider-right">Programme N°01</span>
+      </div>
+      <div class="section-divider-numhead">
+        <span class="section-numeral">X.</span>
+        <h2 class="h-section" style="color:var(--bone); max-width:14ch;">Send your answers. <em>Claim your spot.</em></h2>
+      </div>
+    </div>
 
-    <form id="finalSubmitForm" onsubmit="captureSignup(event)" style="max-width: 540px; margin: 56px auto 0;">
+    <div class="signup-grid">
+      <div>
+        <p class="body" style="color: rgba(245,241,235,0.78);">
+          Three quick fields, then your email. The first drop is five artworks by <em style="color: var(--clay-warm);">Conor Powell</em> — fifty pieces of each, <em style="color: var(--clay-warm);">two-fifty in total</em> — and you'll see it forty-eight hours before public launch.
+        </p>
+        <p class="body" style="color: rgba(245,241,235,0.55); margin-top: 32px;">
+          Programme 01 opens July to August 2026. Hackney, London.
+        </p>
+      </div>
 
-      <div class="exit-gate-extras" style="margin: 0;">
+      <form id="finalSubmitForm" class="signup-form" onsubmit="captureSignup(event)">
 
         <div class="exit-gate-field">
           <label>Where are you based?</label>
@@ -2940,7 +2878,7 @@ textarea:focus-visible,
         </div>
 
         <div class="exit-gate-field">
-          <label>Would knowing the artist is neurodivergent change how you feel about the piece?</label>
+          <label>Would knowing the artist is neurodivergent change how you feel?</label>
           <select name="exit_nd_framing_field" onchange="captureExitField('nd_framing', this.value)">
             <option value="">Pick the closest answer…</option>
             <option value="more_interested">It would make me more interested</option>
@@ -2966,64 +2904,63 @@ textarea:focus-visible,
           </select>
         </div>
 
-        <div class="exit-gate-field" style="margin-top: 16px;">
+        <div class="exit-gate-field">
           <label>Your email</label>
           <input type="email" name="email" placeholder="your@email.com" required>
         </div>
 
-      </div>
+        <button type="submit" class="final-submit-button">
+          Send my answers · Claim my spot →
+        </button>
 
-      <button type="submit" class="final-submit-button">
-        Send my answers · Claim my spot →
-      </button>
+        <p class="signup-fineprint">No spam. One drop notification, one launch notification, that's it. Unsubscribe in one click.</p>
 
-      <p class="signup-fineprint" style="text-align:center;margin-top:20px;">No spam. One drop notification, one launch notification, that's it. Unsubscribe in one click.</p>
-
-    </form>
+      </form>
+    </div>
   </div>
 </section>
 
 <!-- ============================================================
-     FOOTER
+     FOOTER — Hackney provenance
 ============================================================ -->
 <footer class="footer">
-  <div class="container footer-inner">
-    <div class="footer-brand" style="color: var(--white);">
-      <svg viewBox="0 0 720 130" width="150" height="auto" style="display:block;" aria-label="early or LA(t)E">
-        <g font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-weight="800" font-size="92" font-style="italic">
-          <text x="0" y="100" fill="currentColor">early</text>
-        </g>
-        <g font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-weight="500" font-size="64">
-          <text x="240" y="100" fill="currentColor">or</text>
-        </g>
-        <g font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-weight="800" font-size="92" letter-spacing="-2">
-          <text x="338" y="100" fill="none" stroke="currentColor" stroke-width="3">LA</text>
-          <text x="465" y="100" fill="currentColor" font-style="italic" font-weight="700">(</text>
-          <text x="495" y="100" fill="currentColor" font-style="italic" font-weight="800" font-size="76">t</text>
-          <text x="525" y="100" fill="currentColor" font-style="italic" font-weight="700">)</text>
-          <text x="565" y="100" fill="none" stroke="currentColor" stroke-width="3">E</text>
-        </g>
-      </svg>
-    </div>
-    <div class="footer-meta">
-      <a href="/privacy.html" style="color: rgba(245, 245, 243, 0.7); text-decoration: none; margin-right: 16px;">Privacy &amp; cookies</a>
-      <a href="#" onclick="event.preventDefault(); revokeConsent();" style="color: rgba(245, 245, 243, 0.7); text-decoration: none; margin-right: 16px;">Change cookie choice</a>
-      <span>Unicorn United Ltd · Drop N°001 · Jul–Aug 2026</span>
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <svg viewBox="0 0 720 130" width="170" height="auto" style="display:block;" aria-label="early or LA(t)E">
+          <g font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-weight="800" font-size="92" font-style="italic">
+            <text x="0" y="100" fill="currentColor">early</text>
+          </g>
+          <g font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-weight="500" font-size="64">
+            <text x="240" y="100" fill="currentColor">or</text>
+          </g>
+          <g font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-weight="800" font-size="92" letter-spacing="-2">
+            <text x="338" y="100" fill="none" stroke="currentColor" stroke-width="3">LA</text>
+            <text x="465" y="100" fill="currentColor" font-style="italic" font-weight="700">(</text>
+            <text x="495" y="100" fill="currentColor" font-style="italic" font-weight="800" font-size="76">t</text>
+            <text x="525" y="100" fill="currentColor" font-style="italic" font-weight="700">)</text>
+            <text x="565" y="100" fill="none" stroke="currentColor" stroke-width="3">E</text>
+          </g>
+        </svg>
+        <p class="footer-place" style="margin-top: 18px;">A curated collection of wearable artworks by independent artists.<br>Hackney, London. 2026.</p>
+      </div>
+      <div class="footer-meta">
+        <div style="margin-bottom: 16px;">
+          <a href="/privacy.html">Privacy &amp; cookies</a>
+          <a href="#" onclick="event.preventDefault(); revokeConsent();">Change cookie choice</a>
+        </div>
+        <div>Unicorn United Ltd · Programme N°01 · Jul–Aug 2026</div>
+        <div style="color: var(--clay-warm); margin-top: 6px;">Hackney · London · Est. 2026</div>
+      </div>
     </div>
   </div>
 </footer>
 
 <!-- ============================================================
-     EMBEDDED TRACKING
-     Each interaction is captured as an event. In production, these
-     post to the validation endpoint. For the prototype they
-     log to the console and persist in window.surveyData.
+     JS — preserved data structures, interaction handlers, form submission
 ============================================================ -->
 <script>
-/* =============================================================
-   FOCUS TRAP — keeps keyboard focus inside a modal element
-   until it's dismissed. Used by the entry gate and consent banner.
-============================================================= */
+/* ===== FOCUS TRAP — keyboard accessibility in modals ===== */
 function trapFocus(modalEl) {
   if (!modalEl || modalEl._focusTrapped) return;
   modalEl._focusTrapped = true;
@@ -3043,7 +2980,6 @@ function trapFocus(modalEl) {
     }
   }
   modalEl.addEventListener('keydown', handleKey);
-  // Auto-focus first interactive element when modal becomes visible
   setTimeout(() => {
     const first = modalEl.querySelector(FOCUSABLE);
     if (first && (modalEl.classList.contains('visible') || !modalEl.classList.contains('hidden'))) {
@@ -3052,15 +2988,12 @@ function trapFocus(modalEl) {
   }, 100);
 }
 
-/* =============================================================
-   GDPR CONSENT — must run BEFORE Clarity or any analytics.
-   Shows banner if no prior choice. Persists in localStorage.
-============================================================= */
+/* ===== GDPR CONSENT ===== */
 const CONSENT_KEY = 'eol_consent_v1';
 const CLARITY_ID = 'wqxnrfu5up';
 
 function loadClarity() {
-  if (window.clarity) return; // already loaded
+  if (window.clarity) return;
   (function(c,l,a,r,i,t,y){
     c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
     t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
@@ -3077,12 +3010,10 @@ function handleConsent(accepted) {
 function revokeConsent() {
   localStorage.removeItem(CONSENT_KEY);
   document.getElementById('consentBanner').classList.add('visible');
-  // Show inline toast — auto-reloads after 2.5s to fully clear Clarity
   showInlineToast('Cookie choice cleared. Reloading the page…');
   setTimeout(() => window.location.reload(), 2500);
 }
 
-/* Inline toast — premium-feeling notification, replaces native alert() */
 function showInlineToast(message) {
   const existing = document.getElementById('inlineToast');
   if (existing) existing.remove();
@@ -3092,47 +3023,42 @@ function showInlineToast(message) {
   toast.style.cssText = `
     position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%);
     background: var(--ink); color: var(--bone);
-    padding: 18px 28px; border-radius: 2px;
-    font-family: var(--sans); font-size: 14px; font-weight: 500;
-    letter-spacing: -0.005em;
-    box-shadow: 0 8px 32px rgba(10, 10, 10, 0.18);
+    padding: 18px 28px; border-radius: 0;
+    font-family: 'JetBrains Mono', monospace; font-size: 12px; font-weight: 600;
+    letter-spacing: 0.16em; text-transform: uppercase;
+    border-left: 6px solid var(--clay);
     z-index: 10000;
-    border-left: 4px solid var(--clay);
     animation: toast-rise 0.3s ease;
   `;
   document.body.appendChild(toast);
   setTimeout(() => toast.remove(), 3000);
 }
 
-// Run on initial page load
 (function() {
   const stored = localStorage.getItem(CONSENT_KEY);
   if (stored === 'accepted') {
     loadClarity();
   } else if (!stored) {
-    // No choice yet — show the banner
     const banner = document.getElementById('consentBanner');
     banner.classList.add('visible');
     trapFocus(banner);
   }
-  // If declined, do nothing (banner stays hidden, Clarity does not load)
-
-  // Entry gate (Age + Gender) — trap focus while visible
   const entryGate = document.getElementById('entryGate');
   if (entryGate && !entryGate.classList.contains('hidden')) {
     trapFocus(entryGate);
   }
 })();
 
+/* ===== SURVEY DATA STORE ===== */
 window.surveyData = {
   visitor_id: 'visitor_' + Math.random().toString(36).slice(2, 11),
   arrived_at: new Date().toISOString(),
   consent_state: localStorage.getItem(CONSENT_KEY) || 'pending',
-  variant_shown: 'A', // would be randomised server-side for the real test
+  variant_shown: 'A',
   proposition_choice: null,
-  ad_reactions: {}, // keyed by ad ID (A-E), value: scroll | stop | tap
-  drop_ranking: {}, // { 1: shirt_id, 2: shirt_id, 3: shirt_id }
-  promise_ranking: {}, // { 1: promise_id, 2: promise_id, 3: promise_id } // free-text override
+  ad_reactions: {},
+  drop_ranking: {},
+  promise_ranking: {},
   questions: {
     drop_ranking:    { state: 'pending', num: 1 },
     promise_ranking: { state: 'pending', num: 2 },
@@ -3154,7 +3080,8 @@ window.surveyData = {
   price_choice: null,
   email: null,
   scroll_max_pct: 0,
-  events: []
+  events: [],
+  drop_selections: []
 };
 
 function logEvent(type, payload) {
@@ -3163,7 +3090,7 @@ function logEvent(type, payload) {
   console.log('[EVENT]', type, payload);
 }
 
-/* ===== Question state: answered / skipped / pending ===== */
+/* ===== QUESTION STATE: answered / skipped / pending ===== */
 function markAnswered(qId) {
   const q = window.surveyData.questions[qId];
   if (!q) return;
@@ -3180,7 +3107,6 @@ function skipQuestion(qId) {
   q.state = 'skipped';
   logEvent('question_skipped', { question: qId });
   updateProgressUI();
-  // Gentle scroll to next section
   const sections = Array.from(document.querySelectorAll('section'));
   const currentBadge = document.querySelector(`.q-status[data-q="${qId}"]`);
   if (currentBadge) {
@@ -3196,12 +3122,12 @@ function updateProgressUI() {
   const total = Object.keys(qs).length;
   let answeredCount = 0;
   Object.entries(qs).forEach(([qId, data]) => {
-    // Update inline status badges
     document.querySelectorAll(`.q-status[data-q="${qId}"]`).forEach(el => {
       el.classList.remove('answered', 'skipped');
       if (data.state === 'answered') {
         el.classList.add('answered');
         el.textContent = 'Answered';
+        answeredCount++;
       } else if (data.state === 'skipped') {
         el.classList.add('skipped');
         el.textContent = 'Skipped';
@@ -3209,37 +3135,22 @@ function updateProgressUI() {
         el.textContent = `Question ${data.num} of ${total}`;
       }
     });
-    // Update progress dots
-    document.querySelectorAll(`.progress-dot[data-q="${qId}"]`).forEach(el => {
-      el.classList.remove('answered', 'skipped');
-      if (data.state === 'answered') {
-        el.classList.add('answered');
-        answeredCount++;
-      } else if (data.state === 'skipped') {
-        el.classList.add('skipped');
-      }
-    });
   });
-  // Update tally + total
-  const num = document.querySelector('.progress-num');
-  if (num) num.textContent = answeredCount;
-  const totalEl = document.querySelector('.progress-total');
-  if (totalEl) totalEl.textContent = total;
-  // Update completion summary if present
+  // Count answered (separate pass so it doesn't double-count from multiple .q-status nodes)
+  answeredCount = Object.values(qs).filter(d => d.state === 'answered').length;
   const summaryNum = document.getElementById('summaryAnswered');
   if (summaryNum) summaryNum.textContent = answeredCount;
   const summaryTotal = document.getElementById('summaryTotal');
   if (summaryTotal) summaryTotal.textContent = total;
 }
 
-// Initial paint
 if (document.readyState !== 'loading') {
   updateProgressUI();
 } else {
   document.addEventListener('DOMContentLoaded', updateProgressUI);
 }
 
-/* ===== Entry gate: Age + Gender capture ===== */
+/* ===== ENTRY GATE: Age + Gender ===== */
 function entryPick(field, value, btn) {
   const row = btn.parentElement;
   row.querySelectorAll('.pill-select').forEach(b => b.classList.remove('selected'));
@@ -3247,7 +3158,6 @@ function entryPick(field, value, btn) {
   if (field === 'age') window.surveyData.entry_age = value;
   if (field === 'gender') window.surveyData.entry_gender = value;
   logEvent('entry_' + field, { value });
-  // Enable continue when both filled
   if (window.surveyData.entry_age && window.surveyData.entry_gender) {
     const cont = document.getElementById('gateContinue');
     if (cont) cont.classList.add('ready');
@@ -3268,7 +3178,7 @@ function dismissGate(skipped) {
   }
 }
 
-/* ===== Retailer selection: max 2 ===== */
+/* ===== RETAILERS: multi-select max 2 ===== */
 function toggleRetailer(btn, retailerId) {
   const currentlySelected = Array.from(document.querySelectorAll('.retailer-card.selected'));
   const isSelected = btn.classList.contains('selected');
@@ -3276,7 +3186,6 @@ function toggleRetailer(btn, retailerId) {
   if (isSelected) {
     btn.classList.remove('selected');
   } else {
-    // If already 2 selected, bump the oldest
     if (currentlySelected.length >= 2) {
       currentlySelected[0].classList.remove('selected');
     }
@@ -3299,7 +3208,7 @@ function captureRetailerOther(text) {
   }
 }
 
-/* ===== Motivation: multi-select max 3 + open text ===== */
+/* ===== MOTIVATION: multi-select max 3 ===== */
 function toggleMotivation(btn, motId) {
   const currentlySelected = Array.from(document.querySelectorAll('.motivation-card.selected'));
   const isSelected = btn.classList.contains('selected');
@@ -3308,7 +3217,6 @@ function toggleMotivation(btn, motId) {
     btn.classList.remove('selected');
   } else {
     if (currentlySelected.length >= 3) {
-      // Bump the oldest
       currentlySelected[0].classList.remove('selected');
     }
     btn.classList.add('selected');
@@ -3318,7 +3226,6 @@ function toggleMotivation(btn, motId) {
     .map(c => c.dataset.mot);
   window.surveyData.motivations_selected = selected;
 
-  // Update the tracker panel
   const tracker = document.querySelector('#motivation-tracker .tracker-items');
   if (tracker) {
     tracker.innerHTML = [0, 1, 2].map(i => {
@@ -3344,12 +3251,12 @@ function captureMotivationOther(text) {
   }
 }
 
-/* ===== Final question: 5-star buy intent + open thoughts ===== */
-const STAR_LABELS = ['', 'Very unlikely', 'Unlikely', 'Maybe / undecided', 'Likely', 'Very likely — I want one'];
+/* ===== BUY INTENT — numbered 01-05 scale (replaces stars) ===== */
+const STAR_LABELS = ['', 'Very unlikely', 'Unlikely', 'Maybe — undecided', 'Likely', 'Very likely — I want one'];
 
 function rateStar(value) {
   window.surveyData.buy_intent_stars = value;
-  document.querySelectorAll('#starRating .star-button').forEach((s, i) => {
+  document.querySelectorAll('#numberRating .number-button').forEach((s, i) => {
     s.classList.toggle('active', i < value);
   });
   const label = document.getElementById('starLabel');
@@ -3367,7 +3274,7 @@ function captureFinalThoughts(text) {
   }
 }
 
-/* ===== Exit gate fields (location, ND framing, discovery) ===== */
+/* ===== EXIT GATE FIELDS ===== */
 window.surveyData.exit_gate = {};
 function captureExitField(field, value) {
   if (!value) return;
@@ -3375,6 +3282,7 @@ function captureExitField(field, value) {
   logEvent('exit_gate_field', { field, value });
 }
 
+/* ===== PROPOSITION SINGLE-SELECT ===== */
 function selectProp(btn, variant) {
   document.querySelectorAll('.prop-option').forEach(b => b.classList.remove('selected'));
   btn.classList.add('selected');
@@ -3383,9 +3291,8 @@ function selectProp(btn, variant) {
   markAnswered('proposition');
 }
 
-/* ===== Ranking interactions: top-3 by preference ===== */
+/* ===== RANKING UTILITIES ===== */
 function rankItem(currentRanking, itemId) {
-  // If already ranked, remove it and compact the remaining ranks
   const existingRank = Object.keys(currentRanking).find(k => currentRanking[k] === itemId);
   if (existingRank) {
     delete currentRanking[existingRank];
@@ -3396,7 +3303,6 @@ function rankItem(currentRanking, itemId) {
     remaining.forEach((id, i) => { currentRanking[i + 1] = id; });
     return currentRanking;
   }
-  // Add to next available slot, or shift everything if already at 3
   const nextRank = [1, 2, 3].find(r => !currentRanking[r]);
   if (nextRank) {
     currentRanking[nextRank] = itemId;
@@ -3408,19 +3314,7 @@ function rankItem(currentRanking, itemId) {
   return currentRanking;
 }
 
-function rankShirt(shirtId) {
-  // Legacy ranking — kept for backwards compatibility
-  rankItem(window.surveyData.drop_ranking, shirtId);
-  updateRankUI('.shirt-card', 'shirt', window.surveyData.drop_ranking, '#drop-tracker', (id) => {
-    const card = document.querySelector(`[data-shirt="${id}"]`);
-    return card?.querySelector('.shirt-artist')?.textContent || `Artwork ${id}`;
-  }, 'Tap a shirt above');
-  logEvent('shirt_ranked', { ranking: { ...window.surveyData.drop_ranking } });
-  if (Object.keys(window.surveyData.drop_ranking).length > 0) markAnswered('drop_ranking');
-}
-
-/* ===== Drop selection — multi-select across all artworks ===== */
-window.surveyData.drop_selections = [];
+/* ===== DROP SELECTION — multi-select across artworks ===== */
 function toggleSelection(shirtId) {
   const card = document.querySelector(`.shirt-card[data-shirt="${shirtId}"]`);
   if (!card) return;
@@ -3432,7 +3326,6 @@ function toggleSelection(shirtId) {
     card.classList.add('ranked');
     window.surveyData.drop_selections.push(shirtId);
   }
-  // Update tracker
   const count = window.surveyData.drop_selections.length;
   const countEl = document.getElementById('dropSelectionCount');
   if (countEl) countEl.textContent = count;
@@ -3463,7 +3356,6 @@ function rankPromise(promiseId, promiseLabel) {
 }
 
 function updateRankUI(itemSelector, dataAttr, ranking, trackerSelector, labelFn, emptyLabel) {
-  // Update badges + ranked class on each item
   document.querySelectorAll(itemSelector).forEach(item => {
     const id = item.dataset[dataAttr];
     const rank = Object.keys(ranking).find(r => ranking[r] === id);
@@ -3471,7 +3363,6 @@ function updateRankUI(itemSelector, dataAttr, ranking, trackerSelector, labelFn,
     const badge = item.querySelector('.rank-badge');
     if (badge) badge.textContent = rank || '';
   });
-  // Update tracker panel
   const tracker = document.querySelector(trackerSelector);
   if (!tracker) return;
   const items = tracker.querySelector('.tracker-items');
@@ -3483,9 +3374,8 @@ function updateRankUI(itemSelector, dataAttr, ranking, trackerSelector, labelFn,
   }).join('');
 }
 
-
+/* ===== AD REACTIONS ===== */
 function reactToAd(btn, adId, reaction) {
-  // Clear other reactions for this ad
   const adCard = btn.closest('.ad-card');
   adCard.querySelectorAll('.ad-reaction').forEach(b => b.classList.remove('selected'));
   btn.classList.add('selected');
@@ -3494,7 +3384,7 @@ function reactToAd(btn, adId, reaction) {
   if (Object.keys(window.surveyData.ad_reactions).length > 0) markAnswered('ad_reactions');
 }
 
-
+/* ===== PRICE ===== */
 function selectPrice(btn, band) {
   document.querySelectorAll('.price-button').forEach(b => b.classList.remove('selected'));
   btn.classList.add('selected');
@@ -3503,19 +3393,18 @@ function selectPrice(btn, band) {
   markAnswered('price');
 }
 
+/* ===== FORM SUBMIT — Netlify Forms ===== */
 function captureSignup(e) {
   e.preventDefault();
   const form = e.target;
   const email = form.querySelector('input[name="email"]').value;
   window.surveyData.email = email;
 
-  // Capture session_end-equivalent stats before POST
   const elapsed = Math.round((Date.now() - new Date(window.surveyData.arrived_at).getTime()) / 1000);
   window.surveyData.seconds_on_page_at_submit = elapsed;
 
   logEvent('signup', { email });
 
-  // Build the Netlify form payload — note form-name must match the hidden form
   const fd = new FormData();
   fd.append('form-name', 'early-or-late-survey');
   fd.append('email', email);
@@ -3535,15 +3424,12 @@ function captureSignup(e) {
   fd.append('survey_data', JSON.stringify(window.surveyData));
   fd.append('bot-field', '');
 
-  // Show "sending" state on the button so the user gets feedback
   const submitBtn = form.querySelector('button[type="submit"]');
   if (submitBtn) {
     submitBtn.textContent = 'Sending your answers…';
     submitBtn.disabled = true;
-    submitBtn.style.opacity = '0.7';
   }
 
-  // POST to Netlify's form-handling endpoint
   fetch('/', {
     method: 'POST',
     headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
@@ -3566,18 +3452,15 @@ function showSubmissionSuccess(form, withWarning = false) {
     ? 'You\'re on the list — though we hit a network blip while sending. Drop us a line at hello@early-or-late.com if you don\'t hear back.'
     : 'You\'re on the list. We\'ll see you in July or August.';
   form.innerHTML = `
-    <div style="text-align:center;padding:64px 32px;background:var(--bone);border-radius:4px;">
-      <svg viewBox="0 0 60 60" width="56" height="56" style="display:block;margin:0 auto 24px;color:var(--clay);" aria-hidden="true">
-        <circle cx="30" cy="30" r="28" fill="none" stroke="currentColor" stroke-width="2.5"/>
-        <path d="M 18 30 L 26 38 L 42 22" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
-      </svg>
-      <h3 style="font-family:var(--type);font-weight:500;font-size:32px;color:var(--black);margin-bottom:16px;letter-spacing:-0.02em;">Thank you.</h3>
-      <p style="font-size:17px;color:var(--ink-soft);max-width:38ch;margin:0 auto;line-height:1.5;">${message}</p>
+    <div style="text-align:left;padding:48px 0;border-top:6px solid var(--clay);border-bottom:6px solid var(--clay);">
+      <p style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--clay-warm);margin-bottom:24px;">Thank you</p>
+      <h3 style="font-family:'Inter',sans-serif;font-weight:800;font-size:56px;letter-spacing:-0.025em;color:var(--bone);line-height:0.95;margin-bottom:24px;max-width:14ch;">On the <em style="font-family:'Newsreader',serif;font-style:italic;font-weight:500;color:var(--clay-warm);">list</em>.</h3>
+      <p style="font-size:17px;color:rgba(245,241,235,0.75);max-width:38ch;line-height:1.5;">${message}</p>
     </div>
   `;
 }
 
-// Scroll depth + progress bar
+/* ===== SCROLL DEPTH + PROGRESS BAR ===== */
 window.addEventListener('scroll', () => {
   const docHeight = document.documentElement.scrollHeight - window.innerHeight;
   const pct = Math.round((window.scrollY / docHeight) * 100);
@@ -3587,21 +3470,12 @@ window.addEventListener('scroll', () => {
   }
 }, { passive: true });
 
-// Capture time-on-page when leaving
 window.addEventListener('beforeunload', () => {
   const elapsed = Math.round((Date.now() - new Date(window.surveyData.arrived_at).getTime()) / 1000);
   logEvent('session_end', { seconds_on_page: elapsed, max_scroll_pct: window.surveyData.scroll_max_pct });
 });
 
-/* =============================================================
-   BEHAVIOURAL TRACKING LAYER
-   Mouse path, section dwell, rage clicks, hover trails,
-   form abandonment, device + referrer. Forwards to logEvent().
-   When Microsoft Clarity is installed (one <script> tag), all
-   of this also flows into Clarity custom events automatically.
-============================================================= */
-
-// Initial session context
+/* ===== BEHAVIOURAL TRACKING ===== */
 window.surveyData.device = {
   width: window.innerWidth,
   height: window.innerHeight,
@@ -3616,7 +3490,7 @@ window.surveyData.hover_trails = {};
 window.surveyData.rage_clicks = [];
 logEvent('session_context', window.surveyData.device);
 
-// 1) Mouse movement — throttled to 4 samples per second
+// Mouse movement — throttled
 (function() {
   let last = 0;
   document.addEventListener('mousemove', (e) => {
@@ -3628,14 +3502,13 @@ logEvent('session_context', window.surveyData.device);
       y: e.clientY + window.scrollY,
       t: now - new Date(window.surveyData.arrived_at).getTime()
     });
-    // Cap the array — protect memory in long sessions
     if (window.surveyData.mouse_path.length > 800) {
       window.surveyData.mouse_path.shift();
     }
   }, { passive: true });
 })();
 
-// 2) Section dwell time — IntersectionObserver
+// Section dwell
 (function() {
   const sections = document.querySelectorAll('section, [id]');
   const enterTimes = new Map();
@@ -3654,7 +3527,7 @@ logEvent('session_context', window.surveyData.device);
   sections.forEach(s => observer.observe(s));
 })();
 
-// 3) Rage click detection — 3+ clicks in same node within 800ms
+// Rage click detection
 (function() {
   const recent = [];
   document.addEventListener('click', (e) => {
@@ -3673,7 +3546,7 @@ logEvent('session_context', window.surveyData.device);
   }, { passive: true });
 })();
 
-// 4) Hover trails on shirt cards + ad mockups
+// Hover trails
 (function() {
   const trackHover = (selector, key) => {
     document.querySelectorAll(selector).forEach((el, i) => {
@@ -3683,7 +3556,7 @@ logEvent('session_context', window.surveyData.device);
       el.addEventListener('mouseleave', () => {
         if (!enterTime) return;
         const dwell = Date.now() - enterTime;
-        if (dwell > 300) { // ignore quick flybys
+        if (dwell > 300) {
           window.surveyData.hover_trails[itemId] =
             (window.surveyData.hover_trails[itemId] || 0) + dwell;
         }
@@ -3697,7 +3570,7 @@ logEvent('session_context', window.surveyData.device);
   trackHover('.ad-card', 'ad');
 })();
 
-// 5) Form interaction — focus, blur, abandonment
+// Form interaction
 (function() {
   const emailInput = document.querySelector('#finalSubmitForm input[name="email"]');
   if (!emailInput) return;
@@ -3718,7 +3591,7 @@ logEvent('session_context', window.surveyData.device);
   });
 })();
 
-// 6) Dead click detection — clicks on non-interactive elements
+// Dead click detection
 (function() {
   document.addEventListener('click', (e) => {
     const interactive = e.target.closest('button, a, input, textarea, select, [onclick], [role="button"]');
@@ -3729,11 +3602,7 @@ logEvent('session_context', window.surveyData.device);
   }, { passive: true });
 })();
 
-/* =============================================================
-   Forward custom events to Microsoft Clarity (loaded in <head>).
-   Wraps logEvent to also push every event into Clarity's custom-event
-   stream — searchable + filterable in the Clarity dashboard.
-============================================================= */
+// Forward to Clarity custom events
 const _originalLogEvent = logEvent;
 logEvent = function(type, payload) {
   _originalLogEvent(type, payload);
@@ -3741,7 +3610,6 @@ logEvent = function(type, payload) {
     try { window.clarity('event', type); } catch (e) {}
   }
 };
-// Then in logEvent(), add: if (window.clarity) window.clarity('event', type);
 </script>
 
 </body>
