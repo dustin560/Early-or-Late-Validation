@@ -599,6 +599,106 @@ body {
   text-transform: uppercase;
   color: var(--clay);
 }
+.shirt-placeholder.has-image {
+  padding: 0;
+  background: var(--bone);
+}
+.shirt-placeholder.has-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+  transition: transform 220ms ease;
+}
+.shirt-card:hover .shirt-placeholder.has-image img { transform: scale(1.02); }
+.shirt-card-code {
+  position: absolute;
+  bottom: 10px;
+  left: 12px;
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--clay);
+  opacity: 0.7;
+  z-index: 2;
+}
+
+/* ----- Shirt preference (Q2) — single-select garment grid ----- */
+.shirt-pref-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  margin: 40px 0;
+}
+@media (max-width: 1100px) { .shirt-pref-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; } }
+@media (max-width: 600px)  { .shirt-pref-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; } }
+
+.shirt-pref-card {
+  background: var(--white);
+  border: 1px solid var(--black);
+  cursor: pointer;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  transition: border-color 140ms ease;
+}
+.shirt-pref-card:hover { border-color: var(--clay); }
+.shirt-pref-card.ranked {
+  border-color: var(--clay);
+  border-width: 2px;
+}
+.shirt-pref-card.ranked::after {
+  content: "SELECTED";
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  font-family: var(--mono);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  background: var(--clay);
+  color: var(--bone);
+  padding: 6px 10px;
+  z-index: 2;
+}
+.shirt-pref-image {
+  aspect-ratio: 1/1;
+  background: var(--bone);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border-bottom: 1px solid var(--black);
+}
+.shirt-pref-card.ranked .shirt-pref-image { border-bottom-color: var(--clay); }
+.shirt-pref-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  transition: transform 220ms ease;
+}
+.shirt-pref-card:hover .shirt-pref-image img { transform: scale(1.02); }
+.shirt-pref-meta {
+  padding: 16px 18px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.shirt-pref-title {
+  font-family: var(--sans);
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--black);
+}
+.shirt-pref-desc {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 13px;
+  line-height: 1.4;
+  color: var(--ink-soft);
+}
 .shirt-meta {
   padding: 18px 20px 20px;
   display: flex;
@@ -1585,8 +1685,12 @@ body {
   position: fixed; inset: 0;
   background: rgba(10, 10, 10, 0.55);
   z-index: 1000;
-  display: flex; align-items: center; justify-content: center;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
   padding: 32px;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
 }
 .entry-gate-overlay.hidden { display: none; }
 .entry-gate-card {
@@ -1596,6 +1700,22 @@ body {
   padding: 56px 48px 40px;
   max-width: 600px;
   width: 100%;
+  margin: auto 0;
+}
+@media (max-width: 600px) {
+  .entry-gate-overlay { padding: 16px; }
+  .entry-gate-card { padding: 32px 24px 28px; }
+  .entry-gate-title { font-size: 30px; }
+  .entry-gate-body { font-size: 15px; margin-bottom: 24px; }
+  .gate-question { margin-bottom: 24px; }
+  .gate-actions { margin-top: 24px; padding-top: 20px; }
+}
+@media (max-height: 700px) {
+  .entry-gate-card { padding: 32px 32px 28px; }
+  .entry-gate-title { font-size: 28px; margin-bottom: 10px; }
+  .entry-gate-body { margin-bottom: 20px; }
+  .gate-question { margin-bottom: 20px; }
+  .gate-actions { margin-top: 20px; padding-top: 18px; }
 }
 .entry-gate-eyebrow {
   font-family: var(--mono);
@@ -1954,7 +2074,7 @@ textarea:focus-visible,
 
     <div class="hero-body-row">
       <p class="body-l">
-        Five artworks. Fifty of each. <em>Two-fifty pieces.</em> Conor Powell opens the catalogue — Chris Sullivan follows. Designed and <em>made in London</em>, milled in Leicester.
+        Five artworks. Fifty of each. <em>Two-fifty pieces.</em> Conor Powell opens the catalogue. Designed and <em>made in London</em>, milled in Leicester.
       </p>
       <p class="body-l">
         Not fast fashion. <em>Forward fashion</em> — independent, inclusive, made to last. The first programme opens July to August 2026. This page is the curatorial preview.
@@ -1990,7 +2110,7 @@ textarea:focus-visible,
     <div class="section-divider">
       <div class="section-divider-top">
         <span class="section-divider-label">Programme N°01 · The first drop · Conor leads</span>
-        <span class="section-divider-right q-status" data-q="drop_ranking">Question 1 of 8</span>
+        <span class="section-divider-right q-status" data-q="drop_ranking">Question 1 of 9</span>
       </div>
       <div class="section-divider-numhead">
         <span class="section-numeral">II.</span>
@@ -2001,7 +2121,7 @@ textarea:focus-visible,
     </div>
 
     <p class="body">
-      The first drop is <em>Conor Powell's range</em> — five new artworks, fifty pieces of each, signed and numbered. <em>Chris Sullivan</em> follows as the next range. Both shown below: see what's launching, see what's coming. Every garment ships in a hand-folded matte-black box.
+      The first drop is <em>Conor Powell's range</em> — five new artworks, fifty pieces of each, signed and numbered. <em>Peter Rapp</em> and <em>Michelle Fine</em> are two artists we're considering for the next range. All three are shown below: see what's launching, see who could be next. Every garment ships in a hand-folded matte-black box.
     </p>
 
     <div class="action-prompt">
@@ -2018,70 +2138,70 @@ textarea:focus-visible,
 
       <div class="drop-grid">
         <div class="shirt-card" data-shirt="C01" onclick="toggleSelection('C01')">
-          <div class="shirt-placeholder">
-            <div class="shirt-placeholder-mark">(t)</div>
-            <div class="shirt-placeholder-label">Artwork C·01</div>
+          <div class="shirt-placeholder has-image">
+            <img src="conor-images/c01-ali333nboi.png" alt="AL333NBOI by Conor Powell" loading="lazy">
+            <div class="shirt-card-code">C·01</div>
           </div>
           <div class="shirt-price">£148</div>
           <div class="shirt-meta">
-            <div class="shirt-title">Pattern Study 01</div>
-            <div class="shirt-description">"A rhythm you only see on the second look."</div>
+            <div class="shirt-title">AL333NBOI</div>
+            <div class="shirt-description">"An alien boy. Or a boy alienated."</div>
             <div class="shirt-artist">Conor Powell</div>
             <div class="shirt-edition">Edition of 50 · N°001</div>
           </div>
         </div>
 
         <div class="shirt-card" data-shirt="C02" onclick="toggleSelection('C02')">
-          <div class="shirt-placeholder">
-            <div class="shirt-placeholder-mark">(t)</div>
-            <div class="shirt-placeholder-label">Artwork C·02</div>
+          <div class="shirt-placeholder has-image">
+            <img src="conor-images/c02-childhood-nightmare.png" alt="Childhood Nightmare by Conor Powell" loading="lazy">
+            <div class="shirt-card-code">C·02</div>
           </div>
           <div class="shirt-price">£148</div>
           <div class="shirt-meta">
-            <div class="shirt-title">Static Bloom</div>
-            <div class="shirt-description">"Drawing as breath. Drawing as time."</div>
+            <div class="shirt-title">Childhood Nightmare</div>
+            <div class="shirt-description">"The shape under the bed that grew up with you."</div>
             <div class="shirt-artist">Conor Powell</div>
             <div class="shirt-edition">Edition of 50 · N°002</div>
           </div>
         </div>
 
         <div class="shirt-card" data-shirt="C03" onclick="toggleSelection('C03')">
-          <div class="shirt-placeholder">
-            <div class="shirt-placeholder-mark">(t)</div>
-            <div class="shirt-placeholder-label">Artwork C·03</div>
+          <div class="shirt-placeholder has-image">
+            <img src="conor-images/c03-da-creepz.png" alt="Da Creepz by Conor Powell" loading="lazy">
+            <div class="shirt-card-code">C·03</div>
           </div>
           <div class="shirt-price">£148</div>
           <div class="shirt-meta">
-            <div class="shirt-title">Internal Weather</div>
-            <div class="shirt-description">"Marks made on a difficult morning."</div>
+            <div class="shirt-title">Da Creepz</div>
+            <div class="shirt-description">"Three faces. One scream. Take your pick."</div>
             <div class="shirt-artist">Conor Powell</div>
             <div class="shirt-edition">Edition of 50 · N°003</div>
           </div>
         </div>
 
         <div class="shirt-card" data-shirt="C04" onclick="toggleSelection('C04')">
-          <div class="shirt-placeholder">
-            <div class="shirt-placeholder-mark">(t)</div>
-            <div class="shirt-placeholder-label">Artwork C·04</div>
+          <div class="shirt-placeholder has-image">
+            <img src="conor-images/c04-greenguy.png" alt="Greenguy by Conor Powell" loading="lazy">
+            <div class="shirt-card-code">C·04</div>
           </div>
           <div class="shirt-price">£148</div>
           <div class="shirt-meta">
-            <div class="shirt-title">Linework No. 4</div>
-            <div class="shirt-description">"The line knows where it's going. I just follow it."</div>
+            <div class="shirt-title">Greenguy</div>
+            <div class="shirt-description">"Gas mask, dead pet, business as usual."</div>
             <div class="shirt-artist">Conor Powell</div>
             <div class="shirt-edition">Edition of 50 · N°004</div>
           </div>
         </div>
 
         <div class="shirt-card" data-shirt="C05" onclick="toggleSelection('C05')">
-          <div class="shirt-placeholder">
-            <div class="shirt-placeholder-mark">(t)</div>
-            <div class="shirt-placeholder-label">Artwork C·05</div>
+          <div class="shirt-placeholder has-image">
+            <img src="conor-images/c05-turqoise-peeps.png" alt="Turqoise Peeps by Conor Powell" loading="lazy">
+            <div class="shirt-card-code">C·05</div>
           </div>
           <div class="shirt-price">£148</div>
           <div class="shirt-meta">
-            <div class="shirt-title">Quiet Engine</div>
-            <div class="shirt-description">"Something that hums underneath the day."</div>
+            <div class="shirt-title">Turqoise Peeps</div>
+            <div class="shirt-description">"Friends from the wrong side of the night."</div>
             <div class="shirt-artist">Conor Powell</div>
             <div class="shirt-edition">Edition of 50 · N°005</div>
           </div>
@@ -2089,81 +2209,161 @@ textarea:focus-visible,
       </div>
     </div>
 
-    <!-- ===== CHRIS SULLIVAN — 5 artworks (concept test for next range) ===== -->
+    <!-- ===== PETER RAPP — 5 artworks (under consideration for next) ===== -->
     <div class="drop-artist-section">
       <div class="drop-artist-header">
-        <div class="drop-artist-name">Chris Sullivan — <em>coming next</em></div>
-        <div class="drop-artist-meta">Painter · London · The Wag Club founder</div>
+        <div class="drop-artist-name">Peter Rapp — <em>could be next?</em></div>
+        <div class="drop-artist-meta">Printmaker · Leicester · Reduction linocuts + etchings</div>
       </div>
 
       <div class="drop-grid">
-        <div class="shirt-card" data-shirt="S01" onclick="toggleSelection('S01')">
-          <div class="shirt-placeholder">
-            <div class="shirt-placeholder-mark">(t)</div>
-            <div class="shirt-placeholder-label">Artwork S·01</div>
+        <div class="shirt-card" data-shirt="P01" onclick="toggleSelection('P01')">
+          <div class="shirt-placeholder has-image">
+            <img src="peter-images/p01-abtu-and-anet.jpg" alt="Abtu and Anet by Peter Rapp" loading="lazy">
+            <div class="shirt-card-code">P·01</div>
           </div>
           <div class="shirt-price">£148</div>
           <div class="shirt-meta">
-            <div class="shirt-title">Urban Head 01</div>
-            <div class="shirt-description">"A Soho character study, painted from memory."</div>
-            <div class="shirt-artist">Chris Sullivan</div>
+            <div class="shirt-title">Abtu and Anet</div>
+            <div class="shirt-description">"Two fish, swimming ahead of the sun."</div>
+            <div class="shirt-artist">Peter Rapp</div>
             <div class="shirt-edition">Edition of 50 · N°006</div>
           </div>
         </div>
 
-        <div class="shirt-card" data-shirt="S02" onclick="toggleSelection('S02')">
-          <div class="shirt-placeholder">
-            <div class="shirt-placeholder-mark">(t)</div>
-            <div class="shirt-placeholder-label">Artwork S·02</div>
+        <div class="shirt-card" data-shirt="P02" onclick="toggleSelection('P02')">
+          <div class="shirt-placeholder has-image">
+            <img src="peter-images/p02-babi.jpg" alt="Babi by Peter Rapp" loading="lazy">
+            <div class="shirt-card-code">P·02</div>
           </div>
           <div class="shirt-price">£148</div>
           <div class="shirt-meta">
-            <div class="shirt-title">Wardour at Dusk</div>
-            <div class="shirt-description">"A London cityscape, sketched during lockdown."</div>
-            <div class="shirt-artist">Chris Sullivan</div>
+            <div class="shirt-title">Babi</div>
+            <div class="shirt-description">"An Egyptian baboon god. Gentler than they painted him."</div>
+            <div class="shirt-artist">Peter Rapp</div>
             <div class="shirt-edition">Edition of 50 · N°007</div>
           </div>
         </div>
 
-        <div class="shirt-card" data-shirt="S03" onclick="toggleSelection('S03')">
-          <div class="shirt-placeholder">
-            <div class="shirt-placeholder-mark">(t)</div>
-            <div class="shirt-placeholder-label">Artwork S·03</div>
+        <div class="shirt-card" data-shirt="P03" onclick="toggleSelection('P03')">
+          <div class="shirt-placeholder has-image">
+            <img src="peter-images/p03-defatigable.jpg" alt="Defatigable by Peter Rapp" loading="lazy">
+            <div class="shirt-card-code">P·03</div>
           </div>
           <div class="shirt-price">£148</div>
           <div class="shirt-meta">
-            <div class="shirt-title">Wag Crowd</div>
-            <div class="shirt-description">"The faces that built a city's nightlife."</div>
-            <div class="shirt-artist">Chris Sullivan</div>
+            <div class="shirt-title">Defatigable</div>
+            <div class="shirt-description">"A man with weather inside his head."</div>
+            <div class="shirt-artist">Peter Rapp</div>
             <div class="shirt-edition">Edition of 50 · N°008</div>
           </div>
         </div>
 
-        <div class="shirt-card" data-shirt="S04" onclick="toggleSelection('S04')">
-          <div class="shirt-placeholder">
-            <div class="shirt-placeholder-mark">(t)</div>
-            <div class="shirt-placeholder-label">Artwork S·04</div>
+        <div class="shirt-card" data-shirt="P04" onclick="toggleSelection('P04')">
+          <div class="shirt-placeholder has-image">
+            <img src="peter-images/p04-living-the-dream.jpg" alt="Living the Dream by Peter Rapp" loading="lazy">
+            <div class="shirt-card-code">P·04</div>
           </div>
           <div class="shirt-price">£148</div>
           <div class="shirt-meta">
-            <div class="shirt-title">Merthyr to Soho</div>
-            <div class="shirt-description">"Welsh-born, London-painted. Forty years of looking."</div>
-            <div class="shirt-artist">Chris Sullivan</div>
+            <div class="shirt-title">Living the Dream</div>
+            <div class="shirt-description">"A cool cat at maximum leisure."</div>
+            <div class="shirt-artist">Peter Rapp</div>
             <div class="shirt-edition">Edition of 50 · N°009</div>
           </div>
         </div>
 
-        <div class="shirt-card" data-shirt="S05" onclick="toggleSelection('S05')">
-          <div class="shirt-placeholder">
-            <div class="shirt-placeholder-mark">(t)</div>
-            <div class="shirt-placeholder-label">Artwork S·05</div>
+        <div class="shirt-card" data-shirt="P05" onclick="toggleSelection('P05')">
+          <div class="shirt-placeholder has-image">
+            <img src="peter-images/p05-the-unicorn.jpg" alt="The Unicorn by Peter Rapp" loading="lazy">
+            <div class="shirt-card-code">P·05</div>
           </div>
           <div class="shirt-price">£148</div>
           <div class="shirt-meta">
-            <div class="shirt-title">After Dark</div>
-            <div class="shirt-description">"A century of Soho nightclubs, in one face."</div>
-            <div class="shirt-artist">Chris Sullivan</div>
+            <div class="shirt-title">The Unicorn</div>
+            <div class="shirt-description">"From Borges' bestiary. A creature people kept choosing not to see."</div>
+            <div class="shirt-artist">Peter Rapp</div>
             <div class="shirt-edition">Edition of 50 · N°010</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== MICHELLE FINE — 5 artworks (under consideration for next) ===== -->
+    <div class="drop-artist-section">
+      <div class="drop-artist-header">
+        <div class="drop-artist-name">Michelle Fine — <em>could be next?</em></div>
+        <div class="drop-artist-meta">Mixed media · Cape Town · Hout Bay Gallery</div>
+      </div>
+
+      <div class="drop-grid">
+        <div class="shirt-card" data-shirt="M01" onclick="toggleSelection('M01')">
+          <div class="shirt-placeholder has-image">
+            <img src="michelle-images/m01-unknown-artist.png" alt="Unknown Artist by Michelle Fine" loading="lazy">
+            <div class="shirt-card-code">M·01</div>
+          </div>
+          <div class="shirt-price">£148</div>
+          <div class="shirt-meta">
+            <div class="shirt-title">Unknown Artist</div>
+            <div class="shirt-description">"King without a crown. Or with one she made herself."</div>
+            <div class="shirt-artist">Michelle Fine</div>
+            <div class="shirt-edition">Edition of 50 · N°011</div>
+          </div>
+        </div>
+
+        <div class="shirt-card" data-shirt="M02" onclick="toggleSelection('M02')">
+          <div class="shirt-placeholder has-image">
+            <img src="michelle-images/m02-standing-figure-yellow.png" alt="Standing Figure by Michelle Fine" loading="lazy">
+            <div class="shirt-card-code">M·02</div>
+          </div>
+          <div class="shirt-price">£148</div>
+          <div class="shirt-meta">
+            <div class="shirt-title">Standing Figure</div>
+            <div class="shirt-description">"Ink and watercolour. Patterned and unbothered."</div>
+            <div class="shirt-artist">Michelle Fine</div>
+            <div class="shirt-edition">Edition of 50 · N°012</div>
+          </div>
+        </div>
+
+        <div class="shirt-card" data-shirt="M03" onclick="toggleSelection('M03')">
+          <div class="shirt-placeholder has-image">
+            <img src="michelle-images/m03-three-figures-city.png" alt="Three Figures, City by Michelle Fine" loading="lazy">
+            <div class="shirt-card-code">M·03</div>
+          </div>
+          <div class="shirt-price">£148</div>
+          <div class="shirt-meta">
+            <div class="shirt-title">Three Figures, City</div>
+            <div class="shirt-description">"Three silhouettes. One skyline. One question."</div>
+            <div class="shirt-artist">Michelle Fine</div>
+            <div class="shirt-edition">Edition of 50 · N°013</div>
+          </div>
+        </div>
+
+        <div class="shirt-card" data-shirt="M04" onclick="toggleSelection('M04')">
+          <div class="shirt-placeholder has-image">
+            <img src="michelle-images/m04-crowd-scene.png" alt="Crowd Scene by Michelle Fine" loading="lazy">
+            <div class="shirt-card-code">M·04</div>
+          </div>
+          <div class="shirt-price">£148</div>
+          <div class="shirt-meta">
+            <div class="shirt-title">Crowd Scene</div>
+            <div class="shirt-description">"Everyone at once. Watercolour holding the heat."</div>
+            <div class="shirt-artist">Michelle Fine</div>
+            <div class="shirt-edition">Edition of 50 · N°014</div>
+          </div>
+        </div>
+
+        <div class="shirt-card" data-shirt="M05" onclick="toggleSelection('M05')">
+          <div class="shirt-placeholder has-image">
+            <img src="michelle-images/m05-crossed-arms.png" alt="Crossed Arms by Michelle Fine" loading="lazy">
+            <div class="shirt-card-code">M·05</div>
+          </div>
+          <div class="shirt-price">£148</div>
+          <div class="shirt-meta">
+            <div class="shirt-title">Crossed Arms</div>
+            <div class="shirt-description">"Grey body, loud margins. Read the edges."</div>
+            <div class="shirt-artist">Michelle Fine</div>
+            <div class="shirt-edition">Edition of 50 · N°015</div>
           </div>
         </div>
       </div>
@@ -2184,7 +2384,92 @@ textarea:focus-visible,
 </section>
 
 <!-- ============================================================
-     STANDALONE PHRASE MOMENT — between II and III
+     SECTION III — THE GARMENT (Q2: shirt_preference)
+============================================================ -->
+<section class="section section--bone" id="shirt-pref">
+  <div class="container">
+
+    <div class="section-divider">
+      <div class="section-divider-top">
+        <span class="section-divider-label">Programme N°01 · The garment</span>
+        <span class="section-divider-right q-status" data-q="shirt_preference">Question 2 of 9</span>
+      </div>
+      <div class="section-divider-numhead">
+        <span class="section-numeral">III.</span>
+        <h2 class="h-section" style="max-width:14ch;">
+          Now <em>the shirt</em>.
+        </h2>
+      </div>
+    </div>
+
+    <p class="body">
+      Four options. Two colours, two fits. Same <em>heavyweight 265gsm cotton</em>, milled in Leicester. Soft hand, wider neck, no labels at the back of the neck. Pick the one you'd actually wear.
+    </p>
+
+    <div class="action-prompt">
+      <span class="action-prompt-arrow">↓</span>
+      <span><span class="action-prompt-prefix">Your turn</span>Tap the one you'd buy</span>
+    </div>
+
+    <div class="shirt-pref-grid">
+      <div class="shirt-pref-card" data-shirt-pref="T01" onclick="selectShirtPref('T01')">
+        <div class="shirt-pref-image">
+          <img src="shirt-mockups/t01-black-classic.png" alt="Black classic tee" loading="lazy">
+        </div>
+        <div class="shirt-pref-meta">
+          <div class="shirt-pref-title">Black · Classic</div>
+          <div class="shirt-pref-desc">"Regular fit. Crew neck. The default."</div>
+        </div>
+      </div>
+
+      <div class="shirt-pref-card" data-shirt-pref="T02" onclick="selectShirtPref('T02')">
+        <div class="shirt-pref-image">
+          <img src="shirt-mockups/t02-white-classic.png" alt="White classic tee" loading="lazy">
+        </div>
+        <div class="shirt-pref-meta">
+          <div class="shirt-pref-title">White · Classic</div>
+          <div class="shirt-pref-desc">"Regular fit. Crew neck. The gallery wall."</div>
+        </div>
+      </div>
+
+      <div class="shirt-pref-card" data-shirt-pref="T03" onclick="selectShirtPref('T03')">
+        <div class="shirt-pref-image">
+          <img src="shirt-mockups/t03-white-cropped.png" alt="White cropped tee" loading="lazy">
+        </div>
+        <div class="shirt-pref-meta">
+          <div class="shirt-pref-title">White · Cropped</div>
+          <div class="shirt-pref-desc">"Boxy. Shorter at the body. Same fabric."</div>
+        </div>
+      </div>
+
+      <div class="shirt-pref-card" data-shirt-pref="T04" onclick="selectShirtPref('T04')">
+        <div class="shirt-pref-image">
+          <img src="shirt-mockups/t04-black-cropped.png" alt="Black cropped tee" loading="lazy">
+        </div>
+        <div class="shirt-pref-meta">
+          <div class="shirt-pref-title">Black · Cropped</div>
+          <div class="shirt-pref-desc">"Boxy. Shorter at the body. Same fabric."</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="rank-tracker" id="shirt-pref-tracker">
+      <div class="tracker-label">Your<br>choice</div>
+      <div class="tracker-items">
+        <div class="track-item"><span class="track-rank">·</span><span class="track-name" id="shirtPrefChoice">Tap one above</span></div>
+      </div>
+    </div>
+
+    <div class="q-skip-row">
+      <span class="q-skip-helper">No preference?</span>
+      <button class="q-skip" onclick="skipQuestion('shirt_preference')">Skip this question →</button>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============================================================
+     STANDALONE PHRASE MOMENT — between III and IV
 ============================================================ -->
 <section class="phrase-moment section--bone">
   <div class="container">
@@ -2194,17 +2479,17 @@ textarea:focus-visible,
 </section>
 
 <!-- ============================================================
-     SECTION III — THE PROMISE (Q2: promise_ranking)
+     SECTION IV — THE PROMISE (Q3: promise_ranking)
 ============================================================ -->
 <section class="section section--black">
   <div class="container">
     <div class="section-divider section-divider--dark">
       <div class="section-divider-top">
         <span class="section-divider-label">The promise · Top 3 ranking</span>
-        <span class="section-divider-right q-status" data-q="promise_ranking">Question 2 of 8</span>
+        <span class="section-divider-right q-status" data-q="promise_ranking">Question 3 of 9</span>
       </div>
       <div class="section-divider-numhead">
-        <span class="section-numeral">III.</span>
+        <span class="section-numeral">IV.</span>
         <h2 class="h-section" style="color: var(--bone); max-width:18ch;">Eight things that hold for <em>every piece</em>.</h2>
       </div>
     </div>
@@ -2318,10 +2603,10 @@ textarea:focus-visible,
     <div class="section-divider">
       <div class="section-divider-top">
         <span class="section-divider-label">Where you'd find us · Pick 2</span>
-        <span class="section-divider-right q-status" data-q="retailers">Question 3 of 8</span>
+        <span class="section-divider-right q-status" data-q="retailers">Question 4 of 9</span>
       </div>
       <div class="section-divider-numhead">
-        <span class="section-numeral">IV.</span>
+        <span class="section-numeral">V.</span>
         <h2 class="h-section" style="max-width:18ch;">If this brand existed, where would feel like <em>home</em>?</h2>
       </div>
     </div>
@@ -2419,10 +2704,10 @@ textarea:focus-visible,
     <div class="section-divider">
       <div class="section-divider-top">
         <span class="section-divider-label">Why wear it · Pick up to 3</span>
-        <span class="section-divider-right q-status" data-q="motivation">Question 4 of 8</span>
+        <span class="section-divider-right q-status" data-q="motivation">Question 5 of 9</span>
       </div>
       <div class="section-divider-numhead">
-        <span class="section-numeral">V.</span>
+        <span class="section-numeral">VI.</span>
         <h2 class="h-section" style="max-width:20ch;">What would draw you to wear a piece <em>like this</em>?</h2>
       </div>
     </div>
@@ -2498,10 +2783,10 @@ textarea:focus-visible,
     <div class="section-divider section-divider--dark">
       <div class="section-divider-top">
         <span class="section-divider-label">The most compelling promise · Pick one</span>
-        <span class="section-divider-right q-status" data-q="proposition">Question 5 of 8</span>
+        <span class="section-divider-right q-status" data-q="proposition">Question 6 of 9</span>
       </div>
       <div class="section-divider-numhead">
-        <span class="section-numeral">VI.</span>
+        <span class="section-numeral">VII.</span>
         <h2 class="h-section" style="color:var(--bone); max-width:14ch;">Which promise speaks <em>loudest</em>?</h2>
       </div>
     </div>
@@ -2563,10 +2848,10 @@ textarea:focus-visible,
     <div class="section-divider">
       <div class="section-divider-top">
         <span class="section-divider-label">The ad test · React to 5 ads</span>
-        <span class="section-divider-right q-status" data-q="ad_reactions">Question 6 of 8</span>
+        <span class="section-divider-right q-status" data-q="ad_reactions">Question 7 of 9</span>
       </div>
       <div class="section-divider-numhead">
-        <span class="section-numeral">VII.</span>
+        <span class="section-numeral">VIII.</span>
         <h2 class="h-section" style="max-width:18ch;">Imagine you're <em>scrolling</em>. How would you react?</h2>
       </div>
     </div>
@@ -2743,10 +3028,10 @@ textarea:focus-visible,
     <div class="section-divider">
       <div class="section-divider-top">
         <span class="section-divider-label">The price · Pick a band</span>
-        <span class="section-divider-right q-status" data-q="price">Question 7 of 8</span>
+        <span class="section-divider-right q-status" data-q="price">Question 8 of 9</span>
       </div>
       <div class="section-divider-numhead">
-        <span class="section-numeral">VIII.</span>
+        <span class="section-numeral">IX.</span>
         <h2 class="h-section" style="max-width:18ch;">What would you <em>expect</em> to pay?</h2>
       </div>
     </div>
@@ -2783,10 +3068,10 @@ textarea:focus-visible,
     <div class="section-divider">
       <div class="section-divider-top">
         <span class="section-divider-label">Buy intent · Rate from 01 to 05</span>
-        <span class="section-divider-right q-status" data-q="buy_intent">Question 8 of 8</span>
+        <span class="section-divider-right q-status" data-q="buy_intent">Question 9 of 9</span>
       </div>
       <div class="section-divider-numhead">
-        <span class="section-numeral">IX.</span>
+        <span class="section-numeral">X.</span>
         <h2 class="h-section" style="max-width:18ch;">How likely are you to <em>actually</em> buy?</h2>
       </div>
     </div>
@@ -2847,7 +3132,7 @@ textarea:focus-visible,
         <span class="section-divider-right">Programme N°01</span>
       </div>
       <div class="section-divider-numhead">
-        <span class="section-numeral">X.</span>
+        <span class="section-numeral">XI.</span>
         <h2 class="h-section" style="color:var(--bone); max-width:14ch;">Send your answers. <em>Claim your spot.</em></h2>
       </div>
     </div>
@@ -3058,16 +3343,18 @@ window.surveyData = {
   proposition_choice: null,
   ad_reactions: {},
   drop_ranking: {},
+  shirt_preference: null,
   promise_ranking: {},
   questions: {
-    drop_ranking:    { state: 'pending', num: 1 },
-    promise_ranking: { state: 'pending', num: 2 },
-    retailers:       { state: 'pending', num: 3 },
-    motivation:      { state: 'pending', num: 4 },
-    proposition:     { state: 'pending', num: 5 },
-    ad_reactions:    { state: 'pending', num: 6 },
-    price:           { state: 'pending', num: 7 },
-    buy_intent:      { state: 'pending', num: 8 }
+    drop_ranking:     { state: 'pending', num: 1 },
+    shirt_preference: { state: 'pending', num: 2 },
+    promise_ranking:  { state: 'pending', num: 3 },
+    retailers:        { state: 'pending', num: 4 },
+    motivation:       { state: 'pending', num: 5 },
+    proposition:      { state: 'pending', num: 6 },
+    ad_reactions:     { state: 'pending', num: 7 },
+    price:            { state: 'pending', num: 8 },
+    buy_intent:       { state: 'pending', num: 9 }
   },
   motivations_selected: [],
   motivation_other: null,
@@ -3343,6 +3630,22 @@ function toggleSelection(shirtId) {
   }
   logEvent('artwork_toggled', { shirt: shirtId, now_selected: window.surveyData.drop_selections });
   if (count > 0) markAnswered('drop_ranking');
+}
+
+function selectShirtPref(shirtId) {
+  // Single-select: clear any prior selection, then mark this one
+  document.querySelectorAll('.shirt-pref-card').forEach(c => c.classList.remove('ranked'));
+  const card = document.querySelector(`.shirt-pref-card[data-shirt-pref="${shirtId}"]`);
+  if (!card) return;
+  card.classList.add('ranked');
+  window.surveyData.shirt_preference = shirtId;
+  const choiceEl = document.getElementById('shirtPrefChoice');
+  if (choiceEl) {
+    const title = card.querySelector('.shirt-pref-title')?.textContent || shirtId;
+    choiceEl.textContent = title;
+  }
+  logEvent('shirt_pref_selected', { shirt: shirtId });
+  markAnswered('shirt_preference');
 }
 
 function rankPromise(promiseId, promiseLabel) {
