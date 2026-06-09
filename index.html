@@ -624,80 +624,156 @@ body {
   z-index: 2;
 }
 
-/* ----- Shirt preference (Q2) — single-select garment grid ----- */
-.shirt-pref-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 20px;
-  margin: 40px 0;
+/* ----- Build your shirt (Q2) — interactive builder ----- */
+.builder-wrap { margin-top: 40px; }
+.builder-preview {
+  margin: 0 auto 48px;
+  max-width: 520px;
 }
-@media (max-width: 1100px) { .shirt-pref-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; } }
-@media (max-width: 600px)  { .shirt-pref-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; } }
-
-.shirt-pref-card {
+.builder-stage {
+  position: relative;
+  aspect-ratio: 1/1;
   background: var(--white);
   border: 1px solid var(--black);
-  cursor: pointer;
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  transition: border-color 140ms ease;
-}
-.shirt-pref-card:hover { border-color: var(--clay); }
-.shirt-pref-card.ranked {
-  border-color: var(--clay);
-  border-width: 2px;
-}
-.shirt-pref-card.ranked::after {
-  content: "SELECTED";
-  position: absolute;
-  top: 14px;
-  left: 14px;
-  font-family: var(--mono);
-  font-size: 9px;
-  font-weight: 700;
-  letter-spacing: 0.2em;
-  background: var(--clay);
-  color: var(--bone);
-  padding: 6px 10px;
-  z-index: 2;
-}
-.shirt-pref-image {
-  aspect-ratio: 1/1;
-  background: var(--bone);
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  border-bottom: 1px solid var(--black);
 }
-.shirt-pref-card.ranked .shirt-pref-image { border-bottom-color: var(--clay); }
-.shirt-pref-image img {
+.builder-empty {
+  text-align: center;
+  font-family: var(--serif);
+  font-style: italic;
+  color: var(--ink-soft);
+  font-size: 20px;
+  line-height: 1.4;
+  padding: 32px;
+  z-index: 1;
+}
+.builder-empty p { margin: 0; }
+.builder-shirt {
+  position: absolute;
+  top: 0; left: 0;
   width: 100%;
   height: 100%;
   object-fit: contain;
-  transition: transform 220ms ease;
+  z-index: 0;
 }
-.shirt-pref-card:hover .shirt-pref-image img { transform: scale(1.02); }
-.shirt-pref-meta {
-  padding: 16px 18px 18px;
+.builder-art {
+  position: absolute;
+  top: 24%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 32%;
+  max-height: 30%;
+  object-fit: contain;
+  pointer-events: none;
+  z-index: 2;
+}
+.builder-stage[data-shirt-tone="light"] .builder-art { mix-blend-mode: multiply; }
+.builder-stage[data-shirt-tone="dark"]  .builder-art { mix-blend-mode: screen; }
+.builder-caption {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  text-align: center;
+  margin-top: 16px;
+  min-height: 16px;
+}
+
+.builder-control-group { margin-bottom: 36px; }
+.builder-control-label {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--clay);
+  font-weight: 700;
+  margin-bottom: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+}
+.builder-control-sub {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  color: var(--ink-soft);
+  font-weight: 400;
+}
+.builder-art-strip {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 10px;
+}
+@media (max-width: 900px) { .builder-art-strip { grid-template-columns: repeat(5, 1fr); gap: 8px; } }
+@media (max-width: 600px) { .builder-art-strip { grid-template-columns: repeat(3, 1fr); gap: 6px; } }
+.builder-thumb {
+  background: var(--bone);
+  border: 2px solid transparent;
+  padding: 0;
+  cursor: pointer;
+  aspect-ratio: 1/1;
+  overflow: hidden;
+  transition: border-color 120ms ease;
+}
+.builder-thumb:hover { border-color: var(--clay); }
+.builder-thumb.selected { border-color: var(--clay); }
+.builder-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.builder-shirt-strip {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+}
+@media (max-width: 600px) { .builder-shirt-strip { grid-template-columns: repeat(2, 1fr); gap: 10px; } }
+.builder-shirt-thumb {
+  background: var(--bone);
+  border: 2px solid transparent;
+  padding: 0;
+  cursor: pointer;
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  transition: border-color 120ms ease;
 }
-.shirt-pref-title {
-  font-family: var(--sans);
-  font-size: 15px;
-  font-weight: 700;
-  letter-spacing: -0.01em;
-  color: var(--black);
+.builder-shirt-thumb img {
+  width: 100%;
+  aspect-ratio: 1/1;
+  object-fit: contain;
+  display: block;
 }
-.shirt-pref-desc {
-  font-family: var(--serif);
-  font-style: italic;
-  font-size: 13px;
-  line-height: 1.4;
+.builder-shirt-thumb span {
+  display: block;
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
   color: var(--ink-soft);
+  padding: 10px 6px;
+  text-align: center;
+}
+.builder-shirt-thumb:hover { border-color: var(--clay); }
+.builder-shirt-thumb.selected { border-color: var(--clay); }
+.builder-shirt-thumb.selected span { color: var(--clay); font-weight: 700; }
+
+.builder-intent {
+  margin-top: 16px;
+  padding-top: 28px;
+  border-top: 1px solid var(--black);
+}
+.builder-intent-row { display: flex; gap: 8px; flex-wrap: wrap; }
+.intent-btn.selected {
+  background: var(--clay);
+  color: var(--bone);
+  border-color: var(--clay);
 }
 .shirt-meta {
   padding: 18px 20px 20px;
@@ -2029,7 +2105,7 @@ textarea:focus-visible,
   <div class="nav-inner">
     <div class="nav-brand">
       <svg viewBox="0 0 720 130" width="140" height="auto" style="display:block;" aria-label="early or LA(t)E">
-        <g font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-weight="800" font-size="92" font-style="italic">
+        <g font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-weight="800" font-size="92">
           <text x="0" y="100" fill="currentColor">early</text>
         </g>
         <g font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-weight="500" font-size="64">
@@ -2037,9 +2113,9 @@ textarea:focus-visible,
         </g>
         <g font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-weight="800" font-size="92" letter-spacing="-2">
           <text x="338" y="100" fill="none" stroke="currentColor" stroke-width="3">LA</text>
-          <text x="465" y="100" fill="currentColor" font-style="italic" font-weight="700">(</text>
-          <text x="495" y="100" fill="currentColor" font-style="italic" font-weight="800" font-size="76">t</text>
-          <text x="525" y="100" fill="currentColor" font-style="italic" font-weight="700">)</text>
+          <text x="465" y="100" fill="none" stroke="currentColor" stroke-width="3" font-weight="800">(</text>
+          <text x="495" y="100" fill="currentColor" font-style="italic" font-weight="500" font-size="76" font-family="Newsreader, Georgia, serif">t</text>
+          <text x="525" y="100" fill="none" stroke="currentColor" stroke-width="3" font-weight="800">)</text>
           <text x="565" y="100" fill="none" stroke="currentColor" stroke-width="3">E</text>
         </g>
       </svg>
@@ -2384,85 +2460,105 @@ textarea:focus-visible,
 </section>
 
 <!-- ============================================================
-     SECTION III — THE GARMENT (Q2: shirt_preference)
+     SECTION III — BUILD YOUR SHIRT (Q2: builder_choice)
 ============================================================ -->
-<section class="section section--bone" id="shirt-pref">
+<section class="section section--bone" id="builder">
   <div class="container">
 
     <div class="section-divider">
       <div class="section-divider-top">
         <span class="section-divider-label">Programme N°01 · The garment</span>
-        <span class="section-divider-right q-status" data-q="shirt_preference">Question 2 of 9</span>
+        <span class="section-divider-right q-status" data-q="builder_choice">Question 2 of 9</span>
       </div>
       <div class="section-divider-numhead">
         <span class="section-numeral">III.</span>
-        <h2 class="h-section" style="max-width:14ch;">
-          Now <em>the shirt</em>.
+        <h2 class="h-section" style="max-width:18ch;">
+          Build the one <em>you'd buy</em>.
         </h2>
       </div>
     </div>
 
     <p class="body">
-      Four options. Two colours, two fits. Same <em>heavyweight 265gsm cotton</em>, milled in Leicester. Soft hand, wider neck, no labels at the back of the neck. Pick the one you'd actually wear.
+      Pick a piece. Pick a shirt. See how it looks. Heavyweight 265gsm cotton, milled in Leicester. Then tell us whether you'd actually wear it. <em>Mockups are indicative — final print quality will be exceptional.</em>
     </p>
 
     <div class="action-prompt">
       <span class="action-prompt-arrow">↓</span>
-      <span><span class="action-prompt-prefix">Your turn</span>Tap the one you'd buy</span>
+      <span><span class="action-prompt-prefix">Your turn</span>Choose one artwork, one shirt</span>
     </div>
 
-    <div class="shirt-pref-grid">
-      <div class="shirt-pref-card" data-shirt-pref="T01" onclick="selectShirtPref('T01')">
-        <div class="shirt-pref-image">
-          <img src="shirt-mockups/t01-black-classic.png" alt="Black classic tee" loading="lazy">
+    <div class="builder-wrap">
+      <!-- Preview stage -->
+      <div class="builder-preview">
+        <div class="builder-stage" id="builderStage" data-shirt-tone="dark">
+          <div class="builder-empty" id="builderEmpty">
+            <p>Tap an artwork below.<br>Then a shirt.</p>
+          </div>
+          <img class="builder-shirt" id="builderShirtImg" src="" alt="" hidden>
+          <img class="builder-art" id="builderArtImg" src="" alt="" hidden>
         </div>
-        <div class="shirt-pref-meta">
-          <div class="shirt-pref-title">Black · Classic</div>
-          <div class="shirt-pref-desc">"Regular fit. Crew neck. The default."</div>
+        <p class="builder-caption" id="builderCaption">Your shirt, building…</p>
+      </div>
+
+      <!-- Artwork picker -->
+      <div class="builder-control-group">
+        <div class="builder-control-label">01 · Artwork <span class="builder-control-sub">15 pieces · 3 artists</span></div>
+        <div class="builder-art-strip">
+          <button class="builder-thumb" data-art="C01" onclick="builderSelectArtwork('C01')" aria-label="AL333NBOI by Conor Powell"><img src="conor-images/c01-ali333nboi.png" alt="" loading="lazy"></button>
+          <button class="builder-thumb" data-art="C02" onclick="builderSelectArtwork('C02')" aria-label="Childhood Nightmare by Conor Powell"><img src="conor-images/c02-childhood-nightmare.png" alt="" loading="lazy"></button>
+          <button class="builder-thumb" data-art="C03" onclick="builderSelectArtwork('C03')" aria-label="Da Creepz by Conor Powell"><img src="conor-images/c03-da-creepz.png" alt="" loading="lazy"></button>
+          <button class="builder-thumb" data-art="C04" onclick="builderSelectArtwork('C04')" aria-label="Greenguy by Conor Powell"><img src="conor-images/c04-greenguy.png" alt="" loading="lazy"></button>
+          <button class="builder-thumb" data-art="C05" onclick="builderSelectArtwork('C05')" aria-label="Turqoise Peeps by Conor Powell"><img src="conor-images/c05-turqoise-peeps.png" alt="" loading="lazy"></button>
+          <button class="builder-thumb" data-art="P01" onclick="builderSelectArtwork('P01')" aria-label="Abtu and Anet by Peter Rapp"><img src="peter-images/p01-abtu-and-anet.jpg" alt="" loading="lazy"></button>
+          <button class="builder-thumb" data-art="P02" onclick="builderSelectArtwork('P02')" aria-label="Babi by Peter Rapp"><img src="peter-images/p02-babi.jpg" alt="" loading="lazy"></button>
+          <button class="builder-thumb" data-art="P03" onclick="builderSelectArtwork('P03')" aria-label="Defatigable by Peter Rapp"><img src="peter-images/p03-defatigable.jpg" alt="" loading="lazy"></button>
+          <button class="builder-thumb" data-art="P04" onclick="builderSelectArtwork('P04')" aria-label="Living the Dream by Peter Rapp"><img src="peter-images/p04-living-the-dream.jpg" alt="" loading="lazy"></button>
+          <button class="builder-thumb" data-art="P05" onclick="builderSelectArtwork('P05')" aria-label="The Unicorn by Peter Rapp"><img src="peter-images/p05-the-unicorn.jpg" alt="" loading="lazy"></button>
+          <button class="builder-thumb" data-art="M01" onclick="builderSelectArtwork('M01')" aria-label="Unknown Artist by Michelle Fine"><img src="michelle-images/m01-unknown-artist.png" alt="" loading="lazy"></button>
+          <button class="builder-thumb" data-art="M02" onclick="builderSelectArtwork('M02')" aria-label="Standing Figure by Michelle Fine"><img src="michelle-images/m02-standing-figure-yellow.png" alt="" loading="lazy"></button>
+          <button class="builder-thumb" data-art="M03" onclick="builderSelectArtwork('M03')" aria-label="Three Figures, City by Michelle Fine"><img src="michelle-images/m03-three-figures-city.png" alt="" loading="lazy"></button>
+          <button class="builder-thumb" data-art="M04" onclick="builderSelectArtwork('M04')" aria-label="Crowd Scene by Michelle Fine"><img src="michelle-images/m04-crowd-scene.png" alt="" loading="lazy"></button>
+          <button class="builder-thumb" data-art="M05" onclick="builderSelectArtwork('M05')" aria-label="Crossed Arms by Michelle Fine"><img src="michelle-images/m05-crossed-arms.png" alt="" loading="lazy"></button>
         </div>
       </div>
 
-      <div class="shirt-pref-card" data-shirt-pref="T02" onclick="selectShirtPref('T02')">
-        <div class="shirt-pref-image">
-          <img src="shirt-mockups/t02-white-classic.png" alt="White classic tee" loading="lazy">
-        </div>
-        <div class="shirt-pref-meta">
-          <div class="shirt-pref-title">White · Classic</div>
-          <div class="shirt-pref-desc">"Regular fit. Crew neck. The gallery wall."</div>
+      <!-- Shirt picker -->
+      <div class="builder-control-group">
+        <div class="builder-control-label">02 · Shirt <span class="builder-control-sub">Two colours, two fits</span></div>
+        <div class="builder-shirt-strip">
+          <button class="builder-shirt-thumb" data-shirt="T01" onclick="builderSelectShirt('T01')">
+            <img src="shirt-mockups/t01-black-classic.png" alt="" loading="lazy">
+            <span>Black · Classic</span>
+          </button>
+          <button class="builder-shirt-thumb" data-shirt="T02" onclick="builderSelectShirt('T02')">
+            <img src="shirt-mockups/t02-white-classic.png" alt="" loading="lazy">
+            <span>White · Classic</span>
+          </button>
+          <button class="builder-shirt-thumb" data-shirt="T03" onclick="builderSelectShirt('T03')">
+            <img src="shirt-mockups/t03-white-cropped.png" alt="" loading="lazy">
+            <span>White · Cropped</span>
+          </button>
+          <button class="builder-shirt-thumb" data-shirt="T04" onclick="builderSelectShirt('T04')">
+            <img src="shirt-mockups/t04-black-cropped.png" alt="" loading="lazy">
+            <span>Black · Cropped</span>
+          </button>
         </div>
       </div>
 
-      <div class="shirt-pref-card" data-shirt-pref="T03" onclick="selectShirtPref('T03')">
-        <div class="shirt-pref-image">
-          <img src="shirt-mockups/t03-white-cropped.png" alt="White cropped tee" loading="lazy">
+      <!-- Buy intent for this combo -->
+      <div class="builder-intent" id="builderIntent" hidden>
+        <div class="builder-control-label">03 · Would you actually buy this?</div>
+        <div class="builder-intent-row">
+          <button class="pill-select intent-btn" data-intent="yes" onclick="builderSelectIntent('yes')">Yes — I'd buy this</button>
+          <button class="pill-select intent-btn" data-intent="maybe" onclick="builderSelectIntent('maybe')">Maybe</button>
+          <button class="pill-select intent-btn" data-intent="no" onclick="builderSelectIntent('no')">Not for me</button>
         </div>
-        <div class="shirt-pref-meta">
-          <div class="shirt-pref-title">White · Cropped</div>
-          <div class="shirt-pref-desc">"Boxy. Shorter at the body. Same fabric."</div>
-        </div>
-      </div>
-
-      <div class="shirt-pref-card" data-shirt-pref="T04" onclick="selectShirtPref('T04')">
-        <div class="shirt-pref-image">
-          <img src="shirt-mockups/t04-black-cropped.png" alt="Black cropped tee" loading="lazy">
-        </div>
-        <div class="shirt-pref-meta">
-          <div class="shirt-pref-title">Black · Cropped</div>
-          <div class="shirt-pref-desc">"Boxy. Shorter at the body. Same fabric."</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="rank-tracker" id="shirt-pref-tracker">
-      <div class="tracker-label">Your<br>choice</div>
-      <div class="tracker-items">
-        <div class="track-item"><span class="track-rank">·</span><span class="track-name" id="shirtPrefChoice">Tap one above</span></div>
       </div>
     </div>
 
     <div class="q-skip-row">
-      <span class="q-skip-helper">No preference?</span>
-      <button class="q-skip" onclick="skipQuestion('shirt_preference')">Skip this question →</button>
+      <span class="q-skip-helper">Not feeling it?</span>
+      <button class="q-skip" onclick="skipQuestion('builder_choice')">Skip this question →</button>
     </div>
 
   </div>
@@ -2575,7 +2671,7 @@ textarea:focus-visible,
 ============================================================ -->
 <div class="wordmark-pattern">
   <svg class="wordmark-pattern-mark" viewBox="0 0 720 130" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-    <g font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-weight="800" font-size="92" font-style="italic">
+    <g font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-weight="800" font-size="92">
       <text x="0" y="100" fill="#EAE6DF">early</text>
     </g>
     <g font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-weight="500" font-size="64">
@@ -2583,9 +2679,9 @@ textarea:focus-visible,
     </g>
     <g font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-weight="800" font-size="92" letter-spacing="-2">
       <text x="338" y="100" fill="none" stroke="#A2674C" stroke-width="3">LA</text>
-      <text x="465" y="100" fill="#EAE6DF" font-style="italic" font-weight="700">(</text>
-      <text x="495" y="100" fill="#EAE6DF" font-style="italic" font-weight="800" font-size="76">t</text>
-      <text x="525" y="100" fill="#EAE6DF" font-style="italic" font-weight="700">)</text>
+      <text x="465" y="100" fill="none" stroke="#EAE6DF" stroke-width="3" font-weight="800">(</text>
+      <text x="495" y="100" fill="#EAE6DF" font-style="italic" font-weight="500" font-size="76" font-family="Newsreader, Georgia, serif">t</text>
+      <text x="525" y="100" fill="none" stroke="#EAE6DF" stroke-width="3" font-weight="800">)</text>
       <text x="565" y="100" fill="none" stroke="#A2674C" stroke-width="3">E</text>
     </g>
   </svg>
@@ -2872,7 +2968,7 @@ textarea:focus-visible,
         <div class="ad-frame ad-frame--bone">
           <div class="ad-inner">
             <div class="ad-row">
-              <div class="ad-brand"><svg viewBox="0 0 720 130" width="100" height="auto" style="display:block;" aria-label="early or LA(t)E"><g font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-weight="800" font-size="92" font-style="italic"><text x="0" y="100" fill="currentColor">early</text></g><g font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-weight="500" font-size="64"><text x="240" y="100" fill="currentColor">or</text></g><g font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-weight="800" font-size="92" letter-spacing="-2"><text x="338" y="100" fill="none" stroke="currentColor" stroke-width="3">LA</text><text x="465" y="100" fill="currentColor" font-style="italic" font-weight="700">(</text><text x="495" y="100" fill="currentColor" font-style="italic" font-weight="800" font-size="76">t</text><text x="525" y="100" fill="currentColor" font-style="italic" font-weight="700">)</text><text x="565" y="100" fill="none" stroke="currentColor" stroke-width="3">E</text></g></svg></div>
+              <div class="ad-brand"><svg viewBox="0 0 720 130" width="100" height="auto" style="display:block;" aria-label="early or LA(t)E"><g font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-weight="800" font-size="92"><text x="0" y="100" fill="currentColor">early</text></g><g font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-weight="500" font-size="64"><text x="240" y="100" fill="currentColor">or</text></g><g font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-weight="800" font-size="92" letter-spacing="-2"><text x="338" y="100" fill="none" stroke="currentColor" stroke-width="3">LA</text><text x="465" y="100" fill="none" stroke="currentColor" stroke-width="3" font-weight="800">(</text><text x="495" y="100" fill="currentColor" font-style="italic" font-weight="500" font-size="76" font-family="Newsreader, Georgia, serif">t</text><text x="525" y="100" fill="none" stroke="currentColor" stroke-width="3" font-weight="800">)</text><text x="565" y="100" fill="none" stroke="currentColor" stroke-width="3">E</text></g></svg></div>
               <div class="ad-tag">N°001 · Jul / Aug</div>
             </div>
             <div>
@@ -2901,7 +2997,7 @@ textarea:focus-visible,
         <div class="ad-frame ad-frame--black">
           <div class="ad-inner">
             <div class="ad-row">
-              <div class="ad-brand"><svg viewBox="0 0 720 130" width="100" height="auto" style="display:block;" aria-label="early or LA(t)E"><g font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-weight="800" font-size="92" font-style="italic"><text x="0" y="100" fill="currentColor">early</text></g><g font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-weight="500" font-size="64"><text x="240" y="100" fill="currentColor">or</text></g><g font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-weight="800" font-size="92" letter-spacing="-2"><text x="338" y="100" fill="none" stroke="currentColor" stroke-width="3">LA</text><text x="465" y="100" fill="currentColor" font-style="italic" font-weight="700">(</text><text x="495" y="100" fill="currentColor" font-style="italic" font-weight="800" font-size="76">t</text><text x="525" y="100" fill="currentColor" font-style="italic" font-weight="700">)</text><text x="565" y="100" fill="none" stroke="currentColor" stroke-width="3">E</text></g></svg></div>
+              <div class="ad-brand"><svg viewBox="0 0 720 130" width="100" height="auto" style="display:block;" aria-label="early or LA(t)E"><g font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-weight="800" font-size="92"><text x="0" y="100" fill="currentColor">early</text></g><g font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-weight="500" font-size="64"><text x="240" y="100" fill="currentColor">or</text></g><g font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-weight="800" font-size="92" letter-spacing="-2"><text x="338" y="100" fill="none" stroke="currentColor" stroke-width="3">LA</text><text x="465" y="100" fill="none" stroke="currentColor" stroke-width="3" font-weight="800">(</text><text x="495" y="100" fill="currentColor" font-style="italic" font-weight="500" font-size="76" font-family="Newsreader, Georgia, serif">t</text><text x="525" y="100" fill="none" stroke="currentColor" stroke-width="3" font-weight="800">)</text><text x="565" y="100" fill="none" stroke="currentColor" stroke-width="3">E</text></g></svg></div>
               <div class="ad-tag" style="color: var(--clay-warm);">Drop 01</div>
             </div>
             <div>
@@ -2930,7 +3026,7 @@ textarea:focus-visible,
         <div class="ad-frame ad-frame--clay">
           <div class="ad-inner">
             <div class="ad-row">
-              <div class="ad-brand" style="color: var(--bone);"><svg viewBox="0 0 720 130" width="100" height="auto" style="display:block;" aria-label="early or LA(t)E"><g font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-weight="800" font-size="92" font-style="italic"><text x="0" y="100" fill="currentColor">early</text></g><g font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-weight="500" font-size="64"><text x="240" y="100" fill="currentColor">or</text></g><g font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-weight="800" font-size="92" letter-spacing="-2"><text x="338" y="100" fill="none" stroke="currentColor" stroke-width="3">LA</text><text x="465" y="100" fill="currentColor" font-style="italic" font-weight="700">(</text><text x="495" y="100" fill="currentColor" font-style="italic" font-weight="800" font-size="76">t</text><text x="525" y="100" fill="currentColor" font-style="italic" font-weight="700">)</text><text x="565" y="100" fill="none" stroke="currentColor" stroke-width="3">E</text></g></svg></div>
+              <div class="ad-brand" style="color: var(--bone);"><svg viewBox="0 0 720 130" width="100" height="auto" style="display:block;" aria-label="early or LA(t)E"><g font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-weight="800" font-size="92"><text x="0" y="100" fill="currentColor">early</text></g><g font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-weight="500" font-size="64"><text x="240" y="100" fill="currentColor">or</text></g><g font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-weight="800" font-size="92" letter-spacing="-2"><text x="338" y="100" fill="none" stroke="currentColor" stroke-width="3">LA</text><text x="465" y="100" fill="none" stroke="currentColor" stroke-width="3" font-weight="800">(</text><text x="495" y="100" fill="currentColor" font-style="italic" font-weight="500" font-size="76" font-family="Newsreader, Georgia, serif">t</text><text x="525" y="100" fill="none" stroke="currentColor" stroke-width="3" font-weight="800">)</text><text x="565" y="100" fill="none" stroke="currentColor" stroke-width="3">E</text></g></svg></div>
               <div class="ad-tag" style="color: var(--bone);">Edition 50</div>
             </div>
             <div>
@@ -2959,7 +3055,7 @@ textarea:focus-visible,
         <div class="ad-frame ad-frame--white">
           <div class="ad-inner">
             <div class="ad-row">
-              <div class="ad-brand"><svg viewBox="0 0 720 130" width="100" height="auto" style="display:block;" aria-label="early or LA(t)E"><g font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-weight="800" font-size="92" font-style="italic"><text x="0" y="100" fill="currentColor">early</text></g><g font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-weight="500" font-size="64"><text x="240" y="100" fill="currentColor">or</text></g><g font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-weight="800" font-size="92" letter-spacing="-2"><text x="338" y="100" fill="none" stroke="currentColor" stroke-width="3">LA</text><text x="465" y="100" fill="currentColor" font-style="italic" font-weight="700">(</text><text x="495" y="100" fill="currentColor" font-style="italic" font-weight="800" font-size="76">t</text><text x="525" y="100" fill="currentColor" font-style="italic" font-weight="700">)</text><text x="565" y="100" fill="none" stroke="currentColor" stroke-width="3">E</text></g></svg></div>
+              <div class="ad-brand"><svg viewBox="0 0 720 130" width="100" height="auto" style="display:block;" aria-label="early or LA(t)E"><g font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-weight="800" font-size="92"><text x="0" y="100" fill="currentColor">early</text></g><g font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-weight="500" font-size="64"><text x="240" y="100" fill="currentColor">or</text></g><g font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-weight="800" font-size="92" letter-spacing="-2"><text x="338" y="100" fill="none" stroke="currentColor" stroke-width="3">LA</text><text x="465" y="100" fill="none" stroke="currentColor" stroke-width="3" font-weight="800">(</text><text x="495" y="100" fill="currentColor" font-style="italic" font-weight="500" font-size="76" font-family="Newsreader, Georgia, serif">t</text><text x="525" y="100" fill="none" stroke="currentColor" stroke-width="3" font-weight="800">)</text><text x="565" y="100" fill="none" stroke="currentColor" stroke-width="3">E</text></g></svg></div>
               <div class="ad-tag">Drop N°001</div>
             </div>
             <div>
@@ -2988,7 +3084,7 @@ textarea:focus-visible,
         <div class="ad-frame ad-frame--stone">
           <div class="ad-inner">
             <div class="ad-row">
-              <div class="ad-brand"><svg viewBox="0 0 720 130" width="100" height="auto" style="display:block;" aria-label="early or LA(t)E"><g font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-weight="800" font-size="92" font-style="italic"><text x="0" y="100" fill="currentColor">early</text></g><g font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-weight="500" font-size="64"><text x="240" y="100" fill="currentColor">or</text></g><g font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-weight="800" font-size="92" letter-spacing="-2"><text x="338" y="100" fill="none" stroke="currentColor" stroke-width="3">LA</text><text x="465" y="100" fill="currentColor" font-style="italic" font-weight="700">(</text><text x="495" y="100" fill="currentColor" font-style="italic" font-weight="800" font-size="76">t</text><text x="525" y="100" fill="currentColor" font-style="italic" font-weight="700">)</text><text x="565" y="100" fill="none" stroke="currentColor" stroke-width="3">E</text></g></svg></div>
+              <div class="ad-brand"><svg viewBox="0 0 720 130" width="100" height="auto" style="display:block;" aria-label="early or LA(t)E"><g font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-weight="800" font-size="92"><text x="0" y="100" fill="currentColor">early</text></g><g font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-weight="500" font-size="64"><text x="240" y="100" fill="currentColor">or</text></g><g font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-weight="800" font-size="92" letter-spacing="-2"><text x="338" y="100" fill="none" stroke="currentColor" stroke-width="3">LA</text><text x="465" y="100" fill="none" stroke="currentColor" stroke-width="3" font-weight="800">(</text><text x="495" y="100" fill="currentColor" font-style="italic" font-weight="500" font-size="76" font-family="Newsreader, Georgia, serif">t</text><text x="525" y="100" fill="none" stroke="currentColor" stroke-width="3" font-weight="800">)</text><text x="565" y="100" fill="none" stroke="currentColor" stroke-width="3">E</text></g></svg></div>
               <div class="ad-tag">The first drop</div>
             </div>
             <div>
@@ -3213,7 +3309,7 @@ textarea:focus-visible,
     <div class="footer-inner">
       <div class="footer-brand">
         <svg viewBox="0 0 720 130" width="170" height="auto" style="display:block;" aria-label="early or LA(t)E">
-          <g font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-weight="800" font-size="92" font-style="italic">
+          <g font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-weight="800" font-size="92">
             <text x="0" y="100" fill="currentColor">early</text>
           </g>
           <g font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-weight="500" font-size="64">
@@ -3221,9 +3317,9 @@ textarea:focus-visible,
           </g>
           <g font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-weight="800" font-size="92" letter-spacing="-2">
             <text x="338" y="100" fill="none" stroke="currentColor" stroke-width="3">LA</text>
-            <text x="465" y="100" fill="currentColor" font-style="italic" font-weight="700">(</text>
-            <text x="495" y="100" fill="currentColor" font-style="italic" font-weight="800" font-size="76">t</text>
-            <text x="525" y="100" fill="currentColor" font-style="italic" font-weight="700">)</text>
+            <text x="465" y="100" fill="none" stroke="currentColor" stroke-width="3" font-weight="800">(</text>
+            <text x="495" y="100" fill="currentColor" font-style="italic" font-weight="500" font-size="76" font-family="Newsreader, Georgia, serif">t</text>
+            <text x="525" y="100" fill="none" stroke="currentColor" stroke-width="3" font-weight="800">)</text>
             <text x="565" y="100" fill="none" stroke="currentColor" stroke-width="3">E</text>
           </g>
         </svg>
@@ -3343,18 +3439,18 @@ window.surveyData = {
   proposition_choice: null,
   ad_reactions: {},
   drop_ranking: {},
-  shirt_preference: null,
+  builder_choice: { artwork_id: null, shirt_id: null, buy_intent: null },
   promise_ranking: {},
   questions: {
-    drop_ranking:     { state: 'pending', num: 1 },
-    shirt_preference: { state: 'pending', num: 2 },
-    promise_ranking:  { state: 'pending', num: 3 },
-    retailers:        { state: 'pending', num: 4 },
-    motivation:       { state: 'pending', num: 5 },
-    proposition:      { state: 'pending', num: 6 },
-    ad_reactions:     { state: 'pending', num: 7 },
-    price:            { state: 'pending', num: 8 },
-    buy_intent:       { state: 'pending', num: 9 }
+    drop_ranking:    { state: 'pending', num: 1 },
+    builder_choice:  { state: 'pending', num: 2 },
+    promise_ranking: { state: 'pending', num: 3 },
+    retailers:       { state: 'pending', num: 4 },
+    motivation:      { state: 'pending', num: 5 },
+    proposition:     { state: 'pending', num: 6 },
+    ad_reactions:    { state: 'pending', num: 7 },
+    price:           { state: 'pending', num: 8 },
+    buy_intent:      { state: 'pending', num: 9 }
   },
   motivations_selected: [],
   motivation_other: null,
@@ -3632,20 +3728,116 @@ function toggleSelection(shirtId) {
   if (count > 0) markAnswered('drop_ranking');
 }
 
-function selectShirtPref(shirtId) {
-  // Single-select: clear any prior selection, then mark this one
-  document.querySelectorAll('.shirt-pref-card').forEach(c => c.classList.remove('ranked'));
-  const card = document.querySelector(`.shirt-pref-card[data-shirt-pref="${shirtId}"]`);
-  if (!card) return;
-  card.classList.add('ranked');
-  window.surveyData.shirt_preference = shirtId;
-  const choiceEl = document.getElementById('shirtPrefChoice');
-  if (choiceEl) {
-    const title = card.querySelector('.shirt-pref-title')?.textContent || shirtId;
-    choiceEl.textContent = title;
+/* ===== Q2 — Build your shirt (interactive mockup builder) ===== */
+const BUILDER_ARTWORKS = {
+  C01: { src: 'conor-images/c01-ali333nboi.png',         title: 'AL333NBOI',           artist: 'Conor Powell' },
+  C02: { src: 'conor-images/c02-childhood-nightmare.png', title: 'Childhood Nightmare', artist: 'Conor Powell' },
+  C03: { src: 'conor-images/c03-da-creepz.png',           title: 'Da Creepz',           artist: 'Conor Powell' },
+  C04: { src: 'conor-images/c04-greenguy.png',            title: 'Greenguy',            artist: 'Conor Powell' },
+  C05: { src: 'conor-images/c05-turqoise-peeps.png',      title: 'Turqoise Peeps',      artist: 'Conor Powell' },
+  P01: { src: 'peter-images/p01-abtu-and-anet.jpg',       title: 'Abtu and Anet',       artist: 'Peter Rapp' },
+  P02: { src: 'peter-images/p02-babi.jpg',                title: 'Babi',                artist: 'Peter Rapp' },
+  P03: { src: 'peter-images/p03-defatigable.jpg',         title: 'Defatigable',         artist: 'Peter Rapp' },
+  P04: { src: 'peter-images/p04-living-the-dream.jpg',    title: 'Living the Dream',    artist: 'Peter Rapp' },
+  P05: { src: 'peter-images/p05-the-unicorn.jpg',         title: 'The Unicorn',         artist: 'Peter Rapp' },
+  M01: { src: 'michelle-images/m01-unknown-artist.png',         title: 'Unknown Artist',      artist: 'Michelle Fine' },
+  M02: { src: 'michelle-images/m02-standing-figure-yellow.png', title: 'Standing Figure',     artist: 'Michelle Fine' },
+  M03: { src: 'michelle-images/m03-three-figures-city.png',     title: 'Three Figures, City', artist: 'Michelle Fine' },
+  M04: { src: 'michelle-images/m04-crowd-scene.png',            title: 'Crowd Scene',         artist: 'Michelle Fine' },
+  M05: { src: 'michelle-images/m05-crossed-arms.png',           title: 'Crossed Arms',        artist: 'Michelle Fine' }
+};
+const BUILDER_SHIRTS = {
+  T01: { src: 'shirt-mockups/t01-black-classic.png', label: 'Black · Classic', tone: 'dark'  },
+  T02: { src: 'shirt-mockups/t02-white-classic.png', label: 'White · Classic', tone: 'light' },
+  T03: { src: 'shirt-mockups/t03-white-cropped.png', label: 'White · Cropped', tone: 'light' },
+  T04: { src: 'shirt-mockups/t04-black-cropped.png', label: 'Black · Cropped', tone: 'dark'  }
+};
+
+function builderSelectArtwork(artId) {
+  if (!BUILDER_ARTWORKS[artId]) return;
+  document.querySelectorAll('.builder-thumb').forEach(t => t.classList.remove('selected'));
+  const btn = document.querySelector(`.builder-thumb[data-art="${artId}"]`);
+  if (btn) btn.classList.add('selected');
+  window.surveyData.builder_choice.artwork_id = artId;
+  builderUpdatePreview();
+  logEvent('builder_artwork_selected', { artwork: artId });
+  builderMaybeMarkAnswered();
+}
+
+function builderSelectShirt(shirtId) {
+  if (!BUILDER_SHIRTS[shirtId]) return;
+  document.querySelectorAll('.builder-shirt-thumb').forEach(t => t.classList.remove('selected'));
+  const btn = document.querySelector(`.builder-shirt-thumb[data-shirt="${shirtId}"]`);
+  if (btn) btn.classList.add('selected');
+  window.surveyData.builder_choice.shirt_id = shirtId;
+  builderUpdatePreview();
+  logEvent('builder_shirt_selected', { shirt: shirtId });
+  builderMaybeMarkAnswered();
+}
+
+function builderSelectIntent(intent) {
+  document.querySelectorAll('.intent-btn').forEach(b => b.classList.remove('selected'));
+  const btn = document.querySelector(`.intent-btn[data-intent="${intent}"]`);
+  if (btn) btn.classList.add('selected');
+  window.surveyData.builder_choice.buy_intent = intent;
+  logEvent('builder_intent_selected', { intent: intent, combo: window.surveyData.builder_choice });
+  markAnswered('builder_choice');
+}
+
+function builderUpdatePreview() {
+  const stage    = document.getElementById('builderStage');
+  const empty    = document.getElementById('builderEmpty');
+  const shirtImg = document.getElementById('builderShirtImg');
+  const artImg   = document.getElementById('builderArtImg');
+  const caption  = document.getElementById('builderCaption');
+  const intentEl = document.getElementById('builderIntent');
+  const artId    = window.surveyData.builder_choice.artwork_id;
+  const shirtId  = window.surveyData.builder_choice.shirt_id;
+
+  // Always hide the overlay artwork — we use pre-rendered composites for the final view.
+  artImg.hidden = true;
+
+  if (artId && shirtId) {
+    // Pre-rendered mockup: artwork already placed on shirt
+    shirtImg.src = `mockups/${artId}_${shirtId}.png`;
+    shirtImg.hidden = false;
+    empty.hidden = true;
+    const a = BUILDER_ARTWORKS[artId];
+    const s = BUILDER_SHIRTS[shirtId];
+    caption.textContent = `${a.title} · ${a.artist} · ${s.label}`;
+    intentEl.hidden = false;
+  } else if (shirtId) {
+    // Bare shirt while waiting for artwork
+    shirtImg.src = BUILDER_SHIRTS[shirtId].src;
+    shirtImg.hidden = false;
+    stage.setAttribute('data-shirt-tone', BUILDER_SHIRTS[shirtId].tone);
+    empty.hidden = false;
+    empty.innerHTML = '<p style="background:rgba(245,241,235,0.92);padding:14px 18px;">Now pick an artwork.</p>';
+    caption.textContent = `${BUILDER_SHIRTS[shirtId].label} · pick an artwork`;
+    intentEl.hidden = true;
+  } else if (artId) {
+    // Artwork picked but no shirt yet — show small art thumb
+    shirtImg.hidden = true;
+    empty.hidden = false;
+    const a = BUILDER_ARTWORKS[artId];
+    empty.innerHTML = `<p>${a.title}<br><span style="font-size:13px;letter-spacing:0.1em;text-transform:uppercase;color:var(--clay);font-family:var(--mono);font-style:normal;">Now pick a shirt</span></p>`;
+    caption.textContent = `${a.title} by ${a.artist}`;
+    intentEl.hidden = true;
+  } else {
+    // Empty state
+    shirtImg.hidden = true;
+    empty.hidden = false;
+    empty.innerHTML = '<p>Tap an artwork below.<br>Then a shirt.</p>';
+    caption.textContent = 'Your shirt, building…';
+    intentEl.hidden = true;
   }
-  logEvent('shirt_pref_selected', { shirt: shirtId });
-  markAnswered('shirt_preference');
+}
+
+function builderMaybeMarkAnswered() {
+  // Counts as answered once both artwork and shirt are chosen — intent is bonus
+  if (window.surveyData.builder_choice.artwork_id && window.surveyData.builder_choice.shirt_id) {
+    markAnswered('builder_choice');
+  }
 }
 
 function rankPromise(promiseId, promiseLabel) {
