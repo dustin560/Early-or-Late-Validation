@@ -55,37 +55,37 @@
 </defs>
 <g id="surface1">
 <g style="fill:currentColor;fill-opacity:1;">
-  <use xlink:href="#glyph0-1" x="98.5205" y="134.7637"/>
-  <use xlink:href="#glyph0-2" x="120.0125" y="134.7637"/>
-  <use xlink:href="#glyph0-3" x="140.2805" y="134.7637"/>
-  <use xlink:href="#glyph0-4" x="154.8965" y="134.7637"/>
-  <use xlink:href="#glyph0-5" x="165.0125" y="134.7637"/>
+  <use href="#glyph0-1" x="98.5205" y="134.7637"/>
+  <use href="#glyph0-2" x="120.0125" y="134.7637"/>
+  <use href="#glyph0-3" x="140.2805" y="134.7637"/>
+  <use href="#glyph0-4" x="154.8965" y="134.7637"/>
+  <use href="#glyph0-5" x="165.0125" y="134.7637"/>
 </g>
 <g style="fill:currentColor;fill-opacity:1;">
-  <use xlink:href="#glyph0-6" x="184.1645" y="134.7637"/>
+  <use href="#glyph0-6" x="184.1645" y="134.7637"/>
 </g>
 <g style="fill:currentColor;fill-opacity:1;">
-  <use xlink:href="#glyph1-1" x="193.8845" y="134.7637"/>
+  <use href="#glyph1-1" x="193.8845" y="134.7637"/>
 </g>
 <g style="fill:currentColor;fill-opacity:1;">
-  <use xlink:href="#glyph1-2" x="215.6249" y="134.7637"/>
-  <use xlink:href="#glyph1-3" x="229.5209" y="134.7637"/>
+  <use href="#glyph1-2" x="215.6249" y="134.7637"/>
+  <use href="#glyph1-3" x="229.5209" y="134.7637"/>
 </g>
 <g style="fill:currentColor;fill-opacity:1;">
-  <use xlink:href="#glyph1-4" x="239.2409" y="134.7637"/>
-  <use xlink:href="#glyph1-5" x="261.2009" y="134.7637"/>
+  <use href="#glyph1-4" x="239.2409" y="134.7637"/>
+  <use href="#glyph1-5" x="261.2009" y="134.7637"/>
 </g>
 <g style="fill:currentColor;fill-opacity:1;">
-  <use xlink:href="#glyph2-1" x="288.2009" y="134.7637"/>
+  <use href="#glyph2-1" x="288.2009" y="134.7637"/>
 </g>
 <g style="fill:currentColor;fill-opacity:1;">
-  <use xlink:href="#glyph3-1" x="300.1895" y="134.7637"/>
+  <use href="#glyph3-1" x="300.1895" y="134.7637"/>
 </g>
 <g style="fill:currentColor;fill-opacity:1;">
-  <use xlink:href="#glyph2-2" x="316.749" y="134.7637"/>
+  <use href="#glyph2-2" x="316.749" y="134.7637"/>
 </g>
 <g style="fill:currentColor;fill-opacity:1;">
-  <use xlink:href="#glyph1-6" x="328.773" y="134.7637"/>
+  <use href="#glyph1-6" x="328.773" y="134.7637"/>
 </g>
 </g>
 </svg>
