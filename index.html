@@ -625,54 +625,8 @@ body {
   z-index: 2;
 }
 
-/* ----- Build your shirt (Q2) — interactive builder ----- */
+/* ----- The garment (Q2) — shirt style preference ----- */
 .builder-wrap { margin-top: 40px; }
-.builder-preview {
-  margin: 0 auto 48px;
-  max-width: 520px;
-}
-.builder-stage {
-  position: relative;
-  aspect-ratio: 1/1;
-  background: var(--white);
-  border: 1px solid var(--black);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-}
-.builder-empty {
-  text-align: center;
-  font-family: var(--serif);
-  font-style: italic;
-  color: var(--ink-soft);
-  font-size: 20px;
-  line-height: 1.4;
-  padding: 32px;
-  z-index: 1;
-}
-.builder-empty p { margin: 0; }
-.builder-shirt {
-  position: absolute;
-  top: 0; left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  z-index: 0;
-}
-.builder-art {
-  position: absolute;
-  top: 24%;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 32%;
-  max-height: 30%;
-  object-fit: contain;
-  pointer-events: none;
-  z-index: 2;
-}
-.builder-stage[data-shirt-tone="light"] .builder-art { mix-blend-mode: multiply; }
-.builder-stage[data-shirt-tone="dark"]  .builder-art { mix-blend-mode: screen; }
 .builder-caption {
   font-family: var(--mono);
   font-size: 11px;
@@ -704,30 +658,6 @@ body {
   letter-spacing: 0.12em;
   color: var(--ink-soft);
   font-weight: 400;
-}
-.builder-art-strip {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 10px;
-}
-@media (max-width: 900px) { .builder-art-strip { grid-template-columns: repeat(5, 1fr); gap: 8px; } }
-@media (max-width: 600px) { .builder-art-strip { grid-template-columns: repeat(3, 1fr); gap: 6px; } }
-.builder-thumb {
-  background: var(--bone);
-  border: 2px solid transparent;
-  padding: 0;
-  cursor: pointer;
-  aspect-ratio: 1/1;
-  overflow: hidden;
-  transition: border-color 120ms ease;
-}
-.builder-thumb:hover { border-color: var(--clay); }
-.builder-thumb.selected { border-color: var(--clay); }
-.builder-thumb img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
 }
 
 .builder-shirt-strip {
@@ -765,12 +695,6 @@ body {
 .builder-shirt-thumb.selected { border-color: var(--clay); }
 .builder-shirt-thumb.selected span { color: var(--clay); font-weight: 700; }
 
-.builder-intent {
-  margin-top: 16px;
-  padding-top: 28px;
-  border-top: 1px solid var(--black);
-}
-.builder-intent-row { display: flex; gap: 8px; flex-wrap: wrap; }
 .intent-btn.selected {
   background: var(--clay);
   color: var(--bone);
@@ -2089,6 +2013,7 @@ textarea:focus-visible,
   <input type="text" name="exit_nd_framing" />
   <input type="text" name="exit_discovery" />
   <input type="text" name="drop_selections" />
+  <input type="text" name="shirt_style_choice" />
   <input type="text" name="motivations_selected" />
   <input type="text" name="motivation_other" />
   <input type="text" name="retailer_other" />
@@ -2269,12 +2194,12 @@ textarea:focus-visible,
     </div>
 
     <p class="body">
-      The first drop is <em>Conor Powell's range</em> — five new artworks, fifty pieces of each, signed and numbered. <em>Peter Rapp</em> and <em>Michelle Fine</em> are two artists we're considering for the next range. All three are shown below: see what's launching, see who could be next. Every garment ships in a hand-folded matte-black box.
+      The first drop is <em>Conor Powell's range</em> — five new artworks, fifty pieces of each, signed and numbered. <em>Peter Rapp</em> and <em>Michelle Fine</em> are two artists we're considering for the next range. Each piece is shown below as the finished shirt. <em>Mockups are indicative — final print quality will be exceptional.</em> Every garment ships in a hand-folded matte-black box.
     </p>
 
     <div class="action-prompt">
       <span class="action-prompt-arrow">↓</span>
-      <span><span class="action-prompt-prefix">Your turn</span>Tap any artworks that appeal to you — select as many as you like</span>
+      <span><span class="action-prompt-prefix">Your turn</span>Tap every shirt you'd choose — as many as you like</span>
     </div>
 
     <!-- ===== CONOR POWELL — 5 artworks (the first drop) ===== -->
@@ -2287,7 +2212,7 @@ textarea:focus-visible,
       <div class="drop-grid">
         <div class="shirt-card" data-shirt="C01" onclick="toggleSelection('C01')">
           <div class="shirt-placeholder has-image">
-            <img src="conor-images/c01-ali333nboi.png" alt="AL333NBOI by Conor Powell" loading="lazy">
+            <img src="mockups/C01_T01.png" alt="AL333NBOI by Conor Powell — finished shirt" loading="lazy">
             <div class="shirt-card-code">C·01</div>
           </div>
           <div class="shirt-price">£148</div>
@@ -2301,7 +2226,7 @@ textarea:focus-visible,
 
         <div class="shirt-card" data-shirt="C02" onclick="toggleSelection('C02')">
           <div class="shirt-placeholder has-image">
-            <img src="conor-images/c02-childhood-nightmare.png" alt="Childhood Nightmare by Conor Powell" loading="lazy">
+            <img src="mockups/C02_T01.png" alt="Childhood Nightmare by Conor Powell — finished shirt" loading="lazy">
             <div class="shirt-card-code">C·02</div>
           </div>
           <div class="shirt-price">£148</div>
@@ -2315,7 +2240,7 @@ textarea:focus-visible,
 
         <div class="shirt-card" data-shirt="C03" onclick="toggleSelection('C03')">
           <div class="shirt-placeholder has-image">
-            <img src="conor-images/c03-da-creepz.png" alt="Da Creepz by Conor Powell" loading="lazy">
+            <img src="mockups/C03_T01.png" alt="Da Creepz by Conor Powell — finished shirt" loading="lazy">
             <div class="shirt-card-code">C·03</div>
           </div>
           <div class="shirt-price">£148</div>
@@ -2329,7 +2254,7 @@ textarea:focus-visible,
 
         <div class="shirt-card" data-shirt="C04" onclick="toggleSelection('C04')">
           <div class="shirt-placeholder has-image">
-            <img src="conor-images/c04-greenguy.png" alt="Greenguy by Conor Powell" loading="lazy">
+            <img src="mockups/C04_T01.png" alt="Greenguy by Conor Powell — finished shirt" loading="lazy">
             <div class="shirt-card-code">C·04</div>
           </div>
           <div class="shirt-price">£148</div>
@@ -2343,7 +2268,7 @@ textarea:focus-visible,
 
         <div class="shirt-card" data-shirt="C05" onclick="toggleSelection('C05')">
           <div class="shirt-placeholder has-image">
-            <img src="conor-images/c05-turqoise-peeps.png" alt="Turqoise Peeps by Conor Powell" loading="lazy">
+            <img src="mockups/C05_T01.png" alt="Turqoise Peeps by Conor Powell — finished shirt" loading="lazy">
             <div class="shirt-card-code">C·05</div>
           </div>
           <div class="shirt-price">£148</div>
@@ -2367,7 +2292,7 @@ textarea:focus-visible,
       <div class="drop-grid">
         <div class="shirt-card" data-shirt="P01" onclick="toggleSelection('P01')">
           <div class="shirt-placeholder has-image">
-            <img src="peter-images/p01-abtu-and-anet.jpg" alt="Abtu and Anet by Peter Rapp" loading="lazy">
+            <img src="mockups/P01_T01.png" alt="Abtu and Anet by Peter Rapp — finished shirt" loading="lazy">
             <div class="shirt-card-code">P·01</div>
           </div>
           <div class="shirt-price">£148</div>
@@ -2381,7 +2306,7 @@ textarea:focus-visible,
 
         <div class="shirt-card" data-shirt="P02" onclick="toggleSelection('P02')">
           <div class="shirt-placeholder has-image">
-            <img src="peter-images/p02-babi.jpg" alt="Babi by Peter Rapp" loading="lazy">
+            <img src="mockups/P02_T01.png" alt="Babi by Peter Rapp — finished shirt" loading="lazy">
             <div class="shirt-card-code">P·02</div>
           </div>
           <div class="shirt-price">£148</div>
@@ -2395,7 +2320,7 @@ textarea:focus-visible,
 
         <div class="shirt-card" data-shirt="P03" onclick="toggleSelection('P03')">
           <div class="shirt-placeholder has-image">
-            <img src="peter-images/p03-defatigable.jpg" alt="Defatigable by Peter Rapp" loading="lazy">
+            <img src="mockups/P03_T01.png" alt="Defatigable by Peter Rapp — finished shirt" loading="lazy">
             <div class="shirt-card-code">P·03</div>
           </div>
           <div class="shirt-price">£148</div>
@@ -2409,7 +2334,7 @@ textarea:focus-visible,
 
         <div class="shirt-card" data-shirt="P04" onclick="toggleSelection('P04')">
           <div class="shirt-placeholder has-image">
-            <img src="peter-images/p04-living-the-dream.jpg" alt="Living the Dream by Peter Rapp" loading="lazy">
+            <img src="mockups/P04_T01.png" alt="Living the Dream by Peter Rapp — finished shirt" loading="lazy">
             <div class="shirt-card-code">P·04</div>
           </div>
           <div class="shirt-price">£148</div>
@@ -2423,7 +2348,7 @@ textarea:focus-visible,
 
         <div class="shirt-card" data-shirt="P05" onclick="toggleSelection('P05')">
           <div class="shirt-placeholder has-image">
-            <img src="peter-images/p05-the-unicorn.jpg" alt="The Unicorn by Peter Rapp" loading="lazy">
+            <img src="mockups/P05_T01.png" alt="The Unicorn by Peter Rapp — finished shirt" loading="lazy">
             <div class="shirt-card-code">P·05</div>
           </div>
           <div class="shirt-price">£148</div>
@@ -2447,7 +2372,7 @@ textarea:focus-visible,
       <div class="drop-grid">
         <div class="shirt-card" data-shirt="M01" onclick="toggleSelection('M01')">
           <div class="shirt-placeholder has-image">
-            <img src="michelle-images/m01-unknown-artist.png" alt="Unknown Artist by Michelle Fine" loading="lazy">
+            <img src="mockups/M01_T02.png" alt="Unknown Artist by Michelle Fine — finished shirt" loading="lazy">
             <div class="shirt-card-code">M·01</div>
           </div>
           <div class="shirt-price">£148</div>
@@ -2461,7 +2386,7 @@ textarea:focus-visible,
 
         <div class="shirt-card" data-shirt="M02" onclick="toggleSelection('M02')">
           <div class="shirt-placeholder has-image">
-            <img src="michelle-images/m02-standing-figure-yellow.png" alt="Standing Figure by Michelle Fine" loading="lazy">
+            <img src="mockups/M02_T02.png" alt="Standing Figure by Michelle Fine — finished shirt" loading="lazy">
             <div class="shirt-card-code">M·02</div>
           </div>
           <div class="shirt-price">£148</div>
@@ -2475,7 +2400,7 @@ textarea:focus-visible,
 
         <div class="shirt-card" data-shirt="M03" onclick="toggleSelection('M03')">
           <div class="shirt-placeholder has-image">
-            <img src="michelle-images/m03-three-figures-city.png" alt="Three Figures, City by Michelle Fine" loading="lazy">
+            <img src="mockups/M03_T02.png" alt="Three Figures, City by Michelle Fine — finished shirt" loading="lazy">
             <div class="shirt-card-code">M·03</div>
           </div>
           <div class="shirt-price">£148</div>
@@ -2489,7 +2414,7 @@ textarea:focus-visible,
 
         <div class="shirt-card" data-shirt="M04" onclick="toggleSelection('M04')">
           <div class="shirt-placeholder has-image">
-            <img src="michelle-images/m04-crowd-scene.png" alt="Crowd Scene by Michelle Fine" loading="lazy">
+            <img src="mockups/M04_T02.png" alt="Crowd Scene by Michelle Fine — finished shirt" loading="lazy">
             <div class="shirt-card-code">M·04</div>
           </div>
           <div class="shirt-price">£148</div>
@@ -2503,7 +2428,7 @@ textarea:focus-visible,
 
         <div class="shirt-card" data-shirt="M05" onclick="toggleSelection('M05')">
           <div class="shirt-placeholder has-image">
-            <img src="michelle-images/m05-crossed-arms.png" alt="Crossed Arms by Michelle Fine" loading="lazy">
+            <img src="mockups/M05_T02.png" alt="Crossed Arms by Michelle Fine — finished shirt" loading="lazy">
             <div class="shirt-card-code">M·05</div>
           </div>
           <div class="shirt-price">£148</div>
@@ -2520,7 +2445,7 @@ textarea:focus-visible,
     <div class="rank-tracker" id="drop-tracker">
       <div class="tracker-label">Your<br>selections</div>
       <div class="tracker-items">
-        <div class="track-item"><span class="track-rank"><span id="dropSelectionCount">0</span></span><span class="track-name" id="dropSelectionList">Tap any artworks above to select</span></div>
+        <div class="track-item"><span class="track-rank"><span id="dropSelectionCount">0</span></span><span class="track-name" id="dropSelectionList">Tap any shirts above to select</span></div>
       </div>
     </div>
 
@@ -2532,105 +2457,60 @@ textarea:focus-visible,
 </section>
 
 <!-- ============================================================
-     SECTION III — BUILD YOUR SHIRT (Q2: builder_choice)
+     SECTION III — THE GARMENT (Q2: shirt_style)
 ============================================================ -->
-<section class="section section--bone" id="builder">
+<section class="section section--bone" id="garment">
   <div class="container">
 
     <div class="section-divider">
       <div class="section-divider-top">
         <span class="section-divider-label">Programme N°01 · The garment</span>
-        <span class="section-divider-right q-status" data-q="builder_choice">Question 2 of 9</span>
+        <span class="section-divider-right q-status" data-q="shirt_style">Question 2 of 9</span>
       </div>
       <div class="section-divider-numhead">
         <span class="section-numeral">III.</span>
         <h2 class="h-section" style="max-width:18ch;">
-          Build the one <em>you'd buy</em>.
+          Which shirt <em>would you wear</em>?
         </h2>
       </div>
     </div>
 
     <p class="body">
-      Pick a piece. Pick a shirt. See how it looks. Heavyweight 265gsm cotton, milled in Leicester. Then tell us whether you'd actually wear it. <em>Mockups are indicative — final print quality will be exceptional.</em>
+      Every piece comes on the same garment — heavyweight 265gsm cotton, milled in Leicester. Two colours, two fits. Tell us which you'd choose.
     </p>
 
     <div class="action-prompt">
       <span class="action-prompt-arrow">↓</span>
-      <span><span class="action-prompt-prefix">Your turn</span>Choose one artwork, one shirt</span>
+      <span><span class="action-prompt-prefix">Your turn</span>Tap the one you'd wear</span>
     </div>
 
     <div class="builder-wrap">
-      <!-- Preview stage -->
-      <div class="builder-preview">
-        <div class="builder-stage" id="builderStage" data-shirt-tone="dark">
-          <div class="builder-empty" id="builderEmpty">
-            <p>Tap an artwork below.<br>Then a shirt.</p>
-          </div>
-          <img class="builder-shirt" id="builderShirtImg" src="" alt="" hidden>
-          <img class="builder-art" id="builderArtImg" src="" alt="" hidden>
-        </div>
-        <p class="builder-caption" id="builderCaption">Your shirt, building…</p>
-      </div>
-
-      <!-- Artwork picker -->
       <div class="builder-control-group">
-        <div class="builder-control-label">01 · Artwork <span class="builder-control-sub">15 pieces · 3 artists</span></div>
-        <div class="builder-art-strip">
-          <button class="builder-thumb" data-art="C01" onclick="builderSelectArtwork('C01')" aria-label="AL333NBOI by Conor Powell"><img src="conor-images/c01-ali333nboi.png" alt="" loading="lazy"></button>
-          <button class="builder-thumb" data-art="C02" onclick="builderSelectArtwork('C02')" aria-label="Childhood Nightmare by Conor Powell"><img src="conor-images/c02-childhood-nightmare.png" alt="" loading="lazy"></button>
-          <button class="builder-thumb" data-art="C03" onclick="builderSelectArtwork('C03')" aria-label="Da Creepz by Conor Powell"><img src="conor-images/c03-da-creepz.png" alt="" loading="lazy"></button>
-          <button class="builder-thumb" data-art="C04" onclick="builderSelectArtwork('C04')" aria-label="Greenguy by Conor Powell"><img src="conor-images/c04-greenguy.png" alt="" loading="lazy"></button>
-          <button class="builder-thumb" data-art="C05" onclick="builderSelectArtwork('C05')" aria-label="Turqoise Peeps by Conor Powell"><img src="conor-images/c05-turqoise-peeps.png" alt="" loading="lazy"></button>
-          <button class="builder-thumb" data-art="P01" onclick="builderSelectArtwork('P01')" aria-label="Abtu and Anet by Peter Rapp"><img src="peter-images/p01-abtu-and-anet.jpg" alt="" loading="lazy"></button>
-          <button class="builder-thumb" data-art="P02" onclick="builderSelectArtwork('P02')" aria-label="Babi by Peter Rapp"><img src="peter-images/p02-babi.jpg" alt="" loading="lazy"></button>
-          <button class="builder-thumb" data-art="P03" onclick="builderSelectArtwork('P03')" aria-label="Defatigable by Peter Rapp"><img src="peter-images/p03-defatigable.jpg" alt="" loading="lazy"></button>
-          <button class="builder-thumb" data-art="P04" onclick="builderSelectArtwork('P04')" aria-label="Living the Dream by Peter Rapp"><img src="peter-images/p04-living-the-dream.jpg" alt="" loading="lazy"></button>
-          <button class="builder-thumb" data-art="P05" onclick="builderSelectArtwork('P05')" aria-label="The Unicorn by Peter Rapp"><img src="peter-images/p05-the-unicorn.jpg" alt="" loading="lazy"></button>
-          <button class="builder-thumb" data-art="M01" onclick="builderSelectArtwork('M01')" aria-label="Unknown Artist by Michelle Fine"><img src="michelle-images/m01-unknown-artist.png" alt="" loading="lazy"></button>
-          <button class="builder-thumb" data-art="M02" onclick="builderSelectArtwork('M02')" aria-label="Standing Figure by Michelle Fine"><img src="michelle-images/m02-standing-figure-yellow.png" alt="" loading="lazy"></button>
-          <button class="builder-thumb" data-art="M03" onclick="builderSelectArtwork('M03')" aria-label="Three Figures, City by Michelle Fine"><img src="michelle-images/m03-three-figures-city.png" alt="" loading="lazy"></button>
-          <button class="builder-thumb" data-art="M04" onclick="builderSelectArtwork('M04')" aria-label="Crowd Scene by Michelle Fine"><img src="michelle-images/m04-crowd-scene.png" alt="" loading="lazy"></button>
-          <button class="builder-thumb" data-art="M05" onclick="builderSelectArtwork('M05')" aria-label="Crossed Arms by Michelle Fine"><img src="michelle-images/m05-crossed-arms.png" alt="" loading="lazy"></button>
-        </div>
-      </div>
-
-      <!-- Shirt picker -->
-      <div class="builder-control-group">
-        <div class="builder-control-label">02 · Shirt <span class="builder-control-sub">Two colours, two fits</span></div>
         <div class="builder-shirt-strip">
-          <button class="builder-shirt-thumb" data-shirt="T01" onclick="builderSelectShirt('T01')">
-            <img src="shirt-mockups/t01-black-classic.png" alt="" loading="lazy">
+          <button class="builder-shirt-thumb" data-shirt="T01" onclick="styleSelectShirt('T01')" aria-pressed="false">
+            <img src="shirt-mockups/t01-black-classic.png" alt="Black classic-fit tee" loading="lazy">
             <span>Black · Classic</span>
           </button>
-          <button class="builder-shirt-thumb" data-shirt="T02" onclick="builderSelectShirt('T02')">
-            <img src="shirt-mockups/t02-white-classic.png" alt="" loading="lazy">
+          <button class="builder-shirt-thumb" data-shirt="T02" onclick="styleSelectShirt('T02')" aria-pressed="false">
+            <img src="shirt-mockups/t02-white-classic.png" alt="White classic-fit tee" loading="lazy">
             <span>White · Classic</span>
           </button>
-          <button class="builder-shirt-thumb" data-shirt="T03" onclick="builderSelectShirt('T03')">
-            <img src="shirt-mockups/t03-white-cropped.png" alt="" loading="lazy">
+          <button class="builder-shirt-thumb" data-shirt="T03" onclick="styleSelectShirt('T03')" aria-pressed="false">
+            <img src="shirt-mockups/t03-white-cropped.png" alt="White cropped-fit tee" loading="lazy">
             <span>White · Cropped</span>
           </button>
-          <button class="builder-shirt-thumb" data-shirt="T04" onclick="builderSelectShirt('T04')">
-            <img src="shirt-mockups/t04-black-cropped.png" alt="" loading="lazy">
+          <button class="builder-shirt-thumb" data-shirt="T04" onclick="styleSelectShirt('T04')" aria-pressed="false">
+            <img src="shirt-mockups/t04-black-cropped.png" alt="Black cropped-fit tee" loading="lazy">
             <span>Black · Cropped</span>
           </button>
         </div>
-      </div>
-
-      <!-- Buy intent for this combo -->
-      <div class="builder-intent" id="builderIntent" hidden>
-        <div class="builder-control-label">03 · Would you actually buy this?</div>
-        <div class="builder-intent-row">
-          <button class="pill-select intent-btn" data-intent="yes" onclick="builderSelectIntent('yes')">Yes — I'd buy this</button>
-          <button class="pill-select intent-btn" data-intent="maybe" onclick="builderSelectIntent('maybe')">Maybe</button>
-          <button class="pill-select intent-btn" data-intent="no" onclick="builderSelectIntent('no')">Not for me</button>
-        </div>
+        <p class="builder-caption" id="styleCaption" aria-live="polite">Pick one — you can change your mind.</p>
       </div>
     </div>
 
     <div class="q-skip-row">
-      <span class="q-skip-helper">Not feeling it?</span>
-      <button class="q-skip" onclick="skipQuestion('builder_choice')">Skip this question →</button>
+      <span class="q-skip-helper">No preference?</span>
+      <button class="q-skip" onclick="skipQuestion('shirt_style')">Skip this question →</button>
     </div>
 
   </div>
@@ -4085,11 +3965,11 @@ window.surveyData = {
   proposition_choice: null,
   ad_reactions: {},
   drop_ranking: {},
-  builder_choice: { artwork_id: null, shirt_id: null, buy_intent: null },
+  shirt_style_choice: null,
   promise_ranking: {},
   questions: {
     drop_ranking:    { state: 'pending', num: 1 },
-    builder_choice:  { state: 'pending', num: 2 },
+    shirt_style:     { state: 'pending', num: 2 },
     promise_ranking: { state: 'pending', num: 3 },
     retailers:       { state: 'pending', num: 4 },
     motivation:      { state: 'pending', num: 5 },
@@ -4361,7 +4241,7 @@ function toggleSelection(shirtId) {
   const listEl = document.getElementById('dropSelectionList');
   if (listEl) {
     if (count === 0) {
-      listEl.textContent = 'Tap any artworks above to select';
+      listEl.textContent = 'Tap any shirts above to select';
     } else {
       const names = window.surveyData.drop_selections.map(id => {
         const c = document.querySelector(`[data-shirt="${id}"]`);
@@ -4370,120 +4250,31 @@ function toggleSelection(shirtId) {
       listEl.textContent = names.join(' · ');
     }
   }
-  logEvent('artwork_toggled', { shirt: shirtId, now_selected: window.surveyData.drop_selections });
+  logEvent('shirt_toggled', { shirt: shirtId, now_selected: window.surveyData.drop_selections });
   if (count > 0) markAnswered('drop_ranking');
 }
 
-/* ===== Q2 — Build your shirt (interactive mockup builder) ===== */
-const BUILDER_ARTWORKS = {
-  C01: { src: 'conor-images/c01-ali333nboi.png',         title: 'AL333NBOI',           artist: 'Conor Powell' },
-  C02: { src: 'conor-images/c02-childhood-nightmare.png', title: 'Childhood Nightmare', artist: 'Conor Powell' },
-  C03: { src: 'conor-images/c03-da-creepz.png',           title: 'Da Creepz',           artist: 'Conor Powell' },
-  C04: { src: 'conor-images/c04-greenguy.png',            title: 'Greenguy',            artist: 'Conor Powell' },
-  C05: { src: 'conor-images/c05-turqoise-peeps.png',      title: 'Turqoise Peeps',      artist: 'Conor Powell' },
-  P01: { src: 'peter-images/p01-abtu-and-anet.jpg',       title: 'Abtu and Anet',       artist: 'Peter Rapp' },
-  P02: { src: 'peter-images/p02-babi.jpg',                title: 'Babi',                artist: 'Peter Rapp' },
-  P03: { src: 'peter-images/p03-defatigable.jpg',         title: 'Defatigable',         artist: 'Peter Rapp' },
-  P04: { src: 'peter-images/p04-living-the-dream.jpg',    title: 'Living the Dream',    artist: 'Peter Rapp' },
-  P05: { src: 'peter-images/p05-the-unicorn.jpg',         title: 'The Unicorn',         artist: 'Peter Rapp' },
-  M01: { src: 'michelle-images/m01-unknown-artist.png',         title: 'Unknown Artist',      artist: 'Michelle Fine' },
-  M02: { src: 'michelle-images/m02-standing-figure-yellow.png', title: 'Standing Figure',     artist: 'Michelle Fine' },
-  M03: { src: 'michelle-images/m03-three-figures-city.png',     title: 'Three Figures, City', artist: 'Michelle Fine' },
-  M04: { src: 'michelle-images/m04-crowd-scene.png',            title: 'Crowd Scene',         artist: 'Michelle Fine' },
-  M05: { src: 'michelle-images/m05-crossed-arms.png',           title: 'Crossed Arms',        artist: 'Michelle Fine' }
-};
-const BUILDER_SHIRTS = {
-  T01: { src: 'shirt-mockups/t01-black-classic.png', label: 'Black · Classic', tone: 'dark'  },
-  T02: { src: 'shirt-mockups/t02-white-classic.png', label: 'White · Classic', tone: 'light' },
-  T03: { src: 'shirt-mockups/t03-white-cropped.png', label: 'White · Cropped', tone: 'light' },
-  T04: { src: 'shirt-mockups/t04-black-cropped.png', label: 'Black · Cropped', tone: 'dark'  }
+/* ===== Q2 — Shirt style preference (single select) ===== */
+const SHIRT_STYLES = {
+  T01: { label: 'Black · Classic', colour: 'black', fit: 'classic' },
+  T02: { label: 'White · Classic', colour: 'white', fit: 'classic' },
+  T03: { label: 'White · Cropped', colour: 'white', fit: 'cropped' },
+  T04: { label: 'Black · Cropped', colour: 'black', fit: 'cropped' }
 };
 
-function builderSelectArtwork(artId) {
-  if (!BUILDER_ARTWORKS[artId]) return;
-  document.querySelectorAll('.builder-thumb').forEach(t => t.classList.remove('selected'));
-  const btn = document.querySelector(`.builder-thumb[data-art="${artId}"]`);
-  if (btn) btn.classList.add('selected');
-  window.surveyData.builder_choice.artwork_id = artId;
-  builderUpdatePreview();
-  logEvent('builder_artwork_selected', { artwork: artId });
-  builderMaybeMarkAnswered();
-}
-
-function builderSelectShirt(shirtId) {
-  if (!BUILDER_SHIRTS[shirtId]) return;
-  document.querySelectorAll('.builder-shirt-thumb').forEach(t => t.classList.remove('selected'));
+function styleSelectShirt(shirtId) {
+  if (!SHIRT_STYLES[shirtId]) return;
+  document.querySelectorAll('.builder-shirt-thumb').forEach(t => {
+    t.classList.remove('selected');
+    t.setAttribute('aria-pressed', 'false');
+  });
   const btn = document.querySelector(`.builder-shirt-thumb[data-shirt="${shirtId}"]`);
-  if (btn) btn.classList.add('selected');
-  window.surveyData.builder_choice.shirt_id = shirtId;
-  builderUpdatePreview();
-  logEvent('builder_shirt_selected', { shirt: shirtId });
-  builderMaybeMarkAnswered();
-}
-
-function builderSelectIntent(intent) {
-  document.querySelectorAll('.intent-btn').forEach(b => b.classList.remove('selected'));
-  const btn = document.querySelector(`.intent-btn[data-intent="${intent}"]`);
-  if (btn) btn.classList.add('selected');
-  window.surveyData.builder_choice.buy_intent = intent;
-  logEvent('builder_intent_selected', { intent: intent, combo: window.surveyData.builder_choice });
-  markAnswered('builder_choice');
-}
-
-function builderUpdatePreview() {
-  const stage    = document.getElementById('builderStage');
-  const empty    = document.getElementById('builderEmpty');
-  const shirtImg = document.getElementById('builderShirtImg');
-  const artImg   = document.getElementById('builderArtImg');
-  const caption  = document.getElementById('builderCaption');
-  const intentEl = document.getElementById('builderIntent');
-  const artId    = window.surveyData.builder_choice.artwork_id;
-  const shirtId  = window.surveyData.builder_choice.shirt_id;
-
-  // Always hide the overlay artwork — we use pre-rendered composites for the final view.
-  artImg.hidden = true;
-
-  if (artId && shirtId) {
-    // Pre-rendered mockup: artwork already placed on shirt
-    shirtImg.src = `mockups/${artId}_${shirtId}.png`;
-    shirtImg.hidden = false;
-    empty.hidden = true;
-    const a = BUILDER_ARTWORKS[artId];
-    const s = BUILDER_SHIRTS[shirtId];
-    caption.textContent = `${a.title} · ${a.artist} · ${s.label}`;
-    intentEl.hidden = false;
-  } else if (shirtId) {
-    // Bare shirt while waiting for artwork
-    shirtImg.src = BUILDER_SHIRTS[shirtId].src;
-    shirtImg.hidden = false;
-    stage.setAttribute('data-shirt-tone', BUILDER_SHIRTS[shirtId].tone);
-    empty.hidden = false;
-    empty.innerHTML = '<p style="background:rgba(245,241,235,0.92);padding:14px 18px;">Now pick an artwork.</p>';
-    caption.textContent = `${BUILDER_SHIRTS[shirtId].label} · pick an artwork`;
-    intentEl.hidden = true;
-  } else if (artId) {
-    // Artwork picked but no shirt yet — show small art thumb
-    shirtImg.hidden = true;
-    empty.hidden = false;
-    const a = BUILDER_ARTWORKS[artId];
-    empty.innerHTML = `<p>${a.title}<br><span style="font-size:13px;letter-spacing:0.1em;text-transform:uppercase;color:var(--clay);font-family:var(--mono);font-style:normal;">Now pick a shirt</span></p>`;
-    caption.textContent = `${a.title} by ${a.artist}`;
-    intentEl.hidden = true;
-  } else {
-    // Empty state
-    shirtImg.hidden = true;
-    empty.hidden = false;
-    empty.innerHTML = '<p>Tap an artwork below.<br>Then a shirt.</p>';
-    caption.textContent = 'Your shirt, building…';
-    intentEl.hidden = true;
-  }
-}
-
-function builderMaybeMarkAnswered() {
-  // Counts as answered once both artwork and shirt are chosen — intent is bonus
-  if (window.surveyData.builder_choice.artwork_id && window.surveyData.builder_choice.shirt_id) {
-    markAnswered('builder_choice');
-  }
+  if (btn) { btn.classList.add('selected'); btn.setAttribute('aria-pressed', 'true'); }
+  window.surveyData.shirt_style_choice = shirtId;
+  const caption = document.getElementById('styleCaption');
+  if (caption) caption.textContent = `${SHIRT_STYLES[shirtId].label} — noted.`;
+  logEvent('shirt_style_selected', { style: shirtId, label: SHIRT_STYLES[shirtId].label });
+  markAnswered('shirt_style');
 }
 
 function rankPromise(promiseId, promiseLabel) {
@@ -4559,6 +4350,7 @@ function captureSignup(e) {
   fd.append('exit_nd_framing', window.surveyData.exit_gate?.nd_framing || '');
   fd.append('exit_discovery', window.surveyData.exit_gate?.discovery || '');
   fd.append('drop_selections', (window.surveyData.drop_selections || []).join(','));
+  fd.append('shirt_style_choice', window.surveyData.shirt_style_choice || '');
   fd.append('motivations_selected', (window.surveyData.motivations_selected || []).join(','));
   fd.append('motivation_other', window.surveyData.motivation_other || '');
   fd.append('retailer_other', window.surveyData.retailer_other || '');
