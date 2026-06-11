@@ -24,8 +24,10 @@ Chris Sullivan was deferred during this session — handled separately due to sc
 
 ## Survey structure (9 questions)
 
-1. **Drop ranking** — Tap artworks that appeal (15 works across 3 artists, multi-select)
-2. **Build your shirt** — Pick one artwork + one shirt + buy intent (interactive builder)
+*Q1/Q2 redesigned 11 June 2026 (client decision, supersedes the earlier "interactive builder" lock):*
+
+1. **Drop ranking** — Tap every **finished shirt** you'd choose (15 completed-shirt composites across 3 artists, multi-select). Conor + Peter shown on black classic (`{id}_T01`), Michelle on white classic (`{id}_T02`)
+2. **Shirt style** — Which shirt would you wear? Single-select: Black/White × Classic/Cropped, captured as `shirt_style_choice` (note: per-combo buy intent from the old builder no longer exists; buy intent is Q9 only)
 3. **Promise ranking** — Top 3 of 8 brand promises
 4. Retailers
 5. Motivation
@@ -66,10 +68,11 @@ Standalone copy at `logo.svg` in the repo root. Inline structure adds ~12KB per 
 
 ## Pending / open items
 
-- [ ] **Push the local commit** — `mockups/` + HANDOFF + .gitignore are committed locally but need pushing (no git credentials in Claude's sandbox). Until pushed, Q2 builder previews 404 on the live site.
-- [ ] **Replace AI mockups with pro designer's** — the 60 composites in `mockups/` are placeholders. **Decision (11 June): distribution waits for the pro renders.** When delivered, drop them in `mockups/` with the same filename pattern (`{artId}_{shirtId}.png`) — no code changes needed.
-- [ ] **End-to-end flow test** — after the push: run through the survey, confirm Netlify Forms captures the response (one Claude test submission will appear in results — ignore it)
-- [ ] **Distribution** — blocked on pro renders per decision above
+- [x] **End-to-end test passed (11 June 2026)** — full run-through on the live site: entry gate, all 9 questions, exit form, submission. No console errors. Q1/Q2 verified at desktop + 390px mobile. One test submission in Netlify Forms from `dustin+e2etest@warpspeed.agency` — **ignore it in results**.
+- [ ] **Replace AI mockups with pro designer's** — the 60 composites in `mockups/` are placeholders. **Decision (11 June): distribution waits for the pro renders.** When delivered, drop them in `mockups/` with the same filename pattern (`{artId}_{shirtId}.png`) — no code changes needed. Ask the designer for web-optimised files (current placeholders are ~500KB each; aim for ≤150KB or WebP).
+- [ ] **Client will supply new artwork** for the redesigned survey — incorporate when shared (Dustin, 11 June voice note).
+- [ ] **Distribution** — blocked on pro renders per decision above. Everything else is ready.
+- [ ] **Watch:** Promise B / Ad B still say "Designed by neurodivergent artists" — intentional (the exit gate tests ND framing), but flag against the May brand-board decision to lead with "independent artists" before any public-facing reuse.
 
 ## Files to know
 
