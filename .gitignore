@@ -11,3 +11,5 @@ Thumbs.db
 notes.md
 TODO.local
 index_v2.html
+*.bak
+*.bak-*

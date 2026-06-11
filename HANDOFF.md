@@ -1,0 +1,125 @@
+# Early or Late — Survey Handoff
+*Last updated: 11 June 2026*
+
+> **⚠️ Two clones exist.** GitHub Desktop has historically pointed at a *different* clone of this repo (location unknown), which pushed the logo commits ("Logo update", "Logo fix"). THIS folder is the one Claude works in. To avoid divergence: in GitHub Desktop use **Add Existing Repository** → this folder, and retire the other clone.
+
+## Quick context
+
+Early or Late is a contemporary art curation house launching as wearable artworks — heavyweight 265gsm cotton tees with artist prints, milled in Leicester, designed in Hackney. **Programme 01** is the validation survey at `https://earlyorlatevalidation.netlify.app`, collecting buy intent and artist/garment preferences from ~100 respondents before the public launch.
+
+## Repo & deploy
+
+- **Local path**: `~/Documents/Claude/Projects/Unicorn/Early-or-Late-Validation/`
+- **GitHub repo**: `Early-or-Late-Validation` (dustin560)
+- **Deploy**: Netlify auto-deploy on push to `main`
+- **Workflow**: Edit locally → GitHub Desktop commit → Push origin → Netlify deploys in ~30 seconds
+
+## Three artists in Programme 01
+
+- **Conor Powell** — launch artist, the first drop. 5 works in `conor-images/`
+- **Peter Rapp** — candidate for next range. 5 works in `peter-images/`. Selections locked: Firat's 4 picks (Abtu and Anet, Babi, Defatigable, Living the Dream) + The Unicorn
+- **Michelle Fine** — candidate for next range. 5 works in `michelle-images/`. Selections locked: consensus 5 from internal review (Unknown Artist, Standing Figure, Three Figures City, Crowd Scene, Crossed Arms)
+
+Chris Sullivan was deferred during this session — handled separately due to scheduling.
+
+## Survey structure (9 questions)
+
+1. **Drop ranking** — Tap artworks that appeal (15 works across 3 artists, multi-select)
+2. **Build your shirt** — Pick one artwork + one shirt + buy intent (interactive builder)
+3. **Promise ranking** — Top 3 of 8 brand promises
+4. Retailers
+5. Motivation
+6. Proposition
+7. Ad reactions
+8. Price
+9. Buy intent (general)
+
+Plus an entry gate (age + gender) and a final signup form (email).
+
+## Logo
+
+Updated this session — wordmark is now **TT Hoves Pro** rendered as **inline SVG vector paths** (extracted from the AI source via `pdftocairo`). No font loading required. 8 instances throughout the page, all self-contained.
+
+Shape reference (matches the source AI exactly):
+- `early` — solid bold sans
+- `or` — outlined sans
+- `LA` — outlined sans uppercase
+- `(t)` — outlined parens, outlined italic sans-serif `t`
+- `E` — outlined sans uppercase
+
+Standalone copy at `logo.svg` in the repo root. Inline structure adds ~12KB per use × **7 instances** (the earlier "8" was a miscount); file size is now ~254KB (was ~150KB). Acceptable trade-off for pixel-perfect rendering with no font dependency.
+
+**Verified live 11 June 2026** — desktop and 390px mobile width both render the wordmark correctly (solid bold `early`, outlined `or`, outlined `LA(t)E`, italic `t` in parens).
+
+## Recently completed (this session)
+
+- ✅ Three-artist programme integration (Conor + Peter + Michelle, Chris Sullivan deferred)
+- ✅ Q2 "Build your shirt" interactive builder
+- ✅ 60 AI-generated mockup composites in `mockups/` (~31MB) — **placeholder**, pro designer will replace
+- ✅ Mobile entry gate scroll fix (works on small screens)
+- ✅ Logo replacement (TT Hoves Pro inline vector paths, pixel-perfect to AI source)
+- ✅ Logo verified on live site, desktop + mobile (11 June 2026)
+- ✅ Deleted `index.html.bak-prelogo` and `mockups-test/` (11 June 2026)
+- ✅ Repo synced with origin; placeholder mockups committed locally (11 June 2026)
+
+**Correction:** there is no separate `artist-selection` Netlify form in the repo — only `early-or-late-survey`. The builder choice and all per-question answers are captured inside the `survey_data` JSON field of that form. (Earlier handoff claim was stale.)
+
+## Pending / open items
+
+- [ ] **Push the local commit** — `mockups/` + HANDOFF + .gitignore are committed locally but need pushing (no git credentials in Claude's sandbox). Until pushed, Q2 builder previews 404 on the live site.
+- [ ] **Replace AI mockups with pro designer's** — the 60 composites in `mockups/` are placeholders. **Decision (11 June): distribution waits for the pro renders.** When delivered, drop them in `mockups/` with the same filename pattern (`{artId}_{shirtId}.png`) — no code changes needed.
+- [ ] **End-to-end flow test** — after the push: run through the survey, confirm Netlify Forms captures the response (one Claude test submission will appear in results — ignore it)
+- [ ] **Distribution** — blocked on pro renders per decision above
+
+## Files to know
+
+| File / folder | What it is |
+|---|---|
+| `index.html` | Main survey (~254KB; large because logo SVG is inlined 8×) |
+| `logo.svg` | Clean standalone wordmark, also extracted from AI source |
+| `conor-images/` | 5 Conor Powell artworks (PNG) |
+| `peter-images/` | 5 Peter Rapp artworks (JPG, downloaded from Etsy/WordPress CDN) |
+| `michelle-images/` | 5 Michelle Fine artworks (PNG, from her Instagram via desktop save) |
+| `shirt-mockups/` | 4 blank shirt mockups (t01–t04: black/white × classic/cropped) |
+| `mockups/` | **60 AI-generated artwork×shirt composites — PLACEHOLDER**, replace with pro designer's renders |
+| `index_v1_backup.html` | Older backup, kept for reference |
+| `index.html.bak-prelogo` | Pre-logo-update backup (gitignored, safe to delete) |
+| `privacy.html` | Privacy policy page |
+| `netlify.toml` | Netlify config |
+| `.gitignore` | Excludes OS junk, editor configs, `*.bak*` |
+| `README.md` | Brief repo intro |
+
+## Voice / brand reminders
+
+- Curation house register, Hackney coded — not pure streetwear, not stuffy gallery
+- Bold Minimalism executed bravely (don't drift into institutional gallery quietness)
+- Voice: dry humour, em-dashes, British English, mixed rhythm, concrete specifics
+- Two-tone treatment in the brand colour system: bone, black, clay
+- For wordmark, default to the inline SVG paths — never substitute fonts
+
+## Decisions locked (this session, don't undo)
+
+- 3 artists × 5 works = 15 in the survey (no Chris Sullivan)
+- Conor leads the launch; Peter and Michelle framed as "could be next?"
+- Q2 = interactive "Build your shirt" with single-select buy intent (yes / maybe / not for me) per combo
+- Logo: TT Hoves Pro outlined treatment, no italic on `early`, outlined `or`, outlined italic sans-serif `t` inside outlined parens
+- Programme N°01 framing throughout
+- Mockup pipeline: pre-rendered composites (lookup via `mockups/{artId}_{shirtId}.png`), not live overlay
+
+## Live URL & ops
+
+- **Site**: https://earlyorlatevalidation.netlify.app
+- **Form submissions**: Netlify dashboard → Forms → `artist-selection` (artist preview) and the survey form
+- **Analytics**: Microsoft Clarity (consent-gated), tracking key `wqxnrfu5up`
+- **Storage key for consent**: `eol_consent_v1`
+
+## What to do next chat
+
+The likely finalisation tasks in priority order:
+
+1. Push pending commits via GitHub Desktop, verify the live site shows the new logo correctly on desktop + mobile
+2. Decide on the AI mockups — either replace with pro designer's now or revert Q2 to the simpler 4-shirt picker until pro renders arrive
+3. Run an end-to-end test, fix anything broken
+4. Wider distribution — share the link with the target ~100 respondents
+
+— Dustin · Unicorn United Ltd
