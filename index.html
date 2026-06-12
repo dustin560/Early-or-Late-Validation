@@ -1937,6 +1937,11 @@ textarea:focus-visible,
 .mt-64 { margin-top: 64px; }
 .mt-80 { margin-top: 80px; }
 
+
+/* ----- Sequential reveal: questions unlock one at a time ----- */
+.gated { display: none; }
+.gated.revealed { display: block; animation: gateFadeIn 0.6s ease both; }
+@keyframes gateFadeIn { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
 </style>
 </head>
 <body>
@@ -2459,7 +2464,7 @@ textarea:focus-visible,
 <!-- ============================================================
      SECTION III — THE GARMENT (Q2: shirt_style)
 ============================================================ -->
-<section class="section section--bone" id="garment">
+<section class="section section--bone gated" data-gate="1" id="garment">
   <div class="container">
 
     <div class="section-divider">
@@ -2519,7 +2524,7 @@ textarea:focus-visible,
 <!-- ============================================================
      STANDALONE PHRASE MOMENT — between III and IV
 ============================================================ -->
-<section class="phrase-moment section--bone">
+<section class="phrase-moment section--bone gated" data-gate="2">
   <div class="container">
     <span class="meta meta-clay">Programme N°01 · The promise</span>
     <p class="phrase-italic">Numbered.<br>Named.<br>Never made again.</p>
@@ -2529,7 +2534,7 @@ textarea:focus-visible,
 <!-- ============================================================
      SECTION IV — THE PROMISE (Q3: promise_ranking)
 ============================================================ -->
-<section class="section section--black">
+<section class="section section--black gated" data-gate="2">
   <div class="container">
     <div class="section-divider section-divider--dark">
       <div class="section-divider-top">
@@ -2621,7 +2626,7 @@ textarea:focus-visible,
 <!-- ============================================================
      WORDMARK PATTERN MOMENT
 ============================================================ -->
-<div class="wordmark-pattern">
+<div class="wordmark-pattern gated" data-gate="3">
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="98.5 108 261.5 34" preserveAspectRatio="xMidYMid meet" class="wordmark-pattern-mark" aria-hidden="true"><defs>
 <g>
 
@@ -2718,7 +2723,7 @@ textarea:focus-visible,
 <!-- ============================================================
      SECTION IV — RETAILERS (Q3)
 ============================================================ -->
-<section class="section section--stone" id="retailers">
+<section class="section section--stone gated" data-gate="3" id="retailers">
   <div class="container">
     <div class="section-divider">
       <div class="section-divider-top">
@@ -2819,7 +2824,7 @@ textarea:focus-visible,
 <!-- ============================================================
      SECTION V — MOTIVATION (Q4)
 ============================================================ -->
-<section class="section section--bone" id="motivation">
+<section class="section section--bone gated" data-gate="4" id="motivation">
   <div class="container">
     <div class="section-divider">
       <div class="section-divider-top">
@@ -2898,7 +2903,7 @@ textarea:focus-visible,
 <!-- ============================================================
      SECTION VI — PROPOSITION (Q5) — FULL-BLEED BLACK DECLARATION WALL
 ============================================================ -->
-<section class="section section--black">
+<section class="section section--black gated" data-gate="5">
   <div class="container">
     <div class="section-divider section-divider--dark">
       <div class="section-divider-top">
@@ -2963,7 +2968,7 @@ textarea:focus-visible,
 <!-- ============================================================
      SECTION VII — AD TEST (Q6)
 ============================================================ -->
-<section class="section section--white">
+<section class="section section--white gated" data-gate="6">
   <div class="container">
     <div class="section-divider">
       <div class="section-divider-top">
@@ -3573,7 +3578,7 @@ textarea:focus-visible,
 <!-- ============================================================
      SECTION VIII — PRICE (Q7)
 ============================================================ -->
-<section class="section section--stone">
+<section class="section section--stone gated" data-gate="7">
   <div class="container">
     <div class="section-divider">
       <div class="section-divider-top">
@@ -3613,7 +3618,7 @@ textarea:focus-visible,
 <!-- ============================================================
      SECTION IX — BUY INTENT (Q8)
 ============================================================ -->
-<section class="section section--bone" id="buy-intent">
+<section class="section section--bone gated" data-gate="8" id="buy-intent">
   <div class="container">
     <div class="section-divider">
       <div class="section-divider-top">
@@ -3661,7 +3666,7 @@ textarea:focus-visible,
 <!-- ============================================================
      COMPLETION SUMMARY
 ============================================================ -->
-<section class="section--bone" style="padding: 0 0 80px;">
+<section class="section--bone gated" data-gate="9" style="padding: 0 0 80px;">
   <div class="container">
     <div class="completion-summary">
       <p class="completion-summary-eyebrow">You're almost done</p>
@@ -4026,7 +4031,23 @@ function skipQuestion(qId) {
   }
 }
 
+const GATE_ORDER = ['drop_ranking','shirt_style','promise_ranking','retailers','motivation','proposition','ad_reactions','price','buy_intent'];
+function resolveGates() {
+  GATE_ORDER.forEach((qid, i) => {
+    const q = window.surveyData.questions[qid];
+    if (q && (q.state === 'answered' || q.state === 'skipped')) {
+      document.querySelectorAll(`[data-gate="${i + 1}"]`).forEach(el => {
+        if (!el.classList.contains('revealed')) {
+          el.classList.add('revealed');
+          logEvent('section_revealed', { gate: i + 1 });
+        }
+      });
+    }
+  });
+}
+
 function updateProgressUI() {
+  resolveGates();
   const qs = window.surveyData.questions;
   const total = Object.keys(qs).length;
   let answeredCount = 0;
