@@ -64,7 +64,10 @@ Standalone copy at `logo.svg` in the repo root. Inline structure adds ~12KB per 
 - ✅ Deleted `index.html.bak-prelogo` and `mockups-test/` (11 June 2026)
 - ✅ Repo synced with origin; placeholder mockups committed locally (11 June 2026)
 - ✅ Launch date copy updated everywhere: Jul/Aug 2026 → **Autumn 2026** (4 instances)
-- ✅ Q7 ad mockups now dynamically pull the user's first Q1 selection (`renders/{artId}.jpg`) into all 5 ad placeholders. Falls back to dashed placeholder if Q1 not yet answered. Hooks into `toggleSelection()` so the ads update as soon as a respondent picks anything in Section II.
+- ✅ Q7 ad mockups now dynamically pull the user's Q1 selections (`renders/{artId}.jpg`) into all 5 ad placeholders.
+  - **Each of the 5 ads shows a different selection in rank order**, cycling if the respondent picked fewer than 5 (e.g. 2 picks → ads show 1,2,1,2,1).
+  - **Ad background switched to bone** (was ink/black) — shirt renders read cleaner on the lighter ground.
+  - **Each ad's headline + sub now relate to the respondent's Q3 promise ranking.** Top-ranked promise → Ad A, second → Ad B, etc., cycling. 8 promise→copy variants (one per brand promise). Skipping or unanswered Q3 → defaults to the original static ad copy. Hooks: `rankPromise()` and `skipQuestion('promise_ranking')`.
 
 **Correction:** there is no separate `artist-selection` Netlify form in the repo — only `early-or-late-survey`. The builder choice and all per-question answers are captured inside the `survey_data` JSON field of that form. (Earlier handoff claim was stale.)
 

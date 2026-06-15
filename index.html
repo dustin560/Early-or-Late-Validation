@@ -1188,19 +1188,19 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: var(--ink);
+  background: var(--bone);
   padding: 32px;
-  border-left: 1px solid rgba(245, 241, 235, 0.18);
+  border-left: 1px solid rgba(26, 24, 20, 0.12);
 }
-@media (max-width: 720px) { .ad-product { border-left: 0; border-top: 1px solid rgba(245, 241, 235, 0.18); } }
+@media (max-width: 720px) { .ad-product { border-left: 0; border-top: 1px solid rgba(26, 24, 20, 0.12); } }
 .ad-product-placeholder {
   font-family: var(--mono);
   font-size: 11px;
   font-weight: 500;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: rgba(245, 241, 235, 0.55);
-  border: 1px dashed rgba(245, 241, 235, 0.3);
+  color: rgba(26, 24, 20, 0.55);
+  border: 1px dashed rgba(26, 24, 20, 0.3);
   padding: 40px 32px;
   text-align: center;
   line-height: 1.8;
@@ -1210,7 +1210,7 @@ body {
   font-style: italic;
   text-transform: none;
   letter-spacing: 0.02em;
-  color: var(--clay-warm);
+  color: var(--clay);
 }
 .ad-product-image {
   max-width: 100%;
@@ -1219,18 +1219,6 @@ body {
   height: auto;
   object-fit: contain;
   display: block;
-}
-/* On bone/white ad frames, give the image a clay tint placeholder for the dashed-border feel */
-.ad-frame--bone .ad-product-placeholder,
-.ad-frame--white .ad-product-placeholder,
-.ad-frame--stone .ad-product-placeholder {
-  color: rgba(26, 24, 20, 0.55);
-  border-color: rgba(26, 24, 20, 0.3);
-}
-.ad-frame--bone .ad-product-placeholder em,
-.ad-frame--white .ad-product-placeholder em,
-.ad-frame--stone .ad-product-placeholder em {
-  color: var(--clay);
 }
 .ad-frame--bone  { background: var(--bone);  color: var(--black); }
 .ad-frame--black { background: var(--black); color: var(--bone); }
@@ -3128,8 +3116,8 @@ textarea:focus-visible,
               <div class="ad-tag">N°001 · Jul / Aug</div>
             </div>
             <div>
-              <h3 class="ad-headline">Limited edition<br><em>wearable art</em>.</h3>
-              <p class="ad-sub">Each piece in collaboration with an independent artist. Fifty pieces. <em>Never made again</em>.</p>
+              <h3 class="ad-headline" id="adHeadlineA">Limited edition<br><em>wearable art</em>.</h3>
+              <p class="ad-sub" id="adSubA">Each piece in collaboration with an independent artist. Fifty pieces. <em>Never made again</em>.</p>
             </div>
             <div class="ad-row">
               <div class="ad-cta">See the drop</div>
@@ -3243,8 +3231,8 @@ textarea:focus-visible,
               <div class="ad-tag" style="color: var(--clay-warm);">Drop 01</div>
             </div>
             <div>
-              <h3 class="ad-headline">Wearable art made <em>to be kept</em>.</h3>
-              <p class="ad-sub">Designed by neurodivergent artists. Numbered, named, shared.</p>
+              <h3 class="ad-headline" id="adHeadlineB">Wearable art made <em>to be kept</em>.</h3>
+              <p class="ad-sub" id="adSubB">Designed by neurodivergent artists. Numbered, named, shared.</p>
             </div>
             <div class="ad-row">
               <div class="ad-cta" style="color: var(--clay-warm);">Read the story</div>
@@ -3358,8 +3346,8 @@ textarea:focus-visible,
               <div class="ad-tag" style="color: var(--bone);">Edition 50</div>
             </div>
             <div>
-              <h3 class="ad-headline" style="color: var(--bone);">Fifty of each.<br><em style="color: var(--ink);">Never made again.</em></h3>
-              <p class="ad-sub" style="color: rgba(245,245,243, 0.9);">Signed by the artist who made it.</p>
+              <h3 class="ad-headline" style="color: var(--bone);" id="adHeadlineC">Fifty of each.<br><em style="color: var(--ink);">Never made again.</em></h3>
+              <p class="ad-sub" style="color: rgba(245,245,243, 0.9);" id="adSubC">Signed by the artist who made it.</p>
             </div>
             <div class="ad-row">
               <div class="ad-cta" style="color: var(--bone);">Claim N°001</div>
@@ -3473,8 +3461,8 @@ textarea:focus-visible,
               <div class="ad-tag">Drop N°001</div>
             </div>
             <div>
-              <h3 class="ad-headline" style="max-width: 9ch;"><em>Art</em> you wear.</h3>
-              <p class="ad-sub">Made in London, with the artist named on the label.</p>
+              <h3 class="ad-headline" style="max-width: 9ch;" id="adHeadlineD"><em>Art</em> you wear.</h3>
+              <p class="ad-sub" id="adSubD">Made in London, with the artist named on the label.</p>
             </div>
             <div class="ad-row">
               <div class="ad-cta">Shop the drop</div>
@@ -3588,7 +3576,7 @@ textarea:focus-visible,
               <div class="ad-tag">The first drop</div>
             </div>
             <div>
-              <h3 class="ad-headline">Designed for <em>every body</em>. Soft cotton, wider neck, no labels.</h3>
+              <h3 class="ad-headline" id="adHeadlineE">Designed for <em>every body</em>. Soft cotton, wider neck, no labels.</h3>
             </div>
             <div class="ad-row">
               <div class="ad-cta">Get early access</div>
@@ -4062,6 +4050,8 @@ function skipQuestion(qId) {
   q.state = 'skipped';
   logEvent('question_skipped', { question: qId });
   updateProgressUI();
+  // Reset Q7 ad messaging to defaults when Q3 is skipped
+  if (qId === 'promise_ranking' && typeof updateAdMessaging === 'function') updateAdMessaging();
   const sections = Array.from(document.querySelectorAll('section'));
   const currentBadge = document.querySelector(`.q-status[data-q="${qId}"]`);
   if (currentBadge) {
@@ -4317,16 +4307,18 @@ function toggleSelection(shirtId) {
   updateAdProducts();
 }
 
-/* ===== Q7 — Show the user's selected shirt inside the ad mockups ===== */
+/* ===== Q7 — Show selected shirts inside the ad mockups =====
+   Each ad gets a different Q1 selection in rank order; cycles if fewer than 5.
+*/
 function updateAdProducts() {
   const selections = (window.surveyData && window.surveyData.drop_selections) || [];
-  const firstArt = selections.length > 0 ? selections[0] : null;
-  ['A','B','C','D','E'].forEach(letter => {
+  ['A','B','C','D','E'].forEach((letter, i) => {
     const img = document.getElementById('adProduct' + letter);
     const ph  = document.getElementById('adPlaceholder' + letter);
     if (!img || !ph) return;
-    if (firstArt) {
-      img.src = 'renders/' + firstArt + '.jpg';
+    if (selections.length > 0) {
+      const artId = selections[i % selections.length];
+      img.src = 'renders/' + artId + '.jpg';
       img.hidden = false;
       ph.style.display = 'none';
     } else {
@@ -4334,6 +4326,47 @@ function updateAdProducts() {
       img.hidden = true;
       ph.style.display = '';
     }
+  });
+}
+
+/* ===== Q7 — Ad messaging reflects the respondent's promise ranking (Q3) =====
+   Top-ranked promise → Ad A, second → Ad B, etc. Cycles if fewer than 5 ranked.
+   Skipped or empty Q3 → restore the default static ad copy.
+*/
+const PROMISE_AD_COPY = {
+  numbered:           { headline: '1 of 50.<br><em>Hand-numbered.</em>',          sub: 'Every garment numbered by hand. Yours has its own number.' },
+  named:              { headline: 'The artist\'s name<br><em>lives on it</em>.',  sub: 'Their work, their name. You\'re wearing a credit.' },
+  shared:             { headline: 'Every sale,<br><em>shared</em>.',              sub: 'You buy the piece. The artist gets paid. Directly.' },
+  uk_made:            { headline: 'Designed and<br><em>made in London</em>.',     sub: 'Cotton milled in Leicester. Stitched in Hackney.' },
+  never_repeated:     { headline: 'Fifty pieces.<br><em>Never made again.</em>',  sub: 'When the drop closes, the drop is closed.' },
+  repaired_for_life:  { headline: 'Bring it back.<br><em>We fix it.</em>',        sub: 'Re-stitched, re-stamped, recorded on the line.' },
+  inclusive_design:   { headline: 'Made for<br><em>every body</em>.',             sub: '265gsm cotton. Wider neck. No labels at the back.' },
+  ethical_transparent:{ headline: 'See where every<br><em>penny goes</em>.',      sub: 'Cotton, cut, print, artist\'s share. No greenwash.' }
+};
+const AD_DEFAULTS = {
+  A: { headline: 'Limited edition<br><em>wearable art</em>.',  sub: 'Each piece in collaboration with an independent artist. Fifty pieces. <em>Never made again</em>.' },
+  B: { headline: 'Wearable art made <em>to be kept</em>.',     sub: 'Designed by neurodivergent artists. Numbered, named, shared.' },
+  C: { headline: 'Fifty of each.<br><em>Never made again.</em>', sub: 'Signed by the artist who made it.' },
+  D: { headline: '<em>Art</em> you wear.',                     sub: 'Made in London, with the artist named on the label.' },
+  E: { headline: 'Designed for <em>every body</em>. Soft cotton, wider neck, no labels.', sub: null }
+};
+function updateAdMessaging() {
+  const ranking = (window.surveyData && window.surveyData.promise_ranking) || {};
+  const rankedSlots = Object.keys(ranking).sort((a, b) => parseInt(a) - parseInt(b));
+  const orderedPromises = rankedSlots.map(k => ranking[k]).filter(Boolean);
+  ['A','B','C','D','E'].forEach((letter, i) => {
+    const hEl = document.getElementById('adHeadline' + letter);
+    const sEl = document.getElementById('adSub' + letter);
+    if (!hEl) return;
+    let copy;
+    if (orderedPromises.length > 0) {
+      const promiseId = orderedPromises[i % orderedPromises.length];
+      copy = PROMISE_AD_COPY[promiseId] || AD_DEFAULTS[letter];
+    } else {
+      copy = AD_DEFAULTS[letter];
+    }
+    hEl.innerHTML = copy.headline;
+    if (sEl && copy.sub != null) sEl.innerHTML = copy.sub;
   });
 }
 
@@ -4368,6 +4401,7 @@ function rankPromise(promiseId, promiseLabel) {
   }, 'Tap a promise above');
   logEvent('promise_ranked', { ranking: { ...window.surveyData.promise_ranking } });
   if (Object.keys(window.surveyData.promise_ranking).length > 0) markAnswered('promise_ranking');
+  updateAdMessaging();
 }
 
 function updateRankUI(itemSelector, dataAttr, ranking, trackerSelector, labelFn, emptyLabel) {
