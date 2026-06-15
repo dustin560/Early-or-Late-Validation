@@ -1197,13 +1197,40 @@ body {
   font-family: var(--mono);
   font-size: 11px;
   font-weight: 500;
-  letter-spacing: 0.2em;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
   color: rgba(245, 241, 235, 0.55);
   border: 1px dashed rgba(245, 241, 235, 0.3);
-  padding: 56px 64px;
+  padding: 40px 32px;
   text-align: center;
   line-height: 1.8;
+}
+.ad-product-placeholder em {
+  font-family: var(--serif);
+  font-style: italic;
+  text-transform: none;
+  letter-spacing: 0.02em;
+  color: var(--clay-warm);
+}
+.ad-product-image {
+  max-width: 100%;
+  max-height: 380px;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  display: block;
+}
+/* On bone/white ad frames, give the image a clay tint placeholder for the dashed-border feel */
+.ad-frame--bone .ad-product-placeholder,
+.ad-frame--white .ad-product-placeholder,
+.ad-frame--stone .ad-product-placeholder {
+  color: rgba(26, 24, 20, 0.55);
+  border-color: rgba(26, 24, 20, 0.3);
+}
+.ad-frame--bone .ad-product-placeholder em,
+.ad-frame--white .ad-product-placeholder em,
+.ad-frame--stone .ad-product-placeholder em {
+  color: var(--clay);
 }
 .ad-frame--bone  { background: var(--bone);  color: var(--black); }
 .ad-frame--black { background: var(--black); color: var(--bone); }
@@ -3110,7 +3137,7 @@ textarea:focus-visible,
             </div>
           </div>
           <div class="ad-product">
-            <div class="ad-product-placeholder">Product<br>imagery<br>placeholder</div>
+            <div class="ad-product-placeholder" id="adPlaceholderA">Pick a shirt in <em>Section II</em><br>to see it in this ad</div><img class="ad-product-image" id="adProductA" alt="Your selected art-shirt" hidden>
           </div>
         </div>
         <div class="ad-label-row">Ad A · Promise A</div>
@@ -3221,11 +3248,11 @@ textarea:focus-visible,
             </div>
             <div class="ad-row">
               <div class="ad-cta" style="color: var(--clay-warm);">Read the story</div>
-              <div class="ad-spec">N°001 · Jul–Aug 2026</div>
+              <div class="ad-spec">N°001 · Autumn 2026</div>
             </div>
           </div>
           <div class="ad-product">
-            <div class="ad-product-placeholder">Product<br>imagery<br>placeholder</div>
+            <div class="ad-product-placeholder" id="adPlaceholderB">Pick a shirt in <em>Section II</em><br>to see it in this ad</div><img class="ad-product-image" id="adProductB" alt="Your selected art-shirt" hidden>
           </div>
         </div>
         <div class="ad-label-row">Ad B · Promise B</div>
@@ -3336,11 +3363,11 @@ textarea:focus-visible,
             </div>
             <div class="ad-row">
               <div class="ad-cta" style="color: var(--bone);">Claim N°001</div>
-              <div class="ad-spec" style="color: rgba(245,245,243, 0.7);">UK · Jul–Aug 2026</div>
+              <div class="ad-spec" style="color: rgba(245,245,243, 0.7);">UK · Autumn 2026</div>
             </div>
           </div>
           <div class="ad-product">
-            <div class="ad-product-placeholder">Product<br>imagery<br>placeholder</div>
+            <div class="ad-product-placeholder" id="adPlaceholderC">Pick a shirt in <em>Section II</em><br>to see it in this ad</div><img class="ad-product-image" id="adProductC" alt="Your selected art-shirt" hidden>
           </div>
         </div>
         <div class="ad-label-row">Ad C · Promise C</div>
@@ -3455,7 +3482,7 @@ textarea:focus-visible,
             </div>
           </div>
           <div class="ad-product">
-            <div class="ad-product-placeholder">Product<br>imagery<br>placeholder</div>
+            <div class="ad-product-placeholder" id="adPlaceholderD">Pick a shirt in <em>Section II</em><br>to see it in this ad</div><img class="ad-product-image" id="adProductD" alt="Your selected art-shirt" hidden>
           </div>
         </div>
         <div class="ad-label-row">Ad D · Promise D</div>
@@ -3569,7 +3596,7 @@ textarea:focus-visible,
             </div>
           </div>
           <div class="ad-product">
-            <div class="ad-product-placeholder">Product<br>imagery<br>placeholder</div>
+            <div class="ad-product-placeholder" id="adPlaceholderE">Pick a shirt in <em>Section II</em><br>to see it in this ad</div><img class="ad-product-image" id="adProductE" alt="Your selected art-shirt" hidden>
           </div>
         </div>
         <div class="ad-label-row">Ad E · Promise E</div>
@@ -3645,7 +3672,7 @@ textarea:focus-visible,
       </div>
     </div>
 
-    <p class="body">A signed, numbered piece of wearable art. Made in London. £140–160. Drop launches Jul/Aug 2026. Be honest — there's no wrong answer.</p>
+    <p class="body">A signed, numbered piece of wearable art. Made in London. £140–160. Drop launches Autumn 2026. Be honest — there's no wrong answer.</p>
 
     <div class="action-prompt">
       <span class="action-prompt-arrow">↓</span>
@@ -3875,7 +3902,7 @@ textarea:focus-visible,
           <a href="/privacy.html">Privacy &amp; cookies</a>
           <a href="#" onclick="event.preventDefault(); revokeConsent();">Change cookie choice</a>
         </div>
-        <div>Unicorn United Ltd · Programme N°01 · Jul–Aug 2026</div>
+        <div>Unicorn United Ltd · Programme N°01 · Autumn 2026</div>
         <div style="color: var(--clay-warm); margin-top: 6px;">Hackney · London · Est. 2026</div>
       </div>
     </div>
@@ -4287,6 +4314,27 @@ function toggleSelection(shirtId) {
   }
   logEvent('shirt_toggled', { shirt: shirtId, now_selected: window.surveyData.drop_selections });
   if (count > 0) markAnswered('drop_ranking');
+  updateAdProducts();
+}
+
+/* ===== Q7 — Show the user's selected shirt inside the ad mockups ===== */
+function updateAdProducts() {
+  const selections = (window.surveyData && window.surveyData.drop_selections) || [];
+  const firstArt = selections.length > 0 ? selections[0] : null;
+  ['A','B','C','D','E'].forEach(letter => {
+    const img = document.getElementById('adProduct' + letter);
+    const ph  = document.getElementById('adPlaceholder' + letter);
+    if (!img || !ph) return;
+    if (firstArt) {
+      img.src = 'renders/' + firstArt + '.jpg';
+      img.hidden = false;
+      ph.style.display = 'none';
+    } else {
+      img.removeAttribute('src');
+      img.hidden = true;
+      ph.style.display = '';
+    }
+  });
 }
 
 /* ===== Q2 — Shirt style preference (single select) ===== */

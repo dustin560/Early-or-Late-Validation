@@ -63,6 +63,8 @@ Standalone copy at `logo.svg` in the repo root. Inline structure adds ~12KB per 
 - ✅ Logo verified on live site, desktop + mobile (11 June 2026)
 - ✅ Deleted `index.html.bak-prelogo` and `mockups-test/` (11 June 2026)
 - ✅ Repo synced with origin; placeholder mockups committed locally (11 June 2026)
+- ✅ Launch date copy updated everywhere: Jul/Aug 2026 → **Autumn 2026** (4 instances)
+- ✅ Q7 ad mockups now dynamically pull the user's first Q1 selection (`renders/{artId}.jpg`) into all 5 ad placeholders. Falls back to dashed placeholder if Q1 not yet answered. Hooks into `toggleSelection()` so the ads update as soon as a respondent picks anything in Section II.
 
 **Correction:** there is no separate `artist-selection` Netlify form in the repo — only `early-or-late-survey`. The builder choice and all per-question answers are captured inside the `survey_data` JSON field of that form. (Earlier handoff claim was stale.)
 
@@ -71,6 +73,7 @@ Standalone copy at `logo.svg` in the repo root. Inline structure adds ~12KB per 
 - [x] **End-to-end test passed (11 June 2026)** — full run-through on the live site: entry gate, all 9 questions, exit form, submission. No console errors. Q1/Q2 verified at desktop + 390px mobile. One test submission in Netlify Forms from `dustin+e2etest@warpspeed.agency` — **ignore it in results**.
 - [ ] **Replace AI mockups with pro designer's** — the 60 composites in `mockups/` are placeholders. **Decision (11 June): distribution waits for the pro renders.** When delivered, drop them in `mockups/` with the same filename pattern (`{artId}_{shirtId}.png`) — no code changes needed. Ask the designer for web-optimised files (current placeholders are ~500KB each; aim for ≤150KB or WebP).
 - [ ] **Client will supply new artwork** for the redesigned survey — incorporate when shared (Dustin, 11 June voice note).
+- [ ] **Drop in new Defatigable render** — Dustin shared a finished pro-designer mockup of Peter Rapp's *Defatigable* on a white classic shirt. Save it to `renders/P03.jpg` (replacing the current file). It'll automatically appear in Q1 and (because of the new Q7 hook) in the ad mockups once a respondent selects it.
 - [ ] **Distribution** — blocked on pro renders per decision above. Everything else is ready.
 - [ ] **Watch:** Promise B / Ad B still say "Designed by neurodivergent artists" — intentional (the exit gate tests ND framing), but flag against the May brand-board decision to lead with "independent artists" before any public-facing reuse.
 
