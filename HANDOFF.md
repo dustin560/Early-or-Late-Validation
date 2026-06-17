@@ -75,6 +75,7 @@ Standalone copy at `logo.svg` in the repo root. Inline structure adds ~12KB per 
   - Updated Q3 heading: "Eight things…" → "**Seven things that hold for every piece**"
   - Removed the **£148 price tag** from all 15 Q1 shirt cards (price is captured later in Q8)
   - Card backgrounds (`.shirt-placeholder`, `.ad-product`) changed from bone → **stone** (#D8D2C8) so white shirts have visible edges against the page
+  - 10 of the 15 render JPEGs (C01, C02, C04, M02, M03, M05, P02–P05) had a baked-in **lavender** background that overrode the CSS card bg. Retinted to a warm neutral (RGB 234, 232, 227) matching the Abtu (P01) reference. Originals preserved in `renders/.bak/` (gitignored). Minor JPEG-edge speckles remain but are invisible at thumbnail size.
 
 **Correction:** there is no separate `artist-selection` Netlify form in the repo — only `early-or-late-survey`. The builder choice and all per-question answers are captured inside the `survey_data` JSON field of that form. (Earlier handoff claim was stale.)
 
