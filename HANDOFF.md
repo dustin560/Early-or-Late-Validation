@@ -67,7 +67,14 @@ Standalone copy at `logo.svg` in the repo root. Inline structure adds ~12KB per 
 - ✅ Q7 ad mockups now dynamically pull the user's Q1 selections (`renders/{artId}.jpg`) into all 5 ad placeholders.
   - **Each of the 5 ads shows a different selection in rank order**, cycling if the respondent picked fewer than 5 (e.g. 2 picks → ads show 1,2,1,2,1).
   - **Ad background switched to bone** (was ink/black) — shirt renders read cleaner on the lighter ground.
-  - **Each ad's headline + sub now relate to the respondent's Q3 promise ranking.** Top-ranked promise → Ad A, second → Ad B, etc., cycling. 8 promise→copy variants (one per brand promise). Skipping or unanswered Q3 → defaults to the original static ad copy. Hooks: `rankPromise()` and `skipQuestion('promise_ranking')`.
+  - **Each ad's headline + sub now relate to the respondent's Q3 promise ranking.** Top-ranked promise → Ad A, second → Ad B, etc., cycling. 7 promise→copy variants (one per brand promise). Skipping or unanswered Q3 → defaults to the original static ad copy. Hooks: `rankPromise()` and `skipQuestion('promise_ranking')`.
+- ✅ Final copy & layout pass (11 June 2026):
+  - "Two-fifty" → "**250**" (3 instances)
+  - "UK cotton" → "**organic cotton**"
+  - Removed the **Repaired for life** promise — now 7 promises in Q3 (renumbered N°01–N°07). Removed corresponding entry from `PROMISE_AD_COPY` JS.
+  - Updated Q3 heading: "Eight things…" → "**Seven things that hold for every piece**"
+  - Removed the **£148 price tag** from all 15 Q1 shirt cards (price is captured later in Q8)
+  - Card backgrounds (`.shirt-placeholder`, `.ad-product`) changed from bone → **stone** (#D8D2C8) so white shirts have visible edges against the page
 
 **Correction:** there is no separate `artist-selection` Netlify form in the repo — only `early-or-late-survey`. The builder choice and all per-question answers are captured inside the `survey_data` JSON field of that form. (Earlier handoff claim was stale.)
 
