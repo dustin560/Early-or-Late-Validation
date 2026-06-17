@@ -2046,6 +2046,12 @@ textarea:focus-visible,
   <input type="text" name="motivation_other" />
   <input type="text" name="retailer_other" />
   <textarea name="survey_data"></textarea>
+  <input type="text" name="utm_source" />
+  <input type="text" name="utm_medium" />
+  <input type="text" name="utm_campaign" />
+  <input type="text" name="utm_content" />
+  <input type="text" name="from_cohort" />
+  <input type="text" name="referrer" />
   <input type="text" name="bot-field" />
 </form>
 
@@ -2178,7 +2184,7 @@ textarea:focus-visible,
         Fifteen artworks. <em>Five will be made.</em> 250 pieces by Conor Powell, Peter Rapp and Michelle Fine. Designed and <em>made in London</em>, milled in Leicester.
       </p>
       <p class="body-l">
-        Not fast fashion. <em>Forward fashion</em> — independent, inclusive, made to last. The first programme opens July to August 2026. This page is the curatorial preview.
+        Not fast fashion. <em>Forward fashion</em> — independent, inclusive, made to last. The first programme opens Autumn 2026. This page is the curatorial preview.
       </p>
     </div>
 
@@ -2196,7 +2202,7 @@ textarea:focus-visible,
       <div class="hero-spec-item"><span class="meta">Edition</span><span class="val">250 pieces</span></div>
       <div class="hero-spec-item"><span class="meta">Located</span><span class="val"><em>Hackney</em> London</span></div>
       <div class="hero-spec-item"><span class="meta">Made in</span><span class="val">London</span></div>
-      <div class="hero-spec-item"><span class="meta">Opens</span><span class="val">Jul — Aug '26</span></div>
+      <div class="hero-spec-item"><span class="meta">Opens</span><span class="val">Autumn '26</span></div>
     </div>
 
   </div>
@@ -3107,7 +3113,7 @@ textarea:focus-visible,
   <use href="#glyph1-6" x="328.773" y="134.7637"/>
 </g>
 </svg></div>
-              <div class="ad-tag">N°001 · Jul / Aug</div>
+              <div class="ad-tag">N°001 · Autumn 2026</div>
             </div>
             <div>
               <h3 class="ad-headline" id="adHeadlineA">Limited edition<br><em>wearable art</em>.</h3>
@@ -3721,7 +3727,7 @@ textarea:focus-visible,
           Three quick fields, then your email. The first drop is fifteen artworks by <em style="color: var(--clay-warm);">Conor Powell, Peter Rapp</em> and <em style="color: var(--clay-warm);">Michelle Fine</em> — five artworks will be chosen, 250 pieces in total — and you'll see it forty-eight hours before public launch.
         </p>
         <p class="body" style="color: rgba(245,241,235,0.55); margin-top: 32px;">
-          Programme 01 opens July to August 2026. Hackney, London.
+          Programme 01 opens Autumn 2026. Hackney, London.
         </p>
       </div>
 
@@ -3990,6 +3996,19 @@ window.surveyData = {
   arrived_at: new Date().toISOString(),
   consent_state: localStorage.getItem(CONSENT_KEY) || 'pending',
   variant_shown: 'A',
+  attribution: (function() {
+    try {
+      const p = new URLSearchParams(window.location.search);
+      return {
+        utm_source:   p.get('utm_source')   || null,
+        utm_medium:   p.get('utm_medium')   || null,
+        utm_campaign: p.get('utm_campaign') || null,
+        utm_content:  p.get('utm_content')  || null,
+        from:         p.get('from')         || null,
+        referrer:     document.referrer     || null
+      };
+    } catch (e) { return {}; }
+  })(),
   proposition_choice: null,
   ad_reactions: {},
   drop_ranking: {},
@@ -4465,6 +4484,13 @@ function captureSignup(e) {
   fd.append('motivation_other', window.surveyData.motivation_other || '');
   fd.append('retailer_other', window.surveyData.retailer_other || '');
   fd.append('survey_data', JSON.stringify(window.surveyData));
+  const attr = window.surveyData.attribution || {};
+  fd.append('utm_source',   attr.utm_source   || '');
+  fd.append('utm_medium',   attr.utm_medium   || '');
+  fd.append('utm_campaign', attr.utm_campaign || '');
+  fd.append('utm_content',  attr.utm_content  || '');
+  fd.append('from_cohort',  attr.from         || '');
+  fd.append('referrer',     attr.referrer     || '');
   fd.append('bot-field', '');
 
   const submitBtn = form.querySelector('button[type="submit"]');
@@ -4493,7 +4519,7 @@ function captureSignup(e) {
 function showSubmissionSuccess(form, withWarning = false) {
   const message = withWarning
     ? 'You\'re on the list — though we hit a network blip while sending. Drop us a line at hello@early-or-late.com if you don\'t hear back.'
-    : 'You\'re on the list. We\'ll see you in July or August.';
+    : 'You\'re on the list. We\'ll see you in autumn.';
   form.innerHTML = `
     <div style="text-align:left;padding:48px 0;border-top:6px solid var(--clay);border-bottom:6px solid var(--clay);">
       <p style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--clay-warm);margin-bottom:24px;">Thank you</p>

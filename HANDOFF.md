@@ -76,6 +76,9 @@ Standalone copy at `logo.svg` in the repo root. Inline structure adds ~12KB per 
   - Removed the **£148 price tag** from all 15 Q1 shirt cards (price is captured later in Q8)
   - Card backgrounds (`.shirt-placeholder`, `.ad-product`) changed from bone → **stone** (#D8D2C8) so white shirts have visible edges against the page
   - 10 of the 15 render JPEGs (C01, C02, C04, M02, M03, M05, P02–P05) had a baked-in **lavender** background that overrode the CSS card bg. Retinted to a warm neutral (RGB 234, 232, 227) matching the Abtu (P01) reference. Originals preserved in `renders/.bak/` (gitignored). Minor JPEG-edge speckles remain but are invisible at thumbnail size.
+  - All remaining `July / July-August / Jul–Aug '26` date references converted to **Autumn 2026** / `Autumn '26`. Survey submission confirmation also reads "We'll see you in autumn."
+  - **Backend verified end-to-end** — Netlify Forms hidden form is correctly named `early-or-late-survey` with all field declarations. JS POSTs to `/` with `application/x-www-form-urlencoded` and includes `form-name` field. Honeypot field present. The full survey state is captured in the `survey_data` JSON field for deep analysis.
+  - **Attribution capture added.** URL params (`utm_source`, `utm_medium`, `utm_campaign`, `utm_content`, `from`) and `document.referrer` are captured on page load into `surveyData.attribution`, and submitted as their own fields (`utm_source`, `utm_medium`, `utm_campaign`, `utm_content`, `from_cohort`, `referrer`) in addition to the `survey_data` JSON. Use these for channel-level attribution in the Netlify Forms CSV.
 
 **Correction:** there is no separate `artist-selection` Netlify form in the repo — only `early-or-late-survey`. The builder choice and all per-question answers are captured inside the `survey_data` JSON field of that form. (Earlier handoff claim was stale.)
 
