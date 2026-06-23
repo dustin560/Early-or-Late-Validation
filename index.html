@@ -3,6 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light only">
+<meta name="supported-color-schemes" content="light">
 <title>Early or Late · Wearable works by independent artists · Hackney, London</title>
 <meta name="description" content="A curated collection of wearable artworks by independent artists. Hackney, London. Programme 01 launches Autumn 2026.">
 
@@ -33,6 +35,7 @@
 ============================================================ */
 
 :root {
+  color-scheme: light only;
   --black: #0A0A0A;
   --ink:   #1A1814;
   --white: #F5F5F3;
@@ -1311,23 +1314,39 @@ body {
   line-height: 1.6;
   text-transform: uppercase;
 }
-.ad-reactions { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; margin-top: 0; border: 1px solid var(--black); border-top: 0; }
+.ad-reactions {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0;
+  margin-top: 0;
+  border: 1px solid #0A0A0A;
+  border-top: 0;
+  background-color: #F5F5F3;
+}
 .ad-reaction {
-  background: var(--white);
+  background-color: #F5F5F3 !important;
+  background: #F5F5F3;
   border: 0;
-  border-right: 1px solid var(--black);
+  border-right: 1px solid #0A0A0A;
   padding: 22px 18px;
   font-family: var(--sans);
   font-size: 14px;
   font-weight: 600;
-  color: var(--black);
+  color: #0A0A0A !important;
   cursor: pointer;
   text-align: left;
   line-height: 1.3;
+  -webkit-appearance: none;
+  appearance: none;
+  -webkit-tap-highlight-color: rgba(162, 103, 76, 0.2);
 }
 .ad-reaction:last-child { border-right: 0; }
-.ad-reaction:hover { background: var(--bone); }
-.ad-reaction.selected { background: var(--clay); color: var(--bone); }
+.ad-reaction:hover { background: #EAE6DF; background-color: #EAE6DF !important; }
+.ad-reaction.selected {
+  background-color: #A2674C !important;
+  background: #A2674C;
+  color: #EAE6DF !important;
+}
 .ad-reaction-icon {
   display: block;
   font-family: var(--mono);
@@ -1336,9 +1355,19 @@ body {
   letter-spacing: 0.22em;
   text-transform: uppercase;
   margin-bottom: 8px;
-  color: var(--clay);
+  color: #A2674C;
 }
-.ad-reaction.selected .ad-reaction-icon { color: var(--bone); }
+.ad-reaction.selected .ad-reaction-icon { color: #EAE6DF; }
+@media (max-width: 520px) {
+  .ad-reactions { grid-template-columns: 1fr; }
+  .ad-reaction {
+    border-right: 0;
+    border-bottom: 1px solid #0A0A0A;
+    padding: 16px 18px;
+  }
+  .ad-reaction:last-child { border-bottom: 0; }
+  .ad-reaction-icon { display: inline-block; margin-right: 10px; margin-bottom: 0; }
+}
 .ad-label-row {
   font-family: var(--mono);
   font-size: 10px;
@@ -2320,7 +2349,7 @@ textarea:focus-visible,
 
     <div class="hero-label-row">
       <div class="hero-label-left">
-        <span class="meta meta-clay">I.</span>
+        
         <span class="meta">Programme N°01</span>
         <span class="meta">Curatorial Preview</span>
       </div>
@@ -2374,7 +2403,7 @@ textarea:focus-visible,
         <span class="section-divider-right q-status" data-q="drop_ranking">Question 1 of 9</span>
       </div>
       <div class="section-divider-numhead">
-        <span class="section-numeral">II.</span>
+        <span class="section-numeral">I.</span>
         <h2 class="h-section" style="max-width:14ch;">
           Fifteen artworks.<br><em>Five get made.</em>
         </h2>
@@ -2662,7 +2691,7 @@ textarea:focus-visible,
         <span class="section-divider-right q-status" data-q="shirt_style">Question 2 of 9</span>
       </div>
       <div class="section-divider-numhead">
-        <span class="section-numeral">III.</span>
+        <span class="section-numeral">II.</span>
         <h2 class="h-section" style="max-width:18ch;">
           Which shirt <em>would you wear</em>?
         </h2>
@@ -2731,7 +2760,7 @@ textarea:focus-visible,
         <span class="section-divider-right q-status" data-q="promise_ranking">Question 3 of 9</span>
       </div>
       <div class="section-divider-numhead">
-        <span class="section-numeral">IV.</span>
+        <span class="section-numeral">III.</span>
         <h2 class="h-section" style="color: var(--bone); max-width:18ch;">Seven things that hold for <em>every piece</em>.</h2>
       </div>
     </div>
@@ -2914,7 +2943,7 @@ textarea:focus-visible,
         <span class="section-divider-right q-status" data-q="retailers">Question 4 of 9</span>
       </div>
       <div class="section-divider-numhead">
-        <span class="section-numeral">V.</span>
+        <span class="section-numeral">IV.</span>
         <h2 class="h-section" style="max-width:18ch;">If this brand existed, where would feel like <em>home</em>?</h2>
       </div>
     </div>
@@ -3015,7 +3044,7 @@ textarea:focus-visible,
         <span class="section-divider-right q-status" data-q="motivation">Question 5 of 9</span>
       </div>
       <div class="section-divider-numhead">
-        <span class="section-numeral">VI.</span>
+        <span class="section-numeral">V.</span>
         <h2 class="h-section" style="max-width:20ch;">What would draw you to wear a piece <em>like this</em>?</h2>
       </div>
     </div>
@@ -3094,7 +3123,7 @@ textarea:focus-visible,
         <span class="section-divider-right q-status" data-q="proposition">Question 6 of 9</span>
       </div>
       <div class="section-divider-numhead">
-        <span class="section-numeral">VII.</span>
+        <span class="section-numeral">VI.</span>
         <h2 class="h-section" style="color:var(--bone); max-width:14ch;">Which promise speaks <em>loudest</em>?</h2>
       </div>
     </div>
@@ -3159,7 +3188,7 @@ textarea:focus-visible,
         <span class="section-divider-right q-status" data-q="ad_reactions">Question 7 of 9</span>
       </div>
       <div class="section-divider-numhead">
-        <span class="section-numeral">VIII.</span>
+        <span class="section-numeral">VII.</span>
         <h2 class="h-section" style="max-width:18ch;">Imagine you're <em>scrolling</em>. How would you react?</h2>
       </div>
     </div>
@@ -3769,7 +3798,7 @@ textarea:focus-visible,
         <span class="section-divider-right q-status" data-q="price">Question 8 of 9</span>
       </div>
       <div class="section-divider-numhead">
-        <span class="section-numeral">IX.</span>
+        <span class="section-numeral">VIII.</span>
         <h2 class="h-section" style="max-width:18ch;">What would you <em>expect</em> to pay?</h2>
       </div>
     </div>
@@ -3809,7 +3838,7 @@ textarea:focus-visible,
         <span class="section-divider-right q-status" data-q="buy_intent">Question 9 of 9</span>
       </div>
       <div class="section-divider-numhead">
-        <span class="section-numeral">X.</span>
+        <span class="section-numeral">IX.</span>
         <h2 class="h-section" style="max-width:18ch;">How likely are you to <em>actually</em> buy?</h2>
       </div>
     </div>
@@ -3870,7 +3899,7 @@ textarea:focus-visible,
         <span class="section-divider-right">Programme N°01</span>
       </div>
       <div class="section-divider-numhead">
-        <span class="section-numeral">XI.</span>
+        <span class="section-numeral">X.</span>
         <h2 class="h-section" style="color:var(--bone); max-width:14ch;">Send your answers. <em>Claim your spot.</em></h2>
       </div>
     </div>

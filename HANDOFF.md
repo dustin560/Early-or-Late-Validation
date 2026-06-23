@@ -1,5 +1,16 @@
 # Early or Late — Survey Handoff
-*Last updated: 11 June 2026*
+*Last updated: 23 June 2026*
+
+## 23 June 2026 — usability fixes from first test wave
+
+- **Roman numerals re-aligned to question numbers.** Was: II=Q1 … XI=signup (entry gate implicitly I.). Now: I=Q1, II=Q2, … IX=Q9, **X=signup**. The user feedback "XI is 11 and it is on question 10" was the trigger — numerals now match the question number 1:1 and the small "I." meta tag on the hero (which caused the offset) was removed.
+- **Q7 ad-reaction visibility on Android/Ecosia.** Root cause: forced auto-dark-mode rewriting the buttons to unreadable colours. Fixes applied:
+  - Added `<meta name="color-scheme" content="light only">` + `<meta name="supported-color-schemes" content="light">` in `<head>`, plus `color-scheme: light only;` on `:root`. Tells the browser to render in light mode and don't auto-invert.
+  - Hardened `.ad-reaction` CSS with **explicit hex** (`#F5F5F3` bg, `#0A0A0A` text) including `!important` on color/bg so a forced-dark stylesheet can't override them. Same on `.ad-reactions` container and `.selected` state.
+  - Added `-webkit-appearance: none` to neutralise browser-native button styling on Chromium-on-Android.
+  - **New mobile breakpoint** at `max-width: 520px`: the 3-column grid stacks vertically (1 column) with the icon inline next to the label. Stops cramped text on narrow phones.
+- Both clones (`Early-or-Late-Validation/` and `early-or-late-deploy/`) synced. Push from whichever one GitHub Desktop has wired up.
+
 
 > **⚠️ Two clones exist.** GitHub Desktop has historically pointed at a *different* clone of this repo (location unknown), which pushed the logo commits ("Logo update", "Logo fix"). THIS folder is the one Claude works in. To avoid divergence: in GitHub Desktop use **Add Existing Repository** → this folder, and retire the other clone.
 
