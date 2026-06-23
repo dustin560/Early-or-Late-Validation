@@ -27,9 +27,13 @@ Early or Late is a contemporary art curation house launching as wearable artwork
 
 ## Three artists in Programme 01
 
-- **Conor Powell** — launch artist, the first drop. 5 works in `conor-images/`
-- **Peter Rapp** — candidate for next range. 5 works in `peter-images/`. Selections locked: Firat's 4 picks (Abtu and Anet, Babi, Defatigable, Living the Dream) + The Unicorn
-- **Michelle Fine** — candidate for next range. 5 works in `michelle-images/`. Selections locked: consensus 5 from internal review (Unknown Artist, Standing Figure, Three Figures City, Crowd Scene, Crossed Arms)
+**15 finished shirts total in Q1, split unevenly** (corrected 23 June 2026 — earlier "5 each" was wrong):
+
+- **Conor Powell** — launch artist, the first drop. **6 finished shirts in survey** (C01–C06). Source artwork files: 5 in `conor-images/` (c01–c05); the sixth shirt (C06) uses an additional piece rendered into `renders/C06.jpg`.
+- **Peter Rapp** — candidate for next range. **5 finished shirts in survey** (P01–P05) from 5 source artworks in `peter-images/`. Firat's 4 picks (Abtu and Anet, Babi, Defatigable, Living the Dream) + The Unicorn.
+- **Michelle Fine** — candidate for next range. **4 finished shirts in survey** (M01, M02, M03, M05 — note M04 not rendered). Source artwork files: 5 in `michelle-images/` (m01–m05); only 4 made it through to render.
+
+Totals: 6 + 5 + 4 = 15 finished-shirt cards in Q1. The site copy says "fifteen artworks · five get made" — both correct. Never frame this as "5 per artist" in copy.
 
 Chris Sullivan was deferred during this session — handled separately due to scheduling.
 
