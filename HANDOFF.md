@@ -29,7 +29,7 @@ Early or Late is a contemporary art curation house launching as wearable artwork
 
 **15 finished shirts total in Q1, split unevenly** (corrected 23 June 2026 — earlier "5 each" was wrong):
 
-- **Conor Powell** — launch artist, the first drop. **6 finished shirts in survey** (C01–C06). Source artwork files: 5 in `conor-images/` (c01–c05); the sixth shirt (C06) uses an additional piece rendered into `renders/C06.jpg`.
+- **Conor Devlin-Powell** — launch artist, the first drop. **6 finished shirts in survey** (C01–C06). Source artwork files: 5 in `conor-images/` (c01–c05); the sixth shirt (C06) uses an additional piece rendered into `renders/C06.jpg`.
 - **Peter Rapp** — candidate for next range. **5 finished shirts in survey** (P01–P05) from 5 source artworks in `peter-images/`. Firat's 4 picks (Abtu and Anet, Babi, Defatigable, Living the Dream) + The Unicorn.
 - **Michelle Fine** — candidate for next range. **4 finished shirts in survey** (M01, M02, M03, M05 — note M04 not rendered). Source artwork files: 5 in `michelle-images/` (m01–m05); only 4 made it through to render.
 
@@ -116,7 +116,7 @@ Standalone copy at `logo.svg` in the repo root. Inline structure adds ~12KB per 
 |---|---|
 | `index.html` | Main survey (~254KB; large because logo SVG is inlined 8×) |
 | `logo.svg` | Clean standalone wordmark, also extracted from AI source |
-| `conor-images/` | 5 Conor Powell artworks (PNG) |
+| `conor-images/` | 5 Conor Devlin-Powell artworks (PNG) |
 | `peter-images/` | 5 Peter Rapp artworks (JPG, downloaded from Etsy/WordPress CDN) |
 | `michelle-images/` | 5 Michelle Fine artworks (PNG, from her Instagram via desktop save) |
 | `shirt-mockups/` | 4 blank shirt mockups (t01–t04: black/white × classic/cropped) |
