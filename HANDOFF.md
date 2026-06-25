@@ -1,5 +1,21 @@
 # Early or Late — Survey Handoff
-*Last updated: 23 June 2026*
+*Last updated: 25 June 2026*
+
+## 25 June 2026 — Peter Rapp removed from the programme
+
+**Decision:** Peter Rapp is out. Programme N°01 is now **two artists** (Conor Devlin-Powell + Michelle Fine) with **ten artworks total** — 6 Conor + 4 Michelle. "Five get made" still holds (5 of 10 chosen, 50 each, 250 total pieces).
+
+Survey changes (live in `index.html`, synced to both clones):
+- Entire `<!-- ===== PETER RAPP ===== -->` section removed from Q1.
+- All copy updated: "Fifteen artworks" → "Ten artworks" (3 places); "three artists" → "two artists" (2 places); "Drop: 5 of 15" → "Drop: 5 of 10"; signup footer copy + hero strap line updated to two-artist naming.
+- 10 shirt cards in Q1 (C01–C06 + M01, M02, M03, M05).
+
+**Distribution Sheet docx** also updated: Peter's table row removed and his name dropped from the footer signature.
+
+**Orphaned files (Dustin — please delete manually via Finder before next push):**
+- `peter-images/` (entire folder)
+- `renders/P01.jpg`, `renders/P02.jpg`, `renders/P03.jpg`, `renders/P04.jpg`, `renders/P05.jpg`
+- (`renders/.bak/P*.jpg` already gitignored — leave or delete, no impact)
 
 ## 23 June 2026 — usability fixes from first test wave
 
@@ -25,15 +41,14 @@ Early or Late is a contemporary art curation house launching as wearable artwork
 - **Deploy**: Netlify auto-deploy on push to `main`
 - **Workflow**: Edit locally → GitHub Desktop commit → Push origin → Netlify deploys in ~30 seconds
 
-## Three artists in Programme 01
+## Two artists in Programme 01
 
-**15 finished shirts total in Q1, split unevenly** (corrected 23 June 2026 — earlier "5 each" was wrong):
+**10 finished shirts total in Q1** (Peter Rapp removed 25 June 2026):
 
-- **Conor Devlin-Powell** — launch artist, the first drop. **6 finished shirts in survey** (C01–C06). Source artwork files: 5 in `conor-images/` (c01–c05); the sixth shirt (C06) uses an additional piece rendered into `renders/C06.jpg`.
-- **Peter Rapp** — candidate for next range. **5 finished shirts in survey** (P01–P05) from 5 source artworks in `peter-images/`. Firat's 4 picks (Abtu and Anet, Babi, Defatigable, Living the Dream) + The Unicorn.
+- **Conor Devlin-Powell** — launch artist. **6 finished shirts in survey** (C01–C06). Source artwork files: 5 in `conor-images/` (c01–c05); the sixth shirt (C06) uses an additional piece rendered into `renders/C06.jpg`.
 - **Michelle Fine** — candidate for next range. **4 finished shirts in survey** (M01, M02, M03, M05 — note M04 not rendered). Source artwork files: 5 in `michelle-images/` (m01–m05); only 4 made it through to render.
 
-Totals: 6 + 5 + 4 = 15 finished-shirt cards in Q1. The site copy says "fifteen artworks · five get made" — both correct. Never frame this as "5 per artist" in copy.
+Totals: 6 + 4 = 10 finished-shirt cards in Q1. The site copy now says "ten artworks · five get made" (still 5 chosen × 50 each = 250 pieces).
 
 Chris Sullivan was deferred during this session — handled separately due to scheduling.
 
@@ -41,7 +56,7 @@ Chris Sullivan was deferred during this session — handled separately due to sc
 
 *Q1/Q2 redesigned 11 June 2026 (client decision, supersedes the earlier "interactive builder" lock):*
 
-1. **Drop ranking** — Tap every **finished shirt** you'd choose (15 completed-shirt composites across 3 artists, multi-select). Conor + Peter shown on black classic (`{id}_T01`), Michelle on white classic (`{id}_T02`)
+1. **Drop ranking** — Tap every **finished shirt** you'd choose (10 completed-shirt composites across 2 artists, multi-select). Conor shown on black classic (`{id}_T01`), Michelle on white classic (`{id}_T02`)
 2. **Shirt style** — Which shirt would you wear? Single-select: Black/White × Classic/Cropped, captured as `shirt_style_choice` (note: per-combo buy intent from the old builder no longer exists; buy intent is Q9 only)
 3. **Promise ranking** — Top 3 of 8 brand promises
 4. Retailers
@@ -70,7 +85,7 @@ Standalone copy at `logo.svg` in the repo root. Inline structure adds ~12KB per 
 
 ## Recently completed (this session)
 
-- ✅ Three-artist programme integration (Conor + Peter + Michelle, Chris Sullivan deferred)
+- ✅ Two-artist programme (Conor + Michelle — Peter Rapp removed 25 June 2026; Chris Sullivan deferred earlier)
 - ✅ Q2 "Build your shirt" interactive builder
 - ✅ 60 AI-generated mockup composites in `mockups/` (~31MB) — **placeholder**, pro designer will replace
 - ✅ Mobile entry gate scroll fix (works on small screens)
@@ -106,7 +121,7 @@ Standalone copy at `logo.svg` in the repo root. Inline structure adds ~12KB per 
 - [x] **End-to-end test passed (11 June 2026)** — full run-through on the live site: entry gate, all 9 questions, exit form, submission. No console errors. Q1/Q2 verified at desktop + 390px mobile. One test submission in Netlify Forms from `dustin+e2etest@warpspeed.agency` — **ignore it in results**.
 - [ ] **Replace AI mockups with pro designer's** — the 60 composites in `mockups/` are placeholders. **Decision (11 June): distribution waits for the pro renders.** When delivered, drop them in `mockups/` with the same filename pattern (`{artId}_{shirtId}.png`) — no code changes needed. Ask the designer for web-optimised files (current placeholders are ~500KB each; aim for ≤150KB or WebP).
 - [ ] **Client will supply new artwork** for the redesigned survey — incorporate when shared (Dustin, 11 June voice note).
-- [ ] **Drop in new Defatigable render** — Dustin shared a finished pro-designer mockup of Peter Rapp's *Defatigable* on a white classic shirt. Save it to `renders/P03.jpg` (replacing the current file). It'll automatically appear in Q1 and (because of the new Q7 hook) in the ad mockups once a respondent selects it.
+- ~~Drop in new Defatigable render~~ — N/A, Peter Rapp removed 25 June 2026.
 - [ ] **Distribution** — blocked on pro renders per decision above. Everything else is ready.
 - [ ] **Watch:** Promise B / Ad B still say "Designed by neurodivergent artists" — intentional (the exit gate tests ND framing), but flag against the May brand-board decision to lead with "independent artists" before any public-facing reuse.
 
@@ -117,7 +132,7 @@ Standalone copy at `logo.svg` in the repo root. Inline structure adds ~12KB per 
 | `index.html` | Main survey (~254KB; large because logo SVG is inlined 8×) |
 | `logo.svg` | Clean standalone wordmark, also extracted from AI source |
 | `conor-images/` | 5 Conor Devlin-Powell artworks (PNG) |
-| `peter-images/` | 5 Peter Rapp artworks (JPG, downloaded from Etsy/WordPress CDN) |
+| ~~`peter-images/`~~ | Removed from project 25 June 2026 — folder can be deleted from disk |
 | `michelle-images/` | 5 Michelle Fine artworks (PNG, from her Instagram via desktop save) |
 | `shirt-mockups/` | 4 blank shirt mockups (t01–t04: black/white × classic/cropped) |
 | `mockups/` | **60 AI-generated artwork×shirt composites — PLACEHOLDER**, replace with pro designer's renders |
@@ -139,7 +154,7 @@ Standalone copy at `logo.svg` in the repo root. Inline structure adds ~12KB per 
 ## Decisions locked (this session, don't undo)
 
 - 3 artists × 5 works = 15 in the survey (no Chris Sullivan)
-- Conor leads the launch; Peter and Michelle framed as "could be next?"
+- Conor leads the launch; Michelle framed as "could be next?" (Peter Rapp removed 25 June 2026)
 - Q2 = interactive "Build your shirt" with single-select buy intent (yes / maybe / not for me) per combo
 - Logo: TT Hoves Pro outlined treatment, no italic on `early`, outlined `or`, outlined italic sans-serif `t` inside outlined parens
 - Programme N°01 framing throughout
