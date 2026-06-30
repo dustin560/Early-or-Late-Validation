@@ -1,5 +1,24 @@
 # Early or Late — Survey Handoff
-*Last updated: 25 June 2026*
+*Last updated: 30 June 2026*
+
+## 30 June 2026 — Six new Michelle Fine shirts added (M06–M11)
+
+**Programme N°01 is now 16 artworks** (6 Conor + 10 Michelle). "Five get made" preserved — 5 × 50 = 250 pieces still holds. Edition numbers continue from N°016 to N°021 (the N°007–N°011 gap from Peter's removal is left intact; do not renumber).
+
+New shirts, with **Claude-invented titles + descriptions** (Dustin to review against Michelle's preferences):
+
+| Card | Title | Description |
+|---|---|---|
+| M·06 | Patron | "A crown made of yesterday's noise. The dog knows." |
+| M·07 | The Whole Cast | "Everyone showed up. Nobody got top billing." |
+| M·08 | Listening Face | "She heard you. She has thoughts." |
+| M·09 | What Remains | "When the herd moves on, the shape stays." |
+| M·10 | Half Done | "Caught between two thoughts. Neither finished." |
+| M·11 | Saturday Eyes | "Sunglasses indoors. The right call." |
+
+**JPEG files** are live in `renders/` (M06.jpg–M11.jpg). Dustin saved the originals as `.jpeg`; Claude retinted and re-saved as `.jpg` (the convention). Heavy lavender on M06/M07/M11 was successfully replaced with warm stone (RGB 234, 232, 227); M08/M09/M10 had pale grey/white backgrounds that the v3 threshold correctly skipped. Originals preserved in `renders/.bak/` (gitignored). **Orphan `.jpeg` files** in `renders/` (M06–M11.jpeg) — Dustin to delete via Finder before next push or they'll be committed alongside the .jpg.
+
+Copy updated everywhere: "Ten artworks" → "Sixteen artworks" (3 places), "5 of 10" → "5 of 16", signup footer + intro both updated. Both clones synced.
 
 ## 25 June 2026 — Peter Rapp removed from the programme
 
@@ -43,12 +62,12 @@ Early or Late is a contemporary art curation house launching as wearable artwork
 
 ## Two artists in Programme 01
 
-**10 finished shirts total in Q1** (Peter Rapp removed 25 June 2026):
+**16 finished shirts total in Q1** (after Peter removal + Michelle expansion 30 June 2026):
 
 - **Conor Devlin-Powell** — launch artist. **6 finished shirts in survey** (C01–C06). Source artwork files: 5 in `conor-images/` (c01–c05); the sixth shirt (C06) uses an additional piece rendered into `renders/C06.jpg`.
-- **Michelle Fine** — candidate for next range. **4 finished shirts in survey** (M01, M02, M03, M05 — note M04 not rendered). Source artwork files: 5 in `michelle-images/` (m01–m05); only 4 made it through to render.
+- **Michelle Fine** — equal partner in this drop. **10 finished shirts in survey** (M01, M02, M03, M05, M06–M11 — note M04 still not rendered). M06–M11 added + retinted to warm stone on 30 June 2026.
 
-Totals: 6 + 4 = 10 finished-shirt cards in Q1. The site copy now says "ten artworks · five get made" (still 5 chosen × 50 each = 250 pieces).
+Totals: 6 + 10 = 16 finished-shirt cards in Q1. The site copy now says "sixteen artworks · five get made" (still 5 chosen × 50 each = 250 pieces).
 
 Chris Sullivan was deferred during this session — handled separately due to scheduling.
 
@@ -56,7 +75,7 @@ Chris Sullivan was deferred during this session — handled separately due to sc
 
 *Q1/Q2 redesigned 11 June 2026 (client decision, supersedes the earlier "interactive builder" lock):*
 
-1. **Drop ranking** — Tap every **finished shirt** you'd choose (10 completed-shirt composites across 2 artists, multi-select). Conor shown on black classic (`{id}_T01`), Michelle on white classic (`{id}_T02`)
+1. **Drop ranking** — Tap every **finished shirt** you'd choose (16 completed-shirt composites across 2 artists, multi-select).
 2. **Shirt style** — Which shirt would you wear? Single-select: Black/White × Classic/Cropped, captured as `shirt_style_choice` (note: per-combo buy intent from the old builder no longer exists; buy intent is Q9 only)
 3. **Promise ranking** — Top 3 of 8 brand promises
 4. Retailers
